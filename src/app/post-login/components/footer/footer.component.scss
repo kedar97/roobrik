@@ -1,0 +1,41 @@
+
+.footer-wrapper {
+  background: #F6F6F6;
+  padding: 40px 113px 44px 113px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .footer-logo {
+    img {
+      height: 25px;
+    }
+  }
+  .footer-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+  }
+}
+
+
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+nav li {
+  margin: 0 20px; 
+  margin-left: 40px;
+}
+
+nav a {
+  
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}

@@ -1,0 +1,28 @@
+<div class="header-wrapper">
+  <div class="header-logo">
+    <img src="assets/images/roobrik_color_horizontal.png">
+  </div>
+  <div class="header-content">
+    <nav>
+        <ul>
+            <li  class="home"><a routerLink="" routerLinkActive="active-link">Home</a></li>
+            <li><a href="#" (click)="showReportOptions()">Reports <div class="arrow"></div></a></li>
+            <li><a href="#">Lead Routing</a></li>
+        </ul>
+    </nav>
+    <div class="profile-section">
+      <div class="info circular-div">
+        ?
+      </div>  
+      <div class="profile-text circular-div">
+        JV
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="report-options" *ngIf="displayReports">
+    <span>Standard Reports</span>
+    <span>Custom Reports</span>
+</div>
