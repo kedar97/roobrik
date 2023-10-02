@@ -1,3 +1,81 @@
 .home {
-  height: calc(100% - 255px);
+  max-width: 1920px;
+
+  .header-wrapper {
+    margin: 138px auto 80px 4vw;
+    @media screen and (min-width: 1450px) {
+      margin: 138px auto 80px 8vw;
+    }
+    @media screen and (min-width: 1750px) {
+      margin: 138px auto 80px 14.4vw;
+    }
+    @media screen and (min-width: 1920px) {
+      margin: 138px auto 80px 278px;
+    }
+
+    .heading {
+      font-size: 30px;
+      color: #215777 !important;
+      font-weight: bold;
+    }
+  }
+
+    .card-wrapper {
+      margin: 0 307px 115px;
+      width: 1346px;
+      gap: 4vw;
+      @media screen and (min-width: 1200px) {
+        gap: 6.77vw;
+      }
+      @media screen and (min-width: 1920px) {
+        gap: 130px;
+      }
+
+      .k-card {
+        max-width: 330px;
+        min-height: 585px;
+        border: none;
+        box-shadow: 0px 0px 30px #00000029;
+ 
+        .k-card-body {
+          padding: 30px 23px 61px;
+  
+          .card-hedear {
+            font-size: 22px;
+            color: #8F3040;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 0;
+          }
+
+          .img-wrapper {
+            height: 210px;
+            margin-bottom: 32px;
+
+            img {
+              width: 200px;
+            }
+          }
+
+          p {
+            margin-right: 15px;
+            margin-bottom: 29px;
+            color: #262626;
+            letter-spacing: 0;
+          }
+        }
+
+        .k-card-actions {
+          .k-button {
+            font-weight: bold;
+            font-size: 14px;
+            border-width: 3px;
+            border-radius: 0;
+            color: #0A4569;
+            padding: 10px 16px;
+            border-color: #0A4569;
+          }
+        }
+      }
+    }
 }

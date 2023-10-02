@@ -1,28 +1,90 @@
-<div class="header-wrapper">
-  <div class="header-logo">
-    <img src="assets/images/roobrik_color_horizontal.png">
-  </div>
-  <div class="header-content">
-    <nav>
-        <ul>
-            <li  class="home"><a routerLink="" routerLinkActive="active-link">Home</a></li>
-            <li><a href="#" (click)="showReportOptions()">Reports <div class="arrow"></div></a></li>
-            <li><a href="#">Lead Routing</a></li>
-        </ul>
-    </nav>
-    <div class="profile-section">
-      <div class="info circular-div">
-        ?
-      </div>  
-      <div class="profile-text circular-div">
-        JV
-      </div>
+<div>
+  <div class="border-bottom">
+    <kendo-appbar-section
+      class="d-flex align-items-center justify-content-between nav"
+    >
+      <kendo-appbar-section class="col-md-4 col-xl-5">
+        <img src="assets/images/roobrik_color_horizontal.png" height="34px" />
+      </kendo-appbar-section>
 
+      <kendo-appbar-section class="col-md-8 col-xl-7">
+        <div class="d-flex gap-5">
+          <nav
+            class="d-flex justify-content-between align-items-center col-xl-8"
+          >
+            <div>
+              <a
+                kendo-link
+                routerLink=""
+                routerLinkActive="active-link"
+                class="text-md text-primary-emphasis"
+                >Home</a
+              >
+            </div>
+
+            <div>
+              <a
+                kendo-link
+                href="#"
+                (click)="showReportOptions1()"
+                class="text-primary-emphasis"
+              >
+                Reports
+                <span class="arrow"></span>
+              </a>
+            </div>
+
+            <div>
+              <a kendo-link href="#" class="text-primary-emphasis"
+                >Lead Routing</a
+              >
+            </div>
+          </nav>
+          <div class="d-flex gap-3 col-xl-4 justify-content-center">
+            <button
+              kendoButton
+              class="action-btn border rounded-circle text-primary-emphasis bg-light info-btn"
+              (click)="showReportOptions2()"
+            >
+              ?
+            </button>
+            <button
+              kendoButton
+              class="action-btn border rounded-circle text-md text-white bg-info profile-btn"
+              (click)="showReportOptions3()"
+            >
+              JV
+            </button>
+          </div>
+        </div>
+      </kendo-appbar-section>
+    </kendo-appbar-section>
+  </div>
+</div>
+<div class="report-options report-options1 d-flex flex-column" *ngIf="displayReports1">
+  <span>Standard Reports</span>
+  <span>Custom Reports</span>
+</div>
+<div class="report-options report-options2 p-3 d-flex flex-column"*ngIf="displayReports2">
+  <div class="info-border-bottom border-bottom mb-2">
+    <span>
+      Need more help?
+    </span>
+  </div>
+  <div class="text-secondary text-sm mb-2">Your Client Success Manager is</div>
+  <div class="d-flex align-items-center gap-3">
+    <img
+      src="assets/images/roobrik_color_horizontal.png"
+      class="border rounded-circle"
+    />
+    <div class="d-flex flex-column">
+      <div class="text-md user-name font-weight-bold">Kim Armstrong</div>
+      <div class="text-primary email">Kim.armstring@robbrik.com</div>
     </div>
   </div>
 </div>
-
-<div class="report-options" *ngIf="displayReports">
-    <span>Standard Reports</span>
-    <span>Custom Reports</span>
+<div class="report-options report-options3 d-flex flex-column" *ngIf="displayReports3">
+  <span>Profile</span>
+  <span>Switch Account</span>
+  <span>Sign Out</span>
 </div>

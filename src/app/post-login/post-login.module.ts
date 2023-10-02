@@ -5,6 +5,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PostLoginComponent } from './post-login.component';
 import { PostLoginRoutingModule } from './post-login-routing.module';
+import { NavigationModule } from '@progress/kendo-angular-navigation';
+import { CardModule, LayoutModule } from '@progress/kendo-angular-layout';
+import { ButtonModule, ButtonsModule } from '@progress/kendo-angular-buttons';
+import { IconsModule } from '@progress/kendo-angular-icons';
 
 
 @NgModule({
@@ -16,7 +20,12 @@ import { PostLoginRoutingModule } from './post-login-routing.module';
   ],
   imports: [
     CommonModule,
-    PostLoginRoutingModule
+    PostLoginRoutingModule,
+    NavigationModule,
+    CardModule,
+    ButtonModule,
+    LayoutModule,
+    IconsModule,
   ]
 })
 export class PostLoginModule { }

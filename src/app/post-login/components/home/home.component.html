@@ -1,2 +1,33 @@
-<div class="home">
+<div class="home m-auto">
+  <div class="header-wrapper">
+    <h1 class="heading text-primary-emphasis m-0">
+      Welcome, [first name]!
+    </h1>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="card-wrapper d-flex flex-md-row justify-content-between align-items-center p-xl-5">
+      <ng-container *ngFor="let card of cardList">
+        <kendo-card class="card" orientation="horizontal" width="330px">
+          <div class="k-vstack">
+            <kendo-card-body>
+              <div class="img-wrapper d-flex justify-content-center align-items-center">
+                <img [src]="card.imgSrc" class="h-auto" />
+              </div>
+              <h4 class="card-hedear font-weight-bold">{{ card.heading }} </h4>
+              <p>
+                {{ card.content }}
+              </p>
+              <kendo-card-actions class="">
+                <button kendoButton size="medium" fillMode="outline">
+                  {{ card.btnTitle }}
+                </button>
+              </kendo-card-actions>
+            </kendo-card-body>
+
+          </div>
+        </kendo-card>
+      </ng-container>
+    </div>
+  </div>
 </div>

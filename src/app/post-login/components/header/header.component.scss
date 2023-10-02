@@ -1,119 +1,95 @@
-
-.header-wrapper {
-  padding: 30px 113px 34px 113px;;
-  border-bottom: 1px solid rgba(black, 0.3);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .header-logo {
-    img {
-      height: 25px;
-    }
-  }
-  .header-content {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-
-    .profile-section {
-      display: flex;
-      align-items: center;
-      gap: 1rem ;
-      .circular-div {
-        width: 40px; 
-        height: 40px;
-        border-radius: 50%;
-        text-align: center; 
-        line-height: 40px; 
-        font-size: 18px; 
-
-        &.info {
-          font-weight: 700;
-          background-color: lightgrey;
-          color: #0A4569;
-        }
-        &.profile-text{
-          background-color: #0A4569; 
-          color: #fff;
-        }
-      }
-    }
-  }
-}
-
-
-
-
-nav ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: center; 
-}
-
-nav li {
-  margin: 0 20px;
-  margin-left: 30px;
-  &.home {
-    margin-right: 70px;
-  }
-}
-
-nav a {  
-  text-decoration: none;
-  color: #165477;
-  font-size: 16px;
-  font-weight: 500;
-
-  &.active-link{
-    font-weight: bold;
-  }
-}
-
 a {
-    display: flex;
-    align-items: center;
-    position: relative;
-    font-size: 20px;
-    padding-bottom: 4px;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s; 
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 20px;
+  padding-bottom: 4px;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
 
-    &::before {
+  &::before {
     content: "";
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0; 
-    height: 2px; 
-    background-color: #165477; 
-    transition: width 0.3s; 
+    width: 0;
+    height: 2px;
+    background-color: #165477;
+    transition: width 0.3s;
   }
 
-  &:hover::before, &.active-link::before {
-    width: 100%; 
+  &:hover::before,
+  &.active-link::before {
+    width: 100%;
   }
 }
 
 .borderless-select {
-  border: none; 
-  padding: 5px; 
-  font-size: 16px; 
+  border: none;
+  padding: 5px;
+  font-size: 16px;
 }
 
 .report-options {
-  display: flex;
-  flex-direction: column;
   border: 1px solid rgba(black, 0.3);
   border-top: none;
   background-color: white;
-  position: absolute;
-  right: 42vh;
 
   span {
     display: block;
     padding: 10px;
+  }
+}
+.report-options1 {
+  position: absolute;
+  right: 33vw;
+  padding: 10px 15px 10px 0;
+  width: 210px;
+  color: #262626;
+  font-size: 18px;
+}
+.report-options2 {
+  position: absolute;
+  right: 18vw;
+  padding-bottom: 25px !important;
+  width: 290px;
+
+  .info-border-bottom span{
+    padding: 0;
+    padding-bottom: 10px;
+    color: #2D2D2D;
+    font-size: 18px;
+  }
+  .text-secondary{
+    font-size: 14px;
+    color: #2D2D2D;
+  }
+  img {
+    height: 44px;
+    width: 44px;
+  }
+
+  .user-name{
+    font-weight: bold;
+    color: #2D2D2D;
+  }
+  .email{
+    font-size: 14px;
+    color: #008DCC !important;
+  }
+}
+.report-options3 {
+  position: absolute;
+  right: 10vw;
+  width: 220px;
+  @media screen and (min-width: 1920px) {
+    width: 192px;
+  }
+  span{
+    padding: 15px 15px 15px 15px;
+    color: #2D2D2D;
+    font-size: 18px;
   }
 }
 
@@ -121,6 +97,7 @@ a {
   transform: rotate(270deg);
   margin-left: 22px;
   margin-bottom: 4px;
+  position: relative;
 }
 
 .arrow::before {
@@ -132,4 +109,46 @@ a {
   transform: rotate(45deg);
   cursor: pointer;
   display: block;
+}
+
+.nav {
+  height: 119px;
+  max-width: 1920px;
+  margin-left: 9.270833333333334vw;
+  margin-right: 9.270833333333334vw;
+}
+.action-btn  {
+  height: 2.91vw;
+  width: 2.91vw;
+}
+.info-btn {
+  background-color: #E5E5E5 !important;
+  color: #215777 !important;
+  font-size: 18px;
+  font-weight: 600;
+
+  @media screen and (min-width: 1920px) {
+    font-size: 28px;    
+  }
+  &:hover, &.active {
+    background-color: #7B7B7B !important;
+    color: #fff !important;
+  }
+}
+
+.profile-btn {
+  background-color: #0A4569 !important;
+  color: #FFFFFF !important;
+  &:hover, &.active{
+    background-color: #3D9AD3 !important;
+  }
+
+  @media screen and (min-width: 1500px) {
+    font-size: 18px;    
+  }
+  @media screen and (min-width: 1920px) {
+      font-size: 22px; 
+      font-weight: normal;
+      letter-spacing: 1px;
+  }
 }
