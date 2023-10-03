@@ -1,10 +1,10 @@
 
 .footer-wrapper {
   background: #F6F6F6;
-  padding: 73px 9.323vw 54px;
+  padding: 73px 8.75vw 54px 9.85vw;
 
   @media screen and (min-width: 1920px) {
-    padding: 73px 179px 54px;  
+    padding: 73px 168px 54px 189px;
   }
 
   .footer-logo {
@@ -20,11 +20,11 @@
 
 nav ul {
   list-style-type: none;
-}
+  gap: 4.47vw;
 
-nav li {
-  margin: 0 20px; 
-  margin-left: 40px;
+  .contact-us{
+    margin-right: 20px;
+  }
 }
 
 nav a {

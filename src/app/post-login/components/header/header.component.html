@@ -3,11 +3,14 @@
     <kendo-appbar-section
       class="d-flex align-items-center justify-content-between nav"
     >
-      <kendo-appbar-section class="col-md-4 col-xl-5">
-        <img src="assets/images/roobrik_color_horizontal.png" height="34px" />
+      <kendo-appbar-section class="col-md-4 col-xl-6">
+        <img
+          src="assets/images/roobrik_color_horizontal.png"
+          class="roobrik-logo"
+        />
       </kendo-appbar-section>
 
-      <kendo-appbar-section class="col-md-8 col-xl-7">
+      <kendo-appbar-section class="col-md-8 col-xl-6">
         <div class="d-flex gap-5">
           <nav
             class="d-flex justify-content-between align-items-center col-xl-8"
@@ -17,7 +20,7 @@
                 kendo-link
                 routerLink=""
                 routerLinkActive="active-link"
-                class="text-md text-primary-emphasis"
+                class="links home-link"
                 >Home</a
               >
             </div>
@@ -26,8 +29,9 @@
               <a
                 kendo-link
                 href="#"
-                (click)="showReportOptions1()"
-                class="text-primary-emphasis"
+                (click)="showReportOptions($event)"
+                class="links link-reports report"
+                [ngClass]="{'active-link': reports}"
               >
                 Reports
                 <span class="arrow"></span>
@@ -35,23 +39,24 @@
             </div>
 
             <div>
-              <a kendo-link href="#" class="text-primary-emphasis"
-                >Lead Routing</a
-              >
+              <a kendo-link href="#" class="links">Lead Routing</a>
             </div>
           </nav>
           <div class="d-flex gap-3 col-xl-4 justify-content-center">
             <button
               kendoButton
               class="action-btn border rounded-circle text-primary-emphasis bg-light info-btn"
-              (click)="showReportOptions2()"
+              (click)="showInfoBtn($event)"
+              [ngClass]="{'active': infoBtn}"
+
             >
               ?
             </button>
             <button
               kendoButton
               class="action-btn border rounded-circle text-md text-white bg-info profile-btn"
-              (click)="showReportOptions3()"
+              (click)="showProfileBtn($event)"
+              [ngClass]="{'active': profileBtn}"
             >
               JV
             </button>
@@ -61,21 +66,21 @@
     </kendo-appbar-section>
   </div>
 </div>
-<div class="report-options report-options1 d-flex flex-column" *ngIf="displayReports1">
+
+<div class="popup popup-reports d-flex flex-column" *ngIf="reports">
   <span>Standard Reports</span>
   <span>Custom Reports</span>
 </div>
-<div class="report-options report-options2 p-3 d-flex flex-column"*ngIf="displayReports2">
+
+<div class="popup popup-info p-3 d-flex flex-column" *ngIf="infoBtn">
   <div class="info-border-bottom border-bottom mb-2">
-    <span>
-      Need more help?
-    </span>
+    <span> Need more help? </span>
   </div>
   <div class="text-secondary text-sm mb-2">Your Client Success Manager is</div>
-  <div class="d-flex align-items-center gap-3">
+  <div class="d-flex align-items-center gap-3 personal-content">
     <img
-      src="assets/images/roobrik_color_horizontal.png"
-      class="border rounded-circle"
+      src="assets/images/user-1.png"
+      class="border border-primary rounded-circle"
     />
     <div class="d-flex flex-column">
       <div class="text-md user-name font-weight-bold">Kim Armstrong</div>
@@ -83,7 +88,8 @@
     </div>
   </div>
 </div>
-<div class="report-options report-options3 d-flex flex-column" *ngIf="displayReports3">
+
+<div class="popup popup-profile d-flex flex-column" *ngIf="profileBtn">
   <span>Profile</span>
   <span>Switch Account</span>
   <span>Sign Out</span>

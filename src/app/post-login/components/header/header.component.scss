@@ -1,3 +1,8 @@
+.roobrik-logo{
+    width: 202px;
+    height: 35px;
+}
+
 a {
   display: flex;
   align-items: center;
@@ -31,7 +36,7 @@ a {
   font-size: 16px;
 }
 
-.report-options {
+.popup {
   border: 1px solid rgba(black, 0.3);
   border-top: none;
   background-color: white;
@@ -41,54 +46,120 @@ a {
     padding: 10px;
   }
 }
-.report-options1 {
+
+.link-reports{
+  position: relative;
+  margin-left: 2rem;
+}
+
+.popup-reports {
   position: absolute;
-  right: 33vw;
-  padding: 10px 15px 10px 0;
-  width: 210px;
+  right: 31vw;
+  width: 206px;
+  height: 124px;
   color: #262626;
   font-size: 18px;
-}
-.report-options2 {
-  position: absolute;
-  right: 18vw;
-  padding-bottom: 25px !important;
-  width: 290px;
+  @media screen and (min-width: 1500px) {
+    right: 32vw;
+  }
 
-  .info-border-bottom span{
+  span {
+    line-height: 17px;
+    padding: 23px 10px 22px;
+    height: 62px;
+  }
+}
+
+.info-btn {
+  position: relative;
+  background-color: #e5e5e5 !important;
+  color: #215777 !important;
+  font-size: 18px;
+  font-weight: 600;
+  @media screen and (min-width: 1500px) {
+    font-size: 24px;
+  }
+  @media screen and (min-width: 1800px) {
+    font-size: 28px;
+  }
+  &:hover,
+  &.active {
+    background-color: #7b7b7b !important;
+    color: #fff !important;
+  }
+}
+
+.popup-info {
+  position: absolute;
+  padding-bottom: 25px !important;
+  padding-top: 23px !important;
+  width: 293px;
+  height: 179px;
+  right: 13vw;
+  @media screen and (min-width: 1500px) {
+    right: 14vw;
+  }
+  
+  .info-border-bottom span {
     padding: 0;
     padding-bottom: 10px;
-    color: #2D2D2D;
+    color: #2d2d2d;
     font-size: 18px;
   }
-  .text-secondary{
+  .text-secondary {
     font-size: 14px;
-    color: #2D2D2D;
+    color: #2d2d2d;
   }
   img {
     height: 44px;
     width: 44px;
   }
 
-  .user-name{
+  .user-name {
     font-weight: bold;
-    color: #2D2D2D;
+    color: #2d2d2d;
   }
-  .email{
+  .email {
     font-size: 14px;
-    color: #008DCC !important;
+    color: #008dcc !important;
+  }
+
+  &:hover{
+    background-color: #EFEFEF;
   }
 }
-.report-options3 {
+
+.profile-btn {
+  position: relative;
+  background-color: #0a4569 !important;
+  color: #ffffff !important;
+  &:hover,
+  &.active {
+    background-color: #3d9ad3 !important;
+  }
+  @media screen and (min-width: 1500px) {
+    font-size: 20px;
+  }
+  @media screen and (min-width: 1800px) {
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: 1px;
+  }
+}
+.popup-profile {
   position: absolute;
-  right: 10vw;
-  width: 220px;
+  right: 9vw;
+  width: 202px;
+  height: 186px;
+  @media screen and (min-width: 1500px) {
+    right: 10vw;
+  }
   @media screen and (min-width: 1920px) {
     width: 192px;
   }
-  span{
+  span {
     padding: 15px 15px 15px 15px;
-    color: #2D2D2D;
+    color: #2d2d2d;
     font-size: 18px;
   }
 }
@@ -104,8 +175,8 @@ a {
   content: " ";
   border-left: 2px solid #165477;
   border-bottom: 2px solid #165477;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   transform: rotate(45deg);
   cursor: pointer;
   display: block;
@@ -113,42 +184,29 @@ a {
 
 .nav {
   height: 119px;
-  max-width: 1920px;
   margin-left: 9.270833333333334vw;
   margin-right: 9.270833333333334vw;
 }
-.action-btn  {
+
+.action-btn {
   height: 2.91vw;
   width: 2.91vw;
+  @media screen and (min-width: 1920px) {
+    height: 56px;
+    width: 56px;
+  }
 }
-.info-btn {
-  background-color: #E5E5E5 !important;
-  color: #215777 !important;
+
+.links {
   font-size: 18px;
-  font-weight: 600;
+  color: #165477;
 
-  @media screen and (min-width: 1920px) {
-    font-size: 28px;    
-  }
-  &:hover, &.active {
-    background-color: #7B7B7B !important;
-    color: #fff !important;
+  &.home-link{
+    font-weight: bold;
   }
 }
 
-.profile-btn {
-  background-color: #0A4569 !important;
-  color: #FFFFFF !important;
-  &:hover, &.active{
-    background-color: #3D9AD3 !important;
-  }
-
-  @media screen and (min-width: 1500px) {
-    font-size: 18px;    
-  }
-  @media screen and (min-width: 1920px) {
-      font-size: 22px; 
-      font-weight: normal;
-      letter-spacing: 1px;
-  }
+.personal-content{
+  width: 55px;
+  height: 55px;
 }

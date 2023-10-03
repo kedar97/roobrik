@@ -1,5 +1,7 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { SVGIcon } from '@progress/kendo-angular-icons';
+import {
+  Component,
+  HostListener,
+} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,25 +9,68 @@ import { SVGIcon } from '@progress/kendo-angular-icons';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  reports: boolean = false;
+  infoBtn: boolean = false;
+  profileBtn: boolean = false;
 
-  constructor(){}
+  constructor() {}
 
-  displayReports1: boolean = false;
-  displayReports3: boolean = false;
-  displayReports2: boolean = false;
-
-  showReportOptions1() {
-    this.displayReports1 = !this.displayReports1;
-    this.displayReports2 = this.displayReports3 = false;
+  showReportOptions(event: Event) {
+    this.reports = !this.reports;
+    this.infoBtn = this.profileBtn = false;
+    event.stopPropagation();
   }
 
-  showReportOptions2() {
-    this.displayReports2 = !this.displayReports2;
-    this.displayReports1 = this.displayReports3 = false;
+  showInfoBtn(event: Event) {
+    this.infoBtn = !this.infoBtn;
+    this.reports = this.profileBtn = false;
+    event.stopPropagation();
   }
-  
-  showReportOptions3() {
-    this.displayReports3 = !this.displayReports3;
-    this.displayReports1 = this.displayReports2 = false;
+
+  showProfileBtn(event: Event) {
+    this.profileBtn = !this.profileBtn;
+    this.reports = this.infoBtn = false;
+    event.stopPropagation();
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: Event) {
+    if (this.reports) {
+      console.log('ds');
+      const popupElement = document.querySelector('.popup-reports');
+      const buttonElement = document.querySelector('.link-reports');
+      if (
+        popupElement &&
+        buttonElement &&
+        !popupElement.contains(event.target as Node) &&
+        !buttonElement.contains(event.target as Node)
+      ) {
+        this.reports = false;
+      }
+    }
+    if (this.infoBtn) {
+      const popupElement = document.querySelector('.popup-info');
+      const buttonElement = document.querySelector('.info-btn');
+      if (
+        popupElement &&
+        buttonElement &&
+        !popupElement.contains(event.target as Node) &&
+        !buttonElement.contains(event.target as Node)
+      ) {
+        this.infoBtn = false;
+      }
+    }
+    if (this.profileBtn) {
+      const popupElement = document.querySelector('.popup-profile');
+      const buttonElement = document.querySelector('.action-btn');
+      if (
+        popupElement &&
+        buttonElement &&
+        !popupElement.contains(event.target as Node) &&
+        !buttonElement.contains(event.target as Node)
+      ) {
+        this.profileBtn = false;
+      }
+    }
   }
 }
