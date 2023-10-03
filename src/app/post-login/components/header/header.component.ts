@@ -36,7 +36,6 @@ export class HeaderComponent {
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     if (this.reports) {
-      console.log('ds');
       const popupElement = document.querySelector('.popup-reports');
       const buttonElement = document.querySelector('.link-reports');
       if (
