@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-login',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./post-login.component.scss']
 })
 export class PostLoginComponent {
+  isBlurred = false;
 
+  
 }

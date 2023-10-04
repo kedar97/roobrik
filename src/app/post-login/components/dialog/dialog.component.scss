@@ -1,0 +1,62 @@
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+// @import '@progress/kendo-font-icons/dist/all.css';
+
+.container{
+   width: 752px;
+   height:518px;
+   padding: 10px 0 0 0;
+
+   
+   .dialog-title{
+    color: #083754;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 36.8px;
+    text-align: center;
+    margin:0px 0 58px 0;
+
+    }
+    .grid-layout-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .card-box{
+            display: contents;
+        }
+        .img-card{
+            width: 131px;
+    height: 70px;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+
+        }
+        .cmp-title{
+    
+            color: #777;
+            font-weight: 400;
+            line-height: 20.7px;
+            font-size: 18px;
+        }
+        .btn-select{
+            background-color: #083754 ;
+            color: white;
+            border: none;
+           width: 170px;
+           height: 44px;
+           text-transform: uppercase;
+        }
+
+       
+    }
+
+}
+
+
+@media (min-width: 576px){
+.container {
+    max-width: 620px;
+}
+}
+
+

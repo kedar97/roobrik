@@ -26,5 +26,7 @@ export class HomeComponent {
       content: 'View the email addresses where your Roobrik leads are delivered for each of your locations. Account Admins can update the email addresses here as well.',
       btnTitle: 'View Lead Routing'
     },
+    
   ]
+ 
 }

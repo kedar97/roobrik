@@ -67,7 +67,7 @@
   </div>
 </div>
 
-<div class="popup popup-reports d-flex flex-column" *ngIf="reports">
+<div class="popup popup-reports d-flex flex-column" *ngIf="reports" (click)=onStandardReports()>
   <span>Standard Reports</span>
   <span>Custom Reports</span>
 </div>
@@ -90,7 +90,7 @@
 </div>
 
 <div class="popup popup-profile d-flex flex-column" *ngIf="profileBtn">
-  <span>Profile</span>
-  <span>Switch Account</span>
+  <span (click)=onProfile()> Profile</span>
+  <span (click)= onSelectAccount()>Switch Account</span>
   <span>Sign Out</span>
 </div>

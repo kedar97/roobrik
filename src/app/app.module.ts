@@ -4,10 +4,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationModule } from '@progress/kendo-angular-navigation';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@progress/kendo-angular-layout';
-import { IconsModule } from '@progress/kendo-angular-icons';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { IconsModule } from '@progress/kendo-angular-icons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { LabelModule } from '@progress/kendo-angular-label';
+
+
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +29,12 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     LayoutModule,
     NavigationModule,
     IconsModule,
-    ButtonsModule
+    ButtonsModule,
+    LabelModule,
+    InputsModule,
+   
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

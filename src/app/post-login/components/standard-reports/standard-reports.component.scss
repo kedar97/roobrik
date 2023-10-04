@@ -1,0 +1,100 @@
+
+.container{
+
+    max-width: 1920px;
+    height: 1100px;
+    margin: 40px 120px;
+    .standard-report-selection{
+    gap: 20px;
+    }
+   .txt-title{
+        width: 270px;
+        color: #0A4569;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 32px;
+        
+  
+        
+    }
+    .form-control{
+    width: 1100px;
+    height:48px;
+    border: 1px solid  #DFDFDF;
+  
+      
+    }
+    .selected-reports{
+    width: 1100px;
+    height:48px;
+    border: 1px solid  #D0D0D0;
+    background-color: #F5F5F5;
+    padding: 6.8px 38px;
+
+    span{
+        width: 67px;
+        height: 32px;
+        font-size:14px ;
+        font-family: 400;
+        color:#878787;
+        margin-left: 20px;
+    }
+    .btn-download{
+        background: #083754;
+        width: 112px;
+        height: 32px;
+        color: #FFFFFF;
+        margin-left: 32px;
+        
+    }
+   
+    }
+    .reports-data{
+        width:1100px;
+        
+        margin-top: 38px;
+
+        .k-grid{
+            width: 1100px;
+            height: max-content;
+            margin-left: -39px;
+           
+        }
+       
+        
+        .no-column-lines .k-grid tbody td {
+            border-right: none;
+        }
+        .report-name-cl{
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+        }
+        .report-title-cl{
+            font-weight: 500px;
+            font-size:14px ;
+            line-height: 20px ;
+            color: #2F2F2F;
+            
+        }
+        .icon-down{
+            margin-left: 5px;
+        }
+        
+       
+    }
+    
+    
+    
+} 
+.container .selected-reports span{
+    height: 22px;
+    color: #2F2F2F  ;
+    
+}
+.ag-theme-alpine {
+    --ag-background-color: #ddd;
+}
+.ag-theme-alpine .ag-header-cell-label {
+    font-style: italic;
+}

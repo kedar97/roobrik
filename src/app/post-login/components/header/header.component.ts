@@ -2,6 +2,9 @@ import {
   Component,
   HostListener,
 } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
+import { SVGIcon } from '@progress/kendo-angular-icons';
+import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +16,7 @@ export class HeaderComponent {
   infoBtn: boolean = false;
   profileBtn: boolean = false;
 
-  constructor() {}
+  constructor(private route:Router){}
 
   showReportOptions(event: Event) {
     this.reports = !this.reports;
@@ -72,4 +75,17 @@ export class HeaderComponent {
       }
     }
   }
+  onProfile(){
+    this.route.navigate(['profile']);
+  }
+  onSelectAccount(){
+   
+    this.route.navigate(['select']);
+    
+        
+  }
+  onStandardReports(){
+    this.route.navigate(['standardReports']);
+  }
+  
 }

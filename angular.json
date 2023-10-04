@@ -105,9 +105,12 @@
             "styles": [
               {
                 "input": "node_modules/@progress/kendo-theme-default/dist/all.css"
+             
               },
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+             
               "src/styles.scss"
+            
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
@@ -117,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "roobrik"
+  "defaultProject": "roobrik",
+  "cli": {
+    "analytics": "2611517a-f804-4ce7-8037-317cca9346ac"
+  }
 }

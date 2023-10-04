@@ -1,0 +1,61 @@
+<div class="container">
+   <h1 class="txt-profile">Profile</h1>
+   <form class="k-form k-form-md" [formGroup]="registerForm">
+    <fieldset class="k-form-fieldset">
+    
+      <kendo-formfield>
+        <kendo-label
+          labelCssClass="k-form-label"
+          [for]="firstName"
+      
+          class="form-label"
+        >First Name</kendo-label>
+        <input
+          formControlName="firstName"
+          class="form-input"    
+          kendoTextBox
+          #firstName
+          required
+        />
+
+       
+        <kendo-formerror class="required-error"> First name is required</kendo-formerror>
+      </kendo-formfield>
+
+      <kendo-formfield>
+        <kendo-label
+          labelCssClass="k-form-label"
+          [for]="lastName"
+          
+          class="form-label"
+        >Last Name</kendo-label>
+        <input formControlName="lastName"  class="form-input" kendoTextBox #lastName required />
+
+        
+        <kendo-formerror class="required-error">Last name is required</kendo-formerror>
+      </kendo-formfield>
+
+      
+      <kendo-formfield>
+        <kendo-label
+          labelCssClass="k-form-label"
+          [for]="email"
+          
+          class="form-label"
+        >Email</kendo-label>
+        <input formControlName="email" class="form-input" kendoTextBox #email required />
+
+        
+        <kendo-formerror class="required-error"> Not valid email format</kendo-formerror>
+      </kendo-formfield>
+
+    <div class="k-form-buttons d-flex flex-column">
+        <button kendoButton themeColor="primary" class="btn-save" (click)="submitForm()">
+          Save
+        </button>
+        <a class="reset-pass" href="http://">Reset your password with email</a>
+
+      </div>
+    </fieldset>
+  </form>
+</div>
