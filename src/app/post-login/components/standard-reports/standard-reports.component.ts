@@ -13,8 +13,19 @@ import {AllCommunityModules} from '@ag-grid-community/all-modules';
   
 })
 export class StandardReportsComponent {
- 
+  
+  columnDefs : ColDef[]=[
+    { headerName:'Repoert Name',headerCheckboxSelection: true, checkboxSelection: true,field:'name' ,width:600}, // Checkbox column
+    { headerName: 'Make', field: 'make' },
+    { headerName: 'Model', field: 'model' },
+    { headerName: 'Price', field: 'price' },
+  ];
 
+  rowData = [
+    {name:'df',make: 'Toyota', model: 'Celica', price: 35000 },
+    {name:'df', make: 'Ford', model: 'Mondeo', price: 32000 },
+    // Add more data as needed
+  ];
 
   
   }

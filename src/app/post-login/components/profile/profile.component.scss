@@ -1,38 +1,51 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 .container{
-    width: 450px;
-    height: 620px;
-    
-    
+   
+   
+    width: 100%;
+    height: 845px;
     .txt-profile{
+        
         font-size: 30px;
-        margin-top: 40px;
-        margin-bottom: 34px;
+        margin-top: 103px;
+        font-weight: bold;
+        margin-bottom: 39px;
+        margin-left: 330px; 
     }
 }
 .k-form {
-   
+    margin: auto;
+    width: 450px;
+    height: 585px;
     border: 1px solid #D0D0D0;
     background-color: #F3F3F3;
-    padding: 38px;
+    padding: 58px 57px ;
+    
     .form-label{
-        width: 78px;
+        width: 100px;
         height: 14px;
-        font-size: 15px;
+        font-size: 16px;
         color: #7E7E7E;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
     }
     .form-input{
-        margin-bottom: 20px;
+        margin-bottom: 35px;
         width: 336px;
         height: 50px;
         border-radius: 2px;
     }
+    .custom-placeholder::placeholder {
+        font-size: 16px;
+        margin-left: 21px;
+        color: #7E7E7E;
+    }  
+    
     .required-error{
-        margin-top: -15px;
+        margin-top: -30px;
     }
     .btn-save{
+     
         width: 337px;
         height: 52px;   
         border-radius: 2px;   
@@ -40,10 +53,11 @@
         background-color: #0B4569; 
         text-transform: uppercase;
         border: none;
+        font-weight: bold;
         
     }
     .reset-pass{
-        margin-top: 10px;
+        margin-top: 28px;
         text-align: center;
         text-decoration: underline;
     }

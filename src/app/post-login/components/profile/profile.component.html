@@ -12,10 +12,11 @@
         >First Name</kendo-label>
         <input
           formControlName="firstName"
-          class="form-input"    
+          class="form-input custom-placeholder"    
           kendoTextBox
           #firstName
           required
+        
         />
 
        
@@ -53,7 +54,7 @@
         <button kendoButton themeColor="primary" class="btn-save" (click)="submitForm()">
           Save
         </button>
-        <a class="reset-pass" href="http://">Reset your password with email</a>
+        <a class="reset-pass" href="http://">Reset your password via email</a>
 
       </div>
     </fieldset>

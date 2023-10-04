@@ -82,6 +82,7 @@ export class HeaderComponent {
    
     this.route.navigate(['select']);
     
+    
         
   }
   onStandardReports(){
