@@ -1,0 +1,14 @@
+app-header{
+    height: 120px;
+}
+
+app-footer{
+    height: 167px;
+}
+
+.container-wrapper {
+    min-height: 100vh;
+    .routing-page{
+        flex: 1;
+    }
+}

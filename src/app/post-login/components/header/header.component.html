@@ -1,4 +1,4 @@
-<div>
+<div class="header-wrapper">
   <div class="border-bottom">
     <kendo-appbar-section
       class="d-flex align-items-center justify-content-between nav"
@@ -10,6 +10,7 @@
         />
       </kendo-appbar-section>
 
+      <!-- Nav bar -->
       <kendo-appbar-section class="col-md-8 col-xl-6">
         <div class="d-flex gap-5">
           <nav
@@ -20,7 +21,7 @@
                 kendo-link
                 routerLink=""
                 routerLinkActive="active-link"
-                class="links home-link"
+                class="link home-link"
                 >Home</a
               >
             </div>
@@ -30,8 +31,8 @@
                 kendo-link
                 href="#"
                 (click)="showReportOptions($event)"
-                class="links link-reports report"
-                [ngClass]="{'active-link': reports}"
+                class="link link-reports report popup-btn"
+                [ngClass]="{'active-link': showReportMenu}"
               >
                 Reports
                 <span class="arrow"></span>
@@ -39,24 +40,26 @@
             </div>
 
             <div>
-              <a kendo-link href="#" class="links">Lead Routing</a>
+              <a kendo-link href="#" class="link">Lead Routing</a>
             </div>
           </nav>
+
+          <!-- Profile info -->
           <div class="d-flex gap-3 col-xl-4 justify-content-center">
             <button
               kendoButton
-              class="action-btn border rounded-circle text-primary-emphasis bg-light info-btn"
+              class="action-btn popup-btn border rounded-circle text-primary-emphasis bg-light info-btn"
               (click)="showInfoBtn($event)"
-              [ngClass]="{'active': infoBtn}"
+              [ngClass]="{'active': showInfoPopup}"
 
             >
               ?
             </button>
             <button
               kendoButton
-              class="action-btn border rounded-circle text-md text-white bg-info profile-btn"
+              class="action-btn popup-btn border rounded-circle text-md text-white bg-info profile-btn"
               (click)="showProfileBtn($event)"
-              [ngClass]="{'active': profileBtn}"
+              [ngClass]="{'active': showProfileMenu}"
             >
               JV
             </button>
@@ -67,12 +70,12 @@
   </div>
 </div>
 
-<div class="popup popup-reports d-flex flex-column" *ngIf="reports">
+<div class="popup popup-reports d-flex flex-column" *ngIf="showReportMenu">
   <span>Standard Reports</span>
   <span>Custom Reports</span>
 </div>
 
-<div class="popup popup-info p-3 d-flex flex-column" *ngIf="infoBtn">
+<div class="popup popup-info p-3 d-flex flex-column" *ngIf="showInfoPopup">
   <div class="info-border-bottom border-bottom mb-2">
     <span> Need more help? </span>
   </div>
@@ -89,7 +92,7 @@
   </div>
 </div>
 
-<div class="popup popup-profile d-flex flex-column" *ngIf="profileBtn">
+<div class="popup popup-profile d-flex flex-column" *ngIf="showProfileMenu">
   <span>Profile</span>
   <span>Switch Account</span>
   <span>Sign Out</span>
