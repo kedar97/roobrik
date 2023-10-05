@@ -2,6 +2,8 @@ import {
   Component,
   HostListener,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { DialogRef, DialogService } from '@progress/kendo-angular-dialog';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +15,10 @@ export class HeaderComponent {
   showInfoPopup: boolean = false;
   showProfileMenu: boolean = false;
 
-  constructor() {}
+  constructor(
+    private router: Router,
+    private dialogService: DialogService
+  ) {}
 
   showReportOptions(event: Event) {
     this.showReportMenu = !this.showReportMenu;
@@ -48,4 +53,8 @@ export class HeaderComponent {
 
       }
   }
+
+  onProfile(){
+    this.router.navigate(['profile']);
+  }  
 }

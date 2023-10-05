@@ -19,7 +19,7 @@
             <div>
               <a
                 kendo-link
-                routerLink=""
+                routerLink="/"
                 routerLinkActive="active-link"
                 class="link home-link"
                 >Home</a
@@ -93,7 +93,7 @@
 </div>
 
 <div class="popup popup-profile d-flex flex-column" *ngIf="showProfileMenu">
-  <span>Profile</span>
+  <span (click)=onProfile()> Profile</span>
   <span>Switch Account</span>
   <span>Sign Out</span>
 </div>

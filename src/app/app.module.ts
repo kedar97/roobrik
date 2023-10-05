@@ -8,10 +8,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { IconsModule } from '@progress/kendo-angular-icons';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { SharedModule } from './shared/shared.module';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,9 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     LayoutModule,
     NavigationModule,
     IconsModule,
-    ButtonsModule
+    ButtonsModule,
+    SharedModule,
+    GridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

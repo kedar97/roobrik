@@ -34,6 +34,7 @@ a {
   &.link {
     font-size: 18px;
     color: #165477;
+    cursor: pointer;
 
     &.home-link {
       font-weight: bold;
@@ -143,6 +144,7 @@ a {
       padding: 15px 15px 15px 15px;
       color: #2d2d2d;
       font-size: 18px;
+      cursor: pointer;
     }
   }
 }

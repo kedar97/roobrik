@@ -117,5 +117,8 @@
       }
     }
   },
-  "defaultProject": "roobrik"
+  "defaultProject": "roobrik",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,31 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { PostLoginComponent } from './post-login.component';
 import { PostLoginRoutingModule } from './post-login-routing.module';
-import { NavigationModule } from '@progress/kendo-angular-navigation';
-import { CardModule, LayoutModule } from '@progress/kendo-angular-layout';
-import { ButtonModule, ButtonsModule } from '@progress/kendo-angular-buttons';
-import { IconsModule } from '@progress/kendo-angular-icons';
 
+import { SharedModule } from '../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    PostLoginComponent
+    PostLoginComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     PostLoginRoutingModule,
-    NavigationModule,
-    CardModule,
-    ButtonModule,
-    LayoutModule,
-    IconsModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  exports: [
   ]
 })
 export class PostLoginModule { }
+        
