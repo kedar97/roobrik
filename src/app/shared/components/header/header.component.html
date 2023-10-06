@@ -19,9 +19,10 @@
             <div>
               <a
                 kendo-link
-                routerLink="/"
+                routerLink=""
                 routerLinkActive="active-link"
-                class="link home-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="link"
                 >Home</a
               >
             </div>
@@ -32,7 +33,7 @@
                 href="#"
                 (click)="showReportOptions($event)"
                 class="link link-reports report popup-btn"
-                [ngClass]="{'active-link': showReportMenu}"
+                [ngClass]="{ 'active-link': showReportMenu }"
               >
                 Reports
                 <span class="arrow"></span>
@@ -40,7 +41,12 @@
             </div>
 
             <div>
-              <a kendo-link href="#" class="link">Lead Routing</a>
+              <a
+                kendo-link
+                href="#"
+                class="link"
+                >Lead Routing</a
+              >
             </div>
           </nav>
 
@@ -50,8 +56,7 @@
               kendoButton
               class="action-btn popup-btn border rounded-circle text-primary-emphasis bg-light info-btn"
               (click)="showInfoBtn($event)"
-              [ngClass]="{'active': showInfoPopup}"
-
+              [ngClass]="{ active: showInfoPopup }"
             >
               ?
             </button>
@@ -59,7 +64,7 @@
               kendoButton
               class="action-btn popup-btn border rounded-circle text-md text-white bg-info profile-btn"
               (click)="showProfileBtn($event)"
-              [ngClass]="{'active': showProfileMenu}"
+              [ngClass]="{ active: showProfileMenu }"
             >
               JV
             </button>
@@ -93,7 +98,7 @@
 </div>
 
 <div class="popup popup-profile d-flex flex-column" *ngIf="showProfileMenu">
-  <span (click)=onProfile()> Profile</span>
-  <span>Switch Account</span>
+  <span (click)="onProfile()"> Profile</span>
+  <span (click)="onSelectAccount()">Switch Account</span>
   <span>Sign Out</span>
 </div>

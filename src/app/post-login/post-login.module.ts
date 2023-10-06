@@ -7,12 +7,14 @@ import { PostLoginRoutingModule } from './post-login-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     PostLoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,

@@ -11,13 +11,13 @@ const routes: Routes = [
     component: PostLoginComponent,
     children: [
       {
+        path:'profile',
+          component: ProfileComponent,
+      },
+      {
         path: '',
         component: HomeComponent,
       },
-      {
-        path:'profile',
-          component: ProfileComponent,
-      }
     ],
   },
 ];

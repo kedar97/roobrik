@@ -3,7 +3,8 @@ import {
   HostListener,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { DialogRef, DialogService } from '@progress/kendo-angular-dialog';
+import { DialogService } from '@progress/kendo-angular-dialog';
+import { DialogComponent } from 'src/app/post-login/components/dialog/dialog.component';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,7 @@ export class HeaderComponent {
 
   constructor(
     private router: Router,
-    private dialogService: DialogService
+    private dialogService: DialogService,
   ) {}
 
   showReportOptions(event: Event) {
@@ -56,5 +57,11 @@ export class HeaderComponent {
 
   onProfile(){
     this.router.navigate(['profile']);
-  }  
+  }
+
+  onSelectAccount(){
+    this.dialogService.open({
+      content: DialogComponent,
+    });
+  }
 }
