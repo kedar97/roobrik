@@ -20,7 +20,7 @@ export class DialogComponent implements OnInit {
     {
       imgSrc: 'assets/images/sunrise-logo.svg',
       clientName: 'Client Name',
-    },
+    }, 
    
    
   ];
