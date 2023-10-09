@@ -1,7 +1,7 @@
 .container {
   margin: 0;
   padding: 0;
-  min-width: 100vw;
+  min-width: 99vw;
 
   @media screen and (min-width: 1921px) {
     min-width: auto;
@@ -14,8 +14,8 @@
   padding: 18.25rem 0 0 9.2rem;
 
   img {
-    height: 35px;
-    width: 181px;
+    height: 48px;
+    width: 276px;
   }
 }
 
@@ -53,18 +53,22 @@
 
 .btn-save {
   width: 303px;
-  height: 42px;
+  height: 52px;
   border-radius: 0;
   background-color: #0b4569;
   color: white;
   font-weight: normal;
   margin-top: 44px;
+  font-size: 16px;
+  font-weight: 100;
+  padding: 22px 124.5px 16px;
 }
 
 .forgot-password {
   color: #727272;
   text-decoration: underline;
   margin-top: 44px;
+  font-size: 16px;
 }
 
 .need-help {
@@ -76,13 +80,17 @@
   text-decoration: underline;
 }
 
+.email-input {
+  margin-top: 8.5px
+}
+
 .password-input-wrapper {
   position: relative;
 }
 
 .eye-icon {
   position: absolute !important;
-  top: 50%;
+  top: 55%;
   right: 12px;
   transform: translateY(-50%);
   cursor: pointer;
@@ -95,6 +103,13 @@
 
 .form-label {
   color: #495057;
+  font-size: 16px;
+}
+
+.error-message {
+  margin-top: 6.5px;
+  font-style: normal;
+  color: #CC0027;
 }
 
 .error {
@@ -107,6 +122,11 @@
   font-size: 14px;
   font-weight: normal;
   margin-top: 44px;
+
+  span {
+    font-size: 14px;
+    font-weight: 100;
+  }
 }
 
 .fa-exclamation-triangle {
@@ -115,12 +135,13 @@
 }
 
 .cross-icon {
-  height: 25px;
-  width: 25px;
-  margin-left: 5px;
+  height: 20px;
+  width: 20px;
+  margin-left: 12px;
   font-weight: 500;
 }
 
 .error-message {
   color: red;
 }
+

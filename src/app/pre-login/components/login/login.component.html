@@ -35,13 +35,13 @@
           <input
             kendoTextBox
             formControlName="email"
-            class="form-input"
+            class="form-input email-input"
             kendoTextBox
             type="email"
             #email
             required
           />
-          <kendo-formerror error="required">
+          <kendo-formerror class="error-message" error="required">
             Please enter a valid email address.</kendo-formerror
           >
         </kendo-formfield>
@@ -77,7 +77,7 @@
               ></i>
             </div>
 
-            <kendo-formerror error="required">
+            <kendo-formerror error="required" class="error-message">
               Please enter the password.</kendo-formerror
             >
           </kendo-formfield>
