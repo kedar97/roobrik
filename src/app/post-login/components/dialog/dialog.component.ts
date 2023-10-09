@@ -16,13 +16,11 @@ export class DialogComponent implements OnInit {
     {
       imgSrc: 'assets/images/galloway-senior-living-logo.png',
       clientName: 'Client Name',
-    },  
+    },
     {
       imgSrc: 'assets/images/sunrise-logo.svg',
       clientName: 'Client Name',
     }, 
-   
-   
   ];
   constructor(
     private dialogService: DialogService,

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,7 +12,6 @@ export class ProfileComponent {
     firstName: new FormControl(),
     lastName: new FormControl(),
     email: new FormControl("", Validators.email),
-  
   });
 
   public submitForm(): void {

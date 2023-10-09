@@ -5,7 +5,6 @@ import { PostLoginComponent } from './post-login.component';
 import { PostLoginRoutingModule } from './post-login-routing.module';
 
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 
@@ -20,8 +19,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
     CommonModule,
     PostLoginRoutingModule,
     SharedModule,
-    FormsModule,
-    ReactiveFormsModule
   ],
   exports: [
   ]

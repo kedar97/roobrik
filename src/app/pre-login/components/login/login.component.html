@@ -1,0 +1,98 @@
+<div class="container d-flex">
+  <img class="main-img" src="assets/images/login-image.png" />
+  <div class="login-form">
+    <img src="assets/images/roobrik_color_horizontal.png" />
+    <div class="login-title">Log In</div>
+    <div class="error d-flex" *ngIf="isError">
+      <i class="fas fa-exclamation-triangle"></i>
+      <span>Your email or password is incorrect.</span>
+      <svg
+        class="cross-icon"
+        (click)="closeError()"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="#fff"
+        viewBox="0 0 320 512"
+      >
+        <path
+          d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"
+        />
+      </svg>
+    </div>
+    <form class="k-form k-form-md" [formGroup]="loginForm">
+      <fieldset
+        class="k-form-fieldset"
+        [ngStyle]="
+          isError ? { 'margin-top': '33px' } : { 'margin-top': '56px' }
+        "
+      >
+        <kendo-formfield>
+          <kendo-label
+            [for]="email"
+            class="form-label email-label"
+            labelCssClass="k-form-label"
+            >Email</kendo-label
+          >
+          <input
+            kendoTextBox
+            formControlName="email"
+            class="form-input"
+            kendoTextBox
+            type="email"
+            #email
+            required
+          />
+          <kendo-formerror error="required">
+            Please enter a valid email address.</kendo-formerror
+          >
+        </kendo-formfield>
+        <div class="password-container">
+          <kendo-formfield>
+            <kendo-label
+              labelCssClass="k-form-label"
+              [for]="password"
+              class="form-label password-label"
+              >Password</kendo-label
+            >
+            <div class="password-input-wrapper">
+              <input
+                kendoTextBox
+                formControlName="password"
+                class="form-input email-input"
+                kendoTextBox
+                [type]="showPassword ? 'text' : 'password'"
+                #password
+                required
+              />
+              <i
+                class="fa fa-eye-slash eye-icon"
+                (click)="passwordToggle()"
+                *ngIf="!showPassword"
+                [ngStyle]="isError ? { right: '27px' } : { right: '12px' }"
+              ></i>
+              <i
+                class="fa fa-eye eye-icon"
+                (click)="passwordToggle()"
+                *ngIf="showPassword"
+                [ngStyle]="isError ? { right: '27px' } : { right: '12px' }"
+              ></i>
+            </div>
+
+            <kendo-formerror error="required">
+              Please enter the password.</kendo-formerror
+            >
+          </kendo-formfield>
+        </div>
+
+        <div class="k-form-buttons">
+          <button kendoButton class="btn-save" (click)="submitForm()">
+            LOG IN
+          </button>
+        </div>
+        <div class="forgot-password">Forgot password</div>
+        <div class="need-help">
+          Need help? <span class="email-team">Email the Roobrik team.</span>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

@@ -1,9 +1,10 @@
 <div class="header-wrapper">
   <div class="border-bottom">
     <kendo-appbar-section
-      class="d-flex align-items-center justify-content-between nav"
+      class="d-flex align-items-center nav"
+      [ngClass]="{ 'justify-content-around': !isSmallDesktopScreen }"
     >
-      <kendo-appbar-section class="col-md-4 col-xl-6">
+      <kendo-appbar-section class="logo-container">
         <img
           src="assets/images/roobrik_color_horizontal.png"
           class="roobrik-logo"
@@ -11,11 +12,9 @@
       </kendo-appbar-section>
 
       <!-- Nav bar -->
-      <kendo-appbar-section class="col-md-8 col-xl-6">
-        <div class="d-flex gap-5">
-          <nav
-            class="d-flex justify-content-between align-items-center col-xl-8"
-          >
+      <kendo-appbar-section class="d-flex nav-profile-container">
+        <div class="d-flex">
+          <nav class="d-flex align-items-center">
             <div>
               <a
                 kendo-link
@@ -41,17 +40,12 @@
             </div>
 
             <div>
-              <a
-                kendo-link
-                href="#"
-                class="link"
-                >Lead Routing</a
-              >
+              <a kendo-link href="#" class="link">Lead Routing</a>
             </div>
           </nav>
 
           <!-- Profile info -->
-          <div class="d-flex gap-3 col-xl-4 justify-content-center">
+          <div class="d-flex gap-3 align-self-center profile-btns">
             <button
               kendoButton
               class="action-btn popup-btn border rounded-circle text-primary-emphasis bg-light info-btn"
@@ -70,13 +64,16 @@
             </button>
           </div>
         </div>
+        <div class="align-self-center">
+          <a class="link profile-link">Sunrise Senior Living</a>
+        </div>
       </kendo-appbar-section>
     </kendo-appbar-section>
   </div>
 </div>
 
 <div class="popup popup-reports d-flex flex-column" *ngIf="showReportMenu">
-  <span>Standard Reports</span>
+  <span (click)="onStandarsReport()">Standard Reports</span>
   <span>Custom Reports</span>
 </div>
 

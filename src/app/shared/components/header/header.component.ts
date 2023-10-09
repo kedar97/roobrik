@@ -11,15 +11,21 @@ import { DialogComponent } from 'src/app/post-login/components/dialog/dialog.com
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
+
 export class HeaderComponent {
   showReportMenu: boolean = false;
   showInfoPopup: boolean = false;
   showProfileMenu: boolean = false;
+  isSmallDesktopScreen:boolean = false;
 
   constructor(
     private router: Router,
     private dialogService: DialogService,
   ) {}
+
+  ngOnInit(): void {
+    this.isSmallDesktopScreen = window.innerWidth <= 1366;
+  }
 
   showReportOptions(event: Event) {
     this.showReportMenu = !this.showReportMenu;
@@ -63,5 +69,8 @@ export class HeaderComponent {
     this.dialogService.open({
       content: DialogComponent,
     });
+  }
+  onStandarsReport(){
+    this.router.navigate(['standardReports']);
   }
 }
