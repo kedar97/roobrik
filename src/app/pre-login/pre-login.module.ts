@@ -4,11 +4,13 @@ import { LoginComponent } from './components/login/login.component';
 import { PreLoginComponent } from './pre-login.component';
 import { PreLoginRoutingModule } from './pre-login-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    PreLoginComponent
+    PreLoginComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="240"
+   height="240"
+   id="svg2454"
+   sodipodi:version="0.32"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   version="1.0"
+   sodipodi:docname="Ori2.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2456">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 166.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 166.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : -9.21261 : 1"
+       id="perspective2462" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.79549513"
+     inkscape:cx="195.47574"
+     inkscape:cy="368.9526"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1264"
+     inkscape:window-height="881"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:pagecheckerboard="0"
+     width="240px"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata2459">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Livello 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="font-style:normal;font-weight:normal;font-size:431.924px;font-family:'Bitstream Vera Sans';fill:#ffffff;fill-opacity:1;stroke:bold;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 40,189.02344 68.94532,-68.94531 -68.75,-68.75 L 51.52344,40 l 68.75,68.75 68.74999,-68.75 10.9375,11.13281 -68.75,68.75 69.14062,69.14063 -11.13281,11.32812 -69.14062,-69.14062 -68.9453,68.94531 z"
+       id="text2464" />
+  </g>
+</svg>
