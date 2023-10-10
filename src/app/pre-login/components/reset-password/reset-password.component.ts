@@ -46,8 +46,6 @@ export class ResetPasswordComponent {
   });
 
   ngOnInit() {
-    const passwordControl = this.resetPasswordForm.get('password');
-
     this.resetPasswordForm
       .get('password')
       ?.valueChanges.subscribe((password) => {
@@ -71,7 +69,7 @@ export class ResetPasswordComponent {
         hasSpecialCharacters
           ? (this.validatorsList[4].status = true)
           : (this.validatorsList[4].status = false);
-        password === this.resetPasswordForm.get('confirmPassword')?.value
+        (password === this.resetPasswordForm.get('confirmPassword')?.value && password !== '')
           ? (this.validatorsList[5].status = true)
           : (this.validatorsList[5].status = false);
       });
