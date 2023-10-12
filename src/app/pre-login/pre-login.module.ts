@@ -5,12 +5,14 @@ import { PreLoginComponent } from './pre-login.component';
 import { PreLoginRoutingModule } from './pre-login-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
     PreLoginComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,

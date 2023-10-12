@@ -3,12 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     loadChildren: () =>
     import('./post-login/post-login.module').then((m) => m.PostLoginModule),
   },
   {
-    path: 'login',
+    path: '',
     loadChildren: () =>
       import('./pre-login/pre-login.module').then((m) => m.PreLoginModule),
   },
