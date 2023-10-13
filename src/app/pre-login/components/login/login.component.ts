@@ -13,7 +13,7 @@ export class LoginComponent {
   showPassword: boolean = false;
 
   public loginForm: FormGroup = new FormGroup({
-    email: new FormControl("", Validators.email),
+    email: new FormControl("", [Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{1,4}$')]),
     password: new FormControl(),
   });
 

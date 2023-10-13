@@ -14,7 +14,7 @@ export class ForgotPasswordComponent {
   notiClosed: boolean = false;
 
   public form: FormGroup = new FormGroup({
-    email: new FormControl("", Validators.email),
+    email: new FormControl("", [Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{1,4}$')]),
   });
   
   ngOnInit() {
