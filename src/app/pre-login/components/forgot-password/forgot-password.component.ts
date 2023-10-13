@@ -18,12 +18,10 @@ export class ForgotPasswordComponent {
   });
   
   ngOnInit() {
-    setInterval(() => {
-      console.log(this.form.get('email')?.hasError('email'));
-    },500);
   }
 
   submitForm() {
+    if(!this.form.get('email')?.errors)
       this.linkSent = true;
   }
 

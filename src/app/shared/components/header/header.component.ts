@@ -62,7 +62,7 @@ export class HeaderComponent {
   }
 
   onProfile(){
-    this.router.navigate(['profile']);
+    this.router.navigate(['dashboard/profile']);
   }
 
   onSelectAccount(){
@@ -70,7 +70,5 @@ export class HeaderComponent {
       content: DialogComponent,
     });
   }
-  onStandarsReport(){
-    this.router.navigate(['standardReports']);
-  }
+
 }
