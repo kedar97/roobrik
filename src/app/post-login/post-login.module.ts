@@ -11,7 +11,7 @@ import { StandardReportsComponent } from './components/standard-reports/standard
 import { AgGridModule } from 'ag-grid-angular';
 import { ModuleRegistry } from 'ag-grid-community';
 import { ExcelExportModule } from 'ag-grid-enterprise';
-import { LeadRoutingComponent } from './lead-routing/lead-routing.component';
+import { LeadRoutingComponent } from './components/lead-routing/lead-routing.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
