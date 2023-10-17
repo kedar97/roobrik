@@ -1,5 +1,7 @@
 @import "./../node_modules/bootstrap/scss/bootstrap.scss";  
-
+@import '/node_modules/ag-grid-community/styles/ag-grid.css';
+@import '/node_modules/ag-grid-community/styles/ag-theme-balham.css';
+@import '/node_modules/@progress/kendo-theme-default/scss/all.scss';
 /* You can add global styles to this file, and also import other style files */
 $font-family: "Helvetica Neue";
 

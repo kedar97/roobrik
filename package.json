@@ -44,6 +44,7 @@
     "@progress/kendo-svg-icons": "^1.0.0",
     "@progress/kendo-theme-bootstrap": "^7.0.0",
     "@progress/kendo-theme-default": "^6.7.0",
+    "ag-grid-angular": "^30.2.0",
     "ag-grid-community": "^30.2.0",
     "ag-grid-enterprise": "^30.2.0",
     "bootstrap": "^5.3.2",

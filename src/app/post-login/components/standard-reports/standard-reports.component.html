@@ -1,0 +1,155 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+<div class="main-container">
+  <div class="d-flex flex-column standard-report-selection">
+    <h1 class="txt-title">Standard Reports</h1>
+
+    <div class="form-group has-search">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="29"
+        height="28"
+        viewBox="0 0 29 28"
+        fill="none"
+        class="search-icon"
+      >
+        <path
+          d="M22.8718 23.6833L16.3727 17.15C15.7924 17.6167 15.1251 17.9861 14.3707 18.2583C13.6164 18.5306 12.8137 18.6667 11.9626 18.6667C9.85423 18.6667 8.07006 17.9328 6.61008 16.4652C5.14932 14.9967 4.41895 13.2028 4.41895 11.0833C4.41895 8.96389 5.14932 7.16994 6.61008 5.7015C8.07006 4.23383 9.85423 3.5 11.9626 3.5C14.0709 3.5 15.8555 4.23383 17.3162 5.7015C18.7762 7.16994 19.5062 8.96389 19.5062 11.0833C19.5062 11.9389 19.3708 12.7458 19.1 13.5042C18.8292 14.2625 18.4617 14.9333 17.9975 15.5167L24.5256 22.0792C24.7384 22.2931 24.8448 22.5556 24.8448 22.8667C24.8448 23.1778 24.7287 23.45 24.4966 23.6833C24.2838 23.8972 24.013 24.0042 23.6842 24.0042C23.3554 24.0042 23.0846 23.8972 22.8718 23.6833ZM11.9626 16.3333C13.4133 16.3333 14.6466 15.8231 15.6624 14.8027C16.6775 13.7814 17.1851 12.5417 17.1851 11.0833C17.1851 9.625 16.6775 8.38522 15.6624 7.364C14.6466 6.34356 13.4133 5.83333 11.9626 5.83333C10.5119 5.83333 9.27859 6.34356 8.26271 7.364C7.24761 8.38522 6.74006 9.625 6.74006 11.0833C6.74006 12.5417 7.24761 13.7814 8.26271 14.8027C9.27859 15.8231 10.5119 16.3333 11.9626 16.3333Z"
+          fill="#636363"
+        />
+      </svg>
+
+      <input
+        type="text"
+        class="form-control custom-placeholder"
+        placeholder="Search Reports"
+        id="search-box"
+        (input)="onFilterTextBoxChanged()"
+        kendoTextBox
+      />
+    </div>
+    <div class="selected-reports" *ngIf="selectedRowCount > 0">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        fill="none"
+      >
+        <path
+          d="M8.9336 16.8672C13.3152 16.8672 16.8672 13.3152 16.8672 8.9336C16.8672 4.55199 13.3152 1 8.9336 1C4.55199 1 1 4.55199 1 8.9336C1 13.3152 4.55199 16.8672 8.9336 16.8672Z"
+          stroke="#878787"
+          stroke-width="1.64004"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M11.3136 12.1069L6.55347 5.76001"
+          stroke="#878787"
+          stroke-width="1.64004"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M6.55347 12.1069L11.3136 5.76001"
+          stroke="#878787"
+          stroke-width="1.64004"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span>{{ selectedRowCount }} selected</span>
+     <button kendoButton class="btn-download" imageUrl='/assets/images/material-symbols_download.svg' >
+      Download
+     </button>
+    </div>
+    <div class="reports-data d-flex">
+      <ag-grid-angular
+        style="width: 100%; height: 704px"
+        class="ag-theme-balham"
+        [rowSelection]="rowSelection"
+        [rowHeight]="76"
+        [pagination]="true"
+        [paginateChildRows]="true"
+        [rowSelection]="rowSelection"
+        [paginationPageSize]="paginationPageSize"
+        [columnDefs]="columnDefs"
+        [animateRows]="true"
+        [rowData]="rowData"
+        [defaultColDef]="defaultColDef"
+        [autoGroupColumnDef]="autoGroupColumnDef"
+        [rowData]="rowData"
+        [treeData]="true"
+        [animateRows]="true"
+        [groupDefaultExpanded]="groupDefaultExpanded"
+        [groupSelectsChildren]="true"
+        [getDataPath]="getDataPath"
+        (selectionChanged)="onSelectionChanged()"
+        (gridReady)="onGridReady($event)"
+      ></ag-grid-angular>
+
+      <div class="vertical-div d-flex flex-column">
+        <div class="rotate-div d-flex flex-column gap-10">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="17"
+            viewBox="0 0 16 16"
+            fill="none"
+          >
+            <rect x="0.5" y="0.5" width="15" height="15" stroke="#7D7D7D" />
+            <line
+              x1="4.94434"
+              y1="2.45876e-08"
+              x2="4.94434"
+              y2="16"
+              stroke="#7D7D7D"
+            />
+            <line
+              x1="11.1665"
+              y1="2.45876e-08"
+              x2="11.1665"
+              y2="16"
+              stroke="#7D7D7D"
+            />
+          </svg>
+          <span>Columns</span>
+        </div>
+        <div class="rotate-div d-flex flex-column">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="9"
+            height="17"
+            viewBox="0 0 9 17"
+            fill="none"
+          >
+            <path d="M8.5 0L0 8.5L8.5 17V0Z" fill="#7D7D7D" />
+          </svg>
+          <span>
+            <select name="filter" id="" title="Filters">
+              <option value="none" selected disabled hidden>Filters</option>
+              <option value="data 1">data 1</option>
+              <option value="data 1">data 1</option>
+              <option value="data 1">data 1</option>
+              <option value="data 1">data 1</option>
+            </select>
+          </span>
+        </div>
+      </div>
+      <div class="pageSize-selction">
+        <select (change)="onPageSizeChanged()" id="page-size">
+          <option
+          *ngFor="let option of paginationOptions"
+          [attr.selected]="option.value == 10"
+          [value]="option.value"
+        >
+          {{ option.title }}
+        </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,4 @@
-import {
-  Component,
-  HostListener,
-} from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { DialogService } from '@progress/kendo-angular-dialog';
 import { DialogComponent } from 'src/app/post-login/components/dialog/dialog.component';
@@ -11,17 +8,13 @@ import { DialogComponent } from 'src/app/post-login/components/dialog/dialog.com
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-
 export class HeaderComponent {
   showReportMenu: boolean = false;
   showInfoPopup: boolean = false;
   showProfileMenu: boolean = false;
-  isSmallDesktopScreen:boolean = false;
+  isSmallDesktopScreen: boolean = false;
 
-  constructor(
-    private router: Router,
-    private dialogService: DialogService,
-  ) {}
+  constructor(private router: Router, private dialogService: DialogService) {}
 
   ngOnInit(): void {
     this.isSmallDesktopScreen = window.innerWidth <= 1366;
@@ -48,27 +41,34 @@ export class HeaderComponent {
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const popupElement = document.querySelector('.popup');
-      const buttonElement = document.querySelector('.popup-btn');
-      if (
-        popupElement &&
-        buttonElement &&
-        !popupElement.contains(event.target as Node) &&
-        !buttonElement.contains(event.target as Node)
-      ) {
-        this.showReportMenu = this.showProfileMenu = this.showInfoPopup = false;
-
-
-      }
+    const buttonElement = document.querySelector('.popup-btn');
+    if (
+      popupElement &&
+      buttonElement &&
+      !popupElement.contains(event.target as Node) &&
+      !buttonElement.contains(event.target as Node)
+    ) {
+      this.showReportMenu = this.showProfileMenu = this.showInfoPopup = false;
+    }
   }
 
-  onProfile(){
-    this.router.navigate(['dashboard/profile']);
+  onProfile() {
+    this.router.navigate(['/dashboard/profile']);
   }
 
-  onSelectAccount(){
+  onSelectAccount() {
+    this.showProfileMenu = !this.showProfileMenu;
     this.dialogService.open({
       content: DialogComponent,
     });
   }
 
+  onStandarsReport() {
+    this.showReportMenu = !this.showReportMenu;
+    this.router.navigate(['/dashboard/standard-reports']);
+  }
+
+  onLeadRouting() {
+    this.router.navigate(['/dashboard/lead-routing']);
+  }
 }

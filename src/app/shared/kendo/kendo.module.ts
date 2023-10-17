@@ -34,8 +34,7 @@ import { LabelModule } from '@progress/kendo-angular-label';
     GridModule,
     DialogsModule,
     InputsModule,
-    LabelModule
-
+    LabelModule,
   ]
 })
 export class KendoModule { }

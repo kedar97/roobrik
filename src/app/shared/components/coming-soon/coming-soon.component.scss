@@ -1,0 +1,25 @@
+.container {
+  margin: 40px 113px;
+  padding: 0;
+  max-width: none;
+  width: 85%;
+
+  @media (min-width: 1920px) {
+    width: 1694px !important;
+    margin: 40px auto !important;
+  }
+
+  img {
+    width: 640px;
+    margin: 0 auto;
+    display: flex;
+  }
+}
+
+.txt-title {
+  width: 270px;
+  color: #0a4569;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+}

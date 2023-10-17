@@ -5,25 +5,30 @@ import { HeaderComponent } from './components/header/header.component';
 import { KendoModule } from './kendo/kendo.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    ComingSoonComponent
   ],
   imports: [
     CommonModule,
     KendoModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   exports: [
     FooterComponent,
     HeaderComponent,
+    ComingSoonComponent,
     KendoModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ]
 })
 export class SharedModule { }

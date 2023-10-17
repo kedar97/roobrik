@@ -1,8 +1,8 @@
 <div class="header-wrapper">
   <div class="border-bottom">
     <kendo-appbar-section
-      class="d-flex align-items-center nav"
-      [ngClass]="{ 'justify-content-around': !isSmallDesktopScreen }"
+      class="d-flex align-items-center nav header"
+      [ngClass]="{ 'justify-content-between': !isSmallDesktopScreen }"
     >
       <kendo-appbar-section class="logo-container">
         <img
@@ -38,8 +38,16 @@
               </a>
             </div>
 
-            <div> 
-              <a kendo-link class="link">Lead Routing</a>
+            <div>
+              <a
+                kendo-link
+                routerLink="/dashboard/lead-routing"
+                routerLinkActive="active-link"
+                [routerLinkActiveOptions]="{ exact: true }"
+                (click)="onLeadRouting()"
+                class="link"
+                >Lead Routing</a
+              >
             </div>
           </nav>
 
@@ -64,7 +72,9 @@
           </div>
         </div>
         <div class="align-self-center">
-          <a class="link profile-link" (click) = "showProfileBtn($event)">Sunrise Senior Living</a>
+          <a class="link profile-link" (click)="showProfileBtn($event)"
+            >Sunrise Senior Living</a
+          >
         </div>
       </kendo-appbar-section>
     </kendo-appbar-section>
@@ -72,7 +82,7 @@
 </div>
 
 <div class="popup popup-reports d-flex flex-column" *ngIf="showReportMenu">
-  <span>Standard Reports</span>
+  <span (click)="onStandarsReport()">Standard Reports</span>
   <span>Custom Reports</span>
 </div>
 

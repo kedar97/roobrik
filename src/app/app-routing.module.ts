@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
-    import('./post-login/post-login.module').then((m) => m.PostLoginModule),
+      import('./post-login/post-login.module').then((m) => m.PostLoginModule),
   },
   {
     path: '',
@@ -16,6 +16,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PostLoginComponent } from './post-login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { StandardReportsComponent } from './components/standard-reports/standard-reports.component';
+import { LeadRoutingComponent } from './lead-routing/lead-routing.component';
 
 const routes: Routes = [
   {
@@ -13,6 +15,14 @@ const routes: Routes = [
       {
         path:'profile',
           component: ProfileComponent,
+      },
+      {
+        path:'standard-reports',
+          component: StandardReportsComponent,
+      },
+      {
+        path:'lead-routing',
+          component: LeadRoutingComponent,
       },
       {
         path: '',

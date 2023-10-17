@@ -56,7 +56,6 @@ a {
   span {
     display: block;
     padding: 10px;
-    cursor: pointer;
   }
 
   &.popup-reports {
@@ -66,9 +65,22 @@ a {
     height: 124px;
     color: #262626;
     font-size: 18px;
+    z-index: 99;
+    cursor: pointer;
 
+    right: 45vw;
     @media screen and (min-width: 1500px) {
+      right: 39.5vw;
+    }
+    @media screen and (min-width: 1600px) {
       right: 38.5vw;
+    }
+
+    @media screen and (min-width: 1700px) {
+      right: 37.5vw;
+    }
+    @media screen and (min-width: 1800px) {
+      right: 35.5vw;
     }
 
     span {
@@ -132,6 +144,7 @@ a {
     right: 9vw;
     width: 202px;
     height: 186px;
+    z-index: 99;
 
     @media screen and (min-width: 1500px) {
       right: 10vw;
@@ -179,10 +192,18 @@ a {
 }
 
 .nav-profile-container {
-  gap: 2.18rem;
+  gap: 2.19rem; //2.18
+
+  @media screen and (max-width: 1250px) {
+    gap: 1.19rem;
+  }
 
   div {
     gap: 5.56rem;
+
+    @media screen and (max-width: 1250px) {
+      gap: 4.5rem;
+    }
   }
   nav {
     gap: 6.25rem;
@@ -239,8 +260,12 @@ a {
     gap: 11.56rem;
   }
 
-  @media screen and (max-width: 1300px) {
-    gap: 8rem;
+  @media screen and (max-width: 1350px) {
+    gap: 9.5rem;
+  }
+
+  @media screen and (max-width: 1250px) {
+    gap: 8.5rem;
   }
 }
 
@@ -256,4 +281,20 @@ a {
 
 .profile-btns {
   gap: 0.875rem;
+}
+
+.nav:first-child {
+  @media (min-width: 1367px) {
+    margin: 0 113px !important;
+  }
+
+  @media (min-width: 1920px) {
+    width: 1694px !important;
+    margin: 0 auto !important;
+  }
+}
+
+
+.profile-link {
+  padding-bottom: 0;
 }
