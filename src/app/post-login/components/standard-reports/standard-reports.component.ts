@@ -7,7 +7,10 @@ import {
   ICellRendererComp,
   ICellRendererParams,
 } from '@ag-grid-community/all-modules';
-import { PaginationOption, StandardReportsRowData } from '../../post-login.modal';
+import {
+  PaginationOption,
+  StandardReportsRowData,
+} from '../../post-login.modal';
 
 @Component({
   selector: 'app-standard-reports',
@@ -68,9 +71,9 @@ export class StandardReportsComponent implements OnInit {
             <span class="download">Download</span>
             </div></div>
           `;
-        },
-        pinned: 'right',
-        lockPinned: true,
+      },
+      pinned: 'right',
+      lockPinned: true,
     },
   ];
 
@@ -102,13 +105,10 @@ export class StandardReportsComponent implements OnInit {
     sortable: true,
     filter: true,
   };
-
   public autoGroupColumnDef: ColDef = {
     headerCheckboxSelection: true,
     headerName: 'Report Name',
-
     rowGroup: true,
-
     cellStyle: { 'padding-left': '45px' },
     pinned: 'left',
     lockPinned: true,
@@ -148,16 +148,14 @@ export class StandardReportsComponent implements OnInit {
       actionOn: '05/14/23',
     },
     {
-      reportName: [
-        'Franchise Name - July 2023'
-      ],
+      reportName: ['Franchise Name - July 2023'],
       reportFrequency: 'Monthly',
       actionOn: '05/14/23',
     },
     {
       reportName: [
         'Franchise Name - July 2023',
-        'All locations - Downsize - July 2023'
+        'All locations - Downsize - July 2023',
       ],
       reportFrequency: 'Annually',
       actionOn: '02/23/23',
@@ -222,12 +220,7 @@ function badgeCellRenderer() {
       var childrenCount = params.node.allChildrenCount;
 
       if (childrenCount) {
-        tempDiv.innerHTML = `
-        <span>
-          <span class="rowData">${params.value}</span>
-          <span class="newBadge">New</span>
-          <h6 class="subText">A monthly look at Roobrik product performance metrics and response distribution.</h6 >
-        </span>`;
+        tempDiv.innerHTML = `<span><span class="rowData">${params.value}</span><span class="newBadge">New</span><h6 class="subText">A monthly look at Roobrik product performance metrics and response distribution.</h6 ></span>`;
       } else {
         if (params.node.parent?.rowIndex) {
           tempDiv.innerHTML = `<span class="childData">${params.value}<span>`;
