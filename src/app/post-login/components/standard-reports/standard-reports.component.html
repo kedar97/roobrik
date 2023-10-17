@@ -62,9 +62,13 @@
         />
       </svg>
       <span>{{ selectedRowCount }} selected</span>
-     <button kendoButton class="btn-download" imageUrl='/assets/images/material-symbols_download.svg' >
-      Download
-     </button>
+      <button
+        kendoButton
+        class="btn-download"
+        imageUrl="/assets/images/material-symbols_download.svg"
+      >
+        Download
+      </button>
     </div>
     <div class="reports-data d-flex">
       <ag-grid-angular
@@ -128,26 +132,18 @@
           >
             <path d="M8.5 0L0 8.5L8.5 17V0Z" fill="#7D7D7D" />
           </svg>
-          <span>
-            <select name="filter" id="" title="Filters">
-              <option value="none" selected disabled hidden>Filters</option>
-              <option value="data 1">data 1</option>
-              <option value="data 1">data 1</option>
-              <option value="data 1">data 1</option>
-              <option value="data 1">data 1</option>
-            </select>
-          </span>
+          <span>Filters</span>
         </div>
       </div>
       <div class="pageSize-selction">
         <select (change)="onPageSizeChanged()" id="page-size">
           <option
-          *ngFor="let option of paginationOptions"
-          [attr.selected]="option.value == 10"
-          [value]="option.value"
-        >
-          {{ option.title }}
-        </option>
+            *ngFor="let option of paginationOptions"
+            [attr.selected]="option.value == 10"
+            [value]="option.value"
+          >
+            {{ option.title }}
+          </option>
         </select>
       </div>
     </div>
