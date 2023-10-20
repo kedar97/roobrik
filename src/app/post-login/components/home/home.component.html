@@ -18,9 +18,9 @@
               <p>
                 {{ card.content }}
               </p>
-              <kendo-card-actions class="">
-                <button kendoButton size="medium" fillMode="outline">
-                  {{ card.btnTitle }}
+              <kendo-card-actions>
+                <button [disabled]="!card.enabled" [ngClass]="{ 'btn-disabled': !card.enabled }" kendoButton size="medium" fillMode="outline">
+                  {{ card.enabled? card.btnTitle : 'Coming Soon!' }}
                 </button>
               </kendo-card-actions>
             </kendo-card-body>

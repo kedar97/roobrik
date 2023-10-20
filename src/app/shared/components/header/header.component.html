@@ -14,7 +14,7 @@
 
       <!-- Nav bar -->
       <kendo-appbar-section class="d-flex nav-profile-container">
-        <div class="d-flex">
+        <div class="d-flex profile-section">
           <nav class="d-flex align-items-center">
             <div>
               <a
@@ -45,7 +45,6 @@
                 routerLink="/dashboard/lead-routing"
                 routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{ exact: true }"
-                (click)="onLeadRouting()"
                 class="link"
                 >Lead Routing</a
               >
@@ -54,36 +53,45 @@
 
           <!-- Profile info -->
           <div class="d-flex gap-3 align-self-center profile-btns">
-            <button
-              kendoButton
-              class="action-btn popup-btn border rounded-circle text-primary-emphasis bg-light info-btn"
-              (click)="showInfoBtn($event)"
-              [ngClass]="{ active: showInfoPopup }"
-            >
-              ?
-            </button>
-            <button
-              kendoButton
-              class="action-btn popup-btn border rounded-circle text-md text-white bg-info profile-btn"
-              (click)="showProfileBtn($event)"
-              [ngClass]="{ active: showProfileMenu }"
-            >
-              JV
-            </button>
+            <div class="d-flex gap-3 align-self-center profile-btns">
+              <button
+                kendoButton
+                class="align-self-center action-btn popup-btn border rounded-circle text-primary-emphasis bg-light info-btn"
+                (click)="showInfoBtn($event)"
+                [ngClass]="{ active: showInfoPopup }"
+              >
+                ?
+              </button>
+              <div class="d-flex  profile-btn-container"   (click)="showProfileBtn($event)">
+                <button
+                  kendoButton
+                  class="action-btn popup-btn border rounded-circle text-md text-white bg-info profile-btn"
+              
+                  [ngClass]="{ active: showProfileMenu }"
+                >
+                  JV
+                  
+                </button>
+                <a class="link profile-link" 
+                  >
+                   Sunrise Senior Living</a
+                >
+              </div>
+            </div>
           </div>
         </div>
-        <div class="align-self-center">
+        <!-- <div class="align-self-center">
           <a class="link profile-link" (click)="showProfileBtn($event)"
             >Sunrise Senior Living</a
           >
-        </div>
+        </div> -->
       </kendo-appbar-section>
     </kendo-appbar-section>
   </div>
 </div>
 
 <div class="popup popup-reports d-flex flex-column" *ngIf="showReportMenu">
-  <span (click)="onStandarsReport()">Standard Reports</span>
+  <span (click)="onStandarsReport()" >Standard Reports</span>
   <span>Custom Reports</span>
 </div>
 
@@ -105,7 +113,7 @@
 </div>
 
 <div class="popup popup-profile d-flex flex-column" *ngIf="showProfileMenu">
-  <span (click)="onProfile()"> Profile</span>
+  <span routerLink="/dashboard/profile"> Profile</span>
   <span (click)="onSelectAccount()">Switch Account</span>
   <span>Sign Out</span>
 </div>

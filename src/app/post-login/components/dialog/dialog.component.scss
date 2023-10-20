@@ -1,98 +1,77 @@
-@import 'ag-grid-community/styles/ag-grid.css';
-@import 'ag-grid-community/styles/ag-theme-alpine.css';
-// @import '@progress/kendo-font-icons/dist/all.css';
+@import "ag-grid-community/styles/ag-grid.css";
+@import "ag-grid-community/styles/ag-theme-alpine.css";
 .k-window {
-    width: 300px !important;
+  width: 300px !important;
 }
-.container{
-   
-   padding: 10px 0 0 0;
+.container {
+  padding: 10px 0 0 0;
 
-   
-   .dialog-title{
+  .dialog-title {
     color: #083754;
     font-weight: 700;
     font-size: 32px;
     line-height: 36.8px;
     text-align: center;
-    margin:0px 0 58px 0;
-
+    margin: 0px 0 58px 0;
+  }
+  .icon {
+    width: 30.28px;
+    height: 30.28px;
+  }
+  .grid-layout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .card-box {
+      display: contents;
     }
-    .icon{
-     width: 30.28px;
-     height:30.28px ;
-
-        
-
-
+    .img-box {
+      margin-bottom: 35px;
     }
-    .grid-layout-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .card-box{
-            display: contents;
-        }
-        .img-card1{
-            width: 
-            129.06px;
-            height:50px;
-            margin-bottom: 40px;
-            margin-top: 25px;
-
-        }
-        .img-card2{
-            margin-bottom: 30px;
-            margin-top: 10px;
-            height: 72.56px;
-            width: 129.08px;
-
-        }
-        .img-card3{
-                height: 72.56px;
-                width: 129.08px;
-                margin-bottom: 30px;
-                margin-top: 10px;
-
-        }
-        .cmp-title{
-    
-            color:#999999c6       ;
-            font-weight: 100;
-            line-height: 20.7px;
-            font-size: 18px;
-        }
-         .btn-select{
-            font-family: 'Helvetica', sans-serif;
-            font-weight: 400;
-            background-color: #083754 ;
-            color: white;
-            font-size: 18px;
-            border: none;
-            width: 170px;
-            height: 44px;
-            border-radius: 0;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-       
+    .img-card {
+      width: 135px;
+      height: 82px;
     }
 
+    .cmp-title {
+      color: #999999c6;
+      font-family: " Helvetica";
+      font-size: 18px;
+      // height: 100px;
+      font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+    .btn-select {
+      font-family: "Helvetica", sans-serif;
+      font-weight: 400;
+      background-color: #083754;
+      color: white;
+      font-size: 18px;
+      border: none;
+      width: 170px;
+      height: 44px;
+      border-radius: 0;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+  }
 }
 
-.container-center{
-    height: 969px;
+.card-body {
+  height: 194px;
+  width: 170px
+}
+
+.container-center {
+  height: 969px;
 }
 
 
-::ng-deep button{
-
-    // font-weight: 400 !important;
-}
-
-::ng-deep .k-dialog-wrapper .k-window{
- width: 752px !important;   
- height: 518px !important ;
-
+::ng-deep .k-dialog-wrapper .k-window {
+  width: 752px !important;
+  height: 518px !important ;
 }

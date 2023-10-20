@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ColDef, GridReadyEvent } from 'ag-grid-community/dist/lib/main';
-
+import { SideBarDef } from 'ag-grid-community/dist/lib/main';
 import {
+  ColumnApi,
   GetDataPath,
   GridApi,
   ICellRendererComp,
@@ -19,12 +20,17 @@ import {
 })
 export class StandardReportsComponent implements OnInit {
   private gridApi!: GridApi | any;
+  private gridColumnApi!: ColumnApi | any;
   public groupDefaultExpanded = -1;
   public rowSelection: 'single' | 'multiple' = 'multiple';
 
   selectedRowCount: number = 0;
   paginationPageSize = 10;
-
+  griddata: any;
+  resetFilters: boolean = false;
+  resetColumns: boolean = false;
+  defaultColumnState: any;
+  defaultFiltersState: any;
   ngOnInit(): void {}
 
   public columnDefs: ColDef[] = [
@@ -33,21 +39,30 @@ export class StandardReportsComponent implements OnInit {
       minWidth: 200,
       headerName: 'Report Frequency',
       cellClass: 'repoertCell',
-
+      enableRowGroup: true,
+      enableValue: true,
       lockPinned: true,
+      filter: 'agMultiColumnFilter',
     },
     {
-      field: 'actionOn',
+      field: 'addedOn',
       headerName: 'Added on',
       minWidth: 200,
+      enableRowGroup: true,
+      enableValue: true,
       cellClass: 'actionCell',
-
+      headerClass: 'centeredHeader',
       lockPinned: true,
+      filter: 'agMultiColumnFilter',
     },
     {
-      headerName: '',
-      field: '',
-
+      field: 'actions',
+      enableRowGroup: true,
+      enableValue: true,
+      headerName: 'Actions',
+      headerClass: 'action-header',
+      suppressColumnsToolPanel: true,
+      suppressFiltersToolPanel: true,
       cellRenderer: function (params: any) {
         return `
         <div class="iconsColumnDiv d-flex">
@@ -77,6 +92,21 @@ export class StandardReportsComponent implements OnInit {
     },
   ];
 
+  public autoGroupColumnDef: ColDef = {
+    headerCheckboxSelection: true,
+    headerName: 'Report Name',
+    rowGroup: true,
+    filter: 'agGroupColumnFilter',
+    cellStyle: { 'padding-left': '45px' },
+    pinned: 'left',
+    lockPinned: true,
+    cellRendererParams: {
+      suppressCount: true,
+      checkbox: true,
+      innerRenderer: badgeCellRenderer(),
+    },
+  };
+
   paginationOptions: PaginationOption[] = [
     {
       title: '100 per page',
@@ -105,30 +135,47 @@ export class StandardReportsComponent implements OnInit {
     sortable: true,
     filter: true,
   };
-  public autoGroupColumnDef: ColDef = {
-    headerCheckboxSelection: true,
-    headerName: 'Report Name',
-    rowGroup: true,
-    cellStyle: { 'padding-left': '45px' },
-    pinned: 'left',
-    lockPinned: true,
-    cellRendererParams: {
-      suppressCount: true,
-      checkbox: true,
-      innerRenderer: badgeCellRenderer(),
-    },
+
+  public sideBar: SideBarDef | string | string[] | boolean | null = {
+    toolPanels: [
+      {
+        id: 'columns',
+        labelDefault: 'Columns',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+          suppressRowGroups: true,
+          suppressValues: true,
+          suppressPivots: true,
+          suppressPivotMode: true,
+        },
+      },
+      {
+        id: 'filters',
+        labelDefault: 'Filters',
+        labelKey: 'filters',
+        iconKey: 'filter',
+        toolPanel: 'agFiltersToolPanel',
+      },
+    ],
   };
 
   public rowData: StandardReportsRowData[] | null = [
     {
       reportName: ['Franchise Name - Downsize - July 2023'],
       reportFrequency: 'Monthly',
-      actionOn: '05/14/23',
+      addedOn: new Date('2018-05-07').toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+      }),
     },
+
     {
       reportName: ['All locations - Senior Living - July 2023'],
       reportFrequency: 'Monthly',
-      actionOn: '05/14/23',
+      addedOn: '05/14/23',
     },
 
     {
@@ -137,7 +184,11 @@ export class StandardReportsComponent implements OnInit {
         'Brightview Westlake - Senior Living - July 2023',
       ],
       reportFrequency: 'Monthly',
-      actionOn: '05/14/23',
+      addedOn: new Date('2023-05-14').toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+      }),
     },
     {
       reportName: [
@@ -145,44 +196,59 @@ export class StandardReportsComponent implements OnInit {
         'Brightview  Eastlake  - Senior Living - July 2023',
       ],
       reportFrequency: 'Monthly',
-      actionOn: '05/14/23',
+      addedOn: new Date('2023-05-14').toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+      }),
     },
-    {
-      reportName: ['Franchise Name - July 2023'],
-      reportFrequency: 'Monthly',
-      actionOn: '05/14/23',
-    },
-    {
-      reportName: [
-        'Franchise Name - July 2023',
-        'All locations - Downsize - July 2023',
-      ],
-      reportFrequency: 'Annually',
-      actionOn: '02/23/23',
-    },
-    {
-      reportName: ['All locations - Senior Living - July 2023'],
-      reportFrequency: 'Monthly',
-      actionOn: '05/14/23',
-    },
-
     {
       reportName: ['All locations - Downsize - July 2023'],
       reportFrequency: 'Weekly',
-      actionOn: '02/25/23',
+      addedOn: new Date('2023-02-25').toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+      }),
+    },
+    {
+      reportName: [
+        'All locations - Downsize - July 2023',
+        'Brightview - Eastlake - Downsize - July 2023',
+      ],
+      reportFrequency: 'Weekly',
+      addedOn: new Date('2023-02-25').toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+      }),
     },
 
     {
-      reportName: ['Franchise Name'],
-      reportFrequency: 'Monthly',
-      actionOn: '05/14/23',
+      reportName: ['Franchise Name - July 2023'],
+      reportFrequency: 'Annually',
+      addedOn: new Date('2023-02-23').toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+      }),
     },
+
     {
-      reportName: ['Franchise Name '],
-      reportFrequency: 'Monthly',
-      actionOn: '05/14/23',
+      reportName: ['Franchise Name - July 2022'],
+      reportFrequency: 'Weekly',
+      addedOn: new Date('2022-08-17').toLocaleDateString('en-US', {
+        month: '2-digit',
+        day: '2-digit',
+        year: '2-digit',
+      }),
     },
   ];
+
+  onToolPanelVisibleChanged(params: any) {
+    if (params.key === 'filters') this.resetFilters = !this.resetFilters;
+    if (params.key === 'columns') this.resetColumns = !this.resetColumns;
+  }
 
   public getDataPath: GetDataPath = (data: any) => {
     return data.reportName;
@@ -196,17 +262,32 @@ export class StandardReportsComponent implements OnInit {
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
+    this.griddata = params;
+    0;
+    this.gridColumnApi = params.columnApi;
+    this.defaultColumnState = this.gridColumnApi.getColumnState();
+    this.defaultFiltersState = this.gridApi.getFilterModel();
   }
-
   onPageSizeChanged() {
-    var value = (document.getElementById('page-size') as HTMLInputElement)
-      .value;
+    var value = (document.getElementById('page-size') as HTMLInputElement).value;
     this.gridApi.paginationSetPageSize(Number(value));
   }
 
   onSelectionChanged() {
     const selectedRows = this.gridApi.getSelectedNodes();
     this.selectedRowCount = selectedRows.length;
+  }
+
+  onResetFilter() {
+    this.gridApi.setFilterModel(this.defaultFiltersState);
+  }
+
+  onResetColumns() {
+    console.log(this.defaultColumnState);
+    this.gridColumnApi.applyColumnState({
+      state: this.defaultColumnState,
+      applyOrder: true,
+    });
   }
 }
 

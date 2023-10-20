@@ -98,6 +98,7 @@ a {
     width: 293px;
     height: 179px;
     right: 13vw;
+    z-index: 99;
 
     @media screen and (min-width: 1500px) {
       right: 14vw;
@@ -199,20 +200,24 @@ a {
     gap: 1.19rem;
   }
 
-  div {
+  .profile-section {
     gap: 5.56rem;
 
     @media screen and (max-width: 1250px) {
-      gap: 4.5rem;
+      gap: 4.5rem ;
     }
   }
   nav {
     gap: 6.25rem;
-
-    @media screen and (max-width: 1300px) {
+    @media (max-width:1300px) {
       gap: 6vw;
+      
     }
-  }
+  } 
+}
+.profile-btn-container{
+  cursor: pointer;
+  gap: 2.19rem;
 }
 
 .profile-btn {
@@ -299,3 +304,4 @@ a {
 .profile-link {
   padding-bottom: 0;
 }
+

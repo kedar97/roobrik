@@ -46,7 +46,7 @@
     color: #808080;
     font-weight: normal;
   }
-  
+
   .selected-reports {
     height: 48px;
     border: 1px solid #d0d0d0;
@@ -107,7 +107,7 @@
 }
 
 .vertical-div {
-  gap: 90px; 
+  gap: 90px;
   width: 30px;
   padding: 12px 6px 0 7px;
   width: 28px;
@@ -137,6 +137,9 @@
   }
 }
 
+::ng-deep .action-header {
+  display: none;
+}
 
 // Change for default style of ag-theme-balham
 .ag-theme-balham {
@@ -158,13 +161,11 @@
 
 ::ng-deep .ag-header-row {
   top: 7px !important;
-  margin-left: 35.05px !important;
 }
 
 ::ng-deep .ag-header-cell {
   font-weight: 500 !important;
-  color: #2F2F2F !important;
-  padding-left: 23px !important;
+  color: #2f2f2f !important;
   letter-spacing: 0.1px;
 }
 
@@ -189,14 +190,13 @@
   width: 16px;
   margin-left: 2px;
   margin-top: 2px;
-
 }
 
 ::ng-deep .ag-checkbox-input {
   appearance: none;
   -webkit-appearance: none;
   &:checked {
-    background-color: #1F7365 !important;
+    background-color:  #2B6789 !important;
     border: none !important;
     &::after {
       display: none !important;
@@ -296,7 +296,6 @@
   font-size: 10.9px;
   font-weight: 400;
   resize: both;
-
   color: #2a2a2a;
 }
 
@@ -321,7 +320,6 @@
   }
 }
 
-
 // For Menu of header
 ::ng-deep .ag-icon .ag-icon-menu {
   content: "" !important;
@@ -329,7 +327,7 @@
 
 // Hover On Download and Preview
 ::ng-deep .iconsColumnDiv {
-  margin-left: -13px;
+  margin-left: -8px;
 }
 
 ::ng-deep .preview,
@@ -382,17 +380,9 @@
   display: none !important;
 }
 
-// None stiky column
-::ng-deep .ag-center-cols-viewport {
-  min-width: 200px !important;
-  overflow-x: hidden;
-  overflow: hidden !important;
-}
-
 // Scrollbar of Table
-::ng-deep .ag-body-horizontal-scroll,
 ::ng-deep .ag-paging-row-summary-panel {
-  display: none;
+  // display: none;
 }
 
 // Pagination container
@@ -421,48 +411,37 @@
   }
 }
 
-// Pined right column
+// Pinned right column
 ::ng-deep .ag-pinned-right-cols-container {
   min-width: 125px !important;
 }
 
-::ng-deep .ag-pinned-right-header {
-  width: 0 !important  ;
-  min-width: 50px !important;
-}
-
-// Pined left column
-::ng-deep .ag-pinned-left-header {
-  width: 550px !important;
-  min-width: 550px !important;
-  @media (max-width: 1270px) {
-    min-width: 500px !important;
-    width: 500px !important;
+::ng-deep {
+  .ag-pinned-right-cols-container {
+    min-width: 125px !important;
   }
-  @media (max-width: 1240px) {
-    min-width: 450px !important;
-    width: 450px !important;
+
+  .ag-pinned-right-header {
+    width: 0 !important  ;
+    min-width: 125px !important;
   }
 }
 
+// Pinned left column
+::ng-deep .ag-pinned-left-header,
 ::ng-deep .ag-pinned-left-cols-container {
   width: 550px !important;
   min-width: 550px !important;
-  padding-left: 0px !important;
-}
-::ng-deep .ag-cell-value {
-  width: auto !important;
 }
 
-// Center colums
-::ng-deep .ag-header-viewport .ag-header-cell:first-child {
-  margin-left: 40px;
+::ng-deep .ag-cell-value {
+  width: auto !important;
 }
 
 // Scrollbar of table
 ::ng-deep .ag-root ::-webkit-scrollbar {
   width: 6px !important;
-  height: 2em;
+  height: 6px !important;
   margin-right: 2px;
   z-index: 99;
 }
@@ -483,33 +462,173 @@
 //
 ::ng-deep .repoertCell {
   color: #2a2a2a;
-  width: 250px;
+  width: 150px !important;
   text-align: center;
   font-size: 14px;
   font-weight: 400;
-  margin-left: 132px;
-
-  @media (max-width: 1270px) {
-    margin-left: 80px;
-  }
-
-  @media (max-width: 1240px) {
-    margin-left: 20px;
-  }
+  display: flex !important;
+  justify-content: center !important;
 }
 
 ::ng-deep .actionCell {
   color: #2a2a2a;
   width: 150px;
-
   text-align: center;
   font-size: 14px;
   font-weight: 400;
-  margin-left: 53px;
-  @media (max-width: 1270px) {
-    margin-left: 3px;
+}
+
+::ng-deep {
+  .ag-side-bar {
+    padding: 16px 6px 0 8px;
+    color: #2f2f2f;
+    font-family: Helvetica Neue;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
   }
-  @media (max-width: 1240px) {
-    margin-left: -47px;
+  .ag-side-buttons {
+    padding-top: 0;
+  }
+
+  .ag-side-button .ag-icon-columns::before {
+    content: url("/assets/images/columns-icon.png");
+  }
+
+  .ag-side-button .ag-icon-filter::before {
+    content: url("/assets/images/filter-icon.png");
+  }
+
+  .ag-side-button-icon-wrapper {
+    margin-bottom: 11px;
+  }
+
+  button.ag-side-button-button {
+    border: none;
+    padding: 0;
+  }
+
+  .ag-side-button:last-child {
+    margin-top: 43px;
   }
 }
+
+::ng-deep .ag-set-filter-item {
+  .ag-checkbox-input-wrapper input {
+    width: 16px;
+    height: 16px;
+  }
+  .ag-checkbox-input-wrapper.ag-checked::after {
+    font-size: 12px;
+    width: 10px;
+    margin-left: 3px;
+    margin-top: -1px;
+  }
+}
+
+::ng-deep .action-icons {
+  // visibility: hidden;
+}
+
+::ng-deep {
+  .ag-pinned-left-header,
+  .ag-pinned-left-cols-container {
+    width: 550px !important;
+    min-width: 550px !important;
+  }
+}
+
+::ng-deep {
+  .ag-pinned-left-header .ag-header-cell {
+    padding-left: 23px !important;
+  }
+  .ag-pinned-left-header .ag-header-row {
+    margin-left: 35.05px !important;
+  }
+}
+
+::ng-deep .reportCell {
+  color: #2a2a2a;
+  width: 150px !important;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+::ng-deep {
+  .ag-horizontal-left-spacer {
+    min-width: 550px !important;
+  }
+
+  .ag-horizontal-right-spacer {
+    min-width: 100px !important;
+  }
+
+  .ag-center-cols-container {
+    margin-right: 0 !important;
+  }
+}
+
+::ng-deep{
+  .ag-side-bar{
+    padding: 16px 6px 0 8px;
+  }
+  .ag-side-buttons{
+    padding-top: 0;
+  }
+  
+  .ag-side-button .ag-icon-columns::before{
+    content: url('/assets/images/columns-icon.png');
+  }
+  
+  .ag-side-button .ag-icon-filter::before{
+    content: url('/assets/images/filter-icon.png');
+  }
+  
+  .ag-side-button-icon-wrapper{
+    margin-bottom: 11px;
+  }
+  
+  button.ag-side-button-button{
+    border:none;
+    padding: 0;
+  }
+  
+  .ag-side-button:last-child{
+    margin-top: 43px;
+  }
+} 
+
+::ng-deep .action-header {
+  display: none;
+}
+
+::ng-deep .ag-set-filter-item{
+  .ag-checkbox-input-wrapper input{
+      width: 16px;
+      height: 16px;
+  }
+  .ag-checkbox-input-wrapper.ag-checked::after {
+      font-size: 12px;
+      width: 10px;
+      margin-left: 3px;
+      margin-top: -1px;
+  }
+}
+
+::ng-deep{
+  .ag-side-button-label ,
+  .ag-tool-panel-wrapper ,
+  .ag-group-title {
+    color: #2F2F2F;
+    font-family: 'Helvetica Neue';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+  }
+} 
+

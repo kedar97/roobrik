@@ -64,11 +64,9 @@ export class HeaderComponent {
   }
 
   onStandarsReport() {
-    this.showReportMenu = !this.showReportMenu;
     this.router.navigate(['/dashboard/standard-reports']);
+    this.showReportMenu = !this.showReportMenu;
+
   }
 
-  onLeadRouting() {
-    this.router.navigate(['/dashboard/lead-routing']);
-  }
 }

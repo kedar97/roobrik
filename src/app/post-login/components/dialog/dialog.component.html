@@ -41,14 +41,16 @@
                 width="170px"
                 style="height: 194px; border-radius: 1px; margin-bottom: 20px"
               >
-                <kendo-card-body width="170px" style="height: 194px;">
-                  <img
-                    src="{{ client.imgSrc }}"
-                    [class]="'img-card' + (i + 1)"
-                  />
-                  <span class="d-flex justify-content-center cmp-title m-1">{{
-                    client.clientName
-                  }}</span>
+                <kendo-card-body class="card-body">
+                  <div class="img-box">
+                    <img
+                      src="{{ client.imgSrc }}"
+                      [class]="'img-card'"
+                    />
+                  </div>
+                  <div class="cmp-title">
+                    {{ client.clientName }}
+                  </div>
                 </kendo-card-body>
               
               </kendo-card>

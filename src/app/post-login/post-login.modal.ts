@@ -6,5 +6,5 @@ export interface PaginationOption {
 export interface StandardReportsRowData {
     reportName: string[],
     reportFrequency: string,
-    actionOn: string
+    addedOn: string
 }

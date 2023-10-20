@@ -11,16 +11,29 @@ export class DialogComponent implements OnInit {
   clientList: any[] = [
     {
       imgSrc: 'assets/images/arrow-senior-living-logo.png',
-      clientName: 'Client Name',
+      clientName: 'Arrow Senior Living Arrow senior living',
     },
     {
       imgSrc: 'assets/images/galloway-senior-living-logo.png',
-      clientName: 'Client Name',
-    },
+      clientName: 'Galloway Senior Living',
+    },  
     {
       imgSrc: 'assets/images/sunrise-logo.svg',
-      clientName: 'Client Name',
-    }, 
+      clientName: 'Sunrise Senior Living',
+    },
+    {
+      imgSrc: 'assets/images/arrow-senior-living-logo.png',
+      clientName: 'Arrow Senior Living',
+    },
+    {
+      imgSrc: 'assets/images/galloway-senior-living-logo.png',
+      clientName: 'Galloway Senior Living',
+    },  
+    {
+      imgSrc: 'assets/images/sunrise-logo.svg',
+      clientName: 'Sunrise Senior Living',
+    },
+   
   ];
   constructor(
     private dialogService: DialogService,

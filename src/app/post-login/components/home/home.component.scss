@@ -4,13 +4,13 @@
   .header-wrapper {
     margin: 138px auto 80px 4vw;
     @media screen and (min-width: 1450px) {
-      margin: 138px auto 80px 8vw;
+      margin: 69px auto 40px 8vw;
     }
     @media screen and (min-width: 1750px) {
-      margin: 138px auto 80px 14.4vw;
+      margin: 69px auto 40px 14.4vw;
     }
     @media screen and (min-width: 1920px) {
-      margin: 138px auto 80px 278px;
+      margin: 69px auto 40px 278px;
     }
 
     .heading {
@@ -85,4 +85,16 @@
       }
     }
   }
+}
+
+.btn-disabled {
+  background: #e6e6e6 0% 0% no-repeat padding-box;
+  border: none;
+  width: 168px;
+  height: 46px;
+}
+
+.btn-disabled:disabled {
+  color: #165477 !important;
+  opacity: 1;
 }
