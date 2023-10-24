@@ -5,14 +5,13 @@
 
   @media screen and (min-width: 1921px) {
     min-width: auto;
-    margin-left: auto;
     margin-right: auto;
   }
 }
 
 .login-form {
-  padding: 18.25rem 0 0 9.2rem;
-
+  padding: calc((292px / 1238px) * 100vh) 0px 0px 9.2rem;
+  
   img {
     height: 48px;
     width: 276px;
@@ -30,7 +29,7 @@
 }
 
 .login-title {
-  margin-top: 82px;
+  margin-top: 80px;
   color: #0a4569;
   font-weight: 700;
   font-size: 30px;
@@ -66,6 +65,7 @@
   margin-top: 44px;
   font-size: 16px;
   cursor: pointer;
+  line-height: 14px;
 }
 
 .need-help {
@@ -92,6 +92,10 @@
   transform: translateY(-50%);
   cursor: pointer;
   color: #9f9f9f;
+}
+
+.k-form-buttons {
+  margin-top: 0;
 }
 
 .password-container {

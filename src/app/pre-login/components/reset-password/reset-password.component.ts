@@ -16,7 +16,7 @@ export class ResetPasswordComponent {
   validatorsList: ValidatorsList[] = [
     {
       status: undefined,
-      name: '8 characters',
+      name: 'Minimum 8 characters',
     },
     {
       status: undefined,
@@ -32,7 +32,7 @@ export class ResetPasswordComponent {
     },
     {
       status: undefined,
-      name: 'Contains a special character !@#$%^&*',
+      name: 'Contains a special character',
     },
     {
       status: undefined,
