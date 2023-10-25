@@ -137,7 +137,7 @@
   }
 }
 
-::ng-deep .action-header {
+::ng-deep .hide-header-text {
   display: none;
 }
 
@@ -421,7 +421,7 @@
 
 // Pinned left column
 :host ::ng-deep .ag-pinned-left-header,
-::ng-deep .ag-pinned-left-cols-container {
+:host ::ng-deep .ag-pinned-left-cols-container {
   width: 550px !important;
   min-width: 550px !important;
 }

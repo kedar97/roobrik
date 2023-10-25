@@ -292,8 +292,8 @@ select:focus {
   }
 }
 
-::ng-deep .ag-pinned-left-header,
-::ng-deep .ag-pinned-left-cols-container {
+:host ::ng-deep .ag-pinned-left-header,
+:host ::ng-deep .ag-pinned-left-cols-container {
   width: 600px !important;
   min-width: 600px !important;
 }
@@ -518,7 +518,7 @@ select:focus {
   }
 }
 
-::ng-deep .action-header {
+::ng-deep .hide-header-text {
   display: none;
 }
 

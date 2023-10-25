@@ -88,7 +88,7 @@ export class StandardReportsComponent implements OnInit {
       enableRowGroup: true,
       enableValue: true,
       headerName: 'Actions',
-      headerClass: 'action-header',
+      headerClass: 'hide-header-text',
       suppressColumnsToolPanel: true,
       suppressFiltersToolPanel: true,
       cellRenderer: function (params: any) {
