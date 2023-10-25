@@ -63,10 +63,14 @@ export class HeaderComponent {
     });
   }
 
-  onStandarsReport() {
+  onStandardReport() {
     this.router.navigate(['/dashboard/standard-reports']);
     this.showReportMenu = !this.showReportMenu;
+  }
 
+  onCustomReport() {
+    this.router.navigate(['/dashboard/custom-reports']);
+    this.showReportMenu = !this.showReportMenu;
   }
 
 }

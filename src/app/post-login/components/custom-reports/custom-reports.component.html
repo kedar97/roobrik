@@ -1,0 +1,90 @@
+<div class="main-container">
+  <div class="toast-message" *ngIf="showToast">
+    <img src="assets/images/success-icon.svg" alt="" />
+    <div class="message-text">
+      <p>
+        The report(s) have been downloaded.
+        <span> Check your computer’s downloads folder</span>
+      </p>
+    </div>
+    <button
+      kendoButton
+      imageUrl="assets/images/close-icon.svg"
+      class="btn close-btn"
+      (click)="closeToast()"
+    ></button>
+  </div>
+
+  <h1 class="section-header" [class.custom-margin]="showToast">
+    Custom Reports
+  </h1>
+
+  <div class="margin-top-33">
+    <div class="input-container">
+      <input
+        type="text"
+        (input)="onSearch()"
+        id="filter-text-box"
+        kendoTextBox
+        placeholder="Search Reports"
+      />
+      <img src="assets/images/search-icon.png" />
+    </div>
+  </div>
+
+  <div
+    class="selected-section d-flex align-items-center"
+    *ngIf="selectedRowCount > 0"
+  >
+    <kendo-button
+      imageUrl="assets/images/xbox-icon.png"
+      class="buttons"
+      width="16"
+      height="16"
+      >{{ selectedRowCount }} selected</kendo-button
+    >
+    <kendo-button
+      imageUrl="assets/images/download-icon.svg"
+      class="buttons clicked"
+      width="13"
+      height="14"
+      (click)="show()"
+      >Download</kendo-button
+    >
+  </div>
+
+  <div class="custom-report-table">
+    <div class="table-pagination" style="flex-grow: 1">
+      <ag-grid-angular
+        style="flex-grow: 1; height: 700px"
+        class="ag-theme-balham ag-grid"
+        [columnDefs]="columnDef"
+        [rowData]="rowData"
+        [rowHeight]="76"
+        [headerHeight]="48"
+        [rowSelection]="rowSelection"
+        [defaultColDef]="defaultColDef"
+        [gridOptions]="gridOptions"
+        (selectionChanged)="onSelectionChanged()"
+        [defaultColDef]="defaultColDef"
+        (gridReady)="onGridReady($event)"
+        [sideBar]="sideBar"
+        (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+      >
+      </ag-grid-angular>
+      <select
+        class="items-dropdown"
+        [(ngModel)]="selectedValue"
+        (change)="onItemsPerPageChange(selectedValue)"
+      >
+        <option
+          *ngFor="let option of paginationOptions"
+          [attr.selected]="option.value == 10"
+          [value]="option.value"
+        >
+          {{ option.title }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

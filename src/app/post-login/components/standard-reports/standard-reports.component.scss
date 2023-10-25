@@ -159,7 +159,7 @@
   font-size: 14px !important;
 }
 
-::ng-deep .ag-header-row {
+:host ::ng-deep .ag-header-row {
   top: 7px !important;
 }
 
@@ -181,7 +181,7 @@
   font-size: 20px !important;
 }
 
-::ng-deep .ag-checkbox-input-wrapper.ag-checked::after {
+:host ::ng-deep .ag-checkbox-input-wrapper.ag-checked::after {
   display: block;
   content: url("data:image/svg+xml;charset=UTF-8, <svg xmlns='http://www.w3.org/2000/svg' fill='none'  viewBox='0 0 24 24' stroke-width='3' stroke='white' class='w-6 h-6'> <path stroke-linecap='round' stroke-linejoin='round' d='M4.5 12.75l6 6 9-13.5' class='icons' /></svg>");
   background-size: 28px 28px !important;
@@ -196,7 +196,7 @@
   appearance: none;
   -webkit-appearance: none;
   &:checked {
-    background-color:  #2B6789 !important;
+    background-color: #2b6789 !important;
     border: none !important;
     &::after {
       display: none !important;
@@ -204,7 +204,7 @@
   }
 }
 
-::ng-deep .ag-checkbox-input-wrapper input,
+:host ::ng-deep .ag-checkbox-input-wrapper input,
 .ag-checkbox-input-wrapper input,
 .ag-checkbox-input-wrapper {
   -webkit-appearance: none !important;
@@ -253,9 +253,6 @@
       left: 21px;
       font-size: 30px;
       color: #000;
-    }
-    .ag-cell-value {
-      margin-left: 8px !important;
     }
   }
   .ag-cell-focus {
@@ -380,11 +377,6 @@
   display: none !important;
 }
 
-// Scrollbar of Table
-::ng-deep .ag-paging-row-summary-panel {
-  // display: none;
-}
-
 // Pagination container
 ::ng-deep .ag-paging-panel {
   height: 48px !important;
@@ -428,13 +420,13 @@
 }
 
 // Pinned left column
-::ng-deep .ag-pinned-left-header,
+:host ::ng-deep .ag-pinned-left-header,
 ::ng-deep .ag-pinned-left-cols-container {
   width: 550px !important;
   min-width: 550px !important;
 }
 
-::ng-deep .ag-cell-value {
+:host ::ng-deep .ag-cell-value {
   width: auto !important;
 }
 
@@ -460,7 +452,7 @@
 }
 
 //
-::ng-deep .repoertCell {
+:host ::ng-deep .reportCell {
   color: #2a2a2a;
   width: 150px !important;
   text-align: center;
@@ -470,7 +462,7 @@
   justify-content: center !important;
 }
 
-::ng-deep .actionCell {
+::ng-deep .addedOnCell {
   color: #2a2a2a;
   width: 150px;
   text-align: center;
@@ -478,9 +470,36 @@
   font-weight: 400;
 }
 
-::ng-deep {
+.resetButton {
+  position: absolute;
+  background-color: #f7f7f7;
+  border-right: 1px solid rgb(189, 195, 199) !important;
+  height: 47px;
+  width: 85.5%;
+  border: 0;
+  font-size: 14px;
+  color: #0a4569;
+  font-weight: 700;
+  top: 0;
+  left: 0;
+
+  &:hover {
+    background: #c8d3dc !important;
+  }
+}
+
+::ng-deep .ag-tool-panel-wrapper {
+  border-top: 1px solid rgb(189, 195, 199);
+}
+
+::ng-deep .ag-column-panel-column-select {
+  border-top: none;
+}
+
+:host ::ng-deep {
   .ag-side-bar {
-    padding: 16px 6px 0 8px;
+    padding: 47px 6px 0px 0px;
+    position: relative;
     color: #2f2f2f;
     font-family: Helvetica Neue;
     font-size: 14px;
@@ -488,6 +507,73 @@
     font-weight: 400;
     line-height: 16px;
   }
+  .ag-side-buttons {
+    margin: 12px 0 0 8px;
+  }
+
+  .ag-side-button .ag-icon-columns::before {
+    content: url("/assets/images/columns-icon.png");
+  }
+
+  .ag-side-button .ag-icon-filter::before {
+    content: url("/assets/images/filter-icon.png");
+  }
+
+  .ag-side-button-icon-wrapper {
+    margin-bottom: 11px;
+  }
+
+  button.ag-side-button-button {
+    border: none;
+    padding: 0;
+  }
+
+  .ag-side-button:last-child {
+    margin-top: 43px;
+  }
+}
+
+::ng-deep {
+  .ag-pinned-left-header,
+  .ag-pinned-left-cols-container {
+    width: 550px !important;
+  }
+}
+
+:host ::ng-deep {
+  .ag-pinned-left-header .ag-header-cell {
+    padding-left: 23px !important;
+  }
+  .ag-pinned-left-header .ag-header-row {
+    margin-left: 35.05px !important;
+  }
+}
+
+:host ::ng-deep .reportCell {
+  color: #2a2a2a;
+  width: 150px !important;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+:host ::ng-deep {
+  .ag-horizontal-left-spacer {
+    min-width: 550px !important;
+  }
+
+  .ag-horizontal-right-spacer {
+    min-width: 100px !important;
+  }
+
+  .ag-center-cols-container {
+    margin-right: 0 !important;
+  }
+}
+
+::ng-deep {
   .ag-side-buttons {
     padding-top: 0;
   }
@@ -514,7 +600,7 @@
   }
 }
 
-::ng-deep .ag-set-filter-item {
+:host ::ng-deep .ag-set-filter-item {
   .ag-checkbox-input-wrapper input {
     width: 16px;
     height: 16px;
@@ -527,108 +613,15 @@
   }
 }
 
-::ng-deep .action-icons {
-  // visibility: hidden;
-}
-
 ::ng-deep {
-  .ag-pinned-left-header,
-  .ag-pinned-left-cols-container {
-    width: 550px !important;
-    min-width: 550px !important;
-  }
-}
-
-::ng-deep {
-  .ag-pinned-left-header .ag-header-cell {
-    padding-left: 23px !important;
-  }
-  .ag-pinned-left-header .ag-header-row {
-    margin-left: 35.05px !important;
-  }
-}
-
-::ng-deep .reportCell {
-  color: #2a2a2a;
-  width: 150px !important;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  display: flex !important;
-  justify-content: center !important;
-}
-
-::ng-deep {
-  .ag-horizontal-left-spacer {
-    min-width: 550px !important;
-  }
-
-  .ag-horizontal-right-spacer {
-    min-width: 100px !important;
-  }
-
-  .ag-center-cols-container {
-    margin-right: 0 !important;
-  }
-}
-
-::ng-deep{
-  .ag-side-bar{
-    padding: 16px 6px 0 8px;
-  }
-  .ag-side-buttons{
-    padding-top: 0;
-  }
-  
-  .ag-side-button .ag-icon-columns::before{
-    content: url('/assets/images/columns-icon.png');
-  }
-  
-  .ag-side-button .ag-icon-filter::before{
-    content: url('/assets/images/filter-icon.png');
-  }
-  
-  .ag-side-button-icon-wrapper{
-    margin-bottom: 11px;
-  }
-  
-  button.ag-side-button-button{
-    border:none;
-    padding: 0;
-  }
-  
-  .ag-side-button:last-child{
-    margin-top: 43px;
-  }
-} 
-
-::ng-deep .action-header {
-  display: none;
-}
-
-::ng-deep .ag-set-filter-item{
-  .ag-checkbox-input-wrapper input{
-      width: 16px;
-      height: 16px;
-  }
-  .ag-checkbox-input-wrapper.ag-checked::after {
-      font-size: 12px;
-      width: 10px;
-      margin-left: 3px;
-      margin-top: -1px;
-  }
-}
-
-::ng-deep{
-  .ag-side-button-label ,
-  .ag-tool-panel-wrapper ,
+  .ag-side-button-label,
+  .ag-tool-panel-wrapper,
   .ag-group-title {
-    color: #2F2F2F;
-    font-family: 'Helvetica Neue';
+    color: #2f2f2f;
+    font-family: "Helvetica Neue";
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 16px;
   }
-} 
-
+}

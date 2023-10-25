@@ -1,3 +1,8 @@
+interface DateRange {
+    startDate: Date;
+    endDate: Date;
+}
+
 export interface PaginationOption {
     title: string;
     value: number;
@@ -6,5 +11,13 @@ export interface PaginationOption {
 export interface StandardReportsRowData {
     reportName: string[],
     reportFrequency: string,
-    addedOn: string
+    addedOn: Date
 }
+
+export interface CustomReportRowData {
+    reportName: string;
+    description? : string,
+    reportPeriod: DateRange;
+    addedOn: Date;
+}
+

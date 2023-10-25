@@ -8,6 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { StandardReportsComponent } from './components/standard-reports/standard-reports.component';
+import { CustomReportsComponent } from './components/custom-reports/custom-reports.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ModuleRegistry } from 'ag-grid-community';
 import { ExcelExportModule } from 'ag-grid-enterprise';
@@ -22,6 +23,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     ProfileComponent,
     DialogComponent,
     StandardReportsComponent,
+    CustomReportsComponent,
     LeadRoutingComponent,
   ],
   imports: [CommonModule, PostLoginRoutingModule, SharedModule, AgGridModule],

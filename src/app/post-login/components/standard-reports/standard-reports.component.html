@@ -56,29 +56,6 @@
           Download
         </button>
       </div>
-      <div class="d-flex justify-content-end">
-        <button
-          kendoButton
-          (click)="onResetFilter()"
-          themeColor="primary"
-          id="resetButton"
-          style="margin-top: 18px"
-          *ngIf="resetFilters"
-        >
-          Reset Filter
-        </button>
-        <button
-          kendoButton
-          (click)="onResetColumns()"
-          themeColor="primary"
-          id="resetButton"
-          style="margin-top: 18px"
-          *ngIf="resetColumns"
-        >
-          Reset Columns
-        </button>
-      </div>
-
       <div class="reports-data d-flex">
         <ag-grid-angular
           style="width: 100%; height: 704px"
