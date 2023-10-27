@@ -95,7 +95,7 @@ export class CustomReportsComponent {
       headerCheckboxSelection: true,
       checkboxSelection: true,
       filter: 'agMultiColumnFilter',
-
+      minWidth: 300,
       enableRowGroup: true,
       enableValue: true,
       cellRenderer: function (params: any) {

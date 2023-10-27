@@ -10,6 +10,7 @@
   @media (min-width: 1920px) {
     width: 1694px !important;
     margin: 40px auto !important;
+    padding: 0;
   }
 }
 
@@ -28,6 +29,7 @@ p {
   align-items: center;
   gap: 29px;
   margin-top: 31px;
+  // border: 1px solid #DFDFDF;
 
   & button {
     padding: 11px 20px;
@@ -43,6 +45,8 @@ p {
   & .input-container {
     position: relative;
     flex-grow: 1;
+    border: 1px solid #dfdfdf;
+    border-radius: 4px;
 
     & input {
       padding: 12.25px 45.8px 10.25px;
@@ -57,7 +61,7 @@ p {
       width: 27.141px;
       height: 26.25px;
       position: absolute;
-      top: 10px;
+      top: 13px;
       left: 12px;
     }
   }
@@ -70,6 +74,11 @@ p {
   background: #f5f5f5;
   font-size: 14px;
   gap: 26px;
+
+  span {
+    font-weight: 600;
+    color: #444 !important;
+  }
 
   & .buttons {
     border: none;
@@ -276,8 +285,12 @@ p {
 :host ::ng-deep {
   .ag-pinned-right-cols-container {
     width: 10% !important;
-    min-width: 130px !important;
+    min-width: 140px !important;
     max-width: unset !important;
+  }
+
+  & .ag-ltr .ag-body-vertical-scroll.ag-scrollbar-invisible {
+    right: 6px;
   }
 
   .ag-pinned-right-header {
@@ -596,6 +609,7 @@ select:focus {
   margin-right: 11.1px;
   font-size: 14px;
   color: #444;
+  font-weight: 300 !important;
 }
 
 .clear-section-section:hover {

@@ -56,10 +56,11 @@ select:focus {
   margin-right: 11.1px;
   font-size: 14px;
   color: #444;
+  font-weight: 300 !important;
 }
 
 .clear-section-section:hover {
-  background-color: rgba( #a8becc, 0.2);
+  background-color: rgba(#a8becc, 0.2);
 }
 
 .input-container {
@@ -84,11 +85,17 @@ select:focus {
 
 .selected-section {
   margin-top: 18px;
-  padding: 8px 23px;
+  padding: 8px 31px;
   border: 1px solid #d0d0d0;
   background: #f5f5f5;
   font-size: 14px;
   gap: 26px;
+
+  span {
+    margin-left: 20px;
+    font-weight: 600;
+    color: #444 !important;
+  }
 
   & .buttons {
     border: none;
@@ -320,8 +327,12 @@ select:focus {
 :host ::ng-deep {
   .ag-pinned-right-cols-container {
     min-width: 140px !important;
+    max-width: unset !important;
   }
 
+  & .ag-ltr .ag-body-vertical-scroll.ag-scrollbar-invisible {
+    right: 6px;
+  }
   .ag-pinned-right-header {
     width: 0 !important  ;
     min-width: 140px !important;
@@ -453,7 +464,7 @@ select:focus {
   background-color: #f7f7f7;
   border-right: 1px solid rgb(189, 195, 199) !important;
   height: 48px;
-  width: 85.5%;
+  width: 86%;
   border: 0;
   font-size: 16px;
   color: #0a4569;
@@ -522,7 +533,9 @@ select:focus {
     position: relative;
   }
   .ag-side-buttons {
-    margin: 12px 0 0 8px;
+    padding-top: 0;
+    margin-top: -35px;
+    margin-left: 7px;
   }
 
   .ag-side-button .ag-icon-columns::before {

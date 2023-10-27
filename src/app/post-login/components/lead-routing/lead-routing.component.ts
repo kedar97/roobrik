@@ -44,10 +44,11 @@ export class LeadRoutingComponent {
 
   columnDef: ColDef[] = [
     {
+      headerName: 'Email Address',
       field: 'email',
       headerCheckboxSelection: true,
       checkboxSelection: true,
-      // minWidth: 300,
+      minWidth: 300,
       cellStyle: {
         width: 'fit-content',
         overflow: 'visible',
