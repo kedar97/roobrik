@@ -1,1 +1,86 @@
-<app-coming-soon></app-coming-soon>
+<div class="main-container">
+  <div class="toast-message" *ngIf="showToast">
+    <img src="assets/images/success-icon.svg" alt="" />
+    <div class="message-text">
+      <p>User(s) Deactivated Successfully.</p>
+    </div>
+    <button
+      kendoButton
+      imageUrl="assets/images/close-icon.svg"
+      class="btn close-btn"
+      (click)="closeToast()"
+    ></button>
+  </div>
+
+  <h1 class="section-header" [class.custom-margin]="showToast">Lead Routing</h1>
+
+  <div class="search-section d-flex">
+    <div class="input-container">
+      <input
+        type="text"
+        (input)="onSearch()"
+        id="filter-text-box"
+        kendoTextBox
+        placeholder="Search"
+      />
+      <img src="assets/images/search-icon.png" />
+    </div>
+    <button kendo-button>
+      CREATE NEW
+    </button>
+  </div>
+
+  <div
+    class="d-flex selected-section align-items-center justify-content-between"
+    *ngIf="selectedRowCount > 0"
+  >
+    <div>
+      <span>{{ selectedRowCount }} selected</span>
+      <button
+        kendoButton
+        class="btn-deactivate"
+        imageUrl="/assets/images/material-symbols_download.svg"
+      >
+        Deactivate
+      </button>
+    </div>
+    <div class="clear-section-section" (click)="onClearSection()">
+      <span class="clear-section-txt">Clear Selection</span>
+      <img src="assets/images/xbox-icon.png" />
+    </div>
+  </div>
+
+  <div class="league-table d-flex">
+    <div class="table-pagination" style="flex-grow: 1">
+      <ag-grid-angular
+        style="flex-grow: 1; height: 500px"
+        class="ag-theme-balham ag-grid"
+        [columnDefs]="columnDef"
+        [rowData]="rowData"
+        [rowHeight]="76"
+        [headerHeight]="48"
+        [rowSelection]="rowSelection"
+        [gridOptions]="gridOptions"
+        (selectionChanged)="onSelectionChanged()"
+        [defaultColDef]="defaultColDef"
+        (gridReady)="onGridReady($event)"
+        [sideBar]="sideBar"
+        (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+      >
+      </ag-grid-angular>
+      <select
+        class="items-dropdown"
+        [(ngModel)]="selectedValue"
+        (change)="onItemsPerPageChange(selectedValue)"
+      >
+        <option
+          *ngFor="let option of paginationOptions"
+          [attr.selected]="option.value == 10"
+          [value]="option.value"
+        >
+          {{ option.title }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>

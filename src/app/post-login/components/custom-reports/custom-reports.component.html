@@ -33,24 +33,25 @@
   </div>
 
   <div
-    class="selected-section d-flex align-items-center"
+    class="selected-section d-flex align-items-center justify-content-between"
     *ngIf="selectedRowCount > 0"
   >
-    <kendo-button
-      imageUrl="assets/images/xbox-icon.png"
-      class="buttons"
-      width="16"
-      height="16"
-      >{{ selectedRowCount }} selected</kendo-button
-    >
-    <kendo-button
-      imageUrl="assets/images/download-icon.svg"
-      class="buttons clicked"
-      width="13"
-      height="14"
-      (click)="show()"
-      >Download</kendo-button
-    >
+    <div>
+      <kendo-button class="buttons" width="16" height="16"
+        >{{ selectedRowCount }} selected</kendo-button
+      >
+      <kendo-button
+        imageUrl="assets/images/download-icon.svg"
+        class="buttons download-btn"
+        width="13"
+        height="14"
+        >Download</kendo-button
+      >
+    </div>
+    <div class="clear-section-section" (click)="onClearSection()">
+      <span class="clear-section-txt">Clear Selection</span>
+      <img src="assets/images/xbox-icon.png" />
+    </div>
   </div>
 
   <div class="custom-report-table">

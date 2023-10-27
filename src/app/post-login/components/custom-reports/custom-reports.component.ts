@@ -186,7 +186,54 @@ export class CustomReportsComponent {
         return null;
       },
     },
-
+    {
+      minWidth: 150,
+      field: 'assessmentName',
+      headerName: 'Assessment Name',
+      lockPinned: true,
+      hide: true,
+      cellClass: 'assessment-name',
+      cellStyle: {
+        color: '#2A2A2A',
+        'font-family': 'Helvetica Neue',
+        'font-size': '14px',
+        'font-weight': '400',
+        'line-height': '16px',
+        'font-style': 'normal',
+      },
+    },
+    {
+      minWidth: 150,
+      field: 'fileType',
+      headerName: 'File Type',
+      lockPinned: true,
+      hide: true,
+      cellClass: 'file-type',
+      cellStyle: {
+        color: '#2A2A2A',
+        'font-family': 'Helvetica Neue',
+        'font-size': '14px',
+        'font-weight': '400',
+        'line-height': '16px',
+        'font-style': 'normal',
+      },
+    },
+    {
+      minWidth: 150,
+      field: 'createdBy',
+      headerName: 'Created By',
+      lockPinned: true,
+      hide: true,
+      cellClass: 'created-by',
+      cellStyle: {
+        color: '#2A2A2A',
+        'font-family': 'Helvetica Neue',
+        'font-size': '14px',
+        'font-weight': '400',
+        'line-height': '16px',
+        'font-style': 'normal',
+      },
+    },
     {
       width: 140,
       field: 'actions',
@@ -392,5 +439,9 @@ export class CustomReportsComponent {
 
   closeToast() {
     this.showToast = false;
+  }
+
+  onClearSection() {
+    this.gridApi.deselectAll();
   }
 }

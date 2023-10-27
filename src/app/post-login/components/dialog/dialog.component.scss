@@ -36,7 +36,7 @@
 
     .cmp-title {
       color: #999999c6;
-      font-family: " Helvetica";
+      font-family: "Helvetica";
       font-size: 18px;
       // height: 100px;
       font-weight: 400;
@@ -72,7 +72,7 @@
 }
 
 
-::ng-deep .k-dialog-wrapper .k-window {
+:host ::ng-deep .k-dialog-wrapper .k-window {
   width: 752px !important;
   height: 518px !important ;
 }

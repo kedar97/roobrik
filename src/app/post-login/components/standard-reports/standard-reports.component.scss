@@ -79,7 +79,7 @@
   }
 }
 
-::ng-deep .k-button-icon {
+:host ::ng-deep .k-button-icon {
   margin-right: 6px !important;
 }
 
@@ -137,7 +137,7 @@
   }
 }
 
-::ng-deep .hide-header-text {
+:host ::ng-deep .hide-header-text {
   display: none;
 }
 
@@ -148,11 +148,11 @@
   position: relative;
 }
 
-::ng-deep .ag-ltr .ag-header-cell::after {
+:host ::ng-deep .ag-ltr .ag-header-cell::after {
   width: 0px !important;
 }
 
-::ng-deep .ag-header {
+:host ::ng-deep .ag-header {
   min-height: 48px !important;
   background-color: #f5f5f5 !important;
   font-family: "Helvetica Neue" !important;
@@ -163,21 +163,22 @@
   top: 7px !important;
 }
 
-::ng-deep .ag-header-cell {
+:host ::ng-deep .ag-header-cell {
   font-weight: 500 !important;
   color: #2f2f2f !important;
   letter-spacing: 0.1px;
 }
 
-::ng-deep .ag-cell-label-container {
-  flex-direction: row !important;
+:host ::ng-deep .ag-cell-label-container {
+  flex-direction: row-reverse !important;
+  width: unset;
 }
 
-::ng-deep .ag-group-value {
-  margin-left: 8px !important;
+:host ::ng-deep .ag-group-value {
+  margin-left: 23px !important;
 }
 
-::ng-deep .ag-checkbox-input-wrapper .ag-checked {
+:host ::ng-deep .ag-checkbox-input-wrapper .ag-checked {
   font-size: 20px !important;
 }
 
@@ -192,7 +193,7 @@
   margin-top: 2px;
 }
 
-::ng-deep .ag-checkbox-input {
+:host ::ng-deep .ag-checkbox-input {
   appearance: none;
   -webkit-appearance: none;
   &:checked {
@@ -214,20 +215,20 @@
   height: 20px;
 }
 
-::ng-deep .ag-checkbox .ag-input-wrapper {
+:host ::ng-deep .ag-checkbox .ag-input-wrapper {
   border: none;
   box-shadow: none;
 }
 
-::ng-deep .ag-checkbox-input-wrapper::after {
+:host ::ng-deep .ag-checkbox-input-wrapper::after {
   display: none;
 }
 
-::ng-deep .ag-group-checkbox {
+:host ::ng-deep .ag-group-checkbox {
   margin-left: 13px !important;
 }
 
-::ng-deep .ag-ltr {
+:host ::ng-deep .ag-ltr {
   .ag-row-group-leaf-indent {
     margin-left: 0 !important;
   }
@@ -243,6 +244,7 @@
   .ag-header-select-all {
     margin-right: 36px !important;
   }
+
   .ag-cell {
     display: flex;
     align-items: center;
@@ -262,7 +264,7 @@
 
 //  For RowData
 
-::ng-deep .newBadge {
+:host ::ng-deep .newBadge {
   background-color: #083754;
   font-family: "Helvetica Neue";
   font-size: 14px;
@@ -275,33 +277,33 @@
   text-transform: uppercase;
 }
 
-::ng-deep .childData {
+:host ::ng-deep .childData {
   color: #2a2a2a;
 
   font-size: 16px;
   font-weight: 400 !important;
 }
 
-::ng-deep .rowData {
+:host ::ng-deep .rowData {
   color: #2a2a2a;
 
   font-size: 16px;
   font-weight: 500 !important;
 }
 
-::ng-deep .subText {
+:host ::ng-deep .subText {
   font-size: 10.9px;
   font-weight: 400;
   resize: both;
   color: #2a2a2a;
 }
 
-::ng-deep .ag-cell-wrapper > *:not(.ag-cell-value):not(.ag-group-value) {
+:host ::ng-deep .ag-cell-wrapper > *:not(.ag-cell-value):not(.ag-group-value) {
   align-self: center !important;
 }
 
 // header sorting icon
-::ng-deep .ag-icon-desc {
+:host ::ng-deep .ag-icon-desc {
   margin-top: -7px;
   &::before {
     content: url("/assets/images/down-arrow.svg");
@@ -309,7 +311,7 @@
   }
 }
 
-::ng-deep .ag-icon-asc {
+:host ::ng-deep .ag-icon-asc {
   margin-top: -7px;
   &::before {
     content: url("/assets/images/up-arrow.svg");
@@ -318,17 +320,17 @@
 }
 
 // For Menu of header
-::ng-deep .ag-icon .ag-icon-menu {
+:host ::ng-deep .ag-icon .ag-icon-menu {
   content: "" !important;
 }
 
 // Hover On Download and Preview
-::ng-deep .iconsColumnDiv {
+:host ::ng-deep .iconsColumnDiv {
   margin-left: -8px;
 }
 
-::ng-deep .preview,
-::ng-deep .download {
+:host ::ng-deep .preview,
+:host ::ng-deep .download {
   visibility: hidden;
   height: 19px;
   background-color: #d9d9d9;
@@ -339,46 +341,56 @@
   border-radius: 5px;
 }
 
-::ng-deep .download {
+:host ::ng-deep .download {
   margin-top: 0px !important;
 }
 
-::ng-deep .previewIcon:hover .preview {
+:host ::ng-deep .previewIcon:hover .preview {
   visibility: visible;
 }
 
-::ng-deep .previewIcon:hover .download {
+:host ::ng-deep .previewIcon:hover .download {
   visibility: visible;
 }
 
 // border of locked column
-::ng-deep .ag-pinned-left-header,
-::ng-deep
+:host ::ng-deep .ag-pinned-left-header,
+:host
+  ::ng-deep
   .ag-cell.ag-cell-last-left-pinned:not(.ag-cell-range-right):not(
     .ag-cell-range-single-cell
   ) {
   border-right: none !important;
 }
 
-::ng-deep .ag-pinned-right-header,
-::ng-deep
+:host ::ng-deep .ag-pinned-right-header,
+:host
+  ::ng-deep
   .ag-cell.ag-cell-first-right-pinned:not(.ag-cell-range-left):not(
     .ag-cell-range-single-cell
   ) {
   border-left: none !important;
 }
 
-::ng-deep .ag-pinned-right-cols-container {
+:host ::ng-deep .ag-pinned-right-cols-container {
   margin-right: 0px !important;
 }
 
 // Menu buttton of header
-::ng-deep .ag-header-cell-menu-button:not(.ag-header-menu-always-show) {
-  display: none !important;
+//  :host ::ng-deep .ag-header-cell-menu-button:not(.ag-header-menu-always-show) {
+//   display: none !important;
+// }
+
+:host ::ng-deep .ag-header-cell-menu-button {
+  margin-left: 10px;
+}
+
+:host ::ng-deep .ag-header-cell-comp-wrapper {
+  overflow: visible;
 }
 
 // Pagination container
-::ng-deep .ag-paging-panel {
+:host ::ng-deep .ag-paging-panel {
   height: 48px !important;
   background-color: #f5f5f5 !important;
   .ag-paging-description {
@@ -404,11 +416,11 @@
 }
 
 // Pinned right column
-::ng-deep .ag-pinned-right-cols-container {
+:host ::ng-deep .ag-pinned-right-cols-container {
   min-width: 125px !important;
 }
 
-::ng-deep {
+:host ::ng-deep {
   .ag-pinned-right-cols-container {
     min-width: 125px !important;
   }
@@ -431,22 +443,24 @@
 }
 
 // Scrollbar of table
-::ng-deep .ag-root ::-webkit-scrollbar {
+:host ::ng-deep .ag-root ::-webkit-scrollbar {
   width: 6px !important;
   height: 6px !important;
   margin-right: 2px;
   z-index: 99;
 }
 
-::ng-deep .ag-root ::-webkit-scrollbar-thumb {
+:host ::ng-deep .ag-root ::-webkit-scrollbar-thumb {
   background-color: #d9d9d9;
   border-radius: 6px;
 }
 
-::ng-deep .ag-body-vertical-scroll-container {
+:host ::ng-deep .ag-body-vertical-scroll-container {
   margin-right: 4px;
 }
-::ng-deep .ag-body-vertical-scroll.ag-scrollbar-invisible.ag-apple-scrollbar {
+:host
+  ::ng-deep
+  .ag-body-vertical-scroll.ag-scrollbar-invisible.ag-apple-scrollbar {
   opacity: 1 !important;
   visibility: visible !important;
 }
@@ -459,10 +473,10 @@
   font-size: 14px;
   font-weight: 400;
   display: flex !important;
-  justify-content: center !important;
+  justify-content: left !important;
 }
 
-::ng-deep .addedOnCell {
+:host ::ng-deep .addedOnCell {
   color: #2a2a2a;
   width: 150px;
   text-align: center;
@@ -476,8 +490,9 @@
   border-right: 1px solid rgb(189, 195, 199) !important;
   height: 47px;
   width: 85.5%;
+  letter-spacing: 1px;
   border: 0;
-  font-size: 14px;
+  font-size: 15px;
   color: #0a4569;
   font-weight: 700;
   top: 0;
@@ -488,11 +503,29 @@
   }
 }
 
-::ng-deep .ag-tool-panel-wrapper {
+.clear-section-section {
+  height: 100%;
+  padding: 5px 20px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.clear-section-txt {
+  margin-right: 11.1px;
+  font-size: 14px;
+  color: #444;
+}
+
+.clear-section-section:hover {
+  background-color: rgba( #a8becc, 0.2);
+}
+
+:host ::ng-deep .ag-tool-panel-wrapper {
   border-top: 1px solid rgb(189, 195, 199);
 }
 
-::ng-deep .ag-column-panel-column-select {
+:host ::ng-deep .ag-column-panel-column-select {
   border-top: none;
 }
 
@@ -533,7 +566,7 @@
   }
 }
 
-::ng-deep {
+:host ::ng-deep {
   .ag-pinned-left-header,
   .ag-pinned-left-cols-container {
     width: 550px !important;
@@ -547,16 +580,6 @@
   .ag-pinned-left-header .ag-header-row {
     margin-left: 35.05px !important;
   }
-}
-
-:host ::ng-deep .reportCell {
-  color: #2a2a2a;
-  width: 150px !important;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 400;
-  display: flex !important;
-  justify-content: center !important;
 }
 
 :host ::ng-deep {
@@ -573,7 +596,7 @@
   }
 }
 
-::ng-deep {
+:host ::ng-deep {
   .ag-side-buttons {
     padding-top: 0;
   }
@@ -613,7 +636,7 @@
   }
 }
 
-::ng-deep {
+:host ::ng-deep {
   .ag-side-button-label,
   .ag-tool-panel-wrapper,
   .ag-group-title {

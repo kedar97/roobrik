@@ -84,6 +84,45 @@ export class StandardReportsComponent implements OnInit {
       lockPinned: true,
     },
     {
+      field: 'assessmentName',
+      headerName: 'Assessment name',
+      minWidth: 200,
+      enableRowGroup: true,
+      enableValue: true,
+      headerClass: 'centeredHeader',
+      hide: true,
+    },
+    {
+      field: 'reportPeriod',
+      headerName: 'Report Period',
+      minWidth: 200,
+      enableRowGroup: true,
+      enableValue: true,
+      headerClass: 'centeredHeader',
+      lockPinned: true,
+      hide: true,
+    },
+    {
+      field: 'fileType',
+      headerName: 'File Type',
+      minWidth: 200,
+      enableRowGroup: true,
+      enableValue: true,
+      headerClass: 'centeredHeader',
+      lockPinned: true,
+      hide: true,
+    },
+    {
+      field: 'createdBy',
+      headerName: 'Created By',
+      minWidth: 200,
+      enableRowGroup: true,
+      // enableValue: true,
+      headerClass: 'centeredHeader',
+      lockPinned: true,
+      hide: true,
+    },
+    {
       field: 'actions',
       enableRowGroup: true,
       enableValue: true,
@@ -325,6 +364,10 @@ export class StandardReportsComponent implements OnInit {
       state: this.defaultColumnState,
       applyOrder: true,
     });
+  }
+
+  onClearSection() {
+    this.gridApi.deselectAll();
   }
 }
 
