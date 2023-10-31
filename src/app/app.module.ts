@@ -10,6 +10,8 @@ import { IconsModule } from '@progress/kendo-angular-icons';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { SharedModule } from './shared/shared.module';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { NotificationModule } from '@progress/kendo-angular-notification';
+
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { GridModule } from '@progress/kendo-angular-grid';
     IconsModule,
     ButtonsModule,
     SharedModule,
-    GridModule
+    GridModule,
+    NotificationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

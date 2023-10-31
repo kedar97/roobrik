@@ -1,0 +1,22 @@
+<div class="dailog-container d-flex flex-column">
+  <div class="d-flex flex-row-reverse">
+    <div class="btn cursor-pointer" (click)="dailogRef.close()" class="iconBox">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="icon"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </div>
+  </div>
+  <h1 class="dialog-title">Confirmation</h1>
+  <span class="dialog-massage">{{ getMessage() }}</span>
+</div>

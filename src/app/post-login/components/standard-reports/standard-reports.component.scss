@@ -1,11 +1,17 @@
 .main-container {
   height: 836;
-  margin: 40px 113px;
+  margin: 33px 113px 42px;
   padding: 0;
 
   @media (min-width: 1920px) {
     width: 1694px !important;
-    margin: 40px auto !important;
+    margin: 33px auto 42px !important;
+  }
+
+  .append-container{
+    width: 500px;
+    margin: 0 auto;
+    min-height: 0 !important;
   }
 
   .standard-report-selection {
@@ -51,7 +57,7 @@
     height: 48px;
     border: 1px solid #d0d0d0;
     background-color: #f5f5f5;
-    padding: 6.8px 31px;
+    padding: 6.8px 16px;
     margin-top: 18px;
 
     span {
@@ -60,7 +66,6 @@
       font-size: 14px;
       font-weight: 600;
       color: #444 !important;
-      margin-left: 11.13px;
     }
 
     .btn-download {
@@ -209,6 +214,7 @@
 .ag-checkbox-input-wrapper input,
 .ag-checkbox-input-wrapper {
   -webkit-appearance: none !important;
+  appearance: none;
   opacity: 1 !important;
   border: 2px solid #d0d0d0;
   width: 20px;
@@ -263,7 +269,6 @@
 }
 
 //  For RowData
-
 :host ::ng-deep .newBadge {
   background-color: #083754;
   font-family: "Helvetica Neue";
@@ -500,9 +505,9 @@
   border-right: 1px solid rgb(189, 195, 199) !important;
   height: 47px;
   width: 86%;
-  letter-spacing: 1px;
+  font-family: "Helvetica Neue";
   border: 0;
-  font-size: 15px;
+  font-size: 16px;
   color: #0a4569;
   font-weight: 700;
   top: 0;

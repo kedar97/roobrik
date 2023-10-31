@@ -1,4 +1,11 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { ColDef, GridReadyEvent } from 'ag-grid-community/dist/lib/main';
 import { SideBarDef } from 'ag-grid-community/dist/lib/main';
 import {
@@ -12,6 +19,11 @@ import {
   PaginationOption,
   StandardReportsRowData,
 } from '../../post-login.modal';
+import {
+  NotificationRef,
+  NotificationService,
+} from '@progress/kendo-angular-notification';
+import { NotificationsComponent } from 'src/app/shared/components/notifications/notifications.component';
 
 @Component({
   selector: 'app-standard-reports',
@@ -19,6 +31,79 @@ import {
   styleUrls: ['./standard-reports.component.scss'],
 })
 export class StandardReportsComponent implements OnInit {
+  constructor(
+    private renderer: Renderer2,
+    private ele: ElementRef,
+    private notificationService: NotificationService,
+    private elementRef: ElementRef
+  ) {}
+
+  @ViewChild('container', { read: ViewContainerRef })
+  public container: ViewContainerRef;
+
+  notificationMessages = [
+    {
+      type: 'success',
+      message: 'The User(s) Deactivated Successfully.',
+      text: 'Check your computer’s downloads folder',
+    },
+
+    {
+      type: 'warning',
+      message: 'The Warning.',
+    },
+
+    {
+      type: 'error',
+      message: 'ERROR.',
+      text: 'Check your computer’s downloads folder',
+    },
+  ];
+
+  notificationRef: NotificationRef;
+
+  public show(): void {
+    this.container.element.nativeElement.innerHTML = '';
+    this.notificationMessages.forEach((message: any) => {
+      this.notificationRef = this.notificationService.show({
+        content: NotificationsComponent,
+        type: { style: message.type, icon: false },
+        closable: true,
+        position: { horizontal: 'center', vertical: 'top' },
+        appendTo: this.container,
+      });
+
+      const notificationInstance = this.notificationRef.content?.instance;
+      switch (message.type) {
+        case 'success':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-check-circle' aria-hidden='true'></i>";
+          break;
+
+        case 'warning':
+          notificationInstance.header = message.message;
+          notificationInstance.tags =
+            "<i class='fa fa-exclamation-triangle' aria-hidden='true'></i>";
+          break;
+
+        case 'error':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-exclamation-circle' aria-hidden='true'></i>";
+          break;
+
+        case 'info':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-info-circle' aria-hidden='true'></i>";
+      }
+    });
+  }
+
   private gridApi!: GridApi | any;
   private gridColumnApi!: ColumnApi | any;
   public groupDefaultExpanded = -1;
@@ -281,8 +366,6 @@ export class StandardReportsComponent implements OnInit {
       addedOn: new Date(2018, 7, 17),
     },
   ];
-
-  constructor(private renderer: Renderer2, private ele: ElementRef) {}
 
   onToolPanelVisibleChanged(params: any) {
     if (params.visible) {

@@ -16,7 +16,7 @@ export class DialogComponent implements OnInit {
     {
       imgSrc: 'assets/images/galloway-senior-living-logo.png',
       clientName: 'Galloway Senior Living',
-    },  
+    },
     {
       imgSrc: 'assets/images/sunrise-logo.svg',
       clientName: 'Sunrise Senior Living',
@@ -28,19 +28,17 @@ export class DialogComponent implements OnInit {
     {
       imgSrc: 'assets/images/galloway-senior-living-logo.png',
       clientName: 'Galloway Senior Living',
-    },  
+    },
     {
       imgSrc: 'assets/images/sunrise-logo.svg',
       clientName: 'Sunrise Senior Living',
     },
-   
   ];
   constructor(
     private dialogService: DialogService,
     public dailogRef: DialogRef
   ) {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   closeDailog() {}
 }

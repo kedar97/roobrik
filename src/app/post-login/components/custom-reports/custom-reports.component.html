@@ -1,19 +1,5 @@
 <div class="main-container">
-  <div class="toast-message" *ngIf="showToast">
-    <img src="assets/images/success-icon.svg" alt="" />
-    <div class="message-text">
-      <p>
-        The report(s) have been downloaded.
-        <span> Check your computer’s downloads folder</span>
-      </p>
-    </div>
-    <button
-      kendoButton
-      imageUrl="assets/images/close-icon.svg"
-      class="btn close-btn"
-      (click)="closeToast()"
-    ></button>
-  </div>
+  <div class="append-container" #container></div>
 
   <h1 class="section-header" [class.custom-margin]="showToast">
     Custom Reports
@@ -43,6 +29,7 @@
         class="buttons download-btn"
         width="13"
         height="14"
+        (click)="show()"
         >Download</kendo-button
       >
     </div>

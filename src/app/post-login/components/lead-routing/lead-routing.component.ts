@@ -1,10 +1,21 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import {
   PaginationOption,
   LeadRoutingRowData,
 } from 'src/app/post-login/post-login.modal';
 import { ColDef, GridApi, GridReadyEvent, SideBarDef } from 'ag-grid-community';
 import { GridOptions } from 'ag-grid-community';
+import {
+  NotificationRef,
+  NotificationService,
+} from '@progress/kendo-angular-notification';
+import { NotificationsComponent } from 'src/app/shared/components/notifications/notifications.component';
 
 @Component({
   selector: 'app-lead-routing',
@@ -12,6 +23,85 @@ import { GridOptions } from 'ag-grid-community';
   styleUrls: ['./lead-routing.component.scss'],
 })
 export class LeadRoutingComponent {
+  constructor(
+    private renderer: Renderer2,
+    private ele: ElementRef,
+    private notificationService: NotificationService
+  ) {}
+
+  @ViewChild('container', { read: ViewContainerRef })
+  public container: ViewContainerRef;
+
+  notificationMessages = [
+    {
+      type: 'success',
+      message: 'The User(s) Deactivated Successfully.',
+      text: 'Check your computer’s downloads folder',
+    },
+
+    {
+      type: 'warning',
+      message: 'The Warning.',
+    },
+
+    {
+      type: 'error',
+      message: 'ERROR.',
+      text: 'Check your computer’s downloads folder',
+    },
+
+    {
+      type: 'info',
+      message: 'Information.',
+      text: 'Check your computer’s downloads folder',
+    },
+  ];
+
+  notificationRef: NotificationRef;
+
+  public show(): void {
+    this.container.element.nativeElement.innerHTML = '';
+    console.log(this.container);
+    this.notificationMessages.forEach((message: any) => {
+      this.notificationRef = this.notificationService.show({
+        content: NotificationsComponent,
+        type: { style: message.type, icon: false },
+        closable: true,
+        position: { horizontal: 'center', vertical: 'top' },
+        appendTo: this.container,
+      });
+
+      const notificationInstance = this.notificationRef.content?.instance;
+      switch (message.type) {
+        case 'success':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-check-circle' aria-hidden='true'></i>";
+          break;
+
+        case 'warning':
+          notificationInstance.header = message.message;
+          notificationInstance.tags =
+            "<i class='fa fa-exclamation-triangle' aria-hidden='true'></i>";
+          break;
+
+        case 'error':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-exclamation-circle' aria-hidden='true'></i>";
+          break;
+
+        case 'info':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-info-circle' aria-hidden='true'></i>";
+      }
+    });
+  }
+
   showToast = false;
   defaultColumnState: any;
   defaultFiltersState: any;
@@ -286,8 +376,6 @@ export class LeadRoutingComponent {
     paginationPageSize: 10,
   };
 
-  constructor(private renderer: Renderer2, private ele: ElementRef) {}
-
   ngOnInit() {
     this.rowData.forEach((data: any) => {
       data.fullname = data.firstName + ' ' + data.lastName;
@@ -393,9 +481,9 @@ export class LeadRoutingComponent {
     this.gridApi.deselectAll();
   }
 
-  public show(): void {
-    this.showToast = true;
-  }
+  // public show(): void {
+  //   this.showToast = true;
+  // }
 
   closeToast() {
     this.showToast = false;

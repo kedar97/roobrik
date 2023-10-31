@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
+
   public registerForm: FormGroup = new FormGroup({
     firstName: new FormControl(),
     lastName: new FormControl(),
@@ -16,9 +17,10 @@ export class ProfileComponent {
     ]),
   });
 
-  public submitForm(): void {}
+  submitForm(): void {}
 
-  public clearForm(): void {
+  clearForm(): void {
     this.registerForm.reset();
   }
+
 }

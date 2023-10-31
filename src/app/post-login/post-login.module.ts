@@ -13,6 +13,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ModuleRegistry } from 'ag-grid-community';
 import { ExcelExportModule } from 'ag-grid-enterprise';
 import { LeadRoutingComponent } from './components/lead-routing/lead-routing.component';
+import { CreateLeadRoutingComponent } from './components/create-lead-routing/create-lead-routing.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -25,6 +26,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     StandardReportsComponent,
     CustomReportsComponent,
     LeadRoutingComponent,
+    CreateLeadRoutingComponent
   ],
   imports: [CommonModule, PostLoginRoutingModule, SharedModule, AgGridModule],
   exports: [],

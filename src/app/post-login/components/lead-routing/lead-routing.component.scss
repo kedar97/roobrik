@@ -9,7 +9,7 @@
 
   @media (min-width: 1920px) {
     width: 1694px !important;
-    margin: 40px auto !important;
+    margin: 33px auto 42px !important;
     padding: 0;
   }
 }
@@ -18,18 +18,29 @@ h1,
 p {
   margin: 0;
 }
+
+.append-container{
+  width: 500px;
+  margin: 0 auto;
+  min-height: 0 !important;
+}
+
 .section-header {
   color: #0a4569;
   font-size: 32px;
   font-weight: 700;
   transition: all 0.4s;
+  // margin-top: 33px;
+
+  // @media (min-width: 1920px) {
+  //   margin-top: 40px ;
+  // }
 }
 
 .search-section {
   align-items: center;
   gap: 29px;
-  margin-top: 31px;
-  // border: 1px solid #DFDFDF;
+  margin-top: 16px;
 
   & button {
     padding: 11px 20px;
@@ -69,7 +80,7 @@ p {
 
 .selected-section {
   margin-top: 18px;
-  padding: 8px 23px;
+  padding: 8px 16px;
   border: 1px solid #d0d0d0;
   background: #f5f5f5;
   font-size: 14px;
@@ -94,7 +105,6 @@ p {
     background: #083754;
     color: #fff;
     font-weight: normal;
-    // line-height: 32px;
     height: 32px;
     border-radius: 0;
     margin-left: 26px;
@@ -247,7 +257,6 @@ p {
 }
 
 // STICKY COLUMS AND ROW //
-
 :host ::ng-deep .ag-pinned-left-header {
   width: 20% !important;
   min-width: 300px !important;
@@ -278,7 +287,7 @@ p {
 
 :host ::ng-deep .league-table .ag-center-cols-container {
   margin-right: 0 !important;
-  // width: auto !important;
+  width: auto !important;
 }
 
 // Pined right column
@@ -554,34 +563,6 @@ select:focus {
 
 :host ::ng-deep .selected-section .k-button-text {
   margin-left: 11px;
-}
-
-// DOWNLOAD NOTIFICATION //
-.toast-message {
-  background-color: #237b4b;
-  padding: 10px 10px 10px 16px;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  width: 519px;
-}
-
-.message-text {
-  color: #fff;
-  font-family: Helvetica;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-
-  & span {
-    color: rgba(255, 255, 255, 0.6);
-    font-family: Helvetica;
-    font-size: 10px;
-  }
 }
 
 .custom-margin {

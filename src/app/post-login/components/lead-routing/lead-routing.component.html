@@ -1,18 +1,7 @@
-<div class="main-container">
-  <div class="toast-message" *ngIf="showToast">
-    <img src="assets/images/success-icon.svg" alt="" />
-    <div class="message-text">
-      <p>User(s) Deactivated Successfully.</p>
-    </div>
-    <button
-      kendoButton
-      imageUrl="assets/images/close-icon.svg"
-      class="btn close-btn"
-      (click)="closeToast()"
-    ></button>
-  </div>
+<div class="main-container" >
+  <div class="append-container" #container></div>
 
-  <h1 class="section-header" [class.custom-margin]="showToast">Lead Routing</h1>
+  <h1 class="section-header">Lead Routing</h1>
 
   <div class="search-section d-flex">
     <div class="input-container">
@@ -25,7 +14,7 @@
       />
       <img src="assets/images/search-icon.png" />
     </div>
-    <button kendo-button>
+    <button kendo-button routerLink="/dashboard/create-lead-routing">
       CREATE NEW
     </button>
   </div>
@@ -40,6 +29,7 @@
         kendoButton
         class="btn-deactivate"
         imageUrl="assets/images/deactivate-icon.svg"
+        (click)="show()"
       >
         Deactivate
       </button>

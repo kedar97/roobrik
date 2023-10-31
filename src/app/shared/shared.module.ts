@@ -6,12 +6,14 @@ import { KendoModule } from './kendo/kendo.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
-    ComingSoonComponent
+    ComingSoonComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { StandardReportsComponent } from './components/standard-reports/standard-reports.component';
 import { LeadRoutingComponent } from './components/lead-routing/lead-routing.component';
 import { CustomReportsComponent } from './components/custom-reports/custom-reports.component';
+import { CreateLeadRoutingComponent } from './components/create-lead-routing/create-lead-routing.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path:'lead-routing',
           component: LeadRoutingComponent,
+      },
+      {
+        path:'create-lead-routing',
+          component: CreateLeadRoutingComponent,
       },
       {
         path: '',

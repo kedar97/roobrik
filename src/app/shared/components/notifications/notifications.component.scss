@@ -1,0 +1,121 @@
+.gap-4px{
+    gap: 4px;
+}
+
+.font-size-16{
+    font-size: 16px;
+}
+
+.btn{
+    background: transparent;
+    border: none;
+
+    &:focus{
+        outline: none;
+        border: none;
+    }
+}
+
+.message-text{
+    color: #FFF;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+   & p {
+        margin: 0;
+   }
+
+   & span{
+        color: rgba(255, 255, 255, 0.60);
+        font-size: 10px;
+    }
+}
+
+.custom-margin{
+    margin-top: 40px !important;
+    transition: all .5s;
+}
+
+.close-btn{
+    margin-left: auto;
+}
+
+::ng-deep {
+    .k-notification-group {
+        // position: unset !important;
+        // margin-left:unset !important;
+        flex-flow: column !important;
+        display: flex;
+        gap: 5px;
+    }
+    
+    // kendo-notification-container{
+    //     min-height: 0 !important;
+    //     max-height: max-content;
+    //     height: auto;
+    //     display: flex;
+    // }
+
+    .k-notification{
+        border-radius: 0;
+        padding: 6px 0 6px 16px;
+        box-shadow: none;
+    }
+
+    .k-notification-container{
+         margin-block: unset;
+         margin-inline: unset;
+        &:first-child{
+            margin-top: -33px;
+            // @media (min-width:1920px) {
+            //     margin-top: -40px;
+            // }
+        }
+    }
+
+    .k-notification-success{
+        border-color: #237B4B;
+        background-color: #237B4B;
+    }
+
+    .k-notification-warning{
+        border-color: #EC8A0C;
+        background-color: #EC8A0C;
+        color: #FFF;
+    }
+
+    .k-notification-error{
+        border-color: #D91E37;
+        background-color: #D91E37;
+    }
+
+    .k-notification-info{
+        border-color: #D1D1D1;
+        background-color: #EBEBEB;
+        color: #000;
+
+        & .message-text, & .message-text span {
+            color: #000 !important;
+        }
+
+        & .k-svg-i-x{
+            content:  url('/assets/images/close-icon-black.svg');
+        }
+    }
+
+    .k-notification-content .k-image{
+        height: 40px;
+    }
+
+    .k-svg-i-x{
+        content:  url('/assets/images/close-icon.svg');
+        height: 40px;
+        width: 40px;
+    }
+}
+
+ 

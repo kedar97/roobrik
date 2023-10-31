@@ -58,9 +58,41 @@
     border: none;
     font-weight: bold;
   }
-  .reset-pass {
+  .reset-password {
     margin-top: 28px;
     text-align: center;
     text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+::ng-deep kendo-dialog-actions {
+  button:first-child{
+    position: absolute;
+    background-color: red;
+    top: 181px;
+    left: 100px;
+    border: 1px solid #0a4569;
+    color: #0a4569;
+    font-size: 16px;
+    font-weight: bold;
+    width: 348px;
+    height: 52px;
+    background-color: #fff;
+    text-transform: uppercase;
+  }
+
+  button:nth-child(2) {
+    position: absolute;
+    font-family: Helvetica;
+    background-color: #0a4569;
+    color: #fff;
+    width: 348px;
+    font-weight: bold;
+    height: 52px;
+    text-transform: uppercase;
+    border: none;
+    left: 100px;
+    top: 275px;
   }
 }

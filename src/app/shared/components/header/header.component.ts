@@ -72,5 +72,4 @@ export class HeaderComponent {
     this.router.navigate(['/dashboard/custom-reports']);
     this.showReportMenu = !this.showReportMenu;
   }
-
 }

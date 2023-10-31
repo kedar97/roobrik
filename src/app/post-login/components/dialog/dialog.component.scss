@@ -37,8 +37,7 @@
     .cmp-title {
       color: #999999c6;
       font-family: "Helvetica";
-      font-size: 18px;
-      // height: 100px;
+      font-size: 15px;
       font-weight: 400;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -64,13 +63,12 @@
 
 .card-body {
   height: 194px;
-  width: 170px
+  width: 170px;
 }
 
 .container-center {
   height: 969px;
 }
-
 
 ::ng-deep .k-dialog-wrapper .k-window {
   width: 752px !important;

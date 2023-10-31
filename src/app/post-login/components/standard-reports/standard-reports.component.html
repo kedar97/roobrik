@@ -4,6 +4,8 @@
 />
 
 <div class="main-container">
+  <div class="append-container" #container></div>
+
   <div class="d-flex flex-column standard-report-selection">
     <h1 class="txt-title">Standard Reports</h1>
 
@@ -27,6 +29,7 @@
             kendoButton
             class="btn-download"
             imageUrl="/assets/images/material-symbols_download.svg"
+            (click)="show()"
           >
             Download
           </button>
