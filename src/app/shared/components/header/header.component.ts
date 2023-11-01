@@ -2,6 +2,8 @@ import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { DialogService } from '@progress/kendo-angular-dialog';
 import { DialogComponent } from 'src/app/post-login/components/dialog/dialog.component';
+import { BehaviorSubject } from 'rxjs';
+import { PostLoginService } from 'src/app/post-login/post-login.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +16,11 @@ export class HeaderComponent {
   showProfileMenu: boolean = false;
   isSmallDesktopScreen: boolean = false;
 
-  constructor(private router: Router, private dialogService: DialogService) {}
+  constructor(
+    private router: Router,
+    private dialogService: DialogService,
+    private postLoginService: PostLoginService
+  ) {}
 
   ngOnInit(): void {
     this.isSmallDesktopScreen = window.innerWidth <= 1366;
@@ -22,6 +28,7 @@ export class HeaderComponent {
 
   showReportOptions(event: Event) {
     this.showReportMenu = !this.showReportMenu;
+    this.postLoginService.hideNotifiation.next(this.showReportMenu);
     this.showInfoPopup = this.showProfileMenu = false;
     event.stopPropagation();
   }
@@ -49,6 +56,7 @@ export class HeaderComponent {
       !buttonElement.contains(event.target as Node)
     ) {
       this.showReportMenu = this.showProfileMenu = this.showInfoPopup = false;
+      this.postLoginService.hideNotifiation.next(false);
     }
   }
 

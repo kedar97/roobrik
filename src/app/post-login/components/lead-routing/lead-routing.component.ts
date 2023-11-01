@@ -1,6 +1,8 @@
 import {
   Component,
   ElementRef,
+  OnDestroy,
+  OnInit,
   Renderer2,
   ViewChild,
   ViewContainerRef,
@@ -16,18 +18,34 @@ import {
   NotificationService,
 } from '@progress/kendo-angular-notification';
 import { NotificationsComponent } from 'src/app/shared/components/notifications/notifications.component';
+import { PostLoginService } from '../../post-login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-lead-routing',
   templateUrl: './lead-routing.component.html',
   styleUrls: ['./lead-routing.component.scss'],
 })
-export class LeadRoutingComponent {
+export class LeadRoutingComponent implements OnInit, OnDestroy {
   constructor(
     private renderer: Renderer2,
     private ele: ElementRef,
-    private notificationService: NotificationService
-  ) {}
+    private notificationService: NotificationService,
+    private postLoginService: PostLoginService
+  ) {
+    this.hideNotificationSubscription =
+      this.postLoginService.hideNotifiation.subscribe({
+        next: (value: boolean) => {
+          if (value == true && this.container) {
+            this.container.element.nativeElement.innerHTML = '';
+          }
+        },
+        error: (error: any) => {},
+      });
+  }
+  ngOnDestroy(): void {
+    this.hideNotificationSubscription.unsubscribe();
+  }
 
   @ViewChild('container', { read: ViewContainerRef })
   public container: ViewContainerRef;
@@ -58,6 +76,7 @@ export class LeadRoutingComponent {
   ];
 
   notificationRef: NotificationRef;
+  hideNotificationSubscription: Subscription;
 
   public show(): void {
     this.container.element.nativeElement.innerHTML = '';
@@ -102,7 +121,6 @@ export class LeadRoutingComponent {
     });
   }
 
-  showToast = false;
   defaultColumnState: any;
   defaultFiltersState: any;
   resetFilters = false;
@@ -479,13 +497,5 @@ export class LeadRoutingComponent {
 
   onClearSection() {
     this.gridApi.deselectAll();
-  }
-
-  // public show(): void {
-  //   this.showToast = true;
-  // }
-
-  closeToast() {
-    this.showToast = false;
   }
 }

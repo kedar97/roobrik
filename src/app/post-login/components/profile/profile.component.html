@@ -65,6 +65,13 @@
         >
       </kendo-formfield>
 
+      <ng-template #confirmActionButtons>
+        <button class="btn-cancel" (click)="onCancel()">Cancel</button>
+        <button class="btn-reset" routerLink="/forgot-password">
+          YES, RESET NOW
+        </button>
+      </ng-template>
+
       <div class="k-form-buttons d-flex flex-column">
         <button
           kendoButton
@@ -74,7 +81,7 @@
         >
           Save
         </button>
-        <a class="reset-password"
+        <a class="reset-password" (click)="onConfirmReset(confirmActionButtons)"
           >Reset your password via email</a
         >
       </div>

@@ -61,7 +61,8 @@ a {
 
   &.popup-reports {
     position: absolute;
-    right: 39.7vw;
+    top: calc(100% + (120px - 100%) / 2);
+    left: -52px;
     width: 206px;
     height: 124px;
     color: #262626;
@@ -69,25 +70,11 @@ a {
     z-index: 99;
     cursor: pointer;
 
-    right: 45vw;
-    @media screen and (min-width: 1500px) {
-      right: 39.5vw;
-    }
-    @media screen and (min-width: 1600px) {
-      right: 38.5vw;
-    }
-
-    @media screen and (min-width: 1700px) {
-      right: 37.5vw;
-    }
-    @media screen and (min-width: 1800px) {
-      right: 35.5vw;
-    }
-
     span {
       line-height: 17px;
       padding: 23px 10px 22px;
       height: 62px;
+      font-weight: normal;
     }
   }
 
@@ -97,12 +84,9 @@ a {
     padding-top: 23px !important;
     width: 293px;
     height: 179px;
-    right: 13vw;
     z-index: 99;
-
-    @media screen and (min-width: 1500px) {
-      right: 14vw;
-    }
+    left: -90px;
+    top: calc(100% + (120px - 100%) / 2);
 
     .info-border-bottom span {
       padding: 0;
@@ -143,18 +127,10 @@ a {
 
   &.popup-profile {
     position: absolute;
-    right: 9vw;
     width: 202px;
     height: 186px;
     z-index: 99;
-
-    @media screen and (min-width: 1500px) {
-      right: 10vw;
-    }
-
-    @media screen and (min-width: 1920px) {
-      width: 192px;
-    }
+    top: calc(100% + (120px - 100%) / 2);
 
     span {
       padding: 15px 15px 15px 15px;
@@ -204,18 +180,17 @@ a {
     gap: 5.56rem;
 
     @media screen and (max-width: 1250px) {
-      gap: 4.5rem ;
+      gap: 4.5rem;
     }
   }
   nav {
     gap: 6.25rem;
-    @media (max-width:1300px) {
+    @media (max-width: 1300px) {
       gap: 6vw;
-      
     }
-  } 
+  }
 }
-.profile-btn-container{
+.profile-btn-container {
   cursor: pointer;
   gap: 2.19rem;
 }
@@ -300,8 +275,18 @@ a {
   }
 }
 
-
 .profile-link {
   padding-bottom: 0;
 }
 
+.reports-container {
+  position: relative;
+}
+
+.info-container {
+  position: relative;
+}
+
+.profile-container {
+  position: relative;
+}

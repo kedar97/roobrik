@@ -1,80 +1,115 @@
 import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
 import { GridOptions } from 'ag-grid-community';
-import { Component, ElementRef, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { GridApi } from 'ag-grid-community';
 import {
   CustomReportRowData,
   PaginationOption,
 } from 'src/app/post-login/post-login.modal';
 import { SideBarDef } from 'ag-grid-community/dist/lib/main';
-import { NotificationRef, NotificationService } from '@progress/kendo-angular-notification';
+import {
+  NotificationRef,
+  NotificationService,
+} from '@progress/kendo-angular-notification';
 import { NotificationsComponent } from 'src/app/shared/components/notifications/notifications.component';
+import { PostLoginService } from '../../post-login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-custom-reports',
   templateUrl: './custom-reports.component.html',
   styleUrls: ['./custom-reports.component.scss'],
 })
-export class CustomReportsComponent {
-  @ViewChild("container", { read: ViewContainerRef })
-  public container: ViewContainerRef;
+export class CustomReportsComponent implements OnInit, OnDestroy {
+  @ViewChild('container', { read: ViewContainerRef })
+  container: ViewContainerRef;
+  hideNotificationSubscription: Subscription;
 
-  constructor(private renderer: Renderer2, private ele: ElementRef,private notificationService: NotificationService,) {}
+  constructor(
+    private renderer: Renderer2,
+    private ele: ElementRef,
+    private notificationService: NotificationService,
+    private postLoginService: PostLoginService
+  ) {
+    this.hideNotificationSubscription =
+      this.postLoginService.hideNotifiation.subscribe({
+        next: (value: boolean) => {
+          if (value == true && this.container) {
+            this.container.element.nativeElement.innerHTML = '';
+          }
+        },
+        error: (error: any) => {
+        },
+      });
+  }
+
+  ngOnInit(): void {}
 
   notificationMessages = [
     {
-      type:"success",
-      message:'The Report(s) Deactivated Successfully.',
-      text:'Check your computer’s downloads folder',
+      type: 'success',
+      message: 'The Report(s) Deactivated Successfully.',
+      text: 'Check your computer’s downloads folder',
     },
 
     {
-      type:"warning",
-      message:'The Warning.',
+      type: 'warning',
+      message: 'The Warning.',
     },
-  ]
+  ];
 
   notificationRef: NotificationRef;
 
   public show(): void {
-    this.container.element.nativeElement.innerHTML='';
-    this.notificationMessages.forEach((message:any)=>{
+    this.container.element.nativeElement.innerHTML = '';
+    this.notificationMessages.forEach((message: any) => {
       this.notificationRef = this.notificationService.show({
-        content:NotificationsComponent,
-        type:{style:message.type,icon:false},
-        closable:true,
-        position: { horizontal: "center", vertical: "top" },
+        content: NotificationsComponent,
+        type: { style: message.type, icon: false },
+        closable: true,
+        position: { horizontal: 'center', vertical: 'top' },
         appendTo: this.container,
-      })
+      });
 
       const notificationInstance = this.notificationRef.content?.instance;
-      switch(message.type){
+      switch (message.type) {
         case 'success':
           notificationInstance.header = message.message;
           notificationInstance.title = message.text;
-          notificationInstance.tags = "<i class='fa fa-check-circle' aria-hidden='true'></i>";
+          notificationInstance.tags =
+            "<i class='fa fa-check-circle' aria-hidden='true'></i>";
           break;
 
         case 'warning':
           notificationInstance.header = message.message;
-          notificationInstance.tags = "<i class='fa fa-exclamation-triangle' aria-hidden='true'></i>";
+          notificationInstance.tags =
+            "<i class='fa fa-exclamation-triangle' aria-hidden='true'></i>";
           break;
-      
+
         case 'error':
           notificationInstance.header = message.message;
           notificationInstance.title = message.text;
-          notificationInstance.tags = "<i class='fa fa-exclamation-circle' aria-hidden='true'></i>";
+          notificationInstance.tags =
+            "<i class='fa fa-exclamation-circle' aria-hidden='true'></i>";
           break;
-      
-       case 'info':
+
+        case 'info':
           notificationInstance.header = message.message;
-          notificationInstance.title =  message.text;
-          notificationInstance.tags = "<i class='fa fa-info-circle' aria-hidden='true'></i>";
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-info-circle' aria-hidden='true'></i>";
       }
-    })
+    });
   }
 
-  showToast = false;
   selectedValue = 10;
   defaultColumnState: any;
   defaultFiltersState: any;
@@ -491,15 +526,11 @@ export class CustomReportsComponent {
     }
   }
 
-  // public show(): void {
-  //   this.showToast = true;
-  // }
-
-  closeToast() {
-    this.showToast = false;
-  }
-
   onClearSection() {
     this.gridApi.deselectAll();
+  }
+
+  ngOnDestroy(): void {
+    this.hideNotificationSubscription.unsubscribe();
   }
 }

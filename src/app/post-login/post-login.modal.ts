@@ -35,3 +35,10 @@ export interface LeadRoutingRowData {
   location: string;
   status: string;
 }
+
+export interface UserData {
+  email: string;
+  firstName: string,
+  lastName: string,
+  listName: string
+}

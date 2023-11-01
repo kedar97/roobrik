@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  OnDestroy,
   OnInit,
   Renderer2,
   ViewChild,
@@ -24,20 +25,15 @@ import {
   NotificationService,
 } from '@progress/kendo-angular-notification';
 import { NotificationsComponent } from 'src/app/shared/components/notifications/notifications.component';
+import { PostLoginService } from '../../post-login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-standard-reports',
   templateUrl: './standard-reports.component.html',
   styleUrls: ['./standard-reports.component.scss'],
 })
-export class StandardReportsComponent implements OnInit {
-  constructor(
-    private renderer: Renderer2,
-    private ele: ElementRef,
-    private notificationService: NotificationService,
-    private elementRef: ElementRef
-  ) {}
-
+export class StandardReportsComponent implements OnInit, OnDestroy {
   @ViewChild('container', { read: ViewContainerRef })
   public container: ViewContainerRef;
 
@@ -62,48 +58,6 @@ export class StandardReportsComponent implements OnInit {
 
   notificationRef: NotificationRef;
 
-  public show(): void {
-    this.container.element.nativeElement.innerHTML = '';
-    this.notificationMessages.forEach((message: any) => {
-      this.notificationRef = this.notificationService.show({
-        content: NotificationsComponent,
-        type: { style: message.type, icon: false },
-        closable: true,
-        position: { horizontal: 'center', vertical: 'top' },
-        appendTo: this.container,
-      });
-
-      const notificationInstance = this.notificationRef.content?.instance;
-      switch (message.type) {
-        case 'success':
-          notificationInstance.header = message.message;
-          notificationInstance.title = message.text;
-          notificationInstance.tags =
-            "<i class='fa fa-check-circle' aria-hidden='true'></i>";
-          break;
-
-        case 'warning':
-          notificationInstance.header = message.message;
-          notificationInstance.tags =
-            "<i class='fa fa-exclamation-triangle' aria-hidden='true'></i>";
-          break;
-
-        case 'error':
-          notificationInstance.header = message.message;
-          notificationInstance.title = message.text;
-          notificationInstance.tags =
-            "<i class='fa fa-exclamation-circle' aria-hidden='true'></i>";
-          break;
-
-        case 'info':
-          notificationInstance.header = message.message;
-          notificationInstance.title = message.text;
-          notificationInstance.tags =
-            "<i class='fa fa-info-circle' aria-hidden='true'></i>";
-      }
-    });
-  }
-
   private gridApi!: GridApi | any;
   private gridColumnApi!: ColumnApi | any;
   public groupDefaultExpanded = -1;
@@ -116,6 +70,26 @@ export class StandardReportsComponent implements OnInit {
   resetColumns: boolean = false;
   defaultColumnState: any;
   defaultFiltersState: any;
+  hideNotificationSubscription: Subscription;
+
+  constructor(
+    private renderer: Renderer2,
+    private ele: ElementRef,
+    private notificationService: NotificationService,
+    private postLoginService: PostLoginService
+  ) {
+    this.hideNotificationSubscription =
+      this.postLoginService.hideNotifiation.subscribe({
+        next: (value: boolean) => {
+          if (value == true && this.container) {
+            this.container.element.nativeElement.innerHTML = '';
+          }
+        },
+        error: (error: any) => {
+        },
+      });
+  }
+
   ngOnInit(): void {}
 
   public columnDefs: ColDef[] = [
@@ -367,6 +341,48 @@ export class StandardReportsComponent implements OnInit {
     },
   ];
 
+  show(): void {
+    this.container.element.nativeElement.innerHTML = '';
+    this.notificationMessages.forEach((message: any) => {
+      this.notificationRef = this.notificationService.show({
+        content: NotificationsComponent,
+        type: { style: message.type, icon: false },
+        closable: true,
+        position: { horizontal: 'center', vertical: 'top' },
+        appendTo: this.container,
+      });
+
+      const notificationInstance = this.notificationRef.content?.instance;
+      switch (message.type) {
+        case 'success':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-check-circle' aria-hidden='true'></i>";
+          break;
+
+        case 'warning':
+          notificationInstance.header = message.message;
+          notificationInstance.tags =
+            "<i class='fa fa-exclamation-triangle' aria-hidden='true'></i>";
+          break;
+
+        case 'error':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-exclamation-circle' aria-hidden='true'></i>";
+          break;
+
+        case 'info':
+          notificationInstance.header = message.message;
+          notificationInstance.title = message.text;
+          notificationInstance.tags =
+            "<i class='fa fa-info-circle' aria-hidden='true'></i>";
+      }
+    });
+  }
+
   onToolPanelVisibleChanged(params: any) {
     if (params.visible) {
       if (params.key === 'filters') {
@@ -451,6 +467,10 @@ export class StandardReportsComponent implements OnInit {
 
   onClearSection() {
     this.gridApi.deselectAll();
+  }
+
+  ngOnDestroy(): void {
+    this.hideNotificationSubscription.unsubscribe();
   }
 }
 

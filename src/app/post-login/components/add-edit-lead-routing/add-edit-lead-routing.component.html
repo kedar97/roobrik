@@ -1,0 +1,121 @@
+<div class="main-container">
+  <div class="d-flex flex-column create-lead-selection">
+    <h1 class="txt-title">Lead Routing -  {{ isEditMode ? 'Edit' : 'Create' }}</h1>
+  </div>
+  <div class="d-flex" class="form-info">
+    <form class="k-form k-form-md" [formGroup]="form">
+      <kendo-label>
+        <kendo-switch formControlName="switch"></kendo-switch>
+      </kendo-label>
+      <span class="toggle-text"
+        >This email address is a distribution list or email group.</span
+      >
+
+      <div class="d-flex formSection" *ngIf="!form.value.switch">
+        <kendo-formfield>
+          <kendo-label
+            labelCssClass="k-form-label"
+            [for]="email"
+            class="form-label"
+            >Email Address</kendo-label
+          >
+          <input
+            formControlName="email"
+            placeholder="Email Address "
+            class="form-input custom-placeholder"
+            kendoTextBox
+            #email
+          />
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label
+            labelCssClass="k-form-label"
+            [for]="firstName"
+            class="form-label"
+            >First Name</kendo-label
+          >
+          <input
+            formControlName="firstName"
+            placeholder="First Name"
+            class="custom-placeholder form-input"
+            kendoTextBox
+            #firstName
+          />
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label
+            labelCssClass="k-form-label"
+            [for]="lastName"
+            class="form-label"
+            >Last Name</kendo-label
+          >
+          <input
+            formControlName="lastName"
+            placeholder="Last Name"
+            class="form-input custom-placeholder"
+            kendoTextBox
+            #lastName
+          />
+        </kendo-formfield>
+      </div>
+      <div class="d-flex formSecond" *ngIf="form.value.switch">
+        <kendo-formfield>
+          <kendo-label
+            labelCssClass="k-form-label"
+            [for]="email"
+            class="form-label"
+            >Email Address</kendo-label
+          >
+          <input
+            formControlName="email"
+            placeholder="Email Address (Ex. sales@roobrik.com)"
+            class="form-input custom-placeholder"
+            kendoTextBox
+            #email
+          />
+        </kendo-formfield>
+        <kendo-formfield>
+          <kendo-label
+            labelCssClass="k-form-label"
+            [for]="listName"
+            class="form-label"
+            >List Name</kendo-label
+          >
+          <input
+            formControlName="listName"
+            placeholder="List name Ex.(Shady Acres distribution list)"
+            class="custom-placeholder form-input"
+            kendoTextBox
+            #listName
+          />
+        </kendo-formfield>
+      </div>
+    </form>
+  </div>
+  <hr class="dashed-line" />
+  <div class="d-flex justify-content-between alllocationSection">
+    <span class="location"
+      >Which locations should this email address receive leads for?</span
+    >
+    <div>
+      <span class="locationToggle">All Location</span>
+      <kendo-label>
+        <kendo-switch [(ngModel)]="checked" (click)="onCheked()"></kendo-switch>
+      </kendo-label>
+    </div>
+  </div>
+  <ag-grid-angular
+    [ngStyle]="style"
+    class="ag-theme-balham locationTable"
+    [rowData]="rowData"
+    [rowHeight]="50"
+    [headerHeight]="48"
+    [columnDefs]="columnDefs"
+    [rowSelection]="rowSelection"
+    (selectionChanged)="onSelectionChanged()"
+    (gridReady)="onGridReady($event)"
+  >
+  </ag-grid-angular>
+
+  <button kendoButton class="btn-saveClose">SAVE & CLOSE</button>
+</div>
