@@ -52,15 +52,9 @@
         display: flex;
         gap: 5px;
     }
-    
-    // kendo-notification-container{
-    //     min-height: 0 !important;
-    //     max-height: max-content;
-    //     height: auto;
-    //     display: flex;
-    // }
 
     .k-notification{
+        border: none;
         border-radius: 0;
         padding: 6px 0 6px 16px;
         box-shadow: none;
@@ -78,23 +72,20 @@
     }
 
     .k-notification-success{
-        border-color: #237B4B;
         background-color: #237B4B;
     }
 
     .k-notification-warning{
-        border-color: #EC8A0C;
         background-color: #EC8A0C;
         color: #FFF;
     }
 
     .k-notification-error{
-        border-color: #D91E37;
         background-color: #D91E37;
     }
 
     .k-notification-info{
-        border-color: #D1D1D1;
+        border: 1px solid #D1D1D1;
         background-color: #EBEBEB;
         color: #000;
 

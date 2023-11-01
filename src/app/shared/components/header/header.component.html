@@ -36,14 +36,14 @@
               >
                 Reports
                 <span class="arrow"></span>
-                <div
-                  class="popup popup-reports d-flex flex-column"
-                  *ngIf="showReportMenu"
-                >
-                  <span (click)="onStandardReport()">Standard Reports</span>
-                  <span (click)="onCustomReport()">Custom Reports</span>
-                </div>
               </a>
+              <div
+                class="popup popup-reports d-flex flex-column"
+                *ngIf="showReportMenu"
+              >
+                <span (click)="onStandardReport()">Standard Reports</span>
+                <span (click)="onCustomReport()">Custom Reports</span>
+              </div>
             </div>
 
             <div>
