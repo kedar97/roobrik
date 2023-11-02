@@ -8,6 +8,7 @@ import { StandardReportsComponent } from './components/standard-reports/standard
 import { LeadRoutingComponent } from './components/lead-routing/lead-routing.component';
 import { CustomReportsComponent } from './components/custom-reports/custom-reports.component';
 import { AddEditLeadRoutingComponent } from './components/add-edit-lead-routing/add-edit-lead-routing.component';
+import { ComingSoonComponent } from '../shared/components/coming-soon/coming-soon.component';
 
 const routes: Routes = [
   {
@@ -15,28 +16,32 @@ const routes: Routes = [
     component: PostLoginComponent,
     children: [
       {
-        path:'profile',
-          component: ProfileComponent,
+        path: 'profile',
+        component: ProfileComponent,
       },
       {
-        path:'standard-reports',
-          component: StandardReportsComponent,
+        path: 'standard-reports',
+        component: StandardReportsComponent,
       },
       {
-        path:'custom-reports',
-          component: CustomReportsComponent,
+        path: 'custom-reports',
+        component: CustomReportsComponent,
       },
       {
-        path:'lead-routing',
-          component: LeadRoutingComponent,
+        path: 'lead-routing',
+        component: LeadRoutingComponent,
       },
       {
-        path:'create-lead-routing',
-          component: AddEditLeadRoutingComponent,
+        path: 'create-lead-routing',
+        component: AddEditLeadRoutingComponent,
       },
       {
-        path:'edit-lead-routing',
-          component: AddEditLeadRoutingComponent,
+        path: 'edit-lead-routing',
+        component: AddEditLeadRoutingComponent,
+      },
+      {
+        path: 'coming-soon',
+        component: ComingSoonComponent,
       },
       {
         path: '',
@@ -48,10 +53,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PostLoginRoutingModule { }
+export class PostLoginRoutingModule {}
