@@ -1,27 +1,30 @@
 @import "ag-grid-community/styles/ag-grid.css";
 @import "ag-grid-community/styles/ag-theme-alpine.css";
-.k-window {
-  width: 300px !important;
-}
-.container {
-  padding: 10px 0 0 0;
+
+.dialog-container {
 
   .dialog-title {
     color: #083754;
     font-weight: 700;
     font-size: 32px;
-    line-height: 36.8px;
+    line-height: normal;
     text-align: center;
-    margin: 0px 0 58px 0;
+    margin: 13px 0 63px 0;
   }
+
   .icon {
     width: 30.28px;
     height: 30.28px;
   }
+
   .grid-layout-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    .k-grid-layout{
+      background-color: #F9F9F9 !important;
+    }
     .card-box {
       display: contents;
     }
@@ -56,21 +59,36 @@
       height: 44px;
       border-radius: 0;
       text-transform: uppercase;
-      margin-bottom: 20px;
     }
   }
 }
 
 .card-body {
   height: 194px;
-  width: 170px;
+  width: 170px;  
 }
 
 .container-center {
   height: 969px;
 }
 
-::ng-deep .k-dialog-wrapper .k-window {
+.custom-margin{
+  margin-top: 27px;
+  margin-right: 22px;
+}
+
+::ng-deep .switch-account-dialog .k-window{
   width: 752px !important;
-  height: 518px !important ;
+  height: 518px !important;
+  background:#F9F9F9 !important ;
+}
+
+::ng-deep .k-window .k-window-content{
+  padding: 0 !important;
+}
+
+::ng-deep .k-card{
+  border-radius: 0 !important;
+  border: 1px solid #D8D8D8;
+  margin-bottom: 24px !important;
 }

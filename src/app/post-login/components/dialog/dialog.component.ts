@@ -40,5 +40,5 @@ export class DialogComponent implements OnInit {
   ) {}
   ngOnInit(): void {}
 
-  closeDailog() {}
+  // closeDailog() {}
 }

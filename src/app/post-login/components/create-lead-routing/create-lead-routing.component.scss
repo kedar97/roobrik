@@ -3,7 +3,6 @@
   width: fit-content;
   margin-top: 33px;
   margin-left: 113px;
-  // margin: 33px 115px 33px 113px;
   padding: 0;
 
   @media (min-width: 1920px) {
@@ -48,10 +47,7 @@
 
     width: max-content;
 
-
     margin-bottom: 39px;
-
-  
 
     .form-label {
       color: #2d2d2d;
@@ -64,7 +60,7 @@
     .custom-placeholder::placeholder {
       font-family: Helvetica;
       font-size: 16px;
-      color: #6C757D;
+      color: #6c757d;
       font-weight: 400;
       opacity: 0.7;
       margin-right: 13px;
@@ -78,8 +74,11 @@
       width: 26.8vw;
       height: 38px;
       border-radius: 0;
-
-
+      border: 1px solid #ced4da;
+      color: #6c757d;
+      font-family: Helvetica;
+      font-size: 16px;
+      font-weight: 400;
 
       @media (min-width: 1500px) {
         width: 27.4vw;
@@ -88,7 +87,6 @@
       @media (min-width: 1700px) {
         width: 27.7vw;
       }
-
 
       @media (min-width: 1920px) {
         width: 540px;
@@ -104,12 +102,9 @@
       height: 38px;
       border-radius: 0;
 
-
       @media (min-width: 1500px) {
         width: 41.5vw;
       }
-
-   
 
       @media (min-width: 1800px) {
         width: 42.5vw;
@@ -149,16 +144,22 @@
     margin-top: 40px;
   }
 }
-// dashed line 
-.dashed-line{
-   margin: 0;
-   margin-right: 14px;
-   border: none;
-   height: 1px;
-   background: #000;
-   background: repeating-linear-gradient(90deg,#000,#000 6px,transparent 6px,transparent 12px);
-   opacity: 1;
- }
+// dashed line
+.dashed-line {
+  margin: 0;
+  margin-right: 14px;
+  border: none;
+  height: 1px;
+  background: #000;
+  background: repeating-linear-gradient(
+    90deg,
+    #000,
+    #000 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 1;
+}
 
 // Kendo Toggle Button
 ::ng-deep .k-switch-md .k-switch-track {
@@ -194,14 +195,14 @@
 
 // Aggrid
 .ag-theme-balham {
-    --ag-selected-row-background-color: none !important;
-    --ag-row-hover-color: none !important;
+  --ag-selected-row-background-color: none !important;
+  --ag-row-hover-color: none !important;
 }
 ::ng-deep .ag-checkbox-input-wrapper .ag-checked {
   font-size: 20px !important;
 }
 
- ::ng-deep .ag-checkbox-input-wrapper.ag-checked::after {
+::ng-deep .ag-checkbox-input-wrapper.ag-checked::after {
   display: block;
   content: url("data:image/svg+xml;charset=UTF-8, <svg xmlns='http://www.w3.org/2000/svg' fill='none'  viewBox='0 0 24 24' stroke-width='3' stroke='white' class='w-6 h-6'> <path stroke-linecap='round' stroke-linejoin='round' d='M4.5 12.75l6 6 9-13.5' class='icons' /></svg>");
 
@@ -213,7 +214,7 @@
   margin-top: -1px;
 }
 
- ::ng-deep .ag-checkbox-input {
+::ng-deep .ag-checkbox-input {
   appearance: none;
   -webkit-appearance: none;
 
@@ -232,7 +233,7 @@
 .ag-checkbox-input-wrapper {
   -webkit-appearance: none !important;
   opacity: 1 !important;
-  border: 2px solid #DFDFDF;
+  border: 2px solid #dfdfdf;
   width: 24px;
   height: 24px;
   border-radius: 3px;
@@ -376,7 +377,6 @@
 }
 
 // Button Save
-::ng-deep .k-button-text{
+::ng-deep .k-button-text {
   height: 21px !important;
 }
-

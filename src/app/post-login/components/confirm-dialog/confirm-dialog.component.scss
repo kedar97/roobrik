@@ -1,48 +1,54 @@
 @import "ag-grid-community/styles/ag-grid.css";
 @import "ag-grid-community/styles/ag-theme-alpine.css";
 
-::ng-deep .k-window {
-  width: 560px;
-  height: 417px;
-}
-:host ::ng-deep .k-window-content:first-child {
-  padding: 24px 24px !important ;
-}
-
-app-confirm-dialog {
-  position: relative;
+::ng-deep .confirm-dialog-container .k-window{
+  width: 560px !important;
+  height: 417px !important;
+  padding: 26px 24px;
+  background-color: #F3F3F3 !important;
 }
 
-.dailog-container {
-  .iconBox {
+::ng-deep .k-window .k-window-content{
+  padding: 0 !important;
+}
+
+::ng-deep .k-dialog-actions{
+  border: none;
+}
+
+h1,p{
+  margin:0;
+}
+
+.icon-box{
     width: 24px;
     height: 24px;
     border: 2px solid #000000;
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
-  }
-  .icon {
-    width: 18px;
-    height: 20px;
-    stroke: #000000;
-  }
-  .dialog-title {
-    font-family: Helvetica;
-    font-size: 30px;
-    text-align: center;
-    font-weight: 600;
-    color: #0a4569;
-    margin-top: 13.13px;
-    margin-bottom: 35px;
-  }
-  .dialog-massage {
-    font-family: Helvetica;
-    color: #7e7e7e;
-    font-size: 16px;
-    text-align: center;
-    margin-bottom: 43px;
-  }
 }
 
+.dialog-title{
+  text-align: center;
+  font-family: 'Helvetica';
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #0A4569;
+  opacity: 1;
+  margin-top: 13px;
+  margin-bottom: 31px !important;
+  line-height: 30px;
+}
 
+.dialog-massage{
+  text-align: center;
+  font-family: 'Helvetica';
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0px;
+  color: #7E7E7E;
+  text-align: center;
+  line-height: 14px;
+}

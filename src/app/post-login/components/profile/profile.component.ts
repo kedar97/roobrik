@@ -40,6 +40,7 @@ export class ProfileComponent {
     this.dialogRef = this.dialogService.open({
       content: ConfirmDialogComponent,
       actions: actionTemplate,
+      cssClass:'confirm-dialog-container'
     });
   }
 

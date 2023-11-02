@@ -68,6 +68,7 @@ export class HeaderComponent {
     this.showProfileMenu = !this.showProfileMenu;
     this.dialogService.open({
       content: DialogComponent,
+      cssClass:'switch-account-dialog'
     });
   }
 

@@ -70,15 +70,16 @@
   position: absolute;
   background-color: red;
   top: 181px;
-  left: 100px;
-  border: 1px solid #0a4569;
+  border: 1px solid #0A4569;
   color: #0a4569;
   font-size: 16px;
   font-weight: bold;
-  width: 348px;
+  width: 337px;
   height: 52px;
-  background-color: #fff;
+  background-color: #F3F3F3;
   text-transform: uppercase;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .btn-reset {
@@ -86,11 +87,12 @@
   font-family: Helvetica;
   background-color: #0a4569;
   color: #fff;
-  width: 348px;
+  width: 337px;
   font-weight: bold;
   height: 52px;
   text-transform: uppercase;
   border: none;
-  left: 100px;
   top: 275px;
+  left: 50%;
+  transform: translateX(-50%);
 }
