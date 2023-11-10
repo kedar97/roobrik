@@ -59,6 +59,7 @@
           [groupSelectsChildren]="true"
           [getDataPath]="getDataPath"
           (selectionChanged)="onSelectionChanged()"
+          [suppressRowClickSelection]="true"
           (gridReady)="onGridReady($event)"
           (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
         ></ag-grid-angular>

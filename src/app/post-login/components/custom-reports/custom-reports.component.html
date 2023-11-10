@@ -1,9 +1,7 @@
 <div class="main-container">
   <div class="append-container" #container></div>
 
-  <h1 class="section-header">
-    Custom Reports
-  </h1>
+  <h1 class="section-header">Custom Reports</h1>
 
   <div class="margin-top-33">
     <div class="input-container">
@@ -56,6 +54,7 @@
         (gridReady)="onGridReady($event)"
         [sideBar]="sideBar"
         (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+        [suppressRowClickSelection]="true"
       >
       </ag-grid-angular>
       <select

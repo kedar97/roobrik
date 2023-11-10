@@ -19,7 +19,7 @@ p {
   margin: 0;
 }
 
-.append-container{
+.append-container {
   width: 500px;
   margin: 0 auto;
   min-height: 0 !important;
@@ -287,14 +287,13 @@ p {
 
 :host ::ng-deep .league-table .ag-center-cols-container {
   margin-right: 0 !important;
-  width: auto !important;
 }
 
 // Pined right column
 :host ::ng-deep {
   .ag-pinned-right-cols-container {
     width: 10% !important;
-    min-width: 140px !important;
+    min-width: 150px !important;
     max-width: unset !important;
   }
 
@@ -623,4 +622,31 @@ div:has(> .actionsField) > div {
 
 :host ::ng-deep .ag-header-cell-menu-button {
   margin-left: 10px;
+}
+
+:host ::ng-deep .league-table .user-status,
+:host ::ng-deep .league-table .edit-label {
+  margin: 0;
+  border-radius: 5px;
+  background: #d9d9d9 !important;
+  color: #4e4e4e;
+  font-family: Helvetica;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 32px;
+  height: 19px;
+  margin-bottom: -15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 53.106px;
+  visibility: hidden;
+}
+
+:host ::ng-deep .league-table .status-div:hover .user-status {
+  visibility: visible !important;
+}
+
+:host ::ng-deep .league-table .edit-div:hover .edit-label {
+  visibility: visible !important;
 }

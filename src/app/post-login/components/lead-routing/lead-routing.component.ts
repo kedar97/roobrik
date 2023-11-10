@@ -80,7 +80,6 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
 
   public show(): void {
     this.container.element.nativeElement.innerHTML = '';
-    console.log(this.container);
     this.notificationMessages.forEach((message: any) => {
       this.notificationRef = this.notificationService.show({
         content: NotificationsComponent,
@@ -177,14 +176,16 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       filter: 'agMultiColumnFilter',
       lockPinned: true,
       cellClass: 'nameField',
+      minWidth: 200,
       maxWidth: 200,
     },
 
     {
-      field: 'location',
+      field: 'locations',
       lockPinned: true,
       cellClass: 'locationField',
       filter: 'agMultiColumnFilter',
+      minWidth: 300,
       cellStyle: {
         'text-overflow': 'ellipsis',
         'white-space': 'no-wrap',
@@ -196,7 +197,6 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
     },
 
     {
-      // width:140,
       field: 'actions',
       headerName: 'Actions',
       headerClass: 'action-header',
@@ -206,15 +206,34 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       lockPosition: true,
       suppressColumnsToolPanel: true,
       suppressFiltersToolPanel: true,
-      cellRenderer: function (params: any) {
-        return `<div class="d-flex custom-gap">
-                  <button class="btn"><img src="assets/images/edit-icon.svg"></button>
-                  <div class="d-flex flex-column status-div">
-                    <button class="btn btn-status"><img src="assets/images/activate-icon.svg"></button>
-                    <p class="user-status">${params.data.status}</p>
-                  </div>
-                </div>`;
-      },
+      cellRenderer: this.customCellRenderer.bind(this),
+    },
+    {
+      field: 'status',
+      headerName: 'Status',
+      filter: 'agMultiColumnFilter',
+      lockPinned: true,
+      hide: true,
+      minWidth: 200,
+      maxWidth: 200,
+    },
+    {
+      field: 'lastModifiedDate',
+      headerName: 'Last Modified Date',
+      filter: 'agMultiColumnFilter',
+      lockPinned: true,
+      hide: true,
+      minWidth: 200,
+      maxWidth: 200,
+    },
+    {
+      field: 'lastModifiedBy',
+      headerName: 'Last Modified By',
+      filter: 'agMultiColumnFilter',
+      lockPinned: true,
+      hide: true,
+      minWidth: 200,
+      maxWidth: 200,
     },
   ];
 
@@ -229,87 +248,21 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       email: 'jessica@accountemail.com',
       firstName: 'Kellie',
       lastName: 'Rash',
-      location: 'Cedarhurst Villages Brightview Bridgewater',
+      locations: 'Cedarhurst Villages',
       status: 'Active',
     },
     {
       email: 'ajessica@accountemail.com',
       firstName: 'Tim',
       lastName: 'Boeshaar',
-      location: 'All',
+      locations: 'All',
       status: 'Inactive',
     },
     {
       email: 'jessica@accountemail.com',
       firstName: 'Mitchell',
       lastName: ' Hatten',
-      location:
-        'Brightview Bridgewater, Brightview Meadows, Brightview Lakeview Terrace,Brightview Bridgewater, Brightview Meadows, Brightview Lakeview Terrace,Brightview Bridgewater, Brightview Meadows, Brightview Lakeview Terrace,',
-      status: 'Inactive',
-    },
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Kellie',
-      lastName: 'Rash',
-      location: 'Belmont Village East, Belmont Village West',
-      status: 'Inactive',
-    },
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Dawn',
-      lastName: 'Guttman',
-      location:
-        'Highpoint at Cape Coral, Highpoint at Fort Mill, Highpoint at Stonecreek',
-      status: 'Active',
-    },
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Dawn',
-      lastName: 'Guttman',
-      location: 'All',
-      status: 'Inactive',
-    },
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Mitchell',
-      lastName: ' Hatten',
-      location: 'All',
-      status: 'Active',
-    },
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Kellie',
-      lastName: 'Rash',
-      location: 'All',
-      status: 'Inactive',
-    },
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Kellie',
-      lastName: 'Rash',
-      location: 'Cedarhurst Villages',
-      status: 'Active',
-    },
-
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Kellie',
-      lastName: 'Rash',
-      location: 'Cedarhurst Villages',
-      status: 'Active',
-    },
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Tim',
-      lastName: 'Boeshaar',
-      location: 'All',
-      status: 'Inactive',
-    },
-    {
-      email: 'jessica@accountemail.com',
-      firstName: 'Mitchell',
-      lastName: ' Hatten',
-      location:
+      locations:
         'Brightview Bridgewater, Brightview Meadows, Brightview Lakeview Terrace',
       status: 'Inactive',
     },
@@ -317,14 +270,14 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       email: 'jessica@accountemail.com',
       firstName: 'Kellie',
       lastName: 'Rash',
-      location: 'Belmont Village East, Belmont Village West',
+      locations: 'Belmont Village East, Belmont Village West',
       status: 'Inactive',
     },
     {
       email: 'jessica@accountemail.com',
       firstName: 'Dawn',
       lastName: 'Guttman',
-      location:
+      locations:
         'Highpoint at Cape Coral, Highpoint at Fort Mill, Highpoint at Stonecreek',
       status: 'Active',
     },
@@ -332,28 +285,94 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       email: 'jessica@accountemail.com',
       firstName: 'Dawn',
       lastName: 'Guttman',
-      location: 'All',
+      locations: 'All',
       status: 'Inactive',
     },
     {
       email: 'jessica@accountemail.com',
       firstName: 'Mitchell',
       lastName: ' Hatten',
-      location: 'All',
+      locations: 'All',
       status: 'Active',
     },
     {
       email: 'jessica@accountemail.com',
       firstName: 'Kellie',
       lastName: 'Rash',
-      location: 'All',
+      locations: 'All',
       status: 'Inactive',
     },
     {
       email: 'jessica@accountemail.com',
       firstName: 'Kellie',
       lastName: 'Rash',
-      location: 'Cedarhurst Villages',
+      locations: 'Cedarhurst Villages',
+      status: 'Active',
+    },
+
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Kellie',
+      lastName: 'Rash',
+      locations: 'Cedarhurst Villages',
+      status: 'Active',
+    },
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Tim',
+      lastName: 'Boeshaar',
+      locations: 'All',
+      status: 'Inactive',
+    },
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Mitchell',
+      lastName: ' Hatten',
+      locations:
+        'Brightview Bridgewater, Brightview Meadows, Brightview Lakeview Terrace',
+      status: 'Inactive',
+    },
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Kellie',
+      lastName: 'Rash',
+      locations: 'Belmont Village East, Belmont Village West',
+      status: 'Inactive',
+    },
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Dawn',
+      lastName: 'Guttman',
+      locations:
+        'Highpoint at Cape Coral, Highpoint at Fort Mill, Highpoint at Stonecreek',
+      status: 'Active',
+    },
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Dawn',
+      lastName: 'Guttman',
+      locations: 'All',
+      status: 'Inactive',
+    },
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Mitchell',
+      lastName: ' Hatten',
+      locations: 'All',
+      status: 'Active',
+    },
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Kellie',
+      lastName: 'Rash',
+      locations: 'All',
+      status: 'Inactive',
+    },
+    {
+      email: 'jessica@accountemail.com',
+      firstName: 'Kellie',
+      lastName: 'Rash',
+      locations: 'Cedarhurst Villages',
       status: 'Active',
     },
   ];
@@ -431,7 +450,6 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
   }
 
   onItemsPerPageChange(newPageSize: any) {
-    console.log('newPageSize', newPageSize);
     this.gridApi.paginationSetPageSize(newPageSize);
   }
 
@@ -488,7 +506,6 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
   }
 
   onResetColumns() {
-    console.log(this.defaultColumnState, 'reset');
     this.gridColumnApi.applyColumnState({
       state: this.defaultColumnState,
       applyOrder: true,
@@ -497,5 +514,47 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
 
   onClearSection() {
     this.gridApi.deselectAll();
+  }
+
+  customCellRenderer(params: any): HTMLElement {
+    const self = this;
+    const cellElement = document.createElement('div');
+    cellElement.classList.add('d-flex', 'custom-gap');
+
+    const editDiv = document.createElement('div');
+    editDiv.classList.add('d-flex', 'flex-column', 'edit-div');
+
+    const editButton = document.createElement('button');
+    editButton.classList.add('btn', 'btn-status', 'edit-button');
+    editButton.innerHTML = '<img src="assets/images/edit-icon.svg">';
+    editButton.addEventListener('click', function () {
+      self.postLoginService.editLeadRoutingData(params.data);
+    });
+
+    const editLabel = document.createElement('p');
+    editLabel.classList.add('edit-label');
+    editLabel.textContent = 'Edit';
+
+    editDiv.appendChild(editButton);
+    editDiv.appendChild(editLabel);
+
+    const statusDiv = document.createElement('div');
+    statusDiv.classList.add('d-flex', 'flex-column', 'status-div');
+
+    const statusButton = document.createElement('button');
+    statusButton.classList.add('btn', 'btn-status');
+    statusButton.innerHTML = '<img src="assets/images/activate-icon.svg">';
+
+    const userStatus = document.createElement('p');
+    userStatus.classList.add('user-status');
+    userStatus.textContent =
+      params.data.status === 'Active' ? 'Deactivate' : 'Activate';
+
+    statusDiv.appendChild(statusButton);
+    statusDiv.appendChild(userStatus);
+
+    cellElement.appendChild(editDiv);
+    cellElement.appendChild(statusDiv);
+    return cellElement;
   }
 }

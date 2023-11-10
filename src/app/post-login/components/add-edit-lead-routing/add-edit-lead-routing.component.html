@@ -21,7 +21,7 @@
           >
           <input
             formControlName="email"
-            placeholder="Email Address "
+            placeholder="Email Address (Ex:sales@roobrik.com)"
             class="form-input custom-placeholder"
             kendoTextBox
             #email
@@ -68,7 +68,7 @@
           >
           <input
             formControlName="email"
-            placeholder="Email Address (Ex. sales@roobrik.com)"
+            placeholder="Email Address (Ex:sales@roobrik.com)"
             class="form-input custom-placeholder"
             kendoTextBox
             #email
@@ -83,7 +83,7 @@
           >
           <input
             formControlName="listName"
-            placeholder="List name Ex.(Shady Acres distribution list)"
+            placeholder="List name (Ex:Shady Acres distribution list)"
             class="custom-placeholder form-input"
             kendoTextBox
             #listName
@@ -107,7 +107,7 @@
   <ag-grid-angular
     [ngStyle]="style"
     class="ag-theme-balham locationTable"
-    [rowData]="rowData"
+    [rowData]="locationList"
     [rowHeight]="50"
     [headerHeight]="48"
     [columnDefs]="columnDefs"

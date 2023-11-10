@@ -1,4 +1,4 @@
-<div class="main-container" >
+<div class="main-container">
   <div class="append-container" #container></div>
 
   <h1 class="section-header">Lead Routing</h1>
@@ -52,6 +52,7 @@
         [rowSelection]="rowSelection"
         [gridOptions]="gridOptions"
         (selectionChanged)="onSelectionChanged()"
+        [suppressRowClickSelection]="true"
         [defaultColDef]="defaultColDef"
         (gridReady)="onGridReady($event)"
         [sideBar]="sideBar"

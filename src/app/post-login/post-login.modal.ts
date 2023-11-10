@@ -32,7 +32,7 @@ export interface LeadRoutingRowData {
   email: string;
   firstName: string;
   lastName: string;
-  location: string;
+  locations: string;
   status: string;
 }
 
@@ -41,4 +41,5 @@ export interface UserData {
   firstName: string,
   lastName: string,
   listName: string
+  locations: { name: string }[];
 }

@@ -8,6 +8,7 @@ import {
   ValueFormatterParams,
 } from 'ag-grid-community';
 import { UserData } from '../../post-login.modal';
+import { PostLoginService } from '../../post-login.service';
 
 @Component({
   selector: 'app-add-edit-lead-routing',
@@ -19,36 +20,14 @@ export class AddEditLeadRoutingComponent implements OnInit {
   checked: boolean = false;
   selectedRowCount: number = 0;
   isEditMode: boolean = false;
-  userData: UserData = { email: '', firstName: '', lastName: '', listName: '' };
-
-  public rowSelection: 'single' | 'multiple' = 'multiple';
-  public style: any = {
-    width: '752px',
-    height: '398px',
+  dataToEdit: any;
+  userData: UserData = {
+    email: '',
+    firstName: '',
+    lastName: '',
+    listName: '',
+    locations: [],
   };
-
-  constructor(private activateRouter: ActivatedRoute) {
-    this.activateRouter.url.subscribe((urlSegments) => {
-      
-      if (urlSegments[0].path === 'edit-lead-routing') {
-        this.isEditMode = true;
-        
-        this.userData.email = 'rushitvora@gmail.com';
-        this.userData.firstName = 'Rushit';
-        this.userData.lastName = 'Vora';
-        this.userData.listName = 'List-item 1, List-item 2';
-  
-        this.form.patchValue({
-          email: this.userData.email,
-          firstName: this.userData.firstName,
-          lastName: this.userData.lastName,
-          listName: this.userData.listName,
-        });
-      }
-    });
-  }
-
-  ngOnInit(): void {}
 
   public form = new FormGroup({
     switch: new FormControl(),
@@ -65,66 +44,112 @@ export class AddEditLeadRoutingComponent implements OnInit {
   public columnDefs: ColDef[] = [
     {
       width: 752,
-      field: 'locations',
-      headerName: 'Locations',
+      field: 'location',
+      headerName: 'Location',
       checkboxSelection: true,
       headerCheckboxSelection: true,
       floatingFilter: true,
       valueFormatter: valueFormatter,
-      filter: 'agSetColumnFilter',
+      filter: 'agSetCol umnFilter',
       filterParams: {
         valueFormatter: valueFormatter,
       },
     },
   ];
 
-  public rowData = [
+  public locationList = [
     {
-      locations: 'Location name 1',
+      location: 'Cedarhurst Villages',
     },
     {
-      locations: 'Location name 2',
+      location: 'Brightview Bridgewater',
     },
     {
-      locations: 'Location name 3',
+      location: 'Brightview Meadows',
     },
     {
-      locations: 'Location name 4',
+      location: 'Brightview Lakeview Terrace',
     },
     {
-      locations: 'Location name 5',
+      location: 'Belmont Village East',
     },
     {
-      locations: 'Location name 6',
+      location: 'Belmont Village West',
     },
     {
-      locations: 'Location name 7',
+      location: 'Highpoint at Cape Coral',
     },
     {
-      locations: 'Location name 8',
+      location: 'Highpoint at Fort Mill',
     },
     {
-      locations: 'Location name 9',
-    },
-    {
-      locations: 'Location name 10',
-    },
-    {
-      locations: 'Location name 11',
-    },
-    {
-      locations: 'Location name 12',
-    },
-    {
-      locations: 'Location name 13',
-    },
-    {
-      locations: 'Location name 14',
+      location: 'Highpoint at Stonecreek',
     },
   ];
 
+  public rowSelection: 'single' | 'multiple' = 'multiple';
+  public style: any = {
+    width: '752px',
+    height: '398px',
+  };
+
+  constructor(
+    private activateRouter: ActivatedRoute,
+    private postLoginService: PostLoginService
+  ) {
+    this.activateRouter.url.subscribe((urlSegments) => {
+      if (urlSegments[0].path === 'edit-lead-routing') {
+        this.isEditMode = true;
+
+        this.userData.email = this.postLoginService.leadRoutingUserData.email;
+        this.userData.firstName =
+          this.postLoginService.leadRoutingUserData.firstName;
+        this.userData.lastName =
+          this.postLoginService.leadRoutingUserData.lastName;
+        this.userData.listName = 'List-item 1, List-item 2';
+
+        if (this.postLoginService.leadRoutingUserData.locations === 'All') {
+          this.locationList.forEach((location: any) => {
+            this.userData.locations.push({ name: location.location });
+          });
+        } else {
+          const locationList =
+            this.postLoginService.leadRoutingUserData.locations.split(',');
+          locationList.forEach((location: any) => {
+            this.userData.locations.push({ name: location });
+          });
+        }
+
+        const locationList =
+          this.postLoginService.leadRoutingUserData.locations === 'All'
+            ? this.locationList
+            : this.postLoginService.leadRoutingUserData.locations.split(',');
+
+        this.form.patchValue({
+          email: this.userData.email,
+          firstName: this.userData.firstName,
+          lastName: this.userData.lastName,
+          listName: this.userData.listName,
+        });
+      }
+    });
+  }
+
+  ngOnInit(): void {}
+
   onGridReady(params: GridReadyEvent) {
+    const self = this;
     this.gridApi = params.api;
+    const nodeList = this.gridApi.getRenderedNodes();
+    console.log('nodeList', nodeList);
+    console.log('self.userData.locations', self.userData.locations);
+    nodeList.forEach((node: any) => {
+      self.userData.locations.forEach((location) => {
+        if (node.data.location.trim() === location.name.trim()) {
+          node.setSelected(true);
+        }
+      });
+    });
   }
 
   onSelectionChanged() {
