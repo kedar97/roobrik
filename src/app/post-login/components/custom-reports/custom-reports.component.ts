@@ -1,4 +1,4 @@
-import { CellClickedEvent, ColDef, GridReadyEvent } from 'ag-grid-community';
+import { ColDef, GridReadyEvent } from 'ag-grid-community';
 import { GridOptions } from 'ag-grid-community';
 import {
   Component,
@@ -46,8 +46,7 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
             this.container.element.nativeElement.innerHTML = '';
           }
         },
-        error: (error: any) => {
-        },
+        error: (error: any) => {},
       });
   }
 
@@ -168,10 +167,15 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
   gridColumnApi: any;
   selectedRowCount: number = 0;
 
-  public defaultColDef = {
+  public defaultColDef: ColDef = {
     sortable: true,
     filter: true,
     flex: 1,
+    resizable: true,
+    wrapHeaderText: true,
+    wrapText: true,
+    autoHeight: true,
+    menuTabs: ['filterMenuTab', 'generalMenuTab', 'columnsMenuTab'],
   };
 
   gridOptions: GridOptions = {
@@ -190,7 +194,8 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
       headerCheckboxSelection: true,
       checkboxSelection: true,
       filter: 'agMultiColumnFilter',
-      minWidth: 300,
+      width: 550,
+      minWidth: 250,
       enableRowGroup: true,
       enableValue: true,
       cellRenderer: function (params: any) {
@@ -209,7 +214,7 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
     },
 
     {
-      minWidth: 200,
+      minWidth: 110,
       field: 'reportPeriod',
       headerName: 'Report Period',
       lockPinned: true,
@@ -252,7 +257,7 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
     },
 
     {
-      minWidth: 150,
+      minWidth: 70,
       field: 'addedOn',
       headerName: 'Added On',
       lockPinned: true,
@@ -282,7 +287,7 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
       },
     },
     {
-      minWidth: 150,
+      minWidth: 70,
       field: 'assessmentName',
       headerName: 'Assessment Name',
       lockPinned: true,
@@ -298,7 +303,7 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
       },
     },
     {
-      minWidth: 150,
+      minWidth: 70,
       field: 'fileType',
       headerName: 'File Type',
       lockPinned: true,
@@ -314,8 +319,8 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
       },
     },
     {
-      minWidth: 150,
-      field: 'createdBy',
+      minWidth: 80,
+      field: 'createBy',
       headerName: 'Created By',
       lockPinned: true,
       hide: true,
@@ -362,6 +367,9 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
         endDate: new Date(2023, 6, 17),
       },
       addedOn: new Date(2018, 6, 10),
+      assessmentName: 'Test Assignment Name',
+      fileType: 'PDF',
+      createBy: 'aaaaaaaaa bbbbbb',
     },
 
     {

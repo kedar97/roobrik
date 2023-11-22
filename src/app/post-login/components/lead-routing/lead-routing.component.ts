@@ -155,12 +155,7 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       field: 'email',
       headerCheckboxSelection: true,
       checkboxSelection: true,
-      minWidth: 300,
-      cellStyle: {
-        width: 'fit-content',
-        overflow: 'visible',
-        'text-overflow': 'none',
-      },
+      width: 250,
       cellClass: 'emailField',
       pinned: 'left',
       lockPinned: true,
@@ -176,7 +171,7 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       filter: 'agMultiColumnFilter',
       lockPinned: true,
       cellClass: 'nameField',
-      minWidth: 200,
+      minWidth: 60,
       maxWidth: 200,
     },
 
@@ -185,15 +180,8 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       lockPinned: true,
       cellClass: 'locationField',
       filter: 'agMultiColumnFilter',
-      minWidth: 300,
-      cellStyle: {
-        'text-overflow': 'ellipsis',
-        'white-space': 'no-wrap',
-        overflow: 'hidden',
-        display: 'block',
-        'min-width': '400',
-        'padding-top': '25px',
-      },
+      headerName: 'Locations',
+      minWidth: 90,
     },
 
     {
@@ -214,8 +202,7 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       filter: 'agMultiColumnFilter',
       lockPinned: true,
       hide: true,
-      minWidth: 200,
-      maxWidth: 200,
+      minWidth: 70,
     },
     {
       field: 'lastModifiedDate',
@@ -223,8 +210,7 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       filter: 'agMultiColumnFilter',
       lockPinned: true,
       hide: true,
-      minWidth: 200,
-      maxWidth: 200,
+      minWidth: 70,
     },
     {
       field: 'lastModifiedBy',
@@ -232,15 +218,19 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       filter: 'agMultiColumnFilter',
       lockPinned: true,
       hide: true,
-      minWidth: 200,
-      maxWidth: 200,
+      minWidth: 80,
     },
   ];
 
-  public defaultColDef = {
+  public defaultColDef: ColDef = {
     sortable: true,
     filter: true,
     flex: 1,
+    resizable: true,
+    wrapHeaderText: true,
+    wrapText: true,
+    autoHeight: true,
+    menuTabs: ['filterMenuTab', 'generalMenuTab', 'columnsMenuTab'],
   };
 
   rowData: LeadRoutingRowData[] = [
@@ -250,6 +240,8 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       lastName: 'Rash',
       locations: 'Cedarhurst Villages',
       status: 'Active',
+      lastModifiedDate: '10/10/2020',
+      lastModifiedBy: 'aaaaaaaa bbbbb',
     },
     {
       email: 'ajessica@accountemail.com',
@@ -429,6 +421,32 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
       'columnVisible',
       this.handleColumnVisibility.bind(this)
     );
+  }
+
+  headerHeightSetter() {
+    var padding = 27;
+    var height = this.headerHeightGetter() + padding;
+    this.gridApi.setHeaderHeight(height);
+    this.gridApi.resetRowHeights();
+    const resetButton = document.querySelector<HTMLElement>('.resetButton');
+    const toolPanelWrapper = document.querySelector<HTMLElement>(
+      '.ag-tool-panel-wrapper'
+    );
+    if (resetButton && toolPanelWrapper) {
+      resetButton.style.height = toolPanelWrapper.style.marginTop =
+        height.toString() + 'px';
+    }
+  }
+
+  headerHeightGetter() {
+    var columnHeaderTexts = document.querySelectorAll('.ag-header-cell-text');
+    var columnHeaderTextsArray: any = [];
+    columnHeaderTexts.forEach((node) => columnHeaderTextsArray.push(node));
+    var clientHeights = columnHeaderTextsArray.map(
+      (headerText: any) => headerText.clientHeight
+    );
+    var tallestHeaderTextHeight = Math.max(...clientHeights);
+    return tallestHeaderTextHeight;
   }
 
   handleColumnVisibility(event: any) {

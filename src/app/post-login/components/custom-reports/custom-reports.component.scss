@@ -48,12 +48,6 @@ select:focus {
   font-weight: 700;
   line-height: 32px;
   transition: all 0.4s;
-  // margin-top: 33px !important;
-
-  // @media (min-width: 1920px) {
-  //   margin-top: 40px !important;
-  // }
-
 }
 
 .clear-section-section {
@@ -141,10 +135,6 @@ select:focus {
 
 :host ::ng-deep .gap-10 {
   gap: 10px !important;
-
-  @media (max-width: 1220px) {
-    gap: 0 !important;
-  }
 }
 
 :host ::ng-deep .tag-text {
@@ -161,14 +151,13 @@ select:focus {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+:host ::ng-deep .ag-pinned-right-cols-container .ag-row .ag-cell-value{
   margin-bottom: -15px !important;
 }
 
 :host ::ng-deep .custom-report-table {
-  & .ag-ltr .ag-header-cell::after {
-    display: none;
-  }
-
   & .ag-header-row {
     background-color: #f7f7f7;
   }
@@ -238,7 +227,7 @@ select:focus {
     font-family: "Helvetica Neue";
     font-size: 14px;
     line-height: 16px;
-    width: 47px;
+    min-width: 47px;
     height: 20px;
   }
   .padding-top {
@@ -315,23 +304,9 @@ select:focus {
     border-left: none !important;
   }
 
-  .custom-report-table .ag-center-cols-container {
-    margin-right: 0 !important;
-  }
-
-  .custom-report-table .ag-center-cols-container {
-    overflow-x: hidden;
-  }
-
   .custom-report-table .ag-pinned-right-cols-container {
     margin-right: 0 !important;
   }
-}
-
-:host ::ng-deep .ag-pinned-left-header,
-:host ::ng-deep .ag-pinned-left-cols-container {
-  width: 600px !important;
-  min-width: 600px !important;
 }
 
 :host ::ng-deep {
@@ -340,9 +315,6 @@ select:focus {
     max-width: unset !important;
   }
 
-  & .ag-ltr .ag-body-vertical-scroll.ag-scrollbar-invisible {
-    right: 6px;
-  }
   .ag-pinned-right-header {
     width: 0 !important  ;
     min-width: 140px !important;
@@ -359,17 +331,6 @@ select:focus {
   & .ag-header-viewport .ag-header-cell:last-child .ag-header-cell-label {
     display: flex !important;
     justify-content: center !important;
-  }
-
-  .report-period {
-    display: flex;
-    justify-content: center;
-    width: fit-content !important;
-  }
-
-  .added-on {
-    justify-content: center;
-    width: fit-content !important;
   }
 }
 
@@ -391,8 +352,9 @@ select:focus {
     border-radius: 6px;
   }
 
-  .ag-body-vertical-scroll-container {
-    margin-right: 4px;
+  .ag-body-vertical-scroll{
+    right: 5px !important;
+    position: absolute !important;
   }
 }
 
@@ -423,16 +385,13 @@ select:focus {
 }
 
 :host ::ng-deep {
-  .ag-horizontal-left-spacer {
-    min-width: 550px !important;
-  }
-
   .ag-horizontal-right-spacer {
-    min-width: 100px !important;
+    min-width: 140px !important;
   }
 
   .ag-center-cols-container {
     margin-right: 0 !important;
+    min-width: 100% !important
   }
 }
 

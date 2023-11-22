@@ -8,7 +8,7 @@ describe('LeadRoutingComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LeadRoutingComponent]
+      declarations: [LeadRoutingComponent],
     });
     fixture = TestBed.createComponent(LeadRoutingComponent);
     component = fixture.componentInstance;

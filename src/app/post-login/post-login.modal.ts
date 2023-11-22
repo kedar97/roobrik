@@ -34,6 +34,8 @@ export interface LeadRoutingRowData {
   lastName: string;
   locations: string;
   status: string;
+  lastModifiedDate?: string;
+  lastModifiedBy?: string;
 }
 
 export interface UserData {

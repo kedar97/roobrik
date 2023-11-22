@@ -37,6 +37,9 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
   @ViewChild('container', { read: ViewContainerRef })
   public container: ViewContainerRef;
 
+  @ViewChild('ag-header') agHeader: ElementRef | null;
+  @ViewChild('resetButton') resetButton: ElementRef | null;
+
   notificationMessages = [
     {
       type: 'success',
@@ -85,8 +88,7 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
             this.container.element.nativeElement.innerHTML = '';
           }
         },
-        error: (error: any) => {
-        },
+        error: (error: any) => {},
       });
   }
 
@@ -95,7 +97,7 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
   public columnDefs: ColDef[] = [
     {
       field: 'reportFrequency',
-      minWidth: 200,
+      minWidth: 70,
       headerName: 'Report Frequency',
       cellClass: 'reportCell',
       enableRowGroup: true,
@@ -106,7 +108,7 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
     {
       field: 'addedOn',
       headerName: 'Added on',
-      minWidth: 200,
+      minWidth: 70,
       enableRowGroup: true,
       enableValue: true,
       cellClass: 'addedOnCell',
@@ -145,7 +147,7 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
     {
       field: 'assessmentName',
       headerName: 'Assessment name',
-      minWidth: 200,
+      minWidth: 70,
       enableRowGroup: true,
       enableValue: true,
       headerClass: 'centeredHeader',
@@ -154,7 +156,7 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
     {
       field: 'reportPeriod',
       headerName: 'Report Period',
-      minWidth: 200,
+      minWidth: 100,
       enableRowGroup: true,
       enableValue: true,
       headerClass: 'centeredHeader',
@@ -164,7 +166,7 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
     {
       field: 'fileType',
       headerName: 'File Type',
-      minWidth: 200,
+      minWidth: 70,
       enableRowGroup: true,
       enableValue: true,
       headerClass: 'centeredHeader',
@@ -172,11 +174,11 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
       hide: true,
     },
     {
-      field: 'createdBy',
+      field: 'createBy',
       headerName: 'Created By',
-      minWidth: 200,
+      minWidth: 80,
       enableRowGroup: true,
-      // enableValue: true,
+      enableValue: true,
       headerClass: 'centeredHeader',
       lockPinned: true,
       hide: true,
@@ -223,6 +225,8 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
     headerName: 'Report Name',
     filter: 'agGroupColumnFilter',
     cellStyle: { 'padding-left': '45px' },
+    width: 550,
+    minWidth: 250,
     pinned: 'left',
     lockPinned: true,
     cellRendererParams: {
@@ -259,6 +263,11 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
     flex: 1,
     sortable: true,
     filter: true,
+    resizable: true,
+    wrapHeaderText: true,
+    wrapText: true,
+    autoHeight: true,
+    menuTabs: ['filterMenuTab', 'generalMenuTab', 'columnsMenuTab'],
   };
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
@@ -291,6 +300,10 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
       reportName: ['Franchise Name - Downsize - July 2023'],
       reportFrequency: 'Monthly',
       addedOn: new Date(2018, 6, 10),
+      assessmentName: 'Test Assignment Name',
+      reportPeriod: '10/10/2020 - 20/10/2020',
+      fileType: 'PDF',
+      createBy: 'aaaaaaaaa bbbbbb'
     },
     {
       reportName: ['All locations - Senior Living - July 2023'],
@@ -465,6 +478,12 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
     });
   }
 
+  onColumnResized(params: any) {
+    if (params.source === 'uiColumnDragged' && params.finished) {
+      this.gridApi.sizeColumnsToFit();
+    }
+  }
+
   onClearSection() {
     this.gridApi.deselectAll();
   }
@@ -484,7 +503,7 @@ function badgeCellRenderer() {
       var childrenCount = params.node.allChildrenCount;
 
       if (childrenCount) {
-        tempDiv.innerHTML = `<span><span class="rowData">${params.value}</span><span class="newBadge">New</span><h6 class="subText">A monthly look at Roobrik product performance metrics and response distribution.</h6 ></span>`;
+        tempDiv.innerHTML = `<span><div class="d-flex "><span class="rowData">${params.value}</span><span class="newBadge d-flex align-items-center justify-content-center">New</span></div><h6 class="subText">A monthly look at Roobrik product performance metrics and response distribution.</h6 ></span>`;
       } else {
         if (params.node.parent?.rowIndex) {
           tempDiv.innerHTML = `<span class="childData">${params.value}<span>`;

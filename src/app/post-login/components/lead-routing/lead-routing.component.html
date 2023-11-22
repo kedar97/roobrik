@@ -57,6 +57,7 @@
         (gridReady)="onGridReady($event)"
         [sideBar]="sideBar"
         (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+        (columnResized)="headerHeightSetter()"
       >
       </ag-grid-angular>
       <select
