@@ -5,7 +5,7 @@ interface DateRange {
 
 export interface PaginationOption {
   title: string;
-  value: number;
+  value: number | string;
 }
 
 export interface StandardReportsRowData {

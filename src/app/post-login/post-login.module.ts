@@ -14,6 +14,7 @@ import { ModuleRegistry } from 'ag-grid-community';
 import { ExcelExportModule } from 'ag-grid-enterprise';
 import { LeadRoutingComponent } from './components/lead-routing/lead-routing.component';
 import { AddEditLeadRoutingComponent } from './components/add-edit-lead-routing/add-edit-lead-routing.component';
+import { LeadsPerCommunityComponent } from './components/leads-per-community/leads-per-community.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -26,7 +27,8 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     StandardReportsComponent,
     CustomReportsComponent,
     LeadRoutingComponent,
-    AddEditLeadRoutingComponent
+    AddEditLeadRoutingComponent,
+    LeadsPerCommunityComponent,
   ],
   imports: [CommonModule, PostLoginRoutingModule, SharedModule, AgGridModule],
   exports: [],

@@ -11,8 +11,7 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { SharedModule } from './shared/shared.module';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { NotificationModule } from '@progress/kendo-angular-notification';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,8 @@ import { NotificationModule } from '@progress/kendo-angular-notification';
     ButtonsModule,
     SharedModule,
     GridModule,
-    NotificationModule
+    NotificationModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

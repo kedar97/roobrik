@@ -15,8 +15,13 @@ body {
   src: url('./assets/fonts/HelveticaNeue Medium.ttf');
 }
 
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('./assets/fonts/ProximaNova.ttf');
+}
+
 body {
   margin: 0;
-  font-family: 'Helvetica Neue';
+  font-family: 'Helvetica Neue', 'Proxima Nova';
   transition: all 0.6s ease;
 }

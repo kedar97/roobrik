@@ -9,6 +9,7 @@ import { LeadRoutingComponent } from './components/lead-routing/lead-routing.com
 import { CustomReportsComponent } from './components/custom-reports/custom-reports.component';
 import { AddEditLeadRoutingComponent } from './components/add-edit-lead-routing/add-edit-lead-routing.component';
 import { ComingSoonComponent } from '../shared/components/coming-soon/coming-soon.component';
+import { LeadsPerCommunityComponent } from './components/leads-per-community/leads-per-community.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
       {
         path: 'coming-soon',
         component: ComingSoonComponent,
+      },
+      {
+        path:'leads-per-community',
+        component:LeadsPerCommunityComponent
       },
       {
         path: '',
