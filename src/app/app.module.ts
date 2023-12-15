@@ -12,6 +12,10 @@ import { SharedModule } from './shared/shared.module';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { NotificationModule } from '@progress/kendo-angular-notification';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+
+
 
 @NgModule({
   declarations: [
@@ -28,8 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
     ButtonsModule,
     SharedModule,
     GridModule,
+    HttpClientModule,
     NotificationModule,
-    HttpClientModule
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

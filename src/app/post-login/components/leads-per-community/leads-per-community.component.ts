@@ -1,39 +1,51 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { ColDef, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IServerSideGetRowsParams, IServerSideGetRowsRequest, IsServerSideGroup, RowModelType, SideBarDef } from 'ag-grid-community';
+import {
+  ColDef,
+  GetServerSideGroupKey,
+  GridApi,
+  GridOptions,
+  GridReadyEvent,
+  ICellRendererParams,
+  IServerSideDatasource,
+  IServerSideGetRowsParams,
+  IServerSideGetRowsRequest,
+  IsServerSideGroup,
+  RowModelType,
+  SideBarDef,
+} from 'ag-grid-community';
 import { PaginationOption } from '../../post-login.modal';
 import { Params } from '@angular/router';
 import { PostLoginService } from '../../post-login.service';
 import * as alasql from 'alasql';
 
-
 @Component({
   selector: 'app-leads-per-community',
   templateUrl: './leads-per-community.component.html',
-  styleUrls: ['./leads-per-community.component.scss']
-
-
+  styleUrls: ['./leads-per-community.component.scss'],
 })
-
 export class LeadsPerCommunityComponent implements OnInit {
+  constructor(
+    private renderer: Renderer2,
+    private ele: ElementRef,
+    private postLoginService: PostLoginService
+  ) {}
 
-  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService: PostLoginService){}
-
-  serchArrd=[];
+  serchArrd = [];
   public rowModelType: RowModelType = 'serverSide';
-  public isExpanded :boolean = false;
-  statusBar:any ;
-  isrowSelected : boolean = false;
-  totalRows : number;
-  rowIndex : number;
-  selectedNodes =[];
+  public isExpanded: boolean = false;
+  statusBar: any;
+  isrowSelected: boolean = false;
+  totalRows: number;
+  rowIndex: number;
+  selectedNodes = [];
   defaultColumnState: any;
   defaultFiltersState: any;
   gridColumnApi: any;
-  gridData:any;
+  gridData: any;
   public gridApi!: GridApi | any;
   public rowSelection: 'single' | 'multiple' = 'multiple';
-  selectedValue = 10;
-  cacheBlockSize = 10;
+  selectedValue = 100;
+  cacheBlockSize = 100;
   paginationOptions: PaginationOption[] = [
     {
       title: '10 per page',
@@ -74,73 +86,53 @@ export class LeadsPerCommunityComponent implements OnInit {
     },
   ];
 
-
   public defaultColDef: ColDef = {
-    sortable: true,
     filter: true,
-    floatingFilter:true,
+    floatingFilter: true,
   };
 
-  columnDef: any  = [
+  columnDef: any = [
     {
-      headerName: 'Benchmark comparesion',
+      headerName: 'Benchmark comparison',
       field: 'benchmarkComparison',
-      enableRowGroup:true,
-      lockPinned:true,
+      sortable: true,
+      lockPinned: true,
+      width: 200,
+      minWidth: 100,
+      resizable: true,
       filter: 'agTextColumnFilter',
-      headerClass:'padding-left-19',
-      cellRenderer:function(params:Params){
-        if(params.value === 'Above'){
-          return `<div class="comparison-text green-text">${params.value}</div>`
+      headerClass: 'padding-left-19',
+      cellRenderer: function (params: Params) {
+        if (params.value === 'Above') {
+          return `<div class="comparison-text green-text">${params.value}</div>`;
+        } else if (params.value === 'Below') {
+          return `<div class="comparison-text red-text">${params.value}</div>`;
+        } else {
+          return `<div class="comparison-text orange-text">${params.value}</div>`;
         }
-        else if(params.value === 'Below'){
-          return `<div class="comparison-text red-text">${params.value}</div>`
-        }
-        else{
-          return `<div class="comparison-text orange-text">${params.value}</div>`
-        }
-      }
+      },
     },
-
     {
       headerName: '4-month LPC average',
       field: 'lpcAverage',
+      sortable: true,
       filter: 'agTextColumnFilter',
-      enableRowGroup:true,
-      lockPinned:true,
-      width:150,
-    },
-    {
-      headerName:'Unique SQL count',
-      sortable:false,
-      children :[...this.getMonthColumns('uniqueCount')],
-      enableRowGroup:true,
-      lockPinned:true,
-    },
-    {
-      headerName:'Total active franchises',
-      sortable:false,
-      children :[...this.getMonthColumns('totalActive')],
-      enableRowGroup:true,
-      lockPinned:true,
-    },
-    {
-      headerName: 'Status',
-      field: 'status',
-      enableRowGroup:true,
-      width:200,
-      filter: 'agTextColumnFilter',
-      lockPinned:true,
+      lockPinned: true,
+      width: 170,
+      minWidth: 100,
+      resizable: true,
     },
     {
       headerName: 'Account owner',
       field: 'owner',
-      enableRowGroup:true,
+      sortable: true,
       filter: 'agTextColumnFilter',
-      lockPinned:true,
-      width:200,
+      lockPinned: true,
+      width: 200,
+      minWidth: 100,
+      resizable: true,
     },
-  ]
+  ];
 
   public columnTypes: {
     [key: string]: any;
@@ -149,22 +141,29 @@ export class LeadsPerCommunityComponent implements OnInit {
   };
 
   public autoGroupColumnDef: ColDef = {
-    headerCheckboxSelection:true,
-    headerName:'Client/frenchise Name',
+    headerCheckboxSelection: true,
+    headerName: 'Client/franchise name',
+    sortable: true,
     field: 'client_frenchiseName',
-    enableRowGroup:true,
     width: 350,
-    pinned:'left',
-    lockPinned:true,
-    cellStyle:{"text-overflow": "ellipsis",
-      "overflow": "hidden",
-      "display": "block",
-      "padding-top": "4px"},
+    minWidth: 100,
+    resizable: true,
+    pinned: 'left',
+    lockPinned: true,
+    cellStyle: {
+      'text-overflow': 'ellipsis',
+      overflow: 'hidden',
+      display: 'block',
+      'padding-top': '4px',
+    },
     cellRendererParams: {
       innerRenderer: (params: ICellRendererParams) => {
-        return params.data.client_frenchiseName;
+        if (!params.data.children) return params.data.client_frenchiseName;
+        else
+          return `${params.data.client_frenchiseName} (${params.data.children.length})`;
       },
     },
+    filter: 'agTextColumnFilter',
   };
 
   public isServerSideGroup: IsServerSideGroup = (dataItem: any) => {
@@ -177,29 +176,29 @@ export class LeadsPerCommunityComponent implements OnInit {
   rowData!: any[];
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
-    toolPanels:[
-        {
-          id: 'columns',
-          labelDefault: 'Columns',
-          labelKey: 'columns',
-          iconKey: 'columns',
-          toolPanel: 'agColumnsToolPanel',
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-          },
+    toolPanels: [
+      {
+        id: 'columns',
+        labelDefault: 'Columns',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+          suppressRowGroups: true,
+          suppressValues: true,
+          suppressPivots: true,
+          suppressPivotMode: true,
         },
-        {
-          id: 'filters',
-          labelDefault: 'Filters',
-          labelKey: 'filters',
-          iconKey: 'filter',
-          toolPanel: 'agFiltersToolPanel',
-        },
-    ]
-  }
+      },
+      {
+        id: 'filters',
+        labelDefault: 'Filters',
+        labelKey: 'filters',
+        iconKey: 'filter',
+        toolPanel: 'agFiltersToolPanel',
+      },
+    ],
+  };
 
   gridOptions: GridOptions = {
     enableRangeSelection: true,
@@ -208,7 +207,7 @@ export class LeadsPerCommunityComponent implements OnInit {
         {
           statusPanel: 'agAggregationComponent',
           statusPanelParams: {
-            aggFuncs: ['avg','count','min','max','sum', ],
+            aggFuncs: ['avg', 'count', 'min', 'max', 'sum'],
           },
         },
       ],
@@ -216,6 +215,16 @@ export class LeadsPerCommunityComponent implements OnInit {
   };
 
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    const nextButtons = document.querySelector(
+      '.ag-paging-button .ag-icon-next'
+    );
+    nextButtons.addEventListener(
+      'click',
+      this.onPaginationButtonClicked.bind(this)
+    );
+  }
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
@@ -225,6 +234,97 @@ export class LeadsPerCommunityComponent implements OnInit {
     this.defaultFiltersState = this.gridApi.getFilterModel();
 
     this.postLoginService.getTableData().subscribe((data) => {
+      let uniqueCountColumnNames = Object.keys(data[0].uniqueCount);
+      let totalActiveColumnNames = Object.keys(data[0].totalActive);
+
+      const uniqueCountColumns = uniqueCountColumnNames.map((column, index) => {
+        const monthAbbreviation = column.substring(0, 3);
+        const year = column.substring(3);
+        const monthTitleCase =
+          monthAbbreviation.charAt(0).toUpperCase() +
+          monthAbbreviation.slice(1);
+        const resultString = `${monthTitleCase}-${year}`;
+        return {
+          headerName: `${resultString}`,
+          field: `uniqueCount.${column}`,
+          cellRenderer: (params) => {
+            if (params.data.uniqueCount[column] === 'inactive') {
+              return '<img class="cell-image" src="/assets/images/dash.svg" >';
+            } else if (params.data.uniqueCount[column] === 'right') {
+              return '<img class="cell-image" src="/assets/images/right.svg" >';
+            } else if (params.data.uniqueCount[column] === 'wrong') {
+              return '<img class="cell-image cell-wrong" src="/assets/images/wrong.svg" >';
+            } else {
+              return params.data.uniqueCount[column];
+            }
+          },
+          filter: 'agNumberColumnFilter',
+          width: 80,
+          resizable: true,
+        };
+      });
+
+      let lastMonth;
+      const totalActiveColumns = totalActiveColumnNames.map((column, i) => {
+        const monthAbbreviation = column.substring(0, 3);
+        const year = column.substring(3);
+        const monthTitleCase =
+          monthAbbreviation.charAt(0).toUpperCase() +
+          monthAbbreviation.slice(1);
+        const monthYearCol = `${monthTitleCase}-${year}`;
+
+        if (i === 0) {
+          lastMonth = monthYearCol;
+        }
+
+        return {
+          headerName: `${monthYearCol}`,
+          field: `totalActive.${column}`,
+          cellRenderer: (params) => {
+            if (params.data.totalActive[column] === 'inactive') {
+              return '<img class="cell-image" src="/assets/images/dash.svg" >';
+            } else if (params.data.totalActive[column] === 'right') {
+              return '<img class="cell-image" src="/assets/images/right.svg" >';
+            } else if (params.data.totalActive[column] === 'wrong') {
+              return '<img class="cell-image cell-wrong" src="/assets/images/wrong.svg" >';
+            } else {
+              return params.data.totalActive[column];
+            }
+          },
+          filter: 'agNumberColumnFilter',
+          width: 80,
+          resizable: true,
+        };
+      });
+
+      const modifiedColumnDefs = [
+        ...this.columnDef.slice(0, 2),
+        {
+          headerName: 'Unique SQL count',
+          sortable: false,
+          children: [...uniqueCountColumns],
+          lockPinned: true,
+        },
+        {
+          headerName: 'Total active franchises',
+          sortable: false,
+          children: [...totalActiveColumns],
+          lockPinned: true,
+        },
+        {
+          headerName: `Status as of ${lastMonth}`,
+          field: 'status',
+          sortable: true,
+          width: 200,
+          minWidth: 100,
+          resizable: true,
+          filter: 'agTextColumnFilter',
+          lockPinned: true,
+        },
+        ...this.columnDef.slice(2),
+      ];
+
+      this.columnDef = modifiedColumnDefs;
       this.totalRows = this.gridApi.paginationGetPageSize();
       var fakeServer = createFakeServer(data);
       var datasource = createServerSideDatasource(fakeServer);
@@ -232,33 +332,16 @@ export class LeadsPerCommunityComponent implements OnInit {
     });
   }
 
-  getMonthColumns(type: string) {
-    return [
-      {
-        headerName: 'Apr-23',
-        width:80,
-        filter: 'agTextColumnFilter',
-        valueGetter: (params) => this.getMonthValue(params.data, type, 'apr23'),
-      },
-      {
-        headerName: 'Mar-23',
-        width:80,
-        filter: 'agTextColumnFilter',
-        valueGetter: (params) => this.getMonthValue(params.data, type, 'mar23'),
-      },
-      {
-        headerName: 'Feb-23',
-        width:80,
-        filter: 'agTextColumnFilter',
-        valueGetter: (params) => this.getMonthValue(params.data, type, 'feb23'),
-      },
-      {
-        headerName: 'Jan-23',
-        width:80,
-        filter: 'agTextColumnFilter',
-        valueGetter: (params) => this.getMonthValue(params.data, type, 'jan23'),
-      },
-    ];
+  filterChanged(params: any) {
+    console.log('params', params);
+  }
+
+  filterOpened(params: any) {
+    console.log('parmsss', params);
+  }
+
+  onCellValueChanged(params: any) {
+    console.log('paramCellChanged', params);
   }
 
   getMonthValue(data: any, type: string, month: string) {
@@ -267,45 +350,64 @@ export class LeadsPerCommunityComponent implements OnInit {
   }
 
   onSearch() {
-    this.rowIndex =null;
-    setTimeout(()=>{
-      let term = (document.getElementById('filter-text-box') as HTMLInputElement).value;
-      this.postLoginService.getSearchedData(term).subscribe(data=>{
+    this.rowIndex = null;
+    setTimeout(() => {
+      let term = (
+        document.getElementById('filter-text-box') as HTMLInputElement
+      ).value;
+      this.postLoginService.getSearchedData(term).subscribe((data) => {
+        this.handleSearchAndExpansion(data, term);
         var fakeServer = createFakeServer(data);
         var datasource = createServerSideDatasource(fakeServer);
         this.gridApi.setServerSideDatasource(datasource);
-        let serchArr = false;
-        setTimeout(() => {
-          data.forEach((item)=>{
-            const searchTerm = term.toLowerCase();
-            serchArr= this.postLoginService.checkPropertyValue(item.children,searchTerm);
-            if(serchArr){
-              const nodeData =this.gridData.api.rowModel.nodeManager.rowNodes;
-              const mapped = Object.keys(nodeData).map(key => ({ value:nodeData[key]}));
-              if(term){
-                mapped.forEach((node)=>{
-                  if(item.clientId === node.value.key){
-                    node.value.setExpanded(true);
-                  }
-                });
-              }
-              else{
-                mapped.forEach((node)=>{
-                  if(item.clientId === node.value.key){
-                    node.value.setExpanded(false);
-                  }
-                });
-              }
-            }
-        })
-        }, 1000);
-      })
-    },1000)
-  };
+      });
+    }, 1000);
+  }
 
+  onPaginationButtonClicked() {
+    let term = (document.getElementById('filter-text-box') as HTMLInputElement)
+      .value;
+    if (term) {
+      this.postLoginService.getSearchedData(term).subscribe((data) => {
+        this.handleSearchAndExpansion(data, term);
+      });
+    }
+  }
+
+  handleSearchAndExpansion(data, term) {
+    let serchArr = false;
+    setTimeout(() => {
+      data.forEach((item) => {
+        const searchTerm = term.toLowerCase();
+        serchArr = this.postLoginService.checkPropertyValue(
+          item.children,
+          searchTerm
+        );
+        if (serchArr) {
+          const nodeData = this.gridData.api.rowModel.nodeManager.rowNodes;
+          const mapped = Object.keys(nodeData).map((key) => ({
+            value: nodeData[key],
+          }));
+          if (term) {
+            mapped.forEach((node) => {
+              if (item.clientId === node.value.key) {
+                node.value.setExpanded(true);
+              }
+            });
+          } else {
+            mapped.forEach((node) => {
+              if (item.clientId === node.value.key) {
+                node.value.setExpanded(false);
+              }
+            });
+          }
+        }
+      });
+    }, 1000);
+  }
 
   onItemsPerPageChange(newPageSize: any) {
-    this.rowIndex =null;
+    this.rowIndex = null;
     if (newPageSize === 'all') {
       this.gridApi.paginationSetPageSize(Number.MAX_SAFE_INTEGER);
     } else {
@@ -314,18 +416,17 @@ export class LeadsPerCommunityComponent implements OnInit {
     this.totalRows = this.gridApi.paginationGetPageSize();
   }
 
-  onSelectionChanged(event:any){
-    if(event.source === 'uiSelectAll'){
+  onSelectionChanged(event: any) {
+    if (event.source === 'uiSelectAll') {
       const data = event.api.rowModel.nodeManager.rowNodes;
-      const mapped = Object.keys(data).map(key => ({ value:data[key]}));
-      this.isExpanded=!this.isExpanded;
-      mapped.forEach((node)=>{
-        if(node.value.level === 0 ) {
+      const mapped = Object.keys(data).map((key) => ({ value: data[key] }));
+      this.isExpanded = !this.isExpanded;
+      mapped.forEach((node) => {
+        if (node.value.level === 0) {
           node.value.setExpanded(this.isExpanded);
         }
       });
-    }
-    else if( event.source === 'rowClicked'){
+    } else if (event.source === 'rowClicked') {
       this.selectedNodes = this.gridOptions.api.getSelectedNodes();
       if (this.selectedNodes.length === 1) {
         this.rowIndex = this.selectedNodes[0].rowIndex;
@@ -379,10 +480,7 @@ export class LeadsPerCommunityComponent implements OnInit {
   }
 
   onResetColumns() {
-    this.gridColumnApi.applyColumnState({
-      state: this.defaultColumnState,
-      applyOrder: true,
-    });
+    this.gridColumnApi.resetColumnState();
   }
 }
 
@@ -400,11 +498,12 @@ function createFakeServer(fakeServerData: any[]) {
               clientId: d.clientId,
               client_frenchiseName: d.client_frenchiseName,
               benchmarkComparison: d.benchmarkComparison,
-              lpcAverage:d.lpcAverage,
-              uniqueCount:d.uniqueCount,
-              totalActive:d.totalActive,
-              status:d.status,
-              owner:d.owner
+              lpcAverage: d.lpcAverage,
+              uniqueCount: d.uniqueCount,
+              totalActive: d.totalActive,
+              status: d.status,
+              owner: d.owner,
+              children: d.children ? d.children : null,
             };
           });
         }
@@ -428,19 +527,20 @@ function createFakeServer(fakeServerData: any[]) {
   }
 
   function buildSql(request) {
-    return (
-      'SELECT * FROM ?' + whereSql(request)
-    );
+    return 'SELECT * FROM ?' + whereSql(request) + orderBySql(request);
   }
 
   function whereSql(request) {
     var whereParts = [];
     var filterModel = request.filterModel;
-
     if (filterModel) {
       Object.keys(filterModel).forEach(function (key) {
         var item = filterModel[key];
-
+        if (key.includes('.')) {
+          key = key.replace('.', '->');
+        } else if (key === 'ag-Grid-AutoColumn') {
+          key = 'client_frenchiseName';
+        }
         switch (item.filterType) {
           case 'text':
             whereParts.push(createFilterSql(textFilterMapper, key, item));
@@ -524,9 +624,20 @@ function createFakeServer(fakeServerData: any[]) {
       case 'notBlank':
         return key + ' IS NOT NULL';
       default:
-        console.log('unknown number filter type: ' + item.type);
         throw new Error('Unknown number filter type: ' + item.type);
     }
+  }
+  function orderBySql(request) {
+    var sortModel = request.sortModel;
+    if (sortModel.length === 0) return '';
+    var sorts = sortModel.map(function (s) {
+      if (s.colId === 'ag-Grid-AutoColumn') {
+        s.colId = 'client_frenchiseName';
+      }
+      return s.colId + ' ' + s.sort.toUpperCase();
+    });
+
+    return ' ORDER BY ' + sorts.join(', ');
   }
   return fakeServer;
 }

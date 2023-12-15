@@ -1,68 +1,71 @@
 <div class="main-container">
-    <div class="section-header">
-        <div class="heading">
-            <img src="assets/images/bar-chart-icon.png" alt="Bar-chart icon">
-            <h1>Leads per Community</h1>
-        </div>
-        <div class="search-section">
-            <div class="input-container">
-                <input
-                type="text"
-                placeholder="Search"
-                (input)="onSearch()"
-                id="filter-text-box"
-                >
-                <img src="assets/images/search-icon.png" alt="Seach icon">
-            </div>
-            <button class="btn btn-export">Export</button>
-        </div>
+  <div class="section-header">
+    <div class="heading">
+      <img src="assets/images/bar-chart-icon.png" alt="Bar-chart icon" />
+      <h1>Leads per Community</h1>
     </div>
-    <div class="table-section">
-      <ag-grid-angular
-        style="flex-grow: 1; height: 500px"
-        class="ag-theme-balham ag-grid"
-        [rowHeight]="36"
-        [columnDefs]="columnDef"
-        [defaultColDef]="defaultColDef"
-        [columnTypes]="columnTypes"
-        [autoGroupColumnDef]="autoGroupColumnDef"
-        [rowModelType]="rowModelType"
-        [treeData]="true"
-        [isServerSideGroup]="isServerSideGroup"
-        [getServerSideGroupKey]="getServerSideGroupKey"
-        [rowData]="rowData"
-        [suppressDragLeaveHidesColumns]="true"
-        [suppressMakeColumnVisibleAfterUnGroup]="true"
-        [suppressRowGroupHidesColumns]="true"
-        [rowGroupPanelShow]="'always'"
-        [gridOptions]="gridOptions"
-        [sideBar]="sideBar"
-        [rowSelection]="rowSelection"
-        (selectionChanged)="onSelectionChanged($event)"
-        (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
-        [pagination]="true"
-        [paginationPageSize]="10"
-        [paginateChildRows]="true"
-        (gridReady)="onGridReady($event)"
-        >
-        </ag-grid-angular>
-
-        <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
-          <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
-        </div>
-
-        <select
-        class="items-dropdown"
-        [(ngModel)]="selectedValue"
-        (change)="onItemsPerPageChange(selectedValue)"
-      >
-        <option
-          *ngFor="let option of paginationOptions"
-          [attr.selected]="option.value == 100"
-          [value]="option.value"
-        >
-          {{ option.title }}
-        </option>
-      </select>
+    <div class="search-section">
+      <div class="input-container">
+        <input
+          type="text"
+          placeholder="Search"
+          (input)="onSearch()"
+          id="filter-text-box"
+        />
+        <img src="assets/images/search-icon.png" alt="Seach icon" />
+      </div>
+      <button class="btn btn-export">Export</button>
     </div>
+  </div>
+  <div class="table-section">
+    <ag-grid-angular
+      style="flex-grow: 1; height: 700px"
+      class="ag-theme-balham ag-grid"
+      [rowHeight]="35"
+      [columnDefs]="columnDef"
+      [defaultColDef]="defaultColDef"
+      [autoGroupColumnDef]="autoGroupColumnDef"
+      [rowModelType]="rowModelType"
+      [treeData]="true"
+      [isServerSideGroup]="isServerSideGroup"
+      [getServerSideGroupKey]="getServerSideGroupKey"
+      [rowData]="rowData"
+      [suppressDragLeaveHidesColumns]="true"
+      [suppressMakeColumnVisibleAfterUnGroup]="true"
+      [suppressRowGroupHidesColumns]="true"
+      [gridOptions]="gridOptions"
+      [sideBar]="sideBar"
+      [rowSelection]="rowSelection"
+      (selectionChanged)="onSelectionChanged($event)"
+      (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+      [pagination]="true"
+      [cacheBlockSize]="100"
+      [paginationPageSize]="100"
+      [paginateChildRows]="true"
+      (gridReady)="onGridReady($event)"
+      (filterChanged)="filterChanged($event)"
+      (filterOpened)="filterOpened($event)"
+      (cellValueChanged)="onCellValueChanged($event)"
+    >
+    </ag-grid-angular>
+
+    <div
+      class="status-bar-text"
+      *ngIf="selectedNodes.length > 0 && rowIndex != null"
+    >
+      <p>
+        Rows: <span>{{ rowIndex + 1 }} of {{ totalRows }}</span>
+      </p>
+    </div>
+
+    <select
+      class="items-dropdown"
+      [(ngModel)]="selectedValue"
+      (change)="onItemsPerPageChange(selectedValue)"
+    >
+      <option *ngFor="let option of paginationOptions" [value]="option.value">
+        {{ option.title }}
+      </option>
+    </select>
+  </div>
 </div>

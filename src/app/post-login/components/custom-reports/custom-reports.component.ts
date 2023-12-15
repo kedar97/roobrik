@@ -212,7 +212,6 @@ export class CustomReportsComponent implements OnInit, OnDestroy {
         }
       },
     },
-
     {
       minWidth: 110,
       field: 'reportPeriod',

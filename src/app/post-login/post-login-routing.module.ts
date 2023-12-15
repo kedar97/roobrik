@@ -45,8 +45,8 @@ const routes: Routes = [
         component: ComingSoonComponent,
       },
       {
-        path:'leads-per-community',
-        component:LeadsPerCommunityComponent
+        path: 'leads-per-community',
+        component: LeadsPerCommunityComponent,
       },
       {
         path: '',

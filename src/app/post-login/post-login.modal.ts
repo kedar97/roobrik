@@ -45,3 +45,15 @@ export interface UserData {
   listName: string
   locations: { name: string }[];
 }
+
+export interface DashboardCard {
+  title: string,
+  subTitle: string,
+  count: number,
+  upDowns: {
+    count: number,
+    percentage: number
+  },
+  prevDays: number,
+  rate: string
+}

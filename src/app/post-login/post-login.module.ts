@@ -15,6 +15,9 @@ import { ExcelExportModule } from 'ag-grid-enterprise';
 import { LeadRoutingComponent } from './components/lead-routing/lead-routing.component';
 import { AddEditLeadRoutingComponent } from './components/add-edit-lead-routing/add-edit-lead-routing.component';
 import { LeadsPerCommunityComponent } from './components/leads-per-community/leads-per-community.component';
+import { DropDownTreesModule, MultiSelectModule } from '@progress/kendo-angular-dropdowns';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+import { ChartsModule } from "@progress/kendo-angular-charts";
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -30,7 +33,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     AddEditLeadRoutingComponent,
     LeadsPerCommunityComponent,
   ],
-  imports: [CommonModule, PostLoginRoutingModule, SharedModule, AgGridModule],
+  imports: [CommonModule, PostLoginRoutingModule, SharedModule, AgGridModule, MultiSelectModule,DropDownTreesModule,DateInputsModule, ChartsModule ],
   exports: [],
 })
 export class PostLoginModule {}

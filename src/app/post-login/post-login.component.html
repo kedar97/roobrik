@@ -1,8 +1,8 @@
 <div class="container-wrapper d-flex flex-column">
-    <app-header></app-header>
-    <div class="routing-page">
-        <router-outlet></router-outlet>
-    </div>
-    <app-footer></app-footer>
-    <div kendoDialogContainer></div>
+  <app-header></app-header>
+  <div class="routing-page">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer *ngIf="!hideFooter()"></app-footer>
+  <div kendoDialogContainer></div>
 </div>
