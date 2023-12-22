@@ -1,5 +1,16 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import { ColDef, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef } from 'ag-grid-community';
+import {
+  ColDef,
+  GetServerSideGroupKey,
+  GridApi,
+  GridOptions,
+  GridReadyEvent,
+  ICellRendererParams,
+  IServerSideDatasource,
+  IsServerSideGroup,
+  RowModelType,
+  SideBarDef,
+} from 'ag-grid-community';
 import { PaginationOption } from '../../post-login.modal';
 import { Params } from '@angular/router';
 import { PostLoginService } from '../../post-login.service';
@@ -8,24 +19,27 @@ import * as alasql from 'alasql';
 @Component({
   selector: 'app-leads-per-community',
   templateUrl: './leads-per-community.component.html',
-  styleUrls: ['./leads-per-community.component.scss']
+  styleUrls: ['./leads-per-community.component.scss'],
 })
 export class LeadsPerCommunityComponent implements OnInit {
+  constructor(
+    private renderer: Renderer2,
+    private ele: ElementRef,
+    private postLoginService: PostLoginService
+  ) {}
 
-  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService: PostLoginService){}
-
-  serchArrd=[];
+  serchArrd = [];
   public rowModelType: RowModelType = 'serverSide';
-  public isExpanded :boolean = false;
-  statusBar:any ;
-  isrowSelected : boolean = false;
-  totalRows : number;
-  rowIndex : number;
-  selectedNodes =[];
+  public isExpanded: boolean = false;
+  statusBar: any;
+  isrowSelected: boolean = false;
+  totalRows: number;
+  rowIndex: number;
+  selectedNodes = [];
   defaultColumnState: any;
   defaultFiltersState: any;
   gridColumnApi: any;
-  gridData:any;
+  gridData: any;
   public gridApi!: GridApi | any;
   public rowSelection: 'single' | 'multiple' = 'multiple';
   selectedValue = 100;
@@ -36,7 +50,7 @@ export class LeadsPerCommunityComponent implements OnInit {
       title: '10 per page',
       value: 10,
     },
-    
+
     {
       title: '25 per page',
       value: 25,
@@ -64,39 +78,37 @@ export class LeadsPerCommunityComponent implements OnInit {
       title: '5000 per page',
       value: 5000,
     },
-       
+
     {
       title: 'ALL',
       value: 'all',
     },
   ];
 
-  columnDef: any  = [
+  columnDef: any = [
     {
       headerName: 'Benchmark comparison',
       field: 'benchmarkComparison',
       sortable: true,
-      lockPinned:true,
-      headerClass:'padding-left-19',
-      cellRenderer:function(params:Params){
-        if(params.value === 'Above'){
-          return `<div class="comparison-text green-text">${params.value}</div>`        
+      lockPinned: true,
+      headerClass: 'padding-left-19',
+      cellRenderer: function (params: Params) {
+        if (params.value === 'Above') {
+          return `<div class="comparison-text green-text">${params.value}</div>`;
+        } else if (params.value === 'Below') {
+          return `<div class="comparison-text red-text">${params.value}</div>`;
+        } else {
+          return `<div class="comparison-text orange-text">${params.value}</div>`;
         }
-        else if(params.value === 'Below'){
-          return `<div class="comparison-text red-text">${params.value}</div>`        
-        }
-        else{
-          return `<div class="comparison-text orange-text">${params.value}</div>`        
-        }
-      }
+      },
     },
 
     {
       headerName: '4-month LPC average',
       field: 'lpcAverage',
       sortable: true,
-      lockPinned:true,
-      width:170,
+      lockPinned: true,
+      width: 170,
       filter: 'agNumberColumnFilter',
     },
 
@@ -104,15 +116,15 @@ export class LeadsPerCommunityComponent implements OnInit {
       headerName: 'Account owner',
       field: 'owner',
       sortable: true,
-      lockPinned:true,
-      width:200,
+      lockPinned: true,
+      width: 200,
     },
-  ]
+  ];
 
   public defaultColDef: ColDef = {
     filter: 'agTextColumnFilter',
     floatingFilter: true,
-    resizable:true,
+    resizable: true,
   };
 
   public autoGroupColumnDef: ColDef = {
@@ -145,32 +157,32 @@ export class LeadsPerCommunityComponent implements OnInit {
     return dataItem.client_frenchiseName;
   };
 
-  rowData!: any[]; 
+  rowData!: any[];
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
-    toolPanels:[
-        {
-          id: 'columns',
-          labelDefault: 'Columns',
-          labelKey: 'columns',
-          iconKey: 'columns',
-          toolPanel: 'agColumnsToolPanel',
-          toolPanelParams: {
-            suppressRowGroups: true,
-            suppressValues: true,
-            suppressPivots: true,
-            suppressPivotMode: true,
-          },
+    toolPanels: [
+      {
+        id: 'columns',
+        labelDefault: 'Columns',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+          suppressRowGroups: true,
+          suppressValues: true,
+          suppressPivots: true,
+          suppressPivotMode: true,
         },
-        {
-          id: 'filters',
-          labelDefault: 'Filters',
-          labelKey: 'filters',
-          iconKey: 'filter',
-          toolPanel: 'agFiltersToolPanel',
-        },
-    ]
-  }
+      },
+      {
+        id: 'filters',
+        labelDefault: 'Filters',
+        labelKey: 'filters',
+        iconKey: 'filter',
+        toolPanel: 'agFiltersToolPanel',
+      },
+    ],
+  };
 
   gridOptions: GridOptions = {
     enableRangeSelection: true,
@@ -179,26 +191,30 @@ export class LeadsPerCommunityComponent implements OnInit {
         {
           statusPanel: 'agAggregationComponent',
           statusPanelParams: {
-            aggFuncs: ['avg','count','min','max','sum', ],
+            aggFuncs: ['avg', 'count', 'min', 'max', 'sum'],
           },
         },
       ],
     },
-    onRowGroupOpened :this.onRowExpanded.bind(this),
+    onRowGroupOpened: this.onRowExpanded.bind(this),
   };
 
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    const nextButtons = document.querySelector('.ag-paging-button .ag-icon-next');
-    nextButtons.addEventListener('click',this.onPaginationButtonClicked.bind(this))    
+    const nextButtons = document.querySelector(
+      '.ag-paging-button .ag-icon-next'
+    );
+    nextButtons.addEventListener(
+      'click',
+      this.onPaginationButtonClicked.bind(this)
+    );
   }
 
   onRowExpanded(event: any) {
-    if(event.expanded){
+    if (event.expanded) {
       this.expandedRows.add(event.node.key);
-    }
-    else{
+    } else {
       this.expandedRows.delete(event.node.key);
     }
   }
@@ -214,7 +230,7 @@ export class LeadsPerCommunityComponent implements OnInit {
       let uniqueCountColumnNames = Object.keys(data[0].uniqueCount);
       let totalActiveColumnNames = Object.keys(data[0].totalActive);
       let lastMonth;
-      const uniqueCountColumns = uniqueCountColumnNames.map((column,index) =>{
+      const uniqueCountColumns = uniqueCountColumnNames.map((column, index) => {
         const monthAbbreviation = column.substring(0, 3);
         const year = column.substring(3);
         const monthTitleCase =
@@ -240,8 +256,7 @@ export class LeadsPerCommunityComponent implements OnInit {
           width: 80,
           resizable: true,
         };
-      }
-      );
+      });
 
       const totalActiveColumns = totalActiveColumnNames.map((column, i) => {
         const monthAbbreviation = column.substring(0, 3);
@@ -305,9 +320,9 @@ export class LeadsPerCommunityComponent implements OnInit {
       this.columnDef = modifiedColumnDefs;
       this.totalRows = this.gridApi.paginationGetPageSize();
 
-      let fakeServer = FakeServer (data, this.expandedRows, this.gridData);
+      let fakeServer = FakeServer(data, this.expandedRows, this.gridData);
       let datasource = getServerSideDatasource(fakeServer);
-      this.gridApi.setServerSideDatasource(datasource);      
+      this.gridApi.setServerSideDatasource(datasource);
     });
   }
 
@@ -317,57 +332,64 @@ export class LeadsPerCommunityComponent implements OnInit {
   }
 
   onSearch() {
-    this.rowIndex =null;
-    setTimeout(()=>{
-      let term = (document.getElementById('filter-text-box') as HTMLInputElement).value;
-      this.postLoginService.getSearchedData(term).subscribe(data=>{
-        this.handleSearchAndExpansion(data,term);
-        let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
+    this.rowIndex = null;
+    setTimeout(() => {
+      let term = (
+        document.getElementById('filter-text-box') as HTMLInputElement
+      ).value;
+      this.postLoginService.getSearchedData(term).subscribe((data) => {
+        this.handleSearchAndExpansion(data, term);
+        let fakeServer = FakeServer(data, this.expandedRows, this.gridData);
         var datasource = getServerSideDatasource(fakeServer);
         this.gridApi.setServerSideDatasource(datasource);
-      })
-    },1000)
-  };
+      });
+    }, 1000);
+  }
 
   onPaginationButtonClicked() {
-    let term = (document.getElementById('filter-text-box') as HTMLInputElement).value;
-    if(term){
-      this.postLoginService.getSearchedData(term).subscribe(data=>{
-        this.handleSearchAndExpansion(data,term);
-      })
+    let term = (document.getElementById('filter-text-box') as HTMLInputElement)
+      .value;
+    if (term) {
+      this.postLoginService.getSearchedData(term).subscribe((data) => {
+        this.handleSearchAndExpansion(data, term);
+      });
     }
   }
 
-  handleSearchAndExpansion(data,term){
-      let serchArr = false;
-      setTimeout(() => {
-        data.forEach((item)=>{       
-          const searchTerm = term.toLowerCase();
-          serchArr= this.postLoginService.checkPropertyValue(item.children,searchTerm);
-          if(serchArr){
-            const nodeData =this.gridData.api.rowModel.nodeManager.rowNodes;
-            const mapped = Object.keys(nodeData).map(key => ({ value:nodeData[key]}));
-            if(term){
-              mapped.forEach((node)=>{
-                if(item.client_frenchiseName === node.value.key){
-                  node.value.setExpanded(true);
-                }              
-              });
-            }
-            else{
-              mapped.forEach((node)=>{
-                if(item.client_frenchiseName === node.value.key){
-                  node.value.setExpanded(false);
-                }              
-              });
-            }
+  handleSearchAndExpansion(data, term) {
+    let serchArr = false;
+    setTimeout(() => {
+      data.forEach((item) => {
+        const searchTerm = term.toLowerCase();
+        serchArr = this.postLoginService.checkPropertyValue(
+          item.children,
+          searchTerm
+        );
+        if (serchArr) {
+          const nodeData = this.gridData.api.rowModel.nodeManager.rowNodes;
+          const mapped = Object.keys(nodeData).map((key) => ({
+            value: nodeData[key],
+          }));
+          if (term) {
+            mapped.forEach((node) => {
+              if (item.client_frenchiseName === node.value.key) {
+                node.value.setExpanded(true);
+              }
+            });
+          } else {
+            mapped.forEach((node) => {
+              if (item.client_frenchiseName === node.value.key) {
+                node.value.setExpanded(false);
+              }
+            });
           }
-      })
-      }, 1000);
+        }
+      });
+    }, 1000);
   }
 
   onItemsPerPageChange(newPageSize: any) {
-    this.rowIndex =null;
+    this.rowIndex = null;
     if (newPageSize === 'all') {
       this.gridApi.paginationSetPageSize(Number.MAX_SAFE_INTEGER);
     } else {
@@ -376,20 +398,19 @@ export class LeadsPerCommunityComponent implements OnInit {
     this.totalRows = this.gridApi.paginationGetPageSize();
   }
 
-  onSelectionChanged(event:any){
-    if(event.source === 'uiSelectAll'){
+  onSelectionChanged(event: any) {
+    if (event.source === 'uiSelectAll') {
       const rowNodes = event.api.rowModel.nodeManager.rowNodes;
       const matchedRowNodes = Object.entries(rowNodes)
         .filter(([key, value]) => value !== undefined)
         .map(([key, value]) => value);
-      this.isExpanded=!this.isExpanded;
-      matchedRowNodes.forEach((node:any)=>{
-        if(node.level === 0 ) {
-            node.setExpanded(this.isExpanded);
+      this.isExpanded = !this.isExpanded;
+      matchedRowNodes.forEach((node: any) => {
+        if (node.level === 0) {
+          node.setExpanded(this.isExpanded);
         }
       });
-    }
-    else if( event.source === 'rowClicked'){
+    } else if (event.source === 'rowClicked') {
       this.selectedNodes = this.gridOptions.api.getSelectedNodes();
       if (this.selectedNodes.length === 1) {
         this.rowIndex = this.selectedNodes[0].rowIndex;
@@ -445,7 +466,6 @@ export class LeadsPerCommunityComponent implements OnInit {
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
   }
-  
 }
 
 function getServerSideDatasource(server: any): IServerSideDatasource {
@@ -466,7 +486,7 @@ function getServerSideDatasource(server: any): IServerSideDatasource {
   };
 }
 
-function FakeServer(allData,rowsToExpand?,gridData?) {
+function FakeServer(allData, rowsToExpand?, gridData?) {
   var processedData = processData(allData);
   alasql.options.cache = false;
   var filterItem;
@@ -476,41 +496,42 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
 
   return {
     getData: function (request) {
-      const hasFilter = request.filterModel && Object.keys(request.filterModel).length;
+      const hasFilter =
+        request.filterModel && Object.keys(request.filterModel).length;
       var results = executeQuery(request, hasFilter);
       if (hasFilter) {
-        results = recursiveFilter(request, results); 
+        results = recursiveFilter(request, results);
 
         // KEEP MANUALLY EXPANDED ROWS AS IT IS
-        setTimeout(()=>{
+        setTimeout(() => {
           rowNodes = gridData.api.rowModel.nodeManager.rowNodes;
           matchedRowNodes = Object.entries(rowNodes)
-          .filter(([key, value]) => value !== undefined)
-          .map(([key, value]) => value);
+            .filter(([key, value]) => value !== undefined)
+            .map(([key, value]) => value);
 
-          matchedRowNodes.forEach((node:any)=>{
-            rowsToExpand.forEach(item =>{
-              if(item === node.key){
+          matchedRowNodes.forEach((node: any) => {
+            rowsToExpand.forEach((item) => {
+              if (item === node.key) {
                 node.setExpanded(true);
               }
-            })
-          })
-        },100)
+            });
+          });
+        }, 100);
 
         // EXPAND PARENT ROW ON CHILD MATCH
-        setTimeout(()=>{
-          results.forEach(item=>{
+        setTimeout(() => {
+          results.forEach((item) => {
             let searchTerm = filterItem.filter;
-            childMatched = checkPropertyValue(item.children,searchTerm);
-            if(childMatched){
-              matchedRowNodes.forEach((node:any)=>{
-                if(item.client_frenchiseName === node.key){
+            childMatched = checkPropertyValue(item.children, searchTerm);
+            if (childMatched) {
+              matchedRowNodes.forEach((node: any) => {
+                if (item.client_frenchiseName === node.key) {
                   node.setExpanded(true);
-                }              
+                }
               });
             }
-          })
-        },100)
+          });
+        }, 100);
       }
 
       return {
@@ -543,9 +564,9 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
     if (typeof value === 'string') {
       return value.toLowerCase().includes(term);
     } else if (typeof value === 'number') {
-       return value === +term;
+      return value === +term;
     } else if (Array.isArray(value)) {
-      return value.some(item => checkPropertyValue(item, term));
+      return value.some((item) => checkPropertyValue(item, term));
     } else if (typeof value === 'object') {
       return searchObject(value, term);
     } else {
@@ -559,11 +580,7 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
   }
 
   function buildSql(request, ignoreLimit) {
-    return (
-      'SELECT * FROM ?' +
-      whereSql(request) +
-      orderBySql(request)
-    );
+    return 'SELECT * FROM ?' + whereSql(request) + orderBySql(request);
   }
 
   function whereSql(request) {
@@ -572,10 +589,9 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
     if (filterModel && Object.keys(filterModel).length) {
       Object.keys(filterModel).forEach(function (key) {
         filterItem = filterModel[key];
-        if(key.includes('.')){
-          key = key.replace('.','->')
-        }
-        else if (key === 'ag-Grid-AutoColumn') {
+        if (key.includes('.')) {
+          key = key.replace('.', '->');
+        } else if (key === 'ag-Grid-AutoColumn') {
           key = 'dataPath';
         }
 
@@ -584,7 +600,9 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
             whereParts.push(createFilterSql(textFilterMapper, key, filterItem));
             break;
           case 'number':
-            whereParts.push(createFilterSql(numberFilterMapper, key, filterItem));
+            whereParts.push(
+              createFilterSql(numberFilterMapper, key, filterItem)
+            );
             break;
           case 'set':
             whereParts.push(createSetFilterSql(key, filterItem.values));
@@ -640,7 +658,6 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
         return key + ' IS NOT NULL and ' + key + " != ''";
       default:
         throw new Error('Unknown number filter type: ' + item.type);
-
     }
   }
 
@@ -683,8 +700,8 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
     var sortModel = request.sortModel;
     if (sortModel.length === 0) return '';
     var sorts = sortModel.map(function (s) {
-      if(s.colId === 'ag-Grid-AutoColumn'){
-        s.colId = 'client_frenchiseName'
+      if (s.colId === 'ag-Grid-AutoColumn') {
+        s.colId = 'client_frenchiseName';
       }
       return s.colId + ' ' + s.sort.toUpperCase();
     });
@@ -693,7 +710,8 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
   }
 
   function getLastRowIndex(request) {
-    const hasFilter = request.filterModel && Object.keys(request.filterModel).length;
+    const hasFilter =
+      request.filterModel && Object.keys(request.filterModel).length;
     var results = executeQuery(request, hasFilter);
     if (hasFilter) {
       results = recursiveFilter(request, results);
@@ -709,7 +727,7 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
         ...row,
         dataPath: dataPath.join(','),
         parentPath: parentPath.join(','),
-        children:row.children
+        children: row.children,
       });
       if (row.children) {
         row.children.forEach((underling) =>
@@ -730,7 +748,7 @@ function FakeServer(allData,rowsToExpand?,gridData?) {
       "SELECT DISTINCT processedData.* FROM ? processedData INNER JOIN ? allResults ON processedData.dataPath = allResults.dataPath WHERE parentPath = '" +
       requestPath +
       "'" +
-      orderBySql(request)
+      orderBySql(request);
     return alasql(sql, [processedData, allResults]);
   }
 
