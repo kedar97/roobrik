@@ -7,13 +7,16 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { LoaderComponent } from './components/loader/loader.component';
+
 
 @NgModule({
   declarations: [
     FooterComponent,
     HeaderComponent,
     ComingSoonComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -26,11 +29,11 @@ import { NotificationsComponent } from './components/notifications/notifications
   exports: [
     FooterComponent,
     HeaderComponent,
+    LoaderComponent,
     ComingSoonComponent,
     KendoModule,
     FormsModule,
     ReactiveFormsModule,
-    
   ]
 })
 export class SharedModule { }

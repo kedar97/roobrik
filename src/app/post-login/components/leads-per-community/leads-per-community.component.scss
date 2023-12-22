@@ -149,11 +149,6 @@ button:focus {
     margin-top: -5px;
   }
 
-  // .ag-group-child-count{
-  //     display: none !important;
-  //     height:unset !important
-  // }
-
   .ag-icon-tree-closed::before {
     content: url("../../../../assets/images/chevron-right-icon.svg");
   }
@@ -430,16 +425,6 @@ button:focus {
   }
 }
 
-:host ::ng-deep .cell-image {
-  height: 15px;
-  width: 15px;
-}
-
-:host ::ng-deep .cell-wrong {
-  height: 12px;
-  width: 12px;  
-}
-
 :host ::ng-deep {
   .custom-header-with-icon {
     display: flex;
@@ -487,4 +472,14 @@ button:focus {
     margin-left: 0;
     margin-top: -4px;
   }
+}
+
+:host ::ng-deep .cell-image {
+  height: 10px;
+  width: 10px;
+}
+
+:host ::ng-deep .cell-wrong {
+  height: 8px;
+  width: 8px;
 }

@@ -8,6 +8,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
+import { IndicatorsModule } from '@progress/kendo-angular-indicators';
 
 @NgModule({
   declarations: [],
@@ -23,6 +24,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
     DialogsModule,
     InputsModule,
     LabelModule,
+    IndicatorsModule
+
   ],
   exports: [
     NavigationModule,
@@ -35,6 +38,8 @@ import { LabelModule } from '@progress/kendo-angular-label';
     DialogsModule,
     InputsModule,
     LabelModule,
+    IndicatorsModule
+
   ]
 })
 export class KendoModule { }

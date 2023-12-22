@@ -59,7 +59,7 @@ export class PostLoginService {
     if (typeof value === 'string') {
       return value.toLowerCase().includes(term);
     } else if (typeof value === 'number') {
-      return String(value).includes(term);
+      return String(value) === term;
     } else if (Array.isArray(value)) {
       return value.some(item => this.checkPropertyValue(item, term));
     } else if (typeof value === 'object') {

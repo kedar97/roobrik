@@ -34,7 +34,7 @@ import 'hammerjs';
     GridModule,
     HttpClientModule,
     NotificationModule,
-    ChartsModule
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

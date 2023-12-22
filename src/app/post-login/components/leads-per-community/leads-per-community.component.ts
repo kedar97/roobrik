@@ -1,18 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-import {
-  ColDef,
-  GetServerSideGroupKey,
-  GridApi,
-  GridOptions,
-  GridReadyEvent,
-  ICellRendererParams,
-  IServerSideDatasource,
-  IServerSideGetRowsParams,
-  IServerSideGetRowsRequest,
-  IsServerSideGroup,
-  RowModelType,
-  SideBarDef,
-} from 'ag-grid-community';
+import { ColDef, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from '../../post-login.modal';
 import { Params } from '@angular/router';
 import { PostLoginService } from '../../post-login.service';
@@ -21,37 +8,35 @@ import * as alasql from 'alasql';
 @Component({
   selector: 'app-leads-per-community',
   templateUrl: './leads-per-community.component.html',
-  styleUrls: ['./leads-per-community.component.scss'],
+  styleUrls: ['./leads-per-community.component.scss']
 })
 export class LeadsPerCommunityComponent implements OnInit {
-  constructor(
-    private renderer: Renderer2,
-    private ele: ElementRef,
-    private postLoginService: PostLoginService
-  ) {}
 
-  serchArrd = [];
+  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService: PostLoginService){}
+
+  serchArrd=[];
   public rowModelType: RowModelType = 'serverSide';
-  public isExpanded: boolean = false;
-  statusBar: any;
-  isrowSelected: boolean = false;
-  totalRows: number;
-  rowIndex: number;
-  selectedNodes = [];
+  public isExpanded :boolean = false;
+  statusBar:any ;
+  isrowSelected : boolean = false;
+  totalRows : number;
+  rowIndex : number;
+  selectedNodes =[];
   defaultColumnState: any;
   defaultFiltersState: any;
   gridColumnApi: any;
-  gridData: any;
+  gridData:any;
   public gridApi!: GridApi | any;
   public rowSelection: 'single' | 'multiple' = 'multiple';
   selectedValue = 100;
   cacheBlockSize = 100;
+  expandedRows: Set<string> = new Set();
   paginationOptions: PaginationOption[] = [
     {
       title: '10 per page',
       value: 10,
     },
-
+    
     {
       title: '25 per page',
       value: 25,
@@ -79,75 +64,63 @@ export class LeadsPerCommunityComponent implements OnInit {
       title: '5000 per page',
       value: 5000,
     },
-
+       
     {
       title: 'ALL',
       value: 'all',
     },
   ];
 
-  public defaultColDef: ColDef = {
-    filter: true,
-    floatingFilter: true,
-  };
-
-  columnDef: any = [
+  columnDef: any  = [
     {
       headerName: 'Benchmark comparison',
       field: 'benchmarkComparison',
       sortable: true,
-      lockPinned: true,
-      width: 200,
-      minWidth: 100,
-      resizable: true,
-      filter: 'agTextColumnFilter',
-      headerClass: 'padding-left-19',
-      cellRenderer: function (params: Params) {
-        if (params.value === 'Above') {
-          return `<div class="comparison-text green-text">${params.value}</div>`;
-        } else if (params.value === 'Below') {
-          return `<div class="comparison-text red-text">${params.value}</div>`;
-        } else {
-          return `<div class="comparison-text orange-text">${params.value}</div>`;
+      lockPinned:true,
+      headerClass:'padding-left-19',
+      cellRenderer:function(params:Params){
+        if(params.value === 'Above'){
+          return `<div class="comparison-text green-text">${params.value}</div>`        
         }
-      },
+        else if(params.value === 'Below'){
+          return `<div class="comparison-text red-text">${params.value}</div>`        
+        }
+        else{
+          return `<div class="comparison-text orange-text">${params.value}</div>`        
+        }
+      }
     },
+
     {
       headerName: '4-month LPC average',
       field: 'lpcAverage',
       sortable: true,
-      filter: 'agTextColumnFilter',
-      lockPinned: true,
-      width: 170,
-      minWidth: 100,
-      resizable: true,
+      lockPinned:true,
+      width:170,
+      filter: 'agNumberColumnFilter',
     },
+
     {
       headerName: 'Account owner',
       field: 'owner',
       sortable: true,
-      filter: 'agTextColumnFilter',
-      lockPinned: true,
-      width: 200,
-      minWidth: 100,
-      resizable: true,
+      lockPinned:true,
+      width:200,
     },
-  ];
+  ]
 
-  public columnTypes: {
-    [key: string]: any;
-  } = {
-    number: { filter: 'agNumberColumnFilter' },
+  public defaultColDef: ColDef = {
+    filter: 'agTextColumnFilter',
+    floatingFilter: true,
+    resizable:true,
   };
 
   public autoGroupColumnDef: ColDef = {
+    field: 'client_frenchiseName',
     headerCheckboxSelection: true,
     headerName: 'Client/franchise name',
     sortable: true,
-    field: 'client_frenchiseName',
     width: 350,
-    minWidth: 100,
-    resizable: true,
     pinned: 'left',
     lockPinned: true,
     cellStyle: {
@@ -163,42 +136,41 @@ export class LeadsPerCommunityComponent implements OnInit {
           return `${params.data.client_frenchiseName} (${params.data.children.length})`;
       },
     },
-    filter: 'agTextColumnFilter',
   };
 
   public isServerSideGroup: IsServerSideGroup = (dataItem: any) => {
-    return dataItem.group;
+    return dataItem.children;
   };
   public getServerSideGroupKey: GetServerSideGroupKey = (dataItem: any) => {
-    return dataItem.clientId;
+    return dataItem.client_frenchiseName;
   };
 
-  rowData!: any[];
+  rowData!: any[]; 
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
-    toolPanels: [
-      {
-        id: 'columns',
-        labelDefault: 'Columns',
-        labelKey: 'columns',
-        iconKey: 'columns',
-        toolPanel: 'agColumnsToolPanel',
-        toolPanelParams: {
-          suppressRowGroups: true,
-          suppressValues: true,
-          suppressPivots: true,
-          suppressPivotMode: true,
+    toolPanels:[
+        {
+          id: 'columns',
+          labelDefault: 'Columns',
+          labelKey: 'columns',
+          iconKey: 'columns',
+          toolPanel: 'agColumnsToolPanel',
+          toolPanelParams: {
+            suppressRowGroups: true,
+            suppressValues: true,
+            suppressPivots: true,
+            suppressPivotMode: true,
+          },
         },
-      },
-      {
-        id: 'filters',
-        labelDefault: 'Filters',
-        labelKey: 'filters',
-        iconKey: 'filter',
-        toolPanel: 'agFiltersToolPanel',
-      },
-    ],
-  };
+        {
+          id: 'filters',
+          labelDefault: 'Filters',
+          labelKey: 'filters',
+          iconKey: 'filter',
+          toolPanel: 'agFiltersToolPanel',
+        },
+    ]
+  }
 
   gridOptions: GridOptions = {
     enableRangeSelection: true,
@@ -207,23 +179,28 @@ export class LeadsPerCommunityComponent implements OnInit {
         {
           statusPanel: 'agAggregationComponent',
           statusPanelParams: {
-            aggFuncs: ['avg', 'count', 'min', 'max', 'sum'],
+            aggFuncs: ['avg','count','min','max','sum', ],
           },
         },
       ],
     },
+    onRowGroupOpened :this.onRowExpanded.bind(this),
   };
 
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    const nextButtons = document.querySelector(
-      '.ag-paging-button .ag-icon-next'
-    );
-    nextButtons.addEventListener(
-      'click',
-      this.onPaginationButtonClicked.bind(this)
-    );
+    const nextButtons = document.querySelector('.ag-paging-button .ag-icon-next');
+    nextButtons.addEventListener('click',this.onPaginationButtonClicked.bind(this))    
+  }
+
+  onRowExpanded(event: any) {
+    if(event.expanded){
+      this.expandedRows.add(event.node.key);
+    }
+    else{
+      this.expandedRows.delete(event.node.key);
+    }
   }
 
   onGridReady(params: GridReadyEvent) {
@@ -236,14 +213,15 @@ export class LeadsPerCommunityComponent implements OnInit {
     this.postLoginService.getTableData().subscribe((data) => {
       let uniqueCountColumnNames = Object.keys(data[0].uniqueCount);
       let totalActiveColumnNames = Object.keys(data[0].totalActive);
-
-      const uniqueCountColumns = uniqueCountColumnNames.map((column, index) => {
+      let lastMonth;
+      const uniqueCountColumns = uniqueCountColumnNames.map((column,index) =>{
         const monthAbbreviation = column.substring(0, 3);
         const year = column.substring(3);
         const monthTitleCase =
           monthAbbreviation.charAt(0).toUpperCase() +
           monthAbbreviation.slice(1);
         const resultString = `${monthTitleCase}-${year}`;
+
         return {
           headerName: `${resultString}`,
           field: `uniqueCount.${column}`,
@@ -262,9 +240,9 @@ export class LeadsPerCommunityComponent implements OnInit {
           width: 80,
           resizable: true,
         };
-      });
+      }
+      );
 
-      let lastMonth;
       const totalActiveColumns = totalActiveColumnNames.map((column, i) => {
         const monthAbbreviation = column.substring(0, 3);
         const year = column.substring(3);
@@ -326,22 +304,11 @@ export class LeadsPerCommunityComponent implements OnInit {
 
       this.columnDef = modifiedColumnDefs;
       this.totalRows = this.gridApi.paginationGetPageSize();
-      var fakeServer = createFakeServer(data);
-      var datasource = createServerSideDatasource(fakeServer);
-      this.gridApi.setServerSideDatasource(datasource);
+
+      let fakeServer = FakeServer (data, this.expandedRows, this.gridData);
+      let datasource = getServerSideDatasource(fakeServer);
+      this.gridApi.setServerSideDatasource(datasource);      
     });
-  }
-
-  filterChanged(params: any) {
-    console.log('params', params);
-  }
-
-  filterOpened(params: any) {
-    console.log('parmsss', params);
-  }
-
-  onCellValueChanged(params: any) {
-    console.log('paramCellChanged', params);
   }
 
   getMonthValue(data: any, type: string, month: string) {
@@ -350,64 +317,57 @@ export class LeadsPerCommunityComponent implements OnInit {
   }
 
   onSearch() {
-    this.rowIndex = null;
-    setTimeout(() => {
-      let term = (
-        document.getElementById('filter-text-box') as HTMLInputElement
-      ).value;
-      this.postLoginService.getSearchedData(term).subscribe((data) => {
-        this.handleSearchAndExpansion(data, term);
-        var fakeServer = createFakeServer(data);
-        var datasource = createServerSideDatasource(fakeServer);
+    this.rowIndex =null;
+    setTimeout(()=>{
+      let term = (document.getElementById('filter-text-box') as HTMLInputElement).value;
+      this.postLoginService.getSearchedData(term).subscribe(data=>{
+        this.handleSearchAndExpansion(data,term);
+        let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
+        var datasource = getServerSideDatasource(fakeServer);
         this.gridApi.setServerSideDatasource(datasource);
-      });
-    }, 1000);
-  }
+      })
+    },1000)
+  };
 
   onPaginationButtonClicked() {
-    let term = (document.getElementById('filter-text-box') as HTMLInputElement)
-      .value;
-    if (term) {
-      this.postLoginService.getSearchedData(term).subscribe((data) => {
-        this.handleSearchAndExpansion(data, term);
-      });
+    let term = (document.getElementById('filter-text-box') as HTMLInputElement).value;
+    if(term){
+      this.postLoginService.getSearchedData(term).subscribe(data=>{
+        this.handleSearchAndExpansion(data,term);
+      })
     }
   }
 
-  handleSearchAndExpansion(data, term) {
-    let serchArr = false;
-    setTimeout(() => {
-      data.forEach((item) => {
-        const searchTerm = term.toLowerCase();
-        serchArr = this.postLoginService.checkPropertyValue(
-          item.children,
-          searchTerm
-        );
-        if (serchArr) {
-          const nodeData = this.gridData.api.rowModel.nodeManager.rowNodes;
-          const mapped = Object.keys(nodeData).map((key) => ({
-            value: nodeData[key],
-          }));
-          if (term) {
-            mapped.forEach((node) => {
-              if (item.clientId === node.value.key) {
-                node.value.setExpanded(true);
-              }
-            });
-          } else {
-            mapped.forEach((node) => {
-              if (item.clientId === node.value.key) {
-                node.value.setExpanded(false);
-              }
-            });
+  handleSearchAndExpansion(data,term){
+      let serchArr = false;
+      setTimeout(() => {
+        data.forEach((item)=>{       
+          const searchTerm = term.toLowerCase();
+          serchArr= this.postLoginService.checkPropertyValue(item.children,searchTerm);
+          if(serchArr){
+            const nodeData =this.gridData.api.rowModel.nodeManager.rowNodes;
+            const mapped = Object.keys(nodeData).map(key => ({ value:nodeData[key]}));
+            if(term){
+              mapped.forEach((node)=>{
+                if(item.client_frenchiseName === node.value.key){
+                  node.value.setExpanded(true);
+                }              
+              });
+            }
+            else{
+              mapped.forEach((node)=>{
+                if(item.client_frenchiseName === node.value.key){
+                  node.value.setExpanded(false);
+                }              
+              });
+            }
           }
-        }
-      });
-    }, 1000);
+      })
+      }, 1000);
   }
 
   onItemsPerPageChange(newPageSize: any) {
-    this.rowIndex = null;
+    this.rowIndex =null;
     if (newPageSize === 'all') {
       this.gridApi.paginationSetPageSize(Number.MAX_SAFE_INTEGER);
     } else {
@@ -416,17 +376,20 @@ export class LeadsPerCommunityComponent implements OnInit {
     this.totalRows = this.gridApi.paginationGetPageSize();
   }
 
-  onSelectionChanged(event: any) {
-    if (event.source === 'uiSelectAll') {
-      const data = event.api.rowModel.nodeManager.rowNodes;
-      const mapped = Object.keys(data).map((key) => ({ value: data[key] }));
-      this.isExpanded = !this.isExpanded;
-      mapped.forEach((node) => {
-        if (node.value.level === 0) {
-          node.value.setExpanded(this.isExpanded);
+  onSelectionChanged(event:any){
+    if(event.source === 'uiSelectAll'){
+      const rowNodes = event.api.rowModel.nodeManager.rowNodes;
+      const matchedRowNodes = Object.entries(rowNodes)
+        .filter(([key, value]) => value !== undefined)
+        .map(([key, value]) => value);
+      this.isExpanded=!this.isExpanded;
+      matchedRowNodes.forEach((node:any)=>{
+        if(node.level === 0 ) {
+            node.setExpanded(this.isExpanded);
         }
       });
-    } else if (event.source === 'rowClicked') {
+    }
+    else if( event.source === 'rowClicked'){
       this.selectedNodes = this.gridOptions.api.getSelectedNodes();
       if (this.selectedNodes.length === 1) {
         this.rowIndex = this.selectedNodes[0].rowIndex;
@@ -482,82 +445,167 @@ export class LeadsPerCommunityComponent implements OnInit {
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
   }
+  
 }
 
-function createFakeServer(fakeServerData: any[]) {
-  const fakeServer = {
-    data: fakeServerData,
-    getData: function (request: IServerSideGetRowsRequest) {
-      var results = executeQuery(request);
-      this.data = results;
-      function extractRowsFromData(groupKeys: string[], data: any[]): any {
-        if (groupKeys.length === 0) {
-          return data.map(function (d) {
-            return {
-              group: !!d.children,
-              clientId: d.clientId,
-              client_frenchiseName: d.client_frenchiseName,
-              benchmarkComparison: d.benchmarkComparison,
-              lpcAverage: d.lpcAverage,
-              uniqueCount: d.uniqueCount,
-              totalActive: d.totalActive,
-              status: d.status,
-              owner: d.owner,
-              children: d.children ? d.children : null,
-            };
+function getServerSideDatasource(server: any): IServerSideDatasource {
+  return {
+    getRows: (params) => {
+      setTimeout(() => {
+        var response = server.getData(params.request);
+        if (response.success) {
+          params.success({
+            rowData: response.rows,
+            rowCount: response.lastRow,
           });
+        } else {
+          params.fail();
         }
-        var key = groupKeys[0];
-        for (var i = 0; i < data.length; i++) {
-          if (data[i].clientId === key) {
-            return extractRowsFromData(
-              groupKeys.slice(1),
-              data[i].children.slice()
-            );
-          }
-        }
+      }, 500);
+    },
+  };
+}
+
+function FakeServer(allData,rowsToExpand?,gridData?) {
+  var processedData = processData(allData);
+  alasql.options.cache = false;
+  var filterItem;
+  let rowNodes;
+  let matchedRowNodes;
+  let childMatched = false;
+
+  return {
+    getData: function (request) {
+      const hasFilter = request.filterModel && Object.keys(request.filterModel).length;
+      var results = executeQuery(request, hasFilter);
+      if (hasFilter) {
+        results = recursiveFilter(request, results); 
+
+        // KEEP MANUALLY EXPANDED ROWS AS IT IS
+        setTimeout(()=>{
+          rowNodes = gridData.api.rowModel.nodeManager.rowNodes;
+          matchedRowNodes = Object.entries(rowNodes)
+          .filter(([key, value]) => value !== undefined)
+          .map(([key, value]) => value);
+
+          matchedRowNodes.forEach((node:any)=>{
+            rowsToExpand.forEach(item =>{
+              if(item === node.key){
+                node.setExpanded(true);
+              }
+            })
+          })
+        },100)
+
+        // EXPAND PARENT ROW ON CHILD MATCH
+        setTimeout(()=>{
+          results.forEach(item=>{
+            let searchTerm = filterItem.filter;
+            childMatched = checkPropertyValue(item.children,searchTerm);
+            if(childMatched){
+              matchedRowNodes.forEach((node:any)=>{
+                if(item.client_frenchiseName === node.key){
+                  node.setExpanded(true);
+                }              
+              });
+            }
+          })
+        },100)
       }
-      return extractRowsFromData(request.groupKeys, this.data);
+
+      return {
+        success: true,
+        rows: results,
+        lastRow: getLastRowIndex(request),
+      };
+    },
+
+    getEmployees: function () {
+      var sql =
+        'SELECT DISTINCT dataPath FROM ? WHERE children = FALSE ORDER BY dataPath ASC';
+
+      return alasql(sql, [processedData]).map((row) =>
+        row.dataPath ? row.dataPath.split(',') : null
+      );
     },
   };
 
-  function executeQuery(request) {
-    var sql = buildSql(request);
-    return alasql(sql, [fakeServerData]);
+  function searchObject(obj: any, term: string): boolean {
+    return Object.entries(obj).some(([key, value]) => {
+      if (key === 'clientId') {
+        return false;
+      }
+      return checkPropertyValue(value, term);
+    });
   }
 
-  function buildSql(request) {
-    return 'SELECT * FROM ?' + whereSql(request) + orderBySql(request);
+  function checkPropertyValue(value: any, term: string): boolean {
+    if (typeof value === 'string') {
+      return value.toLowerCase().includes(term);
+    } else if (typeof value === 'number') {
+       return value === +term;
+    } else if (Array.isArray(value)) {
+      return value.some(item => checkPropertyValue(item, term));
+    } else if (typeof value === 'object') {
+      return searchObject(value, term);
+    } else {
+      return false;
+    }
+  }
+
+  function executeQuery(request, ignoreLimit) {
+    var sql = buildSql(request, ignoreLimit);
+    return alasql(sql, [processedData]);
+  }
+
+  function buildSql(request, ignoreLimit) {
+    return (
+      'SELECT * FROM ?' +
+      whereSql(request) +
+      orderBySql(request)
+    );
   }
 
   function whereSql(request) {
     var whereParts = [];
     var filterModel = request.filterModel;
-    if (filterModel) {
+    if (filterModel && Object.keys(filterModel).length) {
       Object.keys(filterModel).forEach(function (key) {
-        var item = filterModel[key];
-        if (key.includes('.')) {
-          key = key.replace('.', '->');
-        } else if (key === 'ag-Grid-AutoColumn') {
-          key = 'client_frenchiseName';
+        filterItem = filterModel[key];
+        if(key.includes('.')){
+          key = key.replace('.','->')
         }
-        switch (item.filterType) {
+        else if (key === 'ag-Grid-AutoColumn') {
+          key = 'dataPath';
+        }
+
+        switch (filterItem.filterType) {
           case 'text':
-            whereParts.push(createFilterSql(textFilterMapper, key, item));
+            whereParts.push(createFilterSql(textFilterMapper, key, filterItem));
             break;
           case 'number':
-            whereParts.push(createFilterSql(numberFilterMapper, key, item));
+            whereParts.push(createFilterSql(numberFilterMapper, key, filterItem));
+            break;
+          case 'set':
+            whereParts.push(createSetFilterSql(key, filterItem.values));
             break;
           default:
             break;
         }
       });
+    } else {
+      whereParts.push("(parentPath = '" + request.groupKeys.join(',') + "')");
     }
 
     if (whereParts.length > 0) {
       return ' WHERE ' + whereParts.join(' AND ');
     }
+
     return '';
+  }
+
+  function createSetFilterSql(key, values) {
+    return key + " IN ('" + values.join("', '") + "')";
   }
 
   function createFilterSql(mapper, key, item) {
@@ -565,8 +613,10 @@ function createFakeServer(fakeServerData: any[]) {
       const conditions = item.conditions.map((condition) =>
         mapper(key, condition)
       );
+
       return '(' + conditions.join(' ' + item.operator + ' ') + ')';
     }
+
     return mapper(key, item);
   }
 
@@ -590,6 +640,7 @@ function createFakeServer(fakeServerData: any[]) {
         return key + ' IS NOT NULL and ' + key + " != ''";
       default:
         throw new Error('Unknown number filter type: ' + item.type);
+
     }
   }
 
@@ -627,37 +678,91 @@ function createFakeServer(fakeServerData: any[]) {
         throw new Error('Unknown number filter type: ' + item.type);
     }
   }
+
   function orderBySql(request) {
     var sortModel = request.sortModel;
     if (sortModel.length === 0) return '';
     var sorts = sortModel.map(function (s) {
-      if (s.colId === 'ag-Grid-AutoColumn') {
-        s.colId = 'client_frenchiseName';
+      if(s.colId === 'ag-Grid-AutoColumn'){
+        s.colId = 'client_frenchiseName'
       }
       return s.colId + ' ' + s.sort.toUpperCase();
     });
 
     return ' ORDER BY ' + sorts.join(', ');
   }
-  return fakeServer;
-}
 
-function createServerSideDatasource(fakeServer: any) {
-  const dataSource: IServerSideDatasource = {
-    getRows: (params: IServerSideGetRowsParams) => {
-      var allRows = fakeServer.getData(params.request);
-      var request = params.request;
-      var doingInfinite = request.startRow != null && request.endRow != null;
-      var result = doingInfinite
-        ? {
-            rowData: allRows.slice(request.startRow, request.endRow),
-            rowCount: allRows.length,
-          }
-        : { rowData: allRows };
-      setTimeout(() => {
-        params.success(result);
-      }, 200);
-    },
-  };
-  return dataSource;
+  function getLastRowIndex(request) {
+    const hasFilter = request.filterModel && Object.keys(request.filterModel).length;
+    var results = executeQuery(request, hasFilter);
+    if (hasFilter) {
+      results = recursiveFilter(request, results);
+    }
+    return results.length;
+  }
+
+  function processData(data) {
+    const flattenedData = [];
+    const flattenRowRecursive = (row, parentPath) => {
+      const dataPath = [...parentPath, row.client_frenchiseName];
+      flattenedData.push({
+        ...row,
+        dataPath: dataPath.join(','),
+        parentPath: parentPath.join(','),
+        children:row.children
+      });
+      if (row.children) {
+        row.children.forEach((underling) =>
+          flattenRowRecursive(underling, dataPath)
+        );
+      }
+    };
+    data.forEach((row) => flattenRowRecursive(row, []));
+    return flattenedData;
+  }
+
+  function recursiveFilter(request, results) {
+    const allResults = [...results];
+    recursiveFilterParentMatches(allResults, results);
+    recursiveFilterChildMatches(allResults, results);
+    const requestPath = request.groupKeys.join(',');
+    const sql =
+      "SELECT DISTINCT processedData.* FROM ? processedData INNER JOIN ? allResults ON processedData.dataPath = allResults.dataPath WHERE parentPath = '" +
+      requestPath +
+      "'" +
+      orderBySql(request)
+    return alasql(sql, [processedData, allResults]);
+  }
+
+  function recursiveFilterParentMatches(allResults, childResults) {
+    if (!childResults.length) {
+      return;
+    }
+    const sql =
+      'SELECT DISTINCT processedData.* FROM ? processedData INNER JOIN ? parentResults ON processedData.dataPath = parentResults.parentPath';
+    const newMatches = alasql(sql, [processedData, childResults]).filter(
+      (newResult) =>
+        !allResults.some(
+          (existingResult) => newResult.dataPath === existingResult.dataPath
+        )
+    );
+    allResults.push(...newMatches);
+    recursiveFilterParentMatches(allResults, newMatches);
+  }
+
+  function recursiveFilterChildMatches(allResults, parentResults) {
+    if (!parentResults.length) {
+      return;
+    }
+    const sql =
+      'SELECT DISTINCT processedData.* FROM ? processedData INNER JOIN ? parentResults ON processedData.parentPath = parentResults.dataPath';
+    const newMatches = alasql(sql, [processedData, parentResults]).filter(
+      (newResult) =>
+        !allResults.some(
+          (existingResult) => newResult.dataPath === existingResult.dataPath
+        )
+    );
+    allResults.push(...newMatches);
+    recursiveFilterChildMatches(allResults, newMatches);
+  }
 }

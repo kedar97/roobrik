@@ -1,32 +1,230 @@
 <div class="home m-auto">
-  <div class="header-wrapper">
-    <h1 class="heading  m-0">
-      Welcome, [first name]!
-    </h1>
-  </div>
-
-  <div class="d-flex justify-content-center align-items-center">
-    <div class="card-wrapper d-flex flex-md-row justify-content-between align-items-center p-xl-5">
-      <ng-container *ngFor="let card of cardList">
-        <kendo-card class="card" orientation="horizontal" width="330px">
-          <div class="k-vstack">
-            <kendo-card-body>
-              <div class="img-wrapper d-flex justify-content-center align-items-center">
-                <img [src]="card.imgSrc" class="h-auto" />
-              </div>
-              <h4 class="card-hedear font-weight-bold">{{ card.heading }} </h4>
-              <p>
-                {{ card.content }}
-              </p>
-              <kendo-card-actions>
-                <button [disabled]="!card.enabled" [ngClass]="{ 'btn-disabled': !card.enabled }" kendoButton size="medium" fillMode="outline">
-                  {{ card.enabled? card.btnTitle : 'Coming Soon!' }}
-                </button>
-              </kendo-card-actions>
-            </kendo-card-body>
+  <div
+    class="header-wrapper"
+    [ngStyle]="{ height: isLoading ? '100vh' : 'auto' }"
+  >
+    <h1 class="heading m-0">Welcome, {{ firstname }}</h1>
+    <div class="loader-container" *ngIf="isLoading">
+      <app-loader></app-loader>
+    </div>
+    <div class="dashboard-container" *ngIf="!isLoading">
+      <div class="form-section">
+        <form [formGroup]="form" class="d-flex">
+          <div class="d-flex flex-column input input-location">
+            <kendo-label class="label-text"> Location(s) </kendo-label>
+            <kendo-multiselecttree
+              [kendoMultiSelectTreeHierarchyBinding]="dataLocations"
+              childrenField="items"
+              textField="text"
+              valueField="text"
+              [tagMapper]="tagMapper.bind(this)"
+              [filterable]="true"
+              class="dropdown"
+            >
+            </kendo-multiselecttree>
           </div>
-        </kendo-card>
-      </ng-container>
+          <div class="d-flex flex-column input input-assessment">
+            <kendo-label class="label-text"> Assessment(s) </kendo-label>
+            <kendo-multiselecttree
+              [kendoMultiSelectTreeHierarchyBinding]="dataAssesments"
+              childrenField="items"
+              textField="text"
+              valueField="text"
+              [filterable]="true"
+              class="dropdown"
+            >
+            </kendo-multiselecttree>
+          </div>
+          <div class="d-flex flex-column input input-date">
+            <kendo-label class="label-text"> Dates(s) </kendo-label>
+            <div class="date-section d-flex">
+              <!-- <label class="active-menu">Last 30 Days</label> -->
+              <!-- <div class="active-date">
+              <span>Oct30 - 29Nov</span>
+              <span class="k-icon k-font-icon k-i-calendar"></span>
+            </div> -->
+            </div>
+          </div>
+          <div class="buttons-container d-flex">
+            <button type="submit" class="btn btn-submit">Submit</button>
+            <button type="submit" class="btn btn-reset">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+              >
+                <path
+                  d="M12.35 6.55001C12.11 6.00001 11.79 5.52001 11.39 5.11001C10.99 4.71001 10.51 4.39001 9.94996 4.15001C9.39996 3.91001 8.80996 3.79001 8.19996 3.79001C7.62996 3.79001 7.06996 3.90001 6.52996 4.12001C5.98996 4.34001 5.51996 4.64001 5.09996 5.04001L4.33996 4.28001C4.21996 4.16001 4.08996 4.13001 3.93996 4.20001C3.77996 4.27001 3.70996 4.38001 3.70996 4.55001V7.18001C3.70996 7.28001 3.74996 7.37001 3.81996 7.44001C3.88996 7.51001 3.97996 7.55001 4.07996 7.55001H6.70996C6.86996 7.55001 6.98996 7.47001 7.05996 7.32001C7.12996 7.17001 7.09996 7.03001 6.97996 6.92001L6.17996 6.11001C6.44996 5.85001 6.76996 5.65001 7.11996 5.52001C7.46996 5.38001 7.83996 5.31001 8.21996 5.31001C8.62996 5.31001 9.00996 5.39001 9.37996 5.55001C9.74996 5.71001 10.07 5.92001 10.34 6.19001C10.61 6.46001 10.82 6.78001 10.98 7.15001C11.14 7.52001 11.22 7.91001 11.22 8.31001C11.22 8.71001 11.14 9.10001 10.98 9.47001C10.82 9.84001 10.61 10.16 10.34 10.43C10.07 10.7 9.74996 10.91 9.37996 11.07C9.00996 11.23 8.61996 11.31 8.21996 11.31C7.75996 11.31 7.31996 11.21 6.89996 11.01C6.48996 10.81 6.13996 10.52 5.84996 10.15C5.81996 10.11 5.77996 10.09 5.71996 10.08C5.65996 10.08 5.60996 10.1 5.56996 10.13L4.76996 10.94C4.76996 10.94 4.71996 11.01 4.71996 11.06C4.71996 11.11 4.72996 11.15 4.75996 11.19C5.18996 11.71 5.69996 12.11 6.30996 12.39C6.91996 12.67 7.54996 12.81 8.22996 12.81C8.83996 12.81 9.41996 12.69 9.97996 12.45C10.54 12.21 11.01 11.89 11.42 11.49C11.82 11.09 12.14 10.61 12.38 10.05C12.62 9.50001 12.74 8.91001 12.74 8.30001C12.74 7.69001 12.62 7.11001 12.38 6.55001"
+                  fill="#083754"
+                />
+              </svg>
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card-section d-flex">
+        <div *ngFor="let card of cardData" class="card">
+          <div class="card_top">
+            <div class="card-title">{{ card.title }}</div>
+            <div class="card-subtitle">{{ card.subTitle }}</div>
+          </div>
+          <div class="card_mid d-flex">
+            <div class="card-count">{{ card.count }}</div>
+            <div class="card_mid-right">
+              <div
+                class="card-upDowns"
+                [ngClass]="
+                  card.upDowns.status === 'up' ? 'card-up' : 'card-down'
+                "
+              >
+                <i
+                  class="fa fa-caret-down card-downIcon"
+                  aria-hidden="true"
+                  *ngIf="card.upDowns.status === 'down'"
+                ></i>
+                <i
+                  class="fa fa-caret-up card-up"
+                  aria-hidden="true"
+                  *ngIf="card.upDowns.status === 'up'"
+                ></i>
+                {{ card.upDowns.count }} (
+                <i
+                  class="fa fa-caret-down card-downIcon"
+                  aria-hidden="true"
+                  *ngIf="card.upDowns.status === 'down'"
+                ></i>
+                <i
+                  class="fa fa-caret-up card-up"
+                  aria-hidden="true"
+                  *ngIf="card.upDowns.status === 'up'"
+                ></i>
+                {{ card.upDowns.percentage }}%)
+              </div>
+              <div class="card-prev">
+                from previous {{ card.prevDays }} days
+              </div>
+            </div>
+          </div>
+          <div class="card_bot">
+            <div class="card-rate d-flex">{{ card.rate }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart_section">
+        <div class="chart-header d-flex justify-content-between">
+          <p class="dateRange">Last 30 days: Oct 31 - Nov 29, 2023</p>
+          <div class="chart-legends d-flex custom-gap-20">
+            <div class="d-flex flex-column custom-gap-11 align-items-center">
+              <p>Engaged Users</p>
+              <div class="legend-lines orange-line"></div>
+            </div>
+            <div class="d-flex flex-column custom-gap-11 align-items-center">
+              <p>Completes</p>
+              <div class="legend-lines green-line"></div>
+            </div>
+            <div class="d-flex flex-column custom-gap-11 align-items-center">
+              <p>SQLs</p>
+              <div class="legend-lines purple-line"></div>
+            </div>
+            <div class="d-flex flex-column custom-gap-11 align-items-center">
+              <p>MQLs</p>
+              <div class="legend-lines blue-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="chart">
+          <kendo-chart (legendItemHover)="onLegendItemHover($event)">
+            <kendo-chart-legend
+              [visible]="false"
+              position="top"
+              [orientation]="'horizontal'"
+              [align]="'end'"
+              [markers]="{ width: 50, height: 3 }"
+            >
+            </kendo-chart-legend>
+            <kendo-chart-series>
+              <kendo-chart-series-item
+                type="scatterLine"
+                name="Engaged Users"
+                [data]="data"
+                color="#ED9F22"
+                [markers]="{
+                  visible: showUsersMarkers,
+                  type: 'circle',
+                  background: '#ED9F22'
+                }"
+                [tooltip]="{ visible: true, format: '{1}' }"
+                yField="value"
+                xField="Date"
+              >
+              </kendo-chart-series-item>
+              <kendo-chart-series-item
+                type="scatterLine"
+                name="Completes"
+                [data]="data2"
+                color="#7CB342"
+                [markers]="{
+                  visible: showCompletesMarkers,
+                  type: 'circle',
+                  background: '#7CB342'
+                }"
+                [tooltip]="{ visible: true, format: '{1}' }"
+                yField="value"
+                xField="Date"
+              >
+              </kendo-chart-series-item>
+              <kendo-chart-series-item
+                type="scatterLine"
+                name="SQLs"
+                [data]="data3"
+                color="#B31F5F"
+                [markers]="{
+                  visible: showSqlsMarkers,
+                  type: 'circle',
+                  background: '#B31F5F'
+                }"
+                [tooltip]="{ visible: true, format: '{1}' }"
+                yField="value"
+                xField="Date"
+              >
+              </kendo-chart-series-item>
+              <kendo-chart-series-item
+                type="scatterLine"
+                name="MQLs"
+                [data]="data4"
+                color="#0B4569"
+                [markers]="{
+                  visible: showMqlsMarkers,
+                  type: 'circle',
+                  background: '#0B4569'
+                }"
+                [tooltip]="{ visible: true, format: '{1}' }"
+                yField="value"
+                xField="Date"
+              >
+              </kendo-chart-series-item>
+            </kendo-chart-series>
+            <kendo-chart-x-axis>
+              <kendo-chart-x-axis-item
+                [baseUnit]="baseUnit"
+                [min]="minDate"
+                [max]="maxDate"
+                [majorUnit]="1"
+              >
+                <kendo-chart-x-axis-item-labels [format]="labelFormat">
+                </kendo-chart-x-axis-item-labels>
+              </kendo-chart-x-axis-item>
+            </kendo-chart-x-axis>
+          </kendo-chart>
+
+          <button (click)="onUpdateChart()" class="btn-update">Update Chart</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

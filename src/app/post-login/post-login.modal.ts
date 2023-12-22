@@ -12,10 +12,10 @@ export interface StandardReportsRowData {
   reportName: string[];
   reportFrequency: string;
   addedOn: Date;
-  assessmentName?: string,
-  reportPeriod? : string,
-  fileType?: string,
-  createBy? : string
+  assessmentName?: string;
+  reportPeriod?: string;
+  fileType?: string;
+  createBy?: string;
 }
 
 export interface CustomReportRowData {
@@ -23,9 +23,9 @@ export interface CustomReportRowData {
   description?: string;
   reportPeriod: DateRange;
   addedOn: Date;
-  assessmentName?: string,
-  fileType?: string,
-  createBy? : string
+  assessmentName?: string;
+  fileType?: string;
+  createBy?: string;
 }
 
 export interface LeadRoutingRowData {
@@ -40,20 +40,21 @@ export interface LeadRoutingRowData {
 
 export interface UserData {
   email: string;
-  firstName: string,
-  lastName: string,
-  listName: string
+  firstName: string;
+  lastName: string;
+  listName: string;
   locations: { name: string }[];
 }
 
 export interface DashboardCard {
-  title: string,
-  subTitle: string,
-  count: number,
+  title: string;
+  subTitle: string;
+  count: number;
   upDowns: {
-    count: number,
-    percentage: number
-  },
-  prevDays: number,
-  rate: string
+    status: string,
+    count: number;
+    percentage: number;
+  };
+  prevDays: number;
+  rate: string;
 }
