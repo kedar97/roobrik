@@ -25,7 +25,6 @@ import { IndicatorsModule } from '@progress/kendo-angular-indicators';
     InputsModule,
     LabelModule,
     IndicatorsModule
-
   ],
   exports: [
     NavigationModule,

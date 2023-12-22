@@ -24,7 +24,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    
+
   ],
   exports: [
     FooterComponent,
