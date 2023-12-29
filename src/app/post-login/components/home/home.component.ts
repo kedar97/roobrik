@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DashboardCard } from '../../post-login.modal';
 import { BaseUnit, ChartComponent } from '@progress/kendo-angular-charts';
@@ -15,18 +15,44 @@ export class HomeComponent {
   showCompletesMarkers: boolean = false;
   showSqlsMarkers: boolean = false;
   showMqlsMarkers: boolean = false;
-
   isLoading: boolean = true;
+
+  range = { start: null, end: null };
+  dateRangeList: Array<string> = ["Yesterday","Last 7 days","Last 30 days","Last 90 days","Year to date","Custom range"];
+  selectedRangeOption: string = 'Last 30 days';
+  selectedRange:string ='';
+
+  baseUnit : BaseUnit = 'weeks';
+  labelFormat:string ='{0:MMM dd}';
+  totalLocations: number;
+
+  startDate:Date;
+  endDate:string;
+  today:Date;
+  formattedStart:string;
+  formattedEnd :string;
+  lastSelectedItem:string='';
+
+  firstname = 'Jonathan';
+  minDate : Date;
+  maxDate : Date;
+
+  valueChangedLocation : boolean = true;
+  valueChangedAssesments : boolean = true;
+  isLocationDropdownOpen : boolean  = false;
+  isAssesmentsDropdownOpen : boolean  = false;
+  locationWidth : number;
+  tagWidth : any;
+  dropdownWidth : any;
+  totalWidth : any;
+  maxDisplayCount : number;
+  storedRange = {start:null,end:null};
 
   form = this.fb.group({
     location: [''],
     assessment: [''],
     dates: [''],
   });
-
-  firstname = 'Jonathan';
-  minDate = new Date(2022, 11, 1);
-  maxDate = new Date(2023, 5, 1);
 
   dataLocations: any[] = [
     {
@@ -109,7 +135,7 @@ export class HomeComponent {
     },
   ];
 
-  data: any = [
+  engagedUsersdata: any = [
     {
       value: 10,
       Date: new Date(2022, 11, 1),
@@ -139,12 +165,28 @@ export class HomeComponent {
       Date: new Date(2023, 5, 1),
     },
     {
-      value: 4,
-      Date: new Date(2025, 5, 1),
+      value: 50,
+      Date: new Date(2023, 10, 10),
+    },
+    {
+      value: 20,
+      Date: new Date(2023, 10, 25),
+    },
+    {
+      value: 12,
+      Date: new Date(2023, 10, 28),
+    },
+    {
+      value: 80,
+      Date: new Date(2023, 11, 3),
+    },
+    {
+      value: 46,
+      Date: new Date(2023, 11, 15),
     },
   ];
 
-  data2: any = [
+  completesData: any = [
     {
       value: 29,
       Date: new Date(2022, 11, 1),
@@ -173,9 +215,29 @@ export class HomeComponent {
       value: 59,
       Date: new Date(2023, 5, 1),
     },
+    {
+      value: 55,
+      Date: new Date(2023, 10, 3),
+    },
+    {
+      value: 23,
+      Date: new Date(2023, 10, 26),
+    },
+    {
+      value: 2,
+      Date: new Date(2023, 10, 18),
+    },
+    {
+      value: 0,
+      Date: new Date(2023, 11, 15),
+    },
+    {
+      value: 17,
+      Date: new Date(2023, 11, 31),
+    },
   ];
 
-  data3: any = [
+  sqlsData: any = [
     {
       value: 42,
       Date: new Date(2022, 11, 1),
@@ -204,9 +266,29 @@ export class HomeComponent {
       value: 69,
       Date: new Date(2023, 5, 1),
     },
+    {
+      value: 22,
+      Date: new Date(2023, 10, 17),
+    },
+    {
+      value: 6,
+      Date: new Date(2023, 10, 22),
+    },
+    {
+      value: 19,
+      Date: new Date(2023, 10, 25),
+    },
+    {
+      value: 15,
+      Date: new Date(2023, 11, 16),
+    },
+    {
+      value: 6,
+      Date: new Date(2023, 11, 19),
+    },
   ];
 
-  data4: any = [
+  mqlsData: any = [
     {
       value: 55,
       Date: new Date(2022, 11, 1),
@@ -235,44 +317,284 @@ export class HomeComponent {
       value: 80,
       Date: new Date(2023, 5, 1),
     },
+    {
+      value: 30,
+      Date: new Date(2023, 10, 17),
+    },
+    {
+      value: 15,
+      Date: new Date(2023, 10, 20),
+    },
+    {
+      value: 50,
+      Date: new Date(2023, 10, 22),
+    },
+    {
+      value: 12,
+      Date: new Date(2023, 11, 10),
+    },
+    {
+      value: 23,
+      Date: new Date(2023, 11, 15),
+    },
   ];
-
-  public baseUnit: BaseUnit = 'months';
-  public labelFormat: string = 'MMM';
-  totalLocations: number;
-
-  tagMapper(tags: any[]): any[] {
-    this.totalLocations = this.dataLocations[0].items.length;
-    const maxDisplayCount = 2;
-    if (tags.length <= maxDisplayCount) {
-      return tags;
-    } else if (tags.length > this.totalLocations) {
-      const allLocations = `All locations`;
-      return [allLocations];
-    } else {
-      const displayedTags = tags.slice(0, maxDisplayCount);
-      const additionalCount = tags.length - maxDisplayCount;
-
-      const countString = `+${additionalCount}`;
-      return [...displayedTags, countString];
-    }
-  }
 
   ngOnInit() {
     setTimeout(() => {
       this.isLoading = false;
-    }, 4000);
+    }, 100);
+    this.getDefaultDateRange();
   }
 
-  onUpdateChart() {
-    this.minDate = new Date(2022, 11, 1);
-    this.maxDate = new Date(2023, 12, 10);
-    this.cdr.detectChanges();
-    (this.chart as any).refresh();
+  getDefaultDateRange(){
+    this.today = new Date();
+    this.endDate = this.today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const startRange = new Date(this.today);
+    startRange.setDate(this.today.getDate() - 30);  
+    this.startDate = startRange;
+    const formattedStart = startRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    this.selectedRange = `${formattedStart} - ${this.endDate}`;
+    this.minDate = this.startDate;
+    this.maxDate = new Date(this.endDate);
+  }
+
+  isLocationTree : boolean = false;
+  isAssessmentTree : boolean = false;
+
+  tagMapper(tags:any[]){
+    const locationTagWidth = 90.25;
+    const assessmentTagWidth = 105.56;
+    const totalLocations = this.dataLocations[0].items.length;
+    const totalAssessments = this.dataAssesments[0].items.length;
+    const elementWidth = document.querySelector('.k-input-values')?.getBoundingClientRect();
+    this.dropdownWidth = elementWidth?.width;
+    const tag = document.querySelector('.k-chip')?.getBoundingClientRect();
+    this.tagWidth = tag?.width;
+    this.totalWidth = tag?.width * tags.length ;    
+
+    if(this.isLocationTree){
+      if(((this.dropdownWidth - this.totalWidth) - (tags.length * 14)) < this.tagWidth && tags.length < totalLocations){
+        const displayedTags = tags.slice(0,this.maxDisplayCount);
+        const additionalCount = tags.length - this.maxDisplayCount;
+        const countString = `+${additionalCount}`;
+        return additionalCount > 0 ? [...displayedTags,countString] : [...displayedTags];
+      }
+      else if(tags.length > totalLocations){
+        this.maxDisplayCount = Math.floor((this.dropdownWidth / (this.tagWidth ? this.tagWidth : locationTagWidth)) - 1);
+        this.maxDisplayCount = this.maxDisplayCount >=3 ? 2 : this.maxDisplayCount;
+        const allLocations = `All locations`;
+        return [allLocations];
+      }
+      else{
+        this.maxDisplayCount = tags.length;
+        return tags;
+      }
+    }
+    else if(this.isAssessmentTree){
+      if(((this.dropdownWidth - this.totalWidth) - (tags.length * 14)) < this.tagWidth && tags.length < totalAssessments){
+        const displayedTags = tags.slice(0,this.maxDisplayCount);
+        const additionalCount = tags.length - this.maxDisplayCount;
+        const countString = `+${additionalCount}`;
+        return additionalCount > 0 ? [...displayedTags,countString] : [...displayedTags];
+      }
+      else if(tags.length > totalAssessments){
+        this.maxDisplayCount = Math.floor((this.dropdownWidth / (this.tagWidth ? this.tagWidth : assessmentTagWidth)) - 1);
+        this.maxDisplayCount = this.maxDisplayCount >=3 ? 2 : this.maxDisplayCount;
+        const allAssessments = `All assessments`;
+        return [allAssessments];
+      }
+      else{
+        this.maxDisplayCount = tags.length;
+        return tags;
+      }
+    }
+    else{
+      return tags;
+    }
   }
 
   public onLegendItemHover(e: any): void {
-    console.log('e', e);
     e.sender.showTooltip((point) => point.index === e.pointIndex);
+  }
+
+  onDateRangeChange(e: any) {
+    this.range = e;
+    const startRange = new Date(this.range.start);
+    const endRange = new Date(this.range.end);
+    this.startDate = startRange;
+    this.formattedStart = startRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    this.formattedEnd = endRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  onDateRangeSave(){
+    this.selectedRange = `${this.formattedStart} - ${this.formattedEnd}`;
+    this.selectedRangeOption = '';
+    this.storedRange = this.range;
+    this.range = { start: null, end: null };
+  }
+
+  getDateRange(day:number,yearsToDate?:string){
+    if(yearsToDate){
+      const startOfYear = new Date(this.today.getFullYear(), 0, 1);
+      const yearStartDate = startOfYear.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      this.startDate = startOfYear;
+      this.selectedRange = `${yearStartDate} - ${this.endDate}`;
+    }
+    else{
+      const startRange = new Date(this.today);
+      startRange.setDate(this.today.getDate()-day);  
+      const formattedStart = startRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      this.startDate = startRange;
+      this.selectedRange = `${formattedStart} - ${this.endDate}`;
+    }
+  }
+
+  onDropdownChange(value: any): void {
+    this.lastSelectedItem = this.selectedRangeOption;
+    this.selectedRangeOption = value;
+    switch(value){
+      case 'Yesterday':
+        this.getDateRange(1);
+        break;
+      case 'Last 7 days':
+        this.getDateRange(7);
+        break;
+      case 'Last 30 days':
+        this.getDateRange(30);
+        break;
+      case 'Last 90 days':
+        this.getDateRange(90);
+        break;
+      case 'Year to date':
+        this.getDateRange(1,'Years to date');
+        break;
+      default:
+        break;
+    }
+  }
+
+  onSubmit(){
+    this.minDate = new Date(this.startDate);
+    this.maxDate = new Date(this.selectedRange.split('-')[1]);
+
+    let count = 0;
+    this.engagedUsersdata.map((data) => { 
+      if(data.Date >=  this.minDate && data.Date <= this.maxDate) {
+        console.log("data.date", data.date);
+        count += data.value;
+      }
+    });
+    this.cardData[0].count = count;
+
+    switch (this.selectedRangeOption){
+      case 'Yesterday':
+        this.baseUnit = 'days';
+        this.labelFormat ='{0:MMM dd}';
+        break;
+      case 'Last 7 days':
+        this.baseUnit = 'days';
+        this.labelFormat ='{0:MMM dd}';
+        break;
+      case 'Last 30 days':
+        this.baseUnit = 'weeks';
+        this.labelFormat ='{0:MMM dd}';
+        break;
+      case 'Last 90 days':
+        this.baseUnit = 'months';
+        this.labelFormat ='MMM';
+        break;
+      case 'Year to date':
+        this.baseUnit = 'months';
+        this.labelFormat ='MMM';
+        break;
+      case '':
+        const timeDifference = this.storedRange.end - this.storedRange.start;   
+        const daysDifference = timeDifference / (1000 * 60 * 60 * 24) + 1;
+        const yearsDifference = this.storedRange.end.getFullYear() - this.storedRange.start.getFullYear();
+
+        if(daysDifference <= 15 && yearsDifference == 0){
+          this.baseUnit = 'days';
+          this.labelFormat ='{0:MMM dd}';
+        }
+        else if (daysDifference > 15 && daysDifference <= 31 && yearsDifference == 0){
+          this.baseUnit = 'weeks';
+          this.labelFormat ='{0:MMM dd}';
+        }
+        else if( daysDifference > 31 && daysDifference <= 366 && yearsDifference == 0 ){
+          this.baseUnit = 'months';
+          this.labelFormat ='MMM';
+        }
+        else if(yearsDifference > 0){
+          this.baseUnit = 'years';
+          this.labelFormat ='yyyy';
+        }
+        else{
+          this.baseUnit = 'weeks';
+          this.labelFormat ='{0:MMM dd}';
+        }
+        break;
+      default:
+        this.baseUnit = 'weeks';
+        this.labelFormat ='{0:MMM dd}';
+        break;
+    }
+  }
+
+  onReset(){
+    this.selectedRangeOption = 'Last 30 days';
+    this.getDefaultDateRange();
+  }
+
+  onCancel(){
+    this.selectedRangeOption = this.lastSelectedItem;
+    this.storedRange = this.range;
+    this.range = { start: null, end: null };
+  }
+
+  // FOR DEFAULT STATE OF MULTISELECT TREE //
+  valueChange(value : any, type : string): void {
+    if(value.length > 0){
+      if(type === 'location'){
+        this.valueChangedLocation = false;
+        this.isLocationDropdownOpen = false; 
+      }
+      else if(type === 'assessment'){
+        this.valueChangedAssesments = false;
+        this.isAssesmentsDropdownOpen  = false
+      }
+    }
+    else{
+      if(type === 'location'){
+        this.valueChangedLocation = true;
+        this.isLocationDropdownOpen = true; 
+      }
+      else if(type === 'assessment'){
+        this.valueChangedAssesments = true;
+        this.isAssesmentsDropdownOpen = true
+      }   
+    }
+  }
+
+  //  Location Dropdown Open-Close
+  open(type:string){
+      if(type ==='location'){
+        this.isLocationDropdownOpen = true; 
+        this.isLocationTree = true;
+      }
+      else{
+        this.isAssesmentsDropdownOpen=true;
+        this.isAssessmentTree = true;
+      }
+  }
+
+  close(type:string){
+    if(type ==='location'){
+      this.isLocationDropdownOpen = false; 
+      this.isLocationTree = false;
+    }
+    else {
+      this.isAssesmentsDropdownOpen=false;
+      this.isAssessmentTree = false;
+    }
   }
 }

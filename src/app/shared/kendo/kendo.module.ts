@@ -9,6 +9,7 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 
 @NgModule({
   declarations: [],
@@ -24,7 +25,8 @@ import { IndicatorsModule } from '@progress/kendo-angular-indicators';
     DialogsModule,
     InputsModule,
     LabelModule,
-    IndicatorsModule
+    IndicatorsModule,
+    DropDownsModule
   ],
   exports: [
     NavigationModule,
@@ -37,7 +39,8 @@ import { IndicatorsModule } from '@progress/kendo-angular-indicators';
     DialogsModule,
     InputsModule,
     LabelModule,
-    IndicatorsModule
+    IndicatorsModule,
+    DropDownsModule
 
   ]
 })

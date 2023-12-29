@@ -17,12 +17,17 @@
               childrenField="items"
               textField="text"
               valueField="text"
-              [tagMapper]="tagMapper.bind(this)"
               [filterable]="true"
               class="dropdown"
-            >
-            </kendo-multiselecttree>
+              [ngClass]="valueChangedLocation ? 'location':''"
+              [class.location-open]="isLocationDropdownOpen"
+              (open)="open('location')"
+              (close)="close('location')"
+              (valueChange)="valueChange($event,'location')"
+              [tagMapper]="tagMapper.bind(this)"
+            ></kendo-multiselecttree>
           </div>
+
           <div class="d-flex flex-column input input-assessment">
             <kendo-label class="label-text"> Assessment(s) </kendo-label>
             <kendo-multiselecttree
@@ -32,22 +37,51 @@
               valueField="text"
               [filterable]="true"
               class="dropdown"
+              [ngClass]="valueChangedAssesments?'assessment':''"
+              [class.assessment-open]="isAssesmentsDropdownOpen"
+              (open)="open('assessment')"
+              (close)="close('assessment')"
+              [tagMapper]="tagMapper.bind(this)"
+              (valueChange)="valueChange($event,'assessment')"
             >
             </kendo-multiselecttree>
           </div>
+
           <div class="d-flex flex-column input input-date">
             <kendo-label class="label-text"> Dates(s) </kendo-label>
-            <div class="date-section d-flex">
-              <!-- <label class="active-menu">Last 30 Days</label> -->
-              <!-- <div class="active-date">
-              <span>Oct30 - 29Nov</span>
-              <span class="k-icon k-font-icon k-i-calendar"></span>
-            </div> -->
+            <kendo-dropdownlist 
+            [data]="dateRangeList" 
+            class="date-section"
+            [value]="selectedRangeOption" 
+            (valueChange)="onDropdownChange($event)"
+            >
+            <ng-template kendoDropDownListValueTemplate let-dataItem>
+              <div class="date-range-summary d-flex justify-content-between align-items-center">
+                <p class="summary-tag" *ngIf="(dataItem != 'Custom range' && dataItem != '' ) ">{{dataItem}}</p>
+                <p class="summary-range" style="margin-left:auto">{{selectedRange}}</p>
+              </div>
+            </ng-template>
+            </kendo-dropdownlist>
+
+            <div class="date-range-picker" #dateRangePicker *ngIf="selectedRangeOption === 'Custom range'">
+              <kendo-multiviewcalendar kendoDateRangeSelection [selectionRange]="range" (selectionRangeChange)="onDateRangeChange($event)" calendarRef> 
+                <ng-template kendoCalendarHeaderTitleTemplate let-title>
+                  <div class="calender-heading">
+                    <p class="margin-left-51 min-width">{{title.split('-')[0]}}</p>
+                    <p class="min-width">{{title.split('- ')[1]}}</p>
+                  </div>
+
+                </ng-template>
+              </kendo-multiviewcalendar>
+              <div class="calender-buttons d-flex align-items-center justify-content-end">
+                <button class=" btn-cancle" (click)="onCancel()">Cancle</button>
+                <button class=" btn-save" (click)="onDateRangeSave()" [disabled]="range.end === null" [class.btn-disabled]="range.end === null">Save</button>
+              </div>
             </div>
           </div>
           <div class="buttons-container d-flex">
-            <button type="submit" class="btn btn-submit">Submit</button>
-            <button type="submit" class="btn btn-reset">
+            <button type="submit" class="btn btn-submit d-flex align-items-center" (click)="onSubmit()">Submit</button>
+            <button type="reset" class="btn btn-reset d-flex align-items-center" (click)="onReset()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -151,7 +185,7 @@
               <kendo-chart-series-item
                 type="scatterLine"
                 name="Engaged Users"
-                [data]="data"
+                [data]="engagedUsersdata"
                 color="#ED9F22"
                 [markers]="{
                   visible: showUsersMarkers,
@@ -166,7 +200,7 @@
               <kendo-chart-series-item
                 type="scatterLine"
                 name="Completes"
-                [data]="data2"
+                [data]="completesData"
                 color="#7CB342"
                 [markers]="{
                   visible: showCompletesMarkers,
@@ -181,7 +215,7 @@
               <kendo-chart-series-item
                 type="scatterLine"
                 name="SQLs"
-                [data]="data3"
+                [data]="sqlsData"
                 color="#B31F5F"
                 [markers]="{
                   visible: showSqlsMarkers,
@@ -196,7 +230,7 @@
               <kendo-chart-series-item
                 type="scatterLine"
                 name="MQLs"
-                [data]="data4"
+                [data]="mqlsData"
                 color="#0B4569"
                 [markers]="{
                   visible: showMqlsMarkers,
@@ -221,8 +255,6 @@
               </kendo-chart-x-axis-item>
             </kendo-chart-x-axis>
           </kendo-chart>
-
-          <button (click)="onUpdateChart()" class="btn-update">Update Chart</button>
         </div>
       </div>
     </div>

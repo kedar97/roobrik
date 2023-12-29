@@ -33,12 +33,14 @@ form {
 .dropdown {
   height: 40px;
   content: "All LOcations";
+  cursor: pointer;
 }
 
 .date-section {
   height: 40px;
   border-radius: 2px;
   background: #fff;
+  width: 100%;
 }
 
 .btn {
@@ -172,6 +174,7 @@ form {
   flex: 1;
   &-date {
     flex: 1.3;
+    position: relative;
   }
 }
 
@@ -222,4 +225,248 @@ p {
 
 .custom-gap-11 {
   gap: 11px;
+}
+
+// DATE DROPDOWNLIST AND DATE RANGE //
+::ng-deep .date-section{
+  .k-svg-i-caret-alt-down > svg {
+        display: none;
+  }
+    
+  .k-svg-i-caret-alt-down {
+    content: url('../../../../assets/images/calendar-icon.svg');
+    margin-right: 10px;
+  }
+
+  .k-icon-button{
+    margin-left: 2px;
+  }
+}
+
+// DROPDOWNLIST SELECTED ITEM //
+::ng-deep{
+  .k-list-content .k-list-item.k-selected{
+    background: #0B4569;
+  }
+}
+
+::ng-deep .date-range-picker{
+  .k-calendar{
+    border: none;
+
+    & .k-link{
+      font-size: 12px;
+      color: #858585;
+    }
+
+    & .k-calendar-td.k-selected .k-link{
+      background: #0B4569;
+    }
+  }
+
+  .k-calendar-header{
+    padding-top: 0px;
+  }
+    
+  .k-calendar-nav{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 94%;
+    color:#121212;
+  }
+    
+  .k-calendar-nav-today{
+    display: none;
+  }
+
+  .k-range-mid{
+    background: #F9F7F7;
+  }
+
+  .k-calendar-th{
+    color: #121212;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+  }
+}
+
+.margin-left-51{
+  margin-left: 51px;
+}
+
+.min-width{
+  min-width: 102px;
+}
+
+.date-range-picker{
+    position: absolute;
+    top: 65px;
+    z-index: 99;
+    background: #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    padding: 20px;
+}
+
+.calender-heading{
+  display:flex;
+  gap:135px; 
+  margin-top:0px;
+  width:100%;
+  font-family: 'Inter';
+  color: #121212;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.date-range-summary{
+  margin-top: -20px;
+}
+
+.summary-tag{
+  color: #1E1E1E;
+  font-family: 'Helvetica';
+  font-size: 12px;
+  font-weight: 400;
+  border-radius: 2px;
+  background: #E9E9E9;
+  padding: 5px 8px;
+  line-height: normal;
+}
+
+.summary-range{
+  color: #1E1E1E;
+  font-family: 'Helvetica';
+  font-size: 14px;
+  font-weight: 700;
+}
+
+// CALENDER BUTTONS //
+.calender-buttons{
+  margin-left: auto;
+  margin-top: 24px;
+  gap: 16px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.btn-save{
+  border-radius: 4px;
+  background: #0B4569;
+  color:  #FFF;
+  display: flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.btn-cancle{
+  color: #2B6789;
+  background: none;
+  border: none;
+  display: flex;
+  padding: 8px 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-disabled{
+  opacity: 0.5;
+}
+
+::ng-deep{
+  .k-multiselecttree .k-input-values{
+    gap: 0px;
+    cursor: pointer;
+  }
+  //LOCATION DROPDOWN
+  .location {
+    .k-input-values::before{
+      margin: 8px auto 12px 14px;
+      content:"All Location";
+      color: #1E1E1E;
+      font-family: 'Helvetica';
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .k-input-values::after{
+      content: url("../../../../assets/images/chevron-down-icon.svg");
+      margin-right: 14px;
+      margin-top: -5px;
+    }
+    &-open{
+      .k-input-values::after{
+        content: url("../../../../assets/images/up-arrow.svg");
+      }
+    }
+  }
+
+  // ASSESSMENT DROPDOWN
+  .assessment{
+      .k-input-values::before{
+        margin: 8px auto 12px 14px;
+        content:"All Asessments";
+        color: #1E1E1E;
+        font-family: 'Helvetica';
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .k-input-values::after{
+        content: url("../../../../assets/images/chevron-down-icon.svg");
+        margin-right: 14px;
+        margin-top: -5px;
+      }
+      &-open{
+        .k-input-values::after{
+          content: url("../../../../assets/images/up-arrow.svg");
+        }
+      }
+  }
+  .k-chip{
+    font-size: 12px;
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 14px;
+  }
+  .k-svg-i-x-circle{
+    width: 14px;
+  }
+  .k-svg-i-x {
+    margin-right: 10px;
+  }
+  .k-readonly {
+    display: none !important;
+  }
+
+  //  MULTISELECT DROPDOWN POPUP //
+  .k-treeview {
+      .k-checkbox:checked{
+        background-color: #0b4569 ;
+        border-color: #0b4569 ;
+      }
+      .k-checkbox:indeterminate{
+        background-image: none ;
+      }
+  }
+  .k-popup{
+    .k-input{
+      border: none;
+    }
+    .k-list-filter{
+      border-top: 2px solid #F6F6F6;
+      border-bottom: 2px solid #F6F6F6;
+    }
+  } 
+
+  @media (min-width :1450px) and (max-width:1600px) {
+    .k-chip{
+      margin-left: 5px;
+    }
+  }
 }
