@@ -55,6 +55,6 @@ export interface DashboardCard {
     count: number;
     percentage: number;
   };
-  prevDays: number;
+  prevDays: number | string;
   rate: string;
 }

@@ -8,45 +8,47 @@
       <app-loader></app-loader>
     </div>
     <div class="dashboard-container" *ngIf="!isLoading">
-      <div class="form-section">
-        <form [formGroup]="form" class="d-flex">
-          <div class="d-flex flex-column input input-location">
-            <kendo-label class="label-text"> Location(s) </kendo-label>
-            <kendo-multiselecttree
-              [kendoMultiSelectTreeHierarchyBinding]="dataLocations"
-              childrenField="items"
-              textField="text"
-              valueField="text"
-              [filterable]="true"
-              class="dropdown"
-              [ngClass]="valueChangedLocation ? 'location':''"
-              [class.location-open]="isLocationDropdownOpen"
-              (open)="open('location')"
-              (close)="close('location')"
-              (valueChange)="valueChange($event,'location')"
-              [tagMapper]="tagMapper.bind(this)"
-            ></kendo-multiselecttree>
-          </div>
+      <div class="grid-container">
+        <div class="d-flex flex-column input input-location">
+          <kendo-label class="label-text"> Location(s) </kendo-label>
+          <kendo-multiselecttree
+            #locationTree
+            [kendoMultiSelectTreeHierarchyBinding]="dataLocations"
+            childrenField="items"
+            textField="text"
+            valueField="text"
+            [filterable]="true"
+            class="dropdown"
+            [ngClass]="valueChangedLocation ? 'location':''"
+            [class.location-open]="isLocationDropdownOpen"
+            (open)="open('location')"
+            (close)="close('location')"
+            [tagMapper]="tagMapper.bind(this)"
+            (valueChange)="valueChange($event,'location')"
+          ></kendo-multiselecttree>
+        </div>
 
-          <div class="d-flex flex-column input input-assessment">
-            <kendo-label class="label-text"> Assessment(s) </kendo-label>
-            <kendo-multiselecttree
-              [kendoMultiSelectTreeHierarchyBinding]="dataAssesments"
-              childrenField="items"
-              textField="text"
-              valueField="text"
-              [filterable]="true"
-              class="dropdown"
-              [ngClass]="valueChangedAssesments?'assessment':''"
-              [class.assessment-open]="isAssesmentsDropdownOpen"
-              (open)="open('assessment')"
-              (close)="close('assessment')"
-              [tagMapper]="tagMapper.bind(this)"
-              (valueChange)="valueChange($event,'assessment')"
-            >
-            </kendo-multiselecttree>
-          </div>
+        <div class="d-flex flex-column input input-assessment">
+          <kendo-label class="label-text"> Assessment(s) </kendo-label>
+          <kendo-multiselecttree
+            #assessmentTree
+            [kendoMultiSelectTreeHierarchyBinding]="dataAssesments"
+            childrenField="items"
+            textField="text"
+            valueField="text"
+            [filterable]="true"
+            class="dropdown"
+            [ngClass]="valueChangedAssesments?'assessment':''"
+            [class.assessment-open]="isAssesmentsDropdownOpen"
+            (open)="open('assessment')"
+            (close)="close('assessment')"
+            [tagMapper]="tagMapper.bind(this)"
+            (valueChange)="valueChange($event,'assessment')"
+          >
+          </kendo-multiselecttree>
+        </div>
 
+        <div class="d-flex input-action-container">
           <div class="d-flex flex-column input input-date">
             <kendo-label class="label-text"> Dates(s) </kendo-label>
             <kendo-dropdownlist 
@@ -57,20 +59,20 @@
             >
             <ng-template kendoDropDownListValueTemplate let-dataItem>
               <div class="date-range-summary d-flex justify-content-between align-items-center">
-                <p class="summary-tag" *ngIf="(dataItem != 'Custom range' && dataItem != '' ) ">{{dataItem}}</p>
-                <p class="summary-range" style="margin-left:auto">{{selectedRange}}</p>
+                <p class="summary-tag">{{dataItem === '' ? 'Custom range' : dataItem}}</p>
+                <p class="summary-range">{{selectedRange}}</p>
               </div>
             </ng-template>
             </kendo-dropdownlist>
-
+  
             <div class="date-range-picker" #dateRangePicker *ngIf="selectedRangeOption === 'Custom range'">
-              <kendo-multiviewcalendar kendoDateRangeSelection [selectionRange]="range" (selectionRangeChange)="onDateRangeChange($event)" calendarRef> 
+              <kendo-multiviewcalendar kendoDateRangeSelection [selectionRange]="range" (selectionRangeChange)="onDateRangeSelect($event)" calendarRef> 
                 <ng-template kendoCalendarHeaderTitleTemplate let-title>
                   <div class="calender-heading">
-                    <p class="margin-left-51 min-width">{{title.split('-')[0]}}</p>
-                    <p class="min-width">{{title.split('- ')[1]}}</p>
+                    <p>{{title.split('-')[0]}}</p>
+                    <p>{{title.split('- ')[1]}}</p>
                   </div>
-
+  
                 </ng-template>
               </kendo-multiviewcalendar>
               <div class="calender-buttons d-flex align-items-center justify-content-end">
@@ -97,61 +99,60 @@
               Reset
             </button>
           </div>
-        </form>
-      </div>
+        </div>
 
-      <div class="card-section d-flex">
-        <div *ngFor="let card of cardData" class="card">
-          <div class="card_top">
-            <div class="card-title">{{ card.title }}</div>
-            <div class="card-subtitle">{{ card.subTitle }}</div>
-          </div>
-          <div class="card_mid d-flex">
-            <div class="card-count">{{ card.count }}</div>
-            <div class="card_mid-right">
-              <div
-                class="card-upDowns"
-                [ngClass]="
-                  card.upDowns.status === 'up' ? 'card-up' : 'card-down'
-                "
-              >
-                <i
-                  class="fa fa-caret-down card-downIcon"
-                  aria-hidden="true"
-                  *ngIf="card.upDowns.status === 'down'"
-                ></i>
-                <i
-                  class="fa fa-caret-up card-up"
-                  aria-hidden="true"
-                  *ngIf="card.upDowns.status === 'up'"
-                ></i>
-                {{ card.upDowns.count }} (
-                <i
-                  class="fa fa-caret-down card-downIcon"
-                  aria-hidden="true"
-                  *ngIf="card.upDowns.status === 'down'"
-                ></i>
-                <i
-                  class="fa fa-caret-up card-up"
-                  aria-hidden="true"
-                  *ngIf="card.upDowns.status === 'up'"
-                ></i>
-                {{ card.upDowns.percentage }}%)
-              </div>
-              <div class="card-prev">
-                from previous {{ card.prevDays }} days
+          <div *ngFor="let card of cardData; let i = index" class="card">
+            <div class="card_top">
+              <div class="card-title">{{ card.title }}</div>
+              <div class="card-subtitle">{{ card.subTitle }}</div>
+            </div>
+            <div class="card_mid d-flex">
+              <div class="card-count">{{ card.count }}</div>
+              <div class="card_mid-right">
+                <div
+                  class="card-upDowns"
+                  [ngClass]="
+                    card.upDowns.status === 'up' ? 'card-up' : 'card-down'
+                  "
+                >
+                  <i
+                    class="fa fa-caret-down card-downIcon"
+                    aria-hidden="true"
+                    *ngIf="card.upDowns.status === 'down'"
+                  ></i>
+                  <i
+                    class="fa fa-caret-up card-up"
+                    aria-hidden="true"
+                    *ngIf="card.upDowns.status === 'up'"
+                  ></i>
+                  {{ card.upDowns.count }} (
+                  <i
+                    class="fa fa-caret-down card-downIcon"
+                    aria-hidden="true"
+                    *ngIf="card.upDowns.status === 'down'"
+                  ></i>
+                  <i
+                    class="fa fa-caret-up card-up"
+                    aria-hidden="true"
+                    *ngIf="card.upDowns.status === 'up'"
+                  ></i>
+                  {{ card.upDowns.percentage }}%)
+                </div>
+                <div class="card-prev">
+                  from {{ card.prevDays }}
+                </div>
               </div>
             </div>
+            <div class="card_bot">
+              <div class="card-rate d-flex" 
+              [ngClass]="{ 'date-rate-bg-1': i === 0, 'date-rate-bg-2': i === 1, 'date-rate-bg-3': i === 2,'date-rate-bg-4': i === 3 }">{{ card.rate }}</div>
+            </div>
           </div>
-          <div class="card_bot">
-            <div class="card-rate d-flex">{{ card.rate }}</div>
-          </div>
-        </div>
       </div>
 
       <div class="chart_section">
         <div class="chart-header d-flex justify-content-between">
-          <p class="dateRange">Last 30 days: Oct 31 - Nov 29, 2023</p>
+          <p class="dateRange">{{chartDateTitle}}</p>
           <div class="chart-legends d-flex custom-gap-20">
             <div class="d-flex flex-column custom-gap-11 align-items-center">
               <p>Engaged Users</p>
@@ -172,7 +173,7 @@
           </div>
         </div>
         <div class="chart">
-          <kendo-chart (legendItemHover)="onLegendItemHover($event)">
+          <kendo-chart >
             <kendo-chart-legend
               [visible]="false"
               position="top"
@@ -185,16 +186,17 @@
               <kendo-chart-series-item
                 type="scatterLine"
                 name="Engaged Users"
-                [data]="engagedUsersdata"
+                [data]="engagedUsersData"
                 color="#ED9F22"
                 [markers]="{
-                  visible: showUsersMarkers,
+                  visible: false,
                   type: 'circle',
                   background: '#ED9F22'
                 }"
-                [tooltip]="{ visible: true, format: '{1}' }"
+                [tooltip]="{ visible: true, format: '{1} Engaged Users' }"
                 yField="value"
                 xField="Date"
+                [width]="2"
               >
               </kendo-chart-series-item>
               <kendo-chart-series-item
@@ -203,13 +205,14 @@
                 [data]="completesData"
                 color="#7CB342"
                 [markers]="{
-                  visible: showCompletesMarkers,
+                  visible: false,
                   type: 'circle',
                   background: '#7CB342'
                 }"
-                [tooltip]="{ visible: true, format: '{1}' }"
+                [tooltip]="{ visible: true, format: '{1} Completes' }"
                 yField="value"
                 xField="Date"
+                [width]="2"
               >
               </kendo-chart-series-item>
               <kendo-chart-series-item
@@ -218,13 +221,14 @@
                 [data]="sqlsData"
                 color="#B31F5F"
                 [markers]="{
-                  visible: showSqlsMarkers,
+                  visible: false,
                   type: 'circle',
                   background: '#B31F5F'
                 }"
-                [tooltip]="{ visible: true, format: '{1}' }"
+                [tooltip]="{ visible: true, format: '{1} SQLs' }"
                 yField="value"
                 xField="Date"
+                [width]="2"
               >
               </kendo-chart-series-item>
               <kendo-chart-series-item
@@ -233,13 +237,14 @@
                 [data]="mqlsData"
                 color="#0B4569"
                 [markers]="{
-                  visible: showMqlsMarkers,
+                  visible: false,
                   type: 'circle',
                   background: '#0B4569'
                 }"
-                [tooltip]="{ visible: true, format: '{1}' }"
+                [tooltip]="{ visible: true, format: '{1} MQLs' }"
                 yField="value"
                 xField="Date"
+                [width]="2"
               >
               </kendo-chart-series-item>
             </kendo-chart-series>

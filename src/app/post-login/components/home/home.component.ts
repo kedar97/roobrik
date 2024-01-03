@@ -1,52 +1,67 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DashboardCard } from '../../post-login.modal';
 import { BaseUnit, ChartComponent } from '@progress/kendo-angular-charts';
+import { MultiSelectComponent, MultiSelectTreeComponent } from '@progress/kendo-angular-dropdowns';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor(private fb: FormBuilder, private cdr: ChangeDetectorRef) {}
+  constructor(private fb: FormBuilder) {}
 
   @ViewChild(ChartComponent) chart: any;
-  showUsersMarkers: boolean = false;
-  showCompletesMarkers: boolean = false;
-  showSqlsMarkers: boolean = false;
-  showMqlsMarkers: boolean = false;
+  @ViewChild('locationTree') locationTree : MultiSelectTreeComponent;
+  @ViewChild('assessmentTree') assessmentTree : MultiSelectTreeComponent;
+
   isLoading: boolean = true;
-
   range = { start: null, end: null };
-  dateRangeList: Array<string> = ["Yesterday","Last 7 days","Last 30 days","Last 90 days","Year to date","Custom range"];
-  selectedRangeOption: string = 'Last 30 days';
-  selectedRange:string ='';
-
+  dateRangeList : Array<string> = [
+    "Yesterday",
+    "Last 7 days",
+    "Last 30 days",
+    "Last 90 days",
+    "Year to date",
+    "Custom range"
+  ];
+  selectedRangeOption : string = 'Last 30 days';
+  selectedRange : string ='';
   baseUnit : BaseUnit = 'weeks';
-  labelFormat:string ='{0:MMM dd}';
-  totalLocations: number;
+  labelFormat : string ='{0:MMM dd}';
 
-  startDate:Date;
-  endDate:string;
-  today:Date;
-  formattedStart:string;
-  formattedEnd :string;
-  lastSelectedItem:string='';
+  startDate : Date;
+  endDate : string;
+  today : Date;
+  formattedStart : string;
+  formattedEnd : string;
+  lastSelectedItem : string='';
 
   firstname = 'Jonathan';
   minDate : Date;
   maxDate : Date;
 
+  isLocationTree : boolean = false;
+  isAssessmentTree : boolean = false;
+  selectedLocations = [];
+  selectedAssessments = [];
+
   valueChangedLocation : boolean = true;
   valueChangedAssesments : boolean = true;
   isLocationDropdownOpen : boolean  = false;
   isAssesmentsDropdownOpen : boolean  = false;
-  locationWidth : number;
   tagWidth : any;
   dropdownWidth : any;
-  totalWidth : any;
+  totalWidth : number = 0;
   maxDisplayCount : number;
+  maxAssessmentDisplayCount : number;
   storedRange = {start:null,end:null};
+  engagedUserCount = 0;
+  completesCount = 0;
+  sqlCounts = 0;
+  mqlConts = 0;
+  chartDateTitle ='';
+  cardPrevDaysText = `previous ${this.selectedRangeOption.substring(5)}`;
 
   form = this.fb.group({
     location: [''],
@@ -58,12 +73,12 @@ export class HomeComponent {
     {
       text: 'Select all',
       items: [
-        { text: 'Location 1' },
-        { text: 'Location 2' },
-        { text: 'Location 3' },
-        { text: 'Location 4' },
-        { text: 'Location 5' },
-        { text: 'Location 6' },
+        { text: 'Cedarhurst Villages' },
+        { text: 'Brightview Bridgewater' },
+        { text: 'Fort Mill' },
+        { text: 'Highpoint at Cape Coral' },
+        { text: 'Belmont Village' },
+        { text: 'rightview Meadows' },
       ],
     },
   ];
@@ -88,13 +103,13 @@ export class HomeComponent {
     {
       title: 'Engaged Users',
       subTitle: 'Assessment starts',
-      count: 500,
+      count: 50,
       upDowns: {
         status: 'down',
         count: 184,
         percentage: 2.7,
       },
-      prevDays: 30,
+      prevDays: this.cardPrevDaysText,
       rate: '60% start rate',
     },
     {
@@ -106,7 +121,7 @@ export class HomeComponent {
         count: 284,
         percentage: 3.7,
       },
-      prevDays: 30,
+      prevDays: this.cardPrevDaysText,
       rate: '60% start rate',
     },
     {
@@ -118,7 +133,7 @@ export class HomeComponent {
         count: 184,
         percentage: 2.7,
       },
-      prevDays: 30,
+      prevDays: this.cardPrevDaysText,
       rate: '50% start rate',
     },
     {
@@ -130,12 +145,12 @@ export class HomeComponent {
         count: 284,
         percentage: 3.7,
       },
-      prevDays: 30,
+      prevDays: this.cardPrevDaysText,
       rate: '60% start rate',
     },
   ];
 
-  engagedUsersdata: any = [
+  engagedUsersData: any = [
     {
       value: 10,
       Date: new Date(2022, 11, 1),
@@ -344,13 +359,15 @@ export class HomeComponent {
       this.isLoading = false;
     }, 100);
     this.getDefaultDateRange();
+    this.setCardCountsValue(this.minDate,this.maxDate);
+    this.chartDateTitle = `${this.selectedRangeOption}: ${this.selectedRange}`;
   }
 
   getDefaultDateRange(){
     this.today = new Date();
     this.endDate = this.today.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
     const startRange = new Date(this.today);
-    startRange.setDate(this.today.getDate() - 30);  
+    startRange.setDate(this.today.getDate() - 30);
     this.startDate = startRange;
     const formattedStart = startRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     this.selectedRange = `${formattedStart} - ${this.endDate}`;
@@ -358,66 +375,31 @@ export class HomeComponent {
     this.maxDate = new Date(this.endDate);
   }
 
-  isLocationTree : boolean = false;
-  isAssessmentTree : boolean = false;
-
   tagMapper(tags:any[]){
-    const locationTagWidth = 90.25;
-    const assessmentTagWidth = 105.56;
-    const totalLocations = this.dataLocations[0].items.length;
-    const totalAssessments = this.dataAssesments[0].items.length;
-    const elementWidth = document.querySelector('.k-input-values')?.getBoundingClientRect();
-    this.dropdownWidth = elementWidth?.width;
-    const tag = document.querySelector('.k-chip')?.getBoundingClientRect();
-    this.tagWidth = tag?.width;
-    this.totalWidth = tag?.width * tags.length ;    
+    let allChipsLength = 0;
+    const elementWidth = document.querySelector('.k-input-md')?.getBoundingClientRect();
+    const dropdownWidth = elementWidth?.width - 40; //35 is for cross button
 
-    if(this.isLocationTree){
-      if(((this.dropdownWidth - this.totalWidth) - (tags.length * 14)) < this.tagWidth && tags.length < totalLocations){
-        const displayedTags = tags.slice(0,this.maxDisplayCount);
-        const additionalCount = tags.length - this.maxDisplayCount;
-        const countString = `+${additionalCount}`;
-        return additionalCount > 0 ? [...displayedTags,countString] : [...displayedTags];
+    let newTags = [];
+    for(let i = 0; i < tags.length; i++) {
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+
+      context.font = '12px Helvetica Neue';
+      allChipsLength += context.measureText(tags[i]?.text).width + 33;  //33 for padding and cross button
+
+      if(dropdownWidth > allChipsLength) {
+        newTags.push(tags[i]);
       }
-      else if(tags.length > totalLocations){
-        this.maxDisplayCount = Math.floor((this.dropdownWidth / (this.tagWidth ? this.tagWidth : locationTagWidth)) - 1);
-        this.maxDisplayCount = this.maxDisplayCount >=3 ? 2 : this.maxDisplayCount;
-        const allLocations = `All locations`;
-        return [allLocations];
-      }
-      else{
-        this.maxDisplayCount = tags.length;
-        return tags;
+      else {
+        newTags.push(`+${tags.length - i}`);
+        break;
       }
     }
-    else if(this.isAssessmentTree){
-      if(((this.dropdownWidth - this.totalWidth) - (tags.length * 14)) < this.tagWidth && tags.length < totalAssessments){
-        const displayedTags = tags.slice(0,this.maxDisplayCount);
-        const additionalCount = tags.length - this.maxDisplayCount;
-        const countString = `+${additionalCount}`;
-        return additionalCount > 0 ? [...displayedTags,countString] : [...displayedTags];
-      }
-      else if(tags.length > totalAssessments){
-        this.maxDisplayCount = Math.floor((this.dropdownWidth / (this.tagWidth ? this.tagWidth : assessmentTagWidth)) - 1);
-        this.maxDisplayCount = this.maxDisplayCount >=3 ? 2 : this.maxDisplayCount;
-        const allAssessments = `All assessments`;
-        return [allAssessments];
-      }
-      else{
-        this.maxDisplayCount = tags.length;
-        return tags;
-      }
-    }
-    else{
-      return tags;
-    }
+    return newTags;
   }
 
-  public onLegendItemHover(e: any): void {
-    e.sender.showTooltip((point) => point.index === e.pointIndex);
-  }
-
-  onDateRangeChange(e: any) {
+  onDateRangeSelect(e: any) {
     this.range = e;
     const startRange = new Date(this.range.start);
     const endRange = new Date(this.range.end);
@@ -435,14 +417,14 @@ export class HomeComponent {
 
   getDateRange(day:number,yearsToDate?:string){
     if(yearsToDate){
-      const startOfYear = new Date(this.today.getFullYear(), 0, 1);
-      const yearStartDate = startOfYear.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      this.startDate = startOfYear;
+      const beginningOfYear = new Date(this.today.getFullYear(), 0, 1);
+      const yearStartDate = beginningOfYear.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      this.startDate = beginningOfYear;
       this.selectedRange = `${yearStartDate} - ${this.endDate}`;
     }
     else{
       const startRange = new Date(this.today);
-      startRange.setDate(this.today.getDate()-day);  
+      startRange.setDate(this.today.getDate()-day);
       const formattedStart = startRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       this.startDate = startRange;
       this.selectedRange = `${formattedStart} - ${this.endDate}`;
@@ -473,20 +455,65 @@ export class HomeComponent {
     }
   }
 
+  setCardCountsValue(minDate : Date,maxDate : Date){
+    this.engagedUsersData.map((data) => {
+      if(data.Date >= minDate && data.Date <= maxDate) {
+        this.engagedUserCount += data.value;
+      }
+    });
+
+    this.completesData.map((data) => {
+      if(data.Date >= minDate && data.Date <= maxDate) {
+        this.completesCount += data.value;
+      }
+    });
+
+    this.sqlsData.map((data) => {
+      if(data.Date >= minDate && data.Date <= maxDate) {
+        this.sqlCounts += data.value;
+      }
+    });
+
+    this.mqlsData.map((data) => {
+      if(data.Date >= minDate && data.Date <= maxDate) {
+        this.mqlConts += data.value;
+      }
+    });
+
+    this.cardData[0].count = this.engagedUserCount;
+    this.cardData[1].count = this.completesCount;
+    this.cardData[2].count = this.sqlCounts;
+    this.cardData[3].count = this.mqlConts;
+  }
+
   onSubmit(){
     this.minDate = new Date(this.startDate);
     this.maxDate = new Date(this.selectedRange.split('-')[1]);
+    this.chartDateTitle = `${this.selectedRangeOption === '' ? 'Custom range' : this.selectedRangeOption}: ${this.selectedRange} `;
 
-    let count = 0;
-    this.engagedUsersdata.map((data) => { 
-      if(data.Date >=  this.minDate && data.Date <= this.maxDate) {
-        console.log("data.date", data.date);
-        count += data.value;
+    this.setCardCountsValue(this.minDate,this.maxDate);
+
+    this.cardData.forEach(card =>{
+      if(this.selectedRangeOption === ''){
+        card.prevDays = this.selectedRange
       }
-    });
-    this.cardData[0].count = count;
+      else if(this.selectedRangeOption === 'Year to date'){
+        card.prevDays = this.selectedRange
+      }
+      else if(this.selectedRangeOption === 'Yesterday'){
+        card.prevDays = 'yesterday'
+      }
+      else{
+        const startIndex = this.selectedRangeOption.indexOf(' ') + 1;
+        card.prevDays = ` previous ${this.selectedRangeOption.substring(startIndex)}`;
+      }
+    })
 
-    switch (this.selectedRangeOption){
+    this.getBaseUnits(this.selectedRangeOption);
+  }
+
+  getBaseUnits(selectedRangeOption : string){
+    switch (selectedRangeOption){
       case 'Yesterday':
         this.baseUnit = 'days';
         this.labelFormat ='{0:MMM dd}';
@@ -508,7 +535,7 @@ export class HomeComponent {
         this.labelFormat ='MMM';
         break;
       case '':
-        const timeDifference = this.storedRange.end - this.storedRange.start;   
+        const timeDifference = this.storedRange.end - this.storedRange.start;
         const daysDifference = timeDifference / (1000 * 60 * 60 * 24) + 1;
         const yearsDifference = this.storedRange.end.getFullYear() - this.storedRange.start.getFullYear();
 
@@ -543,6 +570,19 @@ export class HomeComponent {
   onReset(){
     this.selectedRangeOption = 'Last 30 days';
     this.getDefaultDateRange();
+    this.locationTree.reset();
+    this.assessmentTree.reset();
+    this.valueChangedLocation = true;
+    this.isLocationDropdownOpen = false;
+    this.valueChangedAssesments = true;
+    this.isLocationDropdownOpen = false;
+    this.baseUnit = 'weeks';
+    this.labelFormat = '{0:MMM dd}';
+    this.chartDateTitle = `${this.selectedRangeOption}: ${this.selectedRange}`;
+    this.cardPrevDaysText = `previous ${this.selectedRangeOption.substring(5)}`;
+    this.cardData.forEach(card=>{
+      card.prevDays = this.cardPrevDaysText;
+    })
   }
 
   onCancel(){
@@ -555,45 +595,57 @@ export class HomeComponent {
   valueChange(value : any, type : string): void {
     if(value.length > 0){
       if(type === 'location'){
+        this.selectedLocations = value;
         this.valueChangedLocation = false;
-        this.isLocationDropdownOpen = false; 
+        this.isLocationDropdownOpen = false;
       }
       else if(type === 'assessment'){
+        this.selectedAssessments = value;
         this.valueChangedAssesments = false;
-        this.isAssesmentsDropdownOpen  = false
+        this.isAssesmentsDropdownOpen  = false;
       }
     }
     else{
       if(type === 'location'){
         this.valueChangedLocation = true;
-        this.isLocationDropdownOpen = true; 
+        this.isLocationDropdownOpen = true;
       }
       else if(type === 'assessment'){
         this.valueChangedAssesments = true;
-        this.isAssesmentsDropdownOpen = true
-      }   
+        this.isAssesmentsDropdownOpen = true;
+      }
     }
   }
 
   //  Location Dropdown Open-Close
   open(type:string){
       if(type ==='location'){
-        this.isLocationDropdownOpen = true; 
         this.isLocationTree = true;
+        if(this.selectedLocations.length == 0){
+          this.isLocationDropdownOpen = true;
+        }
+        else{
+          this.isLocationDropdownOpen = false;
+        }
       }
-      else{
-        this.isAssesmentsDropdownOpen=true;
+      else if(type === 'assessment'){
         this.isAssessmentTree = true;
+        if(this.selectedAssessments.length === 0){
+          this.isAssesmentsDropdownOpen = true;
+        }
+        else{
+          this.isAssesmentsDropdownOpen = false;
+        }
       }
   }
 
   close(type:string){
     if(type ==='location'){
-      this.isLocationDropdownOpen = false; 
+      this.isLocationDropdownOpen = false;
       this.isLocationTree = false;
     }
     else {
-      this.isAssesmentsDropdownOpen=false;
+      this.isAssesmentsDropdownOpen= false;
       this.isAssessmentTree = false;
     }
   }
