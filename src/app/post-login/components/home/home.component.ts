@@ -456,6 +456,11 @@ export class HomeComponent {
   }
 
   setCardCountsValue(minDate : Date,maxDate : Date){
+    this.engagedUserCount = 0;
+    this.completesCount = 0;
+    this.sqlCounts = 0;
+    this.mqlConts = 0;
+    
     this.engagedUsersData.map((data) => {
       if(data.Date >= minDate && data.Date <= maxDate) {
         this.engagedUserCount += data.value;
@@ -583,6 +588,7 @@ export class HomeComponent {
     this.cardData.forEach(card=>{
       card.prevDays = this.cardPrevDaysText;
     })
+    this.setCardCountsValue(this.minDate,this.maxDate)
   }
 
   onCancel(){
