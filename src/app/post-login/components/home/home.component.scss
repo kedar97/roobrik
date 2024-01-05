@@ -3,7 +3,7 @@
 }
 
 .header-wrapper {
-  padding: 28px 80px 40px 80px;
+  padding: 28px 80px 48px 80px;
 }
 
 .heading {
@@ -216,8 +216,8 @@ p {
   height: 3px;
 }
 
-.custom-gap-20 {
-  gap: 20px;
+.custom-gap-55 {
+  gap: 55px;
 }
 
 .custom-gap-11 {
@@ -231,14 +231,14 @@ p {
   .k-svg-i-caret-alt-down > svg {
         display: none;
   }
-    
+
   .k-svg-i-caret-alt-down {
     content: url('../../../../assets/images/calendar-icon.svg');
     margin-right: 10px;
   }
 
-  .k-icon-button{
-    margin-left: 2px;
+  .k-input-inner{
+    padding: 8px 9px;
   }
 }
 
@@ -292,7 +292,7 @@ p {
     width: 72%;
     padding: 4px 0;
   }
-    
+
   .k-calendar-nav{
     position: absolute;
     display: flex;
@@ -300,7 +300,7 @@ p {
     width: 98%;
     color:#121212;
   }
-    
+
   .k-calendar-nav-today{
     display: none;
   }
@@ -400,9 +400,8 @@ p {
 
 ::ng-deep{
   .k-multiselecttree .k-input-values{
-    // padding-left: 14px;
-    // padding-right: 16px;
     gap: 0px;
+    cursor: pointer;
   }
 
   //LOCATION DROPDOWN
@@ -413,7 +412,6 @@ p {
       font-family: 'Helvetica';
       font-size: 14px;
       font-weight: 400;
-      // margin-right: auto;
       margin: 8px auto 12px 14px;
     }
 
@@ -426,7 +424,6 @@ p {
     &-open{
       .k-input-values::after{
         content: url("../../../../assets/images/up-arrow.svg");
-        // margin-top: -4px;
       }
     }
   }
@@ -437,10 +434,9 @@ p {
         content:"All Asessments";
         color: #1E1E1E;
         font-family: 'Helvetica';
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 400;
-        // margin-right: auto;
-        margin: 8px auto 12px 14px
+        margin: 10px auto 10px 14px
       }
       .k-input-values::after{
         content: url("../../../../assets/images/chevron-down-icon.svg");
@@ -450,7 +446,6 @@ p {
       &-open{
         .k-input-values::after{
           content: url("../../../../assets/images/up-arrow.svg");
-          // margin-top: -4px;
         }
       }
   }
@@ -459,7 +454,7 @@ p {
     padding-right: 0;
     padding-left: 0;
   }
- 
+
   .k-svg-i-x-circle{
     width: 14px;
   }
@@ -488,7 +483,7 @@ p {
       border-top: 2px solid #F6F6F6;
       border-bottom: 2px solid #F6F6F6;
     }
-  } 
+  }
 }
 
 .grid-container{

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DashboardCard } from '../../post-login.modal';
 import { BaseUnit, ChartComponent } from '@progress/kendo-angular-charts';
-import { MultiSelectComponent, MultiSelectTreeComponent } from '@progress/kendo-angular-dropdowns';
+import { MultiSelectTreeComponent } from '@progress/kendo-angular-dropdowns';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -50,18 +50,12 @@ export class HomeComponent {
   valueChangedAssesments : boolean = true;
   isLocationDropdownOpen : boolean  = false;
   isAssesmentsDropdownOpen : boolean  = false;
-  tagWidth : any;
   dropdownWidth : any;
-  totalWidth : number = 0;
-  maxDisplayCount : number;
-  maxAssessmentDisplayCount : number;
   storedRange = {start:null,end:null};
-  engagedUserCount = 0;
-  completesCount = 0;
-  sqlCounts = 0;
-  mqlConts = 0;
   chartDateTitle ='';
   cardPrevDaysText = `previous ${this.selectedRangeOption.substring(5)}`;
+  submitBtnDisabled: boolean = false;
+
 
   form = this.fb.group({
     location: [''],
@@ -76,7 +70,7 @@ export class HomeComponent {
         { text: 'Cedarhurst Villages' },
         { text: 'Brightview Bridgewater' },
         { text: 'Fort Mill' },
-        { text: 'Highpoint at Cape Coral' },
+        { text: 'Highpoint at Cape Coral abc abc abc abc abc' },
         { text: 'Belmont Village' },
         { text: 'rightview Meadows' },
       ],
@@ -103,11 +97,11 @@ export class HomeComponent {
     {
       title: 'Engaged Users',
       subTitle: 'Assessment starts',
-      count: 50,
+      count: 0,
       upDowns: {
-        status: 'down',
-        count: 184,
-        percentage: 2.7,
+        status: 'up',
+        count: 0,
+        percentage: 0,
       },
       prevDays: this.cardPrevDaysText,
       rate: '60% start rate',
@@ -115,38 +109,38 @@ export class HomeComponent {
     {
       title: 'Completes',
       subTitle: 'Assessment completions',
-      count: 300,
+      count: 0,
       upDowns: {
         status: 'up',
-        count: 284,
-        percentage: 3.7,
+        count: 0,
+        percentage: 0,
       },
       prevDays: this.cardPrevDaysText,
-      rate: '60% start rate',
+      rate: '60% completion rate',
     },
     {
       title: 'SQLs',
       subTitle: 'Unique sales qualified leads ',
-      count: 150,
+      count: 0,
       upDowns: {
-        status: 'down',
-        count: 184,
-        percentage: 2.7,
+        status: 'up',
+        count: 0,
+        percentage: 0,
       },
       prevDays: this.cardPrevDaysText,
-      rate: '50% start rate',
+      rate: '50% SQL opt-in rate',
     },
     {
       title: 'MQLs',
       subTitle: 'Marketing qualified leads',
-      count: 50,
+      count: 0,
       upDowns: {
         status: 'up',
-        count: 284,
-        percentage: 3.7,
+        count: 0,
+        percentage: 0,
       },
       prevDays: this.cardPrevDaysText,
-      rate: '60% start rate',
+      rate: '60% MQL opt-in rate',
     },
   ];
 
@@ -235,12 +229,12 @@ export class HomeComponent {
       Date: new Date(2023, 10, 3),
     },
     {
-      value: 23,
-      Date: new Date(2023, 10, 26),
-    },
-    {
       value: 2,
       Date: new Date(2023, 10, 18),
+    },
+    {
+      value: 23,
+      Date: new Date(2023, 10, 26),
     },
     {
       value: 0,
@@ -354,6 +348,11 @@ export class HomeComponent {
     },
   ];
 
+  oldEngagedUserCounts : number ;
+  oldCompletesCounts : number;
+  oldSqlCounts : number ;
+  oldMqlCounts : number ;
+
   ngOnInit() {
     setTimeout(() => {
       this.isLoading = false;
@@ -361,6 +360,10 @@ export class HomeComponent {
     this.getDefaultDateRange();
     this.setCardCountsValue(this.minDate,this.maxDate);
     this.chartDateTitle = `${this.selectedRangeOption}: ${this.selectedRange}`;
+    this.cardData[0].upDowns.count = 0;
+    this.cardData[1].upDowns.count = 0;
+    this.cardData[2].upDowns.count = 0;
+    this.cardData[3].upDowns.count = 0;
   }
 
   getDefaultDateRange(){
@@ -376,12 +379,22 @@ export class HomeComponent {
   }
 
   tagMapper(tags:any[]){
-    let allChipsLength = 0;
-    const elementWidth = document.querySelector('.k-input-md')?.getBoundingClientRect();
-    const dropdownWidth = elementWidth?.width - 40; //35 is for cross button
 
     let newTags = [];
+
+    if(tags.length > this.dataLocations[0].items.length && this.isLocationTree)
+      return newTags = ['All locations'];
+
+   if(tags.length > this.dataAssesments[0].items.length && this.isAssessmentTree)
+      return newTags = ['All assessments'];
+
+    let allChipsLength = 0;
+    const elementWidth = document.querySelector('.k-input-md')?.getBoundingClientRect();
+    const dropdownWidth = elementWidth?.width - 40; //40 is for cross button
+
     for(let i = 0; i < tags.length; i++) {
+
+
       var canvas = document.createElement('canvas');
       var context = canvas.getContext('2d');
 
@@ -392,10 +405,37 @@ export class HomeComponent {
         newTags.push(tags[i]);
       }
       else {
-        newTags.push(`+${tags.length - i}`);
+        console.log("tags.length", tags.length);
+        console.log("newTags.length", newTags.length);
+
+        let usedWidth = 0;
+        let kChipMDList: NodeList = document.querySelectorAll('.k-chip-md');
+        kChipMDList.forEach((chip: HTMLElement) => {
+          console.log("chip", chip)
+          console.log("chip.style.width", chip.style.width)
+          usedWidth += chip.offsetWidth;
+          console.log("uuu", usedWidth);
+        });
+
+        const remainingWidth = dropdownWidth - usedWidth;
+        console.log("remainingWidth", remainingWidth);
+
+        if(remainingWidth < 46) {
+          console.log("tags", tags);
+          if(tags.length <= 2) {
+            newTags = [(`${tags.length} selected`)];
+            break;
+          } else {
+              newTags.pop();
+              newTags.push(`+${tags.length - i + 1}`);
+          }
+        } else {
+          newTags.push(`+${tags.length - i}`);
+        }
         break;
       }
     }
+
     return newTags;
   }
 
@@ -456,39 +496,65 @@ export class HomeComponent {
   }
 
   setCardCountsValue(minDate : Date,maxDate : Date){
-    this.engagedUserCount = 0;
-    this.completesCount = 0;
-    this.sqlCounts = 0;
-    this.mqlConts = 0;
-    
+    this.oldEngagedUserCounts = this.cardData[0].count;
+    this.oldCompletesCounts = this.cardData[1].count;
+    this.oldSqlCounts = this.cardData[2].count;
+    this.oldMqlCounts = this.cardData[3].count;
+
+    this.cardData[0].count = 0;
+    this.cardData[1].count = 0;
+    this.cardData[2].count = 0;
+    this.cardData[3].count = 0;
+
     this.engagedUsersData.map((data) => {
       if(data.Date >= minDate && data.Date <= maxDate) {
-        this.engagedUserCount += data.value;
+        this.cardData[0].count += data.value;
       }
     });
 
     this.completesData.map((data) => {
       if(data.Date >= minDate && data.Date <= maxDate) {
-        this.completesCount += data.value;
+        this.cardData[1].count += data.value;
       }
     });
 
     this.sqlsData.map((data) => {
       if(data.Date >= minDate && data.Date <= maxDate) {
-        this.sqlCounts += data.value;
+        this.cardData[2].count += data.value;
       }
     });
 
     this.mqlsData.map((data) => {
       if(data.Date >= minDate && data.Date <= maxDate) {
-        this.mqlConts += data.value;
+        this.cardData[3].count += data.value;
       }
     });
 
-    this.cardData[0].count = this.engagedUserCount;
-    this.cardData[1].count = this.completesCount;
-    this.cardData[2].count = this.sqlCounts;
-    this.cardData[3].count = this.mqlConts;
+    this.setChartUpDowns(this.cardData[0].count,this.oldEngagedUserCounts,0);
+    this.setChartUpDowns(this.cardData[1].count,this.oldCompletesCounts,1);
+    this.setChartUpDowns(this.cardData[2].count,this.oldSqlCounts,2);
+    this.setChartUpDowns(this.cardData[3].count,this.oldMqlCounts,3);
+  }
+
+  setChartUpDowns(newCardCount : number, oldCardCount : number, index : number){
+    const result = newCardCount - oldCardCount;
+    this.cardData[index].upDowns.count = result;
+    let percentValue = 0;
+    if (oldCardCount != 0) {
+      percentValue = ((newCardCount - oldCardCount) / oldCardCount) * 100;
+    } else {
+      percentValue = 0;
+    }
+    this.cardData[index].upDowns.percentage = Math.abs(+percentValue.toFixed(2));
+    if(newCardCount > oldCardCount){
+      this.cardData[index].upDowns.status = 'up';
+    }
+    else if(newCardCount < oldCardCount){
+      this.cardData[index].upDowns.status = 'down';
+    }
+    else if(newCardCount == oldCardCount){
+      this.cardData[index].upDowns.status = this.cardData[index].upDowns.status ;
+    }
   }
 
   onSubmit(){
@@ -585,10 +651,13 @@ export class HomeComponent {
     this.labelFormat = '{0:MMM dd}';
     this.chartDateTitle = `${this.selectedRangeOption}: ${this.selectedRange}`;
     this.cardPrevDaysText = `previous ${this.selectedRangeOption.substring(5)}`;
+    this.setCardCountsValue(this.minDate,this.maxDate);
     this.cardData.forEach(card=>{
       card.prevDays = this.cardPrevDaysText;
+      card.upDowns.count = 0;
+      card.upDowns.percentage = 0;
+      card.upDowns.status = 'up'
     })
-    this.setCardCountsValue(this.minDate,this.maxDate)
   }
 
   onCancel(){
@@ -624,7 +693,7 @@ export class HomeComponent {
   }
 
   //  Location Dropdown Open-Close
-  open(type:string){
+  dropdownOpen(type:string){
       if(type ==='location'){
         this.isLocationTree = true;
         if(this.selectedLocations.length == 0){
@@ -642,17 +711,21 @@ export class HomeComponent {
         else{
           this.isAssesmentsDropdownOpen = false;
         }
+      } else {
+        this.submitBtnDisabled = true;
       }
   }
 
-  close(type:string){
+  dropdownClose(type:string){
     if(type ==='location'){
       this.isLocationDropdownOpen = false;
       this.isLocationTree = false;
     }
-    else {
+    else if(type === 'assessment'){
       this.isAssesmentsDropdownOpen= false;
       this.isAssessmentTree = false;
+    } else {
+      this.submitBtnDisabled = false;
     }
   }
 }
