@@ -70,7 +70,7 @@ export class HomeComponent {
         { text: 'Cedarhurst Villages' },
         { text: 'Brightview Bridgewater' },
         { text: 'Fort Mill' },
-        { text: 'Highpoint at Cape Coral abc abc abc abc abc' },
+        { text: 'Highpoint at Cape Coral' },
         { text: 'Belmont Village' },
         { text: 'rightview Meadows' },
       ],
