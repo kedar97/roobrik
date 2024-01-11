@@ -120,7 +120,7 @@
         "lpcAverage": 0.25,
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Inctive",
+        "status": "Inactive",
         "owner": "Laurel McLaughlin"
       },
       {
@@ -130,7 +130,7 @@
         "lpcAverage": 1.0,
         "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Inctive",
+        "status": "Inactive",
         "owner": "Melinda Gisbert"
       }
     ]
@@ -228,7 +228,7 @@
     "lpcAverage": 2.5,
     "uniqueCount": { "apr23": 1, "mar23": 8, "feb23": 5, "jan23": 6 },
     "totalActive": { "apr23": 2, "mar23": 2, "feb23": 2, "jan23": 2 },
-    "status": "Aactive",
+    "status": "Active",
     "owner": "Kim Armstrong",
     "children": [
       {
@@ -365,7 +365,7 @@
         "lpcAverage": 4.0,
         "uniqueCount": { "apr23": 2, "mar23": 2, "feb23": 2, "jan23": 10 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       }
     ]
@@ -397,7 +397,7 @@
         "lpcAverage": 2.25,
         "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 5, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       },
       {
@@ -452,7 +452,7 @@
         "lpcAverage": 1.25,
         "uniqueCount": { "apr23": 0, "mar23": 2, "feb23": 1, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       },
       {
@@ -516,7 +516,7 @@
         "lpcAverage": 12.0,
         "uniqueCount": { "apr23": 6, "mar23": 12, "feb23": 14, "jan23": 16 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       },
       {
@@ -526,7 +526,7 @@
         "lpcAverage": 0.0,
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Laurel McLaughlin"
       }
     ]
@@ -548,7 +548,7 @@
         "lpcAverage": 5.5,
         "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 6, "jan23": 7 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       },
       {
@@ -558,7 +558,7 @@
         "lpcAverage": 2.0,
         "uniqueCount": { "apr23": 3, "mar23": 1, "feb23": 1, "jan23": 3 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Laurel McLaughlin"
       }
     ]
@@ -580,7 +580,7 @@
         "lpcAverage": 6.25,
         "uniqueCount": { "apr23": 3, "mar23": 7, "feb23": 7, "jan23": 8 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       }
     ]
@@ -602,7 +602,7 @@
         "lpcAverage": 25.0,
         "uniqueCount": { "apr23": 24, "mar23": 24, "feb23": 29, "jan23": 23 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       }
     ]
@@ -625,7 +625,7 @@
         "lpcAverage": 0.25,
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       }
     ]
@@ -647,7 +647,7 @@
         "lpcAverage": 3.75,
         "uniqueCount": { "apr23": 5, "mar23": 11, "feb23": 9, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       }
     ]
@@ -669,7 +669,7 @@
         "lpcAverage": 7.75,
         "uniqueCount": { "apr23": 5, "mar23": 11, "feb23": 9, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Melinda Gisbert"
       }
     ]
@@ -681,7 +681,7 @@
     "lpcAverage": 0.93,
     "uniqueCount": { "apr23": 2, "mar23": 31, "feb23": 31, "jan23": 33 },
     "totalActive": { "apr23": 26, "mar23": 26, "feb23": 26, "jan23": 26 },
-    "status": "Inctive",
+    "status": "Inactive",
     "owner": "Melinda Gisbert",
     "children": [
       {
@@ -825,7 +825,7 @@
         "lpcAverage": 4,
         "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 7, "jan23": 3 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-        "status": "Aactive",
+        "status": "Active",
         "owner": "Laurel McLaughlin"
       },
       {
@@ -1095,7 +1095,7 @@
     "lpcAverage": 7.65,
     "uniqueCount": { "apr23": 31, "mar23": 41, "feb23": 51, "jan23": 30 },
     "totalActive": { "apr23": 5, "mar23": 5, "feb23": 5, "jan23": 5 },
-    "status": "Inctive",
+    "status": "Inactive",
     "owner": "Laurel McLaughlin",
     "children": [
       {
@@ -1215,7 +1215,7 @@
     "lpcAverage": 0.08,
     "uniqueCount": { "apr23": 11, "mar23": 13, "feb23": 13, "jan23": 12 },
     "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
-    "status": "Aactive",
+    "status": "Active",
     "owner": "Laurel McLaughlin",
     "children": [
       {
@@ -1259,7 +1259,7 @@
     "lpcAverage": 0,
     "uniqueCount": { "apr23": 7, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-    "status": "Aactive",
+    "status": "Active",
     "owner": "Laurel McLaughlin",
     "children": [
       {
@@ -1281,7 +1281,7 @@
     "lpcAverage": 4,
     "uniqueCount": { "apr23": 4, "mar23": 4, "feb23": 4, "jan23": 0 },
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
-    "status": "Aactive",
+    "status": "Active",
     "owner": "Laurel McLaughlin",
     "children": [
       {
@@ -1378,7 +1378,7 @@
     "lpcAverage": 26.75,
     "uniqueCount": { "apr23": 16, "mar23": 27, "feb23": 28, "jan23": 36 },
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
-    "status": "Aactive",
+    "status": "Active",
     "owner": "Laurel McLaughlin",
     "children": [
       {
@@ -1504,7 +1504,7 @@
     "lpcAverage": 14,
     "uniqueCount": { "apr23": 10, "mar23": 22, "feb23": 7, "jan23": 17 },
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
-    "status": "Aactive",
+    "status": "Active",
     "owner": "Laurel McLaughlin",
     "children": [
       {
@@ -1526,7 +1526,7 @@
     "lpcAverage": 14,
     "uniqueCount": { "apr23": 10, "mar23": 22, "feb23": 7, "jan23": 17 },
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
-    "status": "Aactive",
+    "status": "Active",
     "owner": "Laurel McLaughlin",
     "children": [
       {

@@ -336,8 +336,11 @@ export class LeadsPerCommunityComponent implements OnInit {
     setTimeout(() => {
       let term = (
         document.getElementById('filter-text-box') as HTMLInputElement
-      ).value;
+      ).value.toLowerCase();
       this.postLoginService.getSearchedData(term).subscribe((data) => {
+        data.forEach(item =>{
+          item.children = item.children.filter(child => this.postLoginService.checkPropertyValue(child,term))
+        })
         this.handleSearchAndExpansion(data, term);
         let fakeServer = FakeServer(data, this.expandedRows, this.gridData);
         var datasource = getServerSideDatasource(fakeServer);
@@ -493,14 +496,20 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
   let rowNodes;
   let matchedRowNodes;
   let childMatched = false;
-
   return {
     getData: function (request) {
       const hasFilter =
         request.filterModel && Object.keys(request.filterModel).length;
       var results = executeQuery(request, hasFilter);
+      
       if (hasFilter) {
         results = recursiveFilter(request, results);
+        
+        results.forEach(item =>{
+          if(item.children){
+            item.children = item.children.filter(child => checkPropertyValue(child,filterItem.filter));
+          }
+        })
 
         // KEEP MANUALLY EXPANDED ROWS AS IT IS
         setTimeout(() => {
@@ -532,7 +541,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
             }
           });
         }, 100);
-      }
+      }   
 
       return {
         success: true,
@@ -560,9 +569,14 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
     });
   }
 
-  function checkPropertyValue(value: any, term: string): boolean {
+  function checkPropertyValue(value: any, term: any): boolean {
     if (typeof value === 'string') {
-      return value.toLowerCase().includes(term);
+      if(typeof term === 'string'){
+        return value.toLowerCase().includes(term.toLowerCase());
+      }
+      else{
+        return value.toLowerCase().includes(term);
+      }
     } else if (typeof value === 'number') {
       return value === +term;
     } else if (Array.isArray(value)) {

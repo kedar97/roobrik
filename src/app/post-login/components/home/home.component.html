@@ -21,8 +21,8 @@
             class="dropdown"
             [ngClass]="valueChangedLocation ? 'location':''"
             [class.location-open]="isLocationDropdownOpen"
-            (open)="open('location')"
-            (close)="close('location')"
+            (open)="dropdownOpen('location')"
+            (close)="dropdownClose('location')"
             [tagMapper]="tagMapper.bind(this)"
             (valueChange)="valueChange($event,'location')"
           ></kendo-multiselecttree>
@@ -40,8 +40,8 @@
             class="dropdown"
             [ngClass]="valueChangedAssesments?'assessment':''"
             [class.assessment-open]="isAssesmentsDropdownOpen"
-            (open)="open('assessment')"
-            (close)="close('assessment')"
+            (open)="dropdownOpen('assessment')"
+            (close)="dropdownClose('assessment')"
             [tagMapper]="tagMapper.bind(this)"
             (valueChange)="valueChange($event,'assessment')"
           >
@@ -50,12 +50,14 @@
 
         <div class="d-flex input-action-container">
           <div class="d-flex flex-column input input-date">
-            <kendo-label class="label-text"> Dates(s) </kendo-label>
-            <kendo-dropdownlist 
-            [data]="dateRangeList" 
+            <kendo-label class="label-text"> Date(s) </kendo-label>
+            <kendo-dropdownlist
+            [data]="dateRangeList"
             class="date-section"
-            [value]="selectedRangeOption" 
+            [value]="selectedRangeOption"
             (valueChange)="onDropdownChange($event)"
+            (open)="dropdownOpen('date')"
+            (close)="dropdownClose('date')"
             >
             <ng-template kendoDropDownListValueTemplate let-dataItem>
               <div class="date-range-summary d-flex justify-content-between align-items-center">
@@ -64,26 +66,26 @@
               </div>
             </ng-template>
             </kendo-dropdownlist>
-  
+
             <div class="date-range-picker" #dateRangePicker *ngIf="selectedRangeOption === 'Custom range'">
-              <kendo-multiviewcalendar kendoDateRangeSelection [selectionRange]="range" (selectionRangeChange)="onDateRangeSelect($event)" calendarRef> 
+              <kendo-multiviewcalendar kendoDateRangeSelection [selectionRange]="range" (selectionRangeChange)="onDateRangeSelect($event)" [disabledDates]="disabledDate"> 
                 <ng-template kendoCalendarHeaderTitleTemplate let-title>
                   <div class="calender-heading">
                     <p>{{title.split('-')[0]}}</p>
                     <p>{{title.split('- ')[1]}}</p>
                   </div>
-  
+
                 </ng-template>
               </kendo-multiviewcalendar>
               <div class="calender-buttons d-flex align-items-center justify-content-end">
-                <button class=" btn-cancle" (click)="onCancel()">Cancle</button>
-                <button class=" btn-save" (click)="onDateRangeSave()" [disabled]="range.end === null" [class.btn-disabled]="range.end === null">Save</button>
+                <button class=" btn-cancel" (click)="onCancel()">Cancel</button>
+                <button class=" btn-save" (click)="onDateRangeSave()" [disabled]="range.end === null">Save</button>
               </div>
             </div>
           </div>
           <div class="buttons-container d-flex">
-            <button type="submit" class="btn btn-submit d-flex align-items-center" (click)="onSubmit()">Submit</button>
-            <button type="reset" class="btn btn-reset d-flex align-items-center" (click)="onReset()">
+            <button type="submit" class="btn btn-submit d-flex align-items-center justify-content-center" (click)="onSubmit()" [disabled]="submitBtnDisabled || selectedRangeOption === 'Custom range'">Submit</button>
+            <button type="reset" class="btn btn-reset d-flex align-items-center justify-content-center" (click)="onReset()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -103,7 +105,7 @@
 
           <div *ngFor="let card of cardData; let i = index" class="card">
             <div class="card_top">
-              <div class="card-title">{{ card.title }}</div>
+              <h1 class="card-title">{{ card.title }}</h1>
               <div class="card-subtitle">{{ card.subTitle }}</div>
             </div>
             <div class="card_mid d-flex">
@@ -144,7 +146,7 @@
               </div>
             </div>
             <div class="card_bot">
-              <div class="card-rate d-flex" 
+              <div class="card-rate d-flex"
               [ngClass]="{ 'date-rate-bg-1': i === 0, 'date-rate-bg-2': i === 1, 'date-rate-bg-3': i === 2,'date-rate-bg-4': i === 3 }">{{ card.rate }}</div>
             </div>
           </div>
@@ -153,7 +155,7 @@
       <div class="chart_section">
         <div class="chart-header d-flex justify-content-between">
           <p class="dateRange">{{chartDateTitle}}</p>
-          <div class="chart-legends d-flex custom-gap-20">
+          <div class="chart-legends d-flex custom-gap-55">
             <div class="d-flex flex-column custom-gap-11 align-items-center">
               <p>Engaged Users</p>
               <div class="legend-lines orange-line"></div>
@@ -193,7 +195,7 @@
                   type: 'circle',
                   background: '#ED9F22'
                 }"
-                [tooltip]="{ visible: true, format: '{1} Engaged Users' }"
+                [tooltip]="{ visible: true, format: '{1} Engaged Users,  {0:d MMM}' }"
                 yField="value"
                 xField="Date"
                 [width]="2"
@@ -209,7 +211,7 @@
                   type: 'circle',
                   background: '#7CB342'
                 }"
-                [tooltip]="{ visible: true, format: '{1} Completes' }"
+                [tooltip]="{ visible: true, format: '{1} Completes, {0:d MMM}' }"
                 yField="value"
                 xField="Date"
                 [width]="2"
@@ -225,7 +227,7 @@
                   type: 'circle',
                   background: '#B31F5F'
                 }"
-                [tooltip]="{ visible: true, format: '{1} SQLs' }"
+                [tooltip]="{ visible: true, format: '{1} SQLs,  {0:d MMM}' }"
                 yField="value"
                 xField="Date"
                 [width]="2"
@@ -241,7 +243,7 @@
                   type: 'circle',
                   background: '#0B4569'
                 }"
-                [tooltip]="{ visible: true, format: '{1} MQLs' }"
+                [tooltip]="{ visible: true, format: '{1} MQLs,  {0:d MMM}' }"
                 yField="value"
                 xField="Date"
                 [width]="2"
