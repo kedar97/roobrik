@@ -465,7 +465,7 @@ button:focus {
     margin-top: -2px;
   }
 
-  .ag-checkbox-input-wrapper.ag-checked::after {
+  .ag-checkbox-input-wrapper.icon-clicked::after {
     display: block;
     content: url("../../../../assets/images/chevron-down-icon.svg");
     background: fixed;

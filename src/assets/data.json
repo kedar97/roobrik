@@ -1424,6 +1424,16 @@
         "owner": "Kim Armstrong"
       },
       {
+        "clientId": 233,
+        "client_frenchiseName": "The Plaza at Cottonwood",
+        "benchmarkComparison": "Below",
+        "lpcAverage": 3.25,
+        "uniqueCount": { "apr23": 2, "mar23": 3, "feb23": 3, "jan23": 5 },
+        "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+        "status": "Active",
+        "owner": "Melinda Gisbert"
+      },
+      {
         "clientId": 234,
         "client_frenchiseName": "The Ridge Foothill",
         "benchmarkComparison": "Average",
@@ -1542,7 +1552,7 @@
     ]
   },
   {
-    "clientId": 244,
+    "clientId": 245,
     "client_frenchiseName": "Thrive Senior Living",
     "benchmarkComparison": "Below",
     "lpcAverage": 3.22,
@@ -1552,7 +1562,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
-        "clientId": 245,
+        "clientId": 246,
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 3.25,
@@ -1562,7 +1572,7 @@
         "owner": "Kim Armstrong"
       },
       {
-        "clientId": 246,
+        "clientId": 247,
         "client_frenchiseName": "The International at Aventura",
         "benchmarkComparison": "Average",
         "lpcAverage": 1,

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {
   ColDef,
   GetServerSideGroupKey,
@@ -408,11 +408,30 @@ export class LeadsPerCommunityComponent implements OnInit {
         .filter(([key, value]) => value !== undefined)
         .map(([key, value]) => value);
       this.isExpanded = !this.isExpanded;
-      matchedRowNodes.forEach((node: any) => {
-        if (node.level === 0) {
-          node.setExpanded(this.isExpanded);
-        }
-      });
+      let allNodesExpanded;
+      const checkbox = document.querySelector('.ag-checkbox-input-wrapper');
+      new Promise((resolve, reject) => {
+        matchedRowNodes.forEach((node: any) => {
+          if (node.level === 0) {
+            node.setExpanded(this.isExpanded);
+            if (node.rowIndex && node.expanded) {
+              allNodesExpanded = true;
+            } else if (node.rowIndex && !node.expanded) {
+              allNodesExpanded = false;
+            }
+          }
+        });
+        resolve(allNodesExpanded)
+      }).then((value : any) => {
+          if(value === true) {
+            checkbox.classList.add('icon-clicked');
+            } else {
+            checkbox.classList.remove('icon-clicked');
+            }
+          }
+      ).catch((err) => 
+        console.log(err)
+      );
     } else if (event.source === 'rowClicked') {
       this.selectedNodes = this.gridOptions.api.getSelectedNodes();
       if (this.selectedNodes.length === 1) {
@@ -496,6 +515,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
   let rowNodes;
   let matchedRowNodes;
   let childMatched = false;
+  let termArray = []
   return {
     getData: function (request) {
       const hasFilter =
@@ -503,12 +523,16 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
       var results = executeQuery(request, hasFilter);
       
       if (hasFilter) {
-        results = recursiveFilter(request, results);
-        
+        results = recursiveFilter(request, results);   
+                
+        termArray.push(filterItem.filter);
+        let searchTerms = Array.from(new Set(termArray));
         results.forEach(item =>{
-          if(item.children){
-            item.children = item.children.filter(child => checkPropertyValue(child,filterItem.filter));
-          }
+          searchTerms.forEach(term=>{
+            if(item.children){
+              item.children = item.children.filter(child => checkPropertyValue(child,term));
+            }
+          })
         })
 
         // KEEP MANUALLY EXPANDED ROWS AS IT IS
@@ -562,7 +586,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
 
   function searchObject(obj: any, term: string): boolean {
     return Object.entries(obj).some(([key, value]) => {
-      if (key === 'clientId') {
+      if (key === 'clientId' || key === 'dataPath' || key ==='parentPath') {
         return false;
       }
       return checkPropertyValue(value, term);
@@ -763,7 +787,10 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
       requestPath +
       "'" +
       orderBySql(request);
-    return alasql(sql, [processedData, allResults]);
+
+    let data = alasql(sql, [processedData, allResults])
+    let resultData = data.filter(item => searchObject(item,filterItem.filter))
+    return resultData;
   }
 
   function recursiveFilterParentMatches(allResults, childResults) {
