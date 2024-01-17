@@ -514,26 +514,50 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
   var filterItem;
   let rowNodes;
   let matchedRowNodes;
-  let childMatched = false;
-  let termArray = []
+  let columnName : string;
+  let results;
+
   return {
     getData: function (request) {
       const hasFilter =
         request.filterModel && Object.keys(request.filterModel).length;
-      var results = executeQuery(request, hasFilter);
+      results = executeQuery(request, hasFilter);
       
       if (hasFilter) {
-        results = recursiveFilter(request, results);   
-                
-        termArray.push(filterItem.filter);
-        let searchTerms = Array.from(new Set(termArray));
-        results.forEach(item =>{
-          searchTerms.forEach(term=>{
-            if(item.children){
-              item.children = item.children.filter(child => checkPropertyValue(child,term));
+        results = recursiveFilter(request, results);  
+        setTimeout(()=>{
+          rowNodes = gridData.api.rowModel.nodeManager.rowNodes;
+          matchedRowNodes = Object.entries(rowNodes)
+            .filter(([key, value]) => value !== undefined)
+            .map(([key, value]) => value);
+            results.forEach(item=>{       
+                matchedRowNodes.forEach((node: any) => {
+                  if (item.client_frenchiseName === node.key) {
+                    node.setExpanded(false);
+                  }
+                })
+            })
+        },200)
+
+        var filterModel = request.filterModel;
+        if (filterModel && Object.keys(filterModel).length) {
+          Object.keys(filterModel).forEach(function (key) {
+            filterItem = filterModel[key];
+            if (key === 'ag-Grid-AutoColumn') {
+              key = 'client_frenchiseName';
             }
-          })
-        })
+            columnName = key;
+            let nestedColumns = key.includes('.') ? true : false;  
+            results.forEach(item =>{
+                  if(item.children){
+                    item.children = item.children.filter( child => {
+                      let flag = Object.keys(filterModel).length > 1 && typeof filterItem.filter != 'number' ? checkPropertyValue(child,filterItem.filter) : checkChildValues(child,nestedColumns,filterItem.filter);
+                      return flag;
+                    })
+                  } 
+                })          
+            })
+        }
 
         // KEEP MANUALLY EXPANDED ROWS AS IT IS
         setTimeout(() => {
@@ -552,20 +576,22 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
         }, 100);
 
         // EXPAND PARENT ROW ON CHILD MATCH
-        setTimeout(() => {
-          results.forEach((item) => {
-            let searchTerm = filterItem.filter;
-            childMatched = checkPropertyValue(item.children, searchTerm);
-            if (childMatched) {
+        setTimeout(()=>{
+          results.forEach(item=>{
+            if(item.children != undefined && item.children.length > 0){            
               matchedRowNodes.forEach((node: any) => {
                 if (item.client_frenchiseName === node.key) {
                   node.setExpanded(true);
                 }
-              });
+              })
             }
-          });
-        }, 100);
+          })
+        },200)
       }   
+      else{
+        processedData = processData(allData);
+        results = executeQuery(request, hasFilter);
+      }
 
       return {
         success: true,
@@ -584,6 +610,19 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
     },
   };
 
+  function checkChildValues(child,nestedCol,term){
+    let value;
+    if(nestedCol == true){
+      let fieldName = columnName.split('.')[0];    
+      let monthColumn = columnName.split('.')[1];
+      value = child[fieldName][monthColumn];
+    }
+    else if(nestedCol == false){
+      value = child[columnName]
+    }
+    return checkPropertyValue(value,term)
+  }
+
   function searchObject(obj: any, term: string): boolean {
     return Object.entries(obj).some(([key, value]) => {
       if (key === 'clientId' || key === 'dataPath' || key ==='parentPath') {
@@ -595,8 +634,11 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
 
   function checkPropertyValue(value: any, term: any): boolean {
     if (typeof value === 'string') {
-      if(typeof term === 'string'){
+      if(typeof term === 'string' && term.toLowerCase() != 'active' && term.toLowerCase() != 'inactive'){
         return value.toLowerCase().includes(term.toLowerCase());
+      }
+      else if(typeof term === 'string' && (term.toLowerCase() === 'active' || term.toLowerCase() === 'inactive')){
+        return value.toLowerCase() === term.toLowerCase()
       }
       else{
         return value.toLowerCase().includes(term);
@@ -623,14 +665,14 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
 
   function whereSql(request) {
     var whereParts = [];
-    var filterModel = request.filterModel;
+    var filterModel = request.filterModel;   
     if (filterModel && Object.keys(filterModel).length) {
       Object.keys(filterModel).forEach(function (key) {
         filterItem = filterModel[key];
         if (key.includes('.')) {
           key = key.replace('.', '->');
         } else if (key === 'ag-Grid-AutoColumn') {
-          key = 'dataPath';
+          key = 'client_frenchiseName';
         }
 
         switch (filterItem.filterType) {
@@ -777,7 +819,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
     return flattenedData;
   }
 
-  function recursiveFilter(request, results) {
+  function recursiveFilter(request, results) { 
     const allResults = [...results];
     recursiveFilterParentMatches(allResults, results);
     recursiveFilterChildMatches(allResults, results);
@@ -789,8 +831,15 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
       orderBySql(request);
 
     let data = alasql(sql, [processedData, allResults])
-    let resultData = data.filter(item => searchObject(item,filterItem.filter))
-    return resultData;
+
+    var filterModel = request.filterModel;   
+    if (filterModel && Object.keys(filterModel).length) {
+      Object.keys(filterModel).forEach(function (key) {
+        filterItem = filterModel[key];
+        data = data.filter(item => searchObject(item,filterItem.filter));
+      })
+    }
+    return data;
   }
 
   function recursiveFilterParentMatches(allResults, childResults) {
