@@ -21,7 +21,7 @@ import {
 } from '@progress/kendo-angular-dropdowns';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 import { ChartsModule } from '@progress/kendo-angular-charts';
-
+import { FinancialDataComponent } from './components/financial-data/financial-data.component';
 ModuleRegistry.registerModules([ExcelExportModule]);
 
 @NgModule({
@@ -35,6 +35,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     LeadRoutingComponent,
     AddEditLeadRoutingComponent,
     LeadsPerCommunityComponent,
+    FinancialDataComponent,
   ],
   imports: [
     CommonModule,

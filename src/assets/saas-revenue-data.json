@@ -1,0 +1,788 @@
+[
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 101,
+      "client_frenchiseName": "12 Oaks Senior Living",
+      "benchmarkComparison": "Above",
+      "lpcAverage": 0.04,
+      "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 0 },
+      "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+      "status": "Active",
+      "owner": "Kim Armstrong",
+      "children": [
+        {
+          "invoicing_entity":"Data Data",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 102,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 0.25,
+          "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin "
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":0, "feb":0,"mar":0, "apr":0, "may":0, "jun":0, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":0},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 103,
+          "client_frenchiseName": "Reunion Court of Kingwood",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.0,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Melinda Gisbert"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":14, "feb":16,"mar":14, "apr":13, "may":14, "jun":16, "jul":14,"aug":13,"sep":14,"oct":14,"nov":16,"dec":14,"total":172},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 104,
+      "client_frenchiseName": "Advanced Nursing + Home Support",
+      "benchmarkComparison": "Average",
+      "lpcAverage": 13.75,
+      "uniqueCount": { "apr23": 14, "mar23": 16, "feb23": 14, "jan23": 13 },
+      "totalActive": { "apr23": 14, "mar23": 14, "feb23": 16, "jan23": 14 },
+      "status": "Inactive",
+      "owner": "Laurel McLaughlin",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 105,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 13.75,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Kim Armstrong"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":14, "feb":16,"mar":14, "apr":12, "may":14, "jun":16, "jul":14,"aug":12,"sep":14,"oct":15,"nov":15,"dec":13,"total":169},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 106,
+      "client_frenchiseName": "Agemark Senior Living",
+      "benchmarkComparison": "Above",
+      "lpcAverage": 13.75,
+      "uniqueCount": { "apr23": 14, "mar23": 16, "feb23": 14, "jan23": 12 },
+      "totalActive": { "apr23": 14, "mar23": 15, "feb23": 15, "jan23": 13 },
+      "status": "Active",
+      "owner": "Kim Armstrong",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 107,
+          "client_frenchiseName": "Astoria Memory Care - Tracy",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.75,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 108,
+          "client_frenchiseName": "Astoria Senior Living and Memory Care - Oakdale",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 0.5,
+          "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Melinda Gisbert"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 109,
+          "client_frenchiseName": "Astoria Senior Living and Memory Care - Omaha",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 1.0,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 4 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Kim Armstrong"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 110,
+          "client_frenchiseName": "CountryHouse Cedar Rapids",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.25,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Kim Armstrong"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 111,
+          "client_frenchiseName": "CountryHouse Cumberland",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.25,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Kim Armstrong"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 112,
+          "client_frenchiseName": "CountryHouse Council Bluffs",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.25,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 113,
+          "client_frenchiseName": "CountryHouse Dickinson",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 1.0,
+          "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Melinda Gisbert"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 114,
+      "client_frenchiseName": "AgeWell Middle Tennessee",
+      "benchmarkComparison": "Above",
+      "lpcAverage": 11.25,
+      "uniqueCount": { "apr23": 13, "mar23": 13, "feb23": 12, "jan23": 7 },
+      "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+      "status": "Active",
+      "owner": "Melinda Gisbert",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 115,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Above",
+          "lpcAverage": 11.25,
+          "uniqueCount": { "apr23": 13, "mar23": 13, "feb23": 12, "jan23": 7 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Kim Armstrong"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 116,
+          "client_frenchiseName": "81 Oaks Senior Living",
+          "benchmarkComparison": "Above",
+          "lpcAverage": 12.5,
+          "uniqueCount": { "apr23": 3, "mar23": 17, "feb23": 30, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 117,
+      "client_frenchiseName": "AgeWell Solvere Living",
+      "benchmarkComparison": "Average",
+      "lpcAverage": 3.13,
+      "uniqueCount": { "apr23": 18, "mar23": 11, "feb23": 18, "jan23": 0 },
+      "totalActive": { "apr23": 5, "mar23": 5, "feb23": 5, "jan23": 5 },
+      "status": "Active",
+      "owner": "Melinda Gisbert",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 118,
+          "client_frenchiseName": "Aden Senior Living",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 6.0,
+          "uniqueCount": { "apr23": 10, "mar23": 2, "feb23": 12, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 119,
+          "client_frenchiseName": "Bartlett Reserve",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.25,
+          "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": "inactive", "jan23": "inactive" },
+          "totalActive": { "apr23": "right", "mar23": "right", "feb23": "wrong", "jan23": "wrong" },
+          "status": "Active",
+          "owner": "Kim Armstrong"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 120,
+      "client_frenchiseName": "Aldersgate",
+      "benchmarkComparison": "Above",
+      "lpcAverage": 15.5,
+      "uniqueCount": { "apr23": 11, "mar23": 20, "feb23": 18, "jan23": 13 },
+      "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+      "status": "Inactive",
+      "owner": "Laurel McLaughlin",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 121,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Above",
+          "lpcAverage": 15.5,
+          "uniqueCount": { "apr23": 11, "mar23": 20, "feb23": 18, "jan23": 13 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Melinda Gisbert"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 122,
+      "client_frenchiseName": "All Seasons Living",
+      "benchmarkComparison": "Average",
+      "lpcAverage": 2.5,
+      "uniqueCount": { "apr23": 1, "mar23": 8, "feb23": 5, "jan23": 6 },
+      "totalActive": { "apr23": 2, "mar23": 2, "feb23": 2, "jan23": 2 },
+      "status": "Active",
+      "owner": "Kim Armstrong",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 123,
+          "client_frenchiseName": "Bartlett Reserve",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 5.0,
+          "uniqueCount": { "apr23": 1, "mar23": 8, "feb23": 5, "jan23": 6 },
+          "totalActive": { "apr23": 0 },
+          "mar23": 0,
+          "feb23": 0,
+          "jan23": 0,
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 124,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.0,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Melinda Gisbert"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 125,
+      "client_frenchiseName": "Allegro Senior Living",
+      "benchmarkComparison": "Average",
+      "lpcAverage": 6.68,
+      "uniqueCount": { "apr23": 143, "mar23": 142, "feb23": 123, "jan23": 84 },
+      "totalActive": { "apr23": 18, "mar23": 18, "feb23": 18, "jan23": 18 },
+      "status": "Inactive",
+      "owner": "Kim Armstrong",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 126,
+          "client_frenchiseName": "Allegro 55+ Doral",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 1.25,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 4 },
+          "totalActive": { "apr23": 0 },
+          "mar23": 0,
+          "feb23": 0,
+          "jan23": 0,
+          "status": "Inactive",
+          "owner": "Melinda Gisbert"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 127,
+          "client_frenchiseName": "Allegro Boynton Beach",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 6.0,
+          "uniqueCount": { "apr23": 8, "mar23": 6, "feb23": 4, "jan23": 6 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 128,
+      "client_frenchiseName": "Americare",
+      "benchmarkComparison": "Below",
+      "lpcAverage": 0.24,
+      "uniqueCount": { "apr23": 24, "mar23": 18, "feb23": 37, "jan23": 30 },
+      "totalActive": { "apr23": 112, "mar23": 112, "feb23": 112, "jan23": 112 },
+      "status": "Inactive",
+      "owner": "Laurel McLaughlin",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 129,
+          "client_frenchiseName": "Adams Pointe",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.0,
+          "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 130,
+      "client_frenchiseName": "Smith Village",
+      "benchmarkComparison": "Above",
+      "lpcAverage": 8.25,
+      "uniqueCount": { "apr23": 11, "mar23": 7, "feb23": 11, "jan23": 4 },
+      "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+      "status": "Active",
+      "owner": "Melinda Gisbert",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 131,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Above",
+          "lpcAverage": 8.25,
+          "uniqueCount": { "apr23": 11, "mar23": 7, "feb23": 11, "jan23": 4 },
+          "totalActive": { "apr23": 0 },
+          "mar23": 0,
+          "feb23": 0,
+          "jan23": 0,
+          "status": "Inactive",
+          "owner": "Kim Armstrong"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 132,
+      "client_frenchiseName": "Solera Senior Living",
+      "benchmarkComparison": "Average",
+      "lpcAverage": 3.97,
+      "uniqueCount": { "apr23": 29, "mar23": 31, "feb23": 39, "jan23": 44 },
+      "totalActive": { "apr23": 9, "mar23": 9, "feb23": 9, "jan23": 9 },
+      "status": "Active",
+      "owner": "Laurel McLaughlin",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 133,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Above",
+          "lpcAverage": 58.25,
+          "uniqueCount": { "apr23": 1, "mar23": 60, "feb23": 86, "jan23": 86 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Kim Armstrong"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 134,
+          "client_frenchiseName": "Edgeworth Park at New Town",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 4.0,
+          "uniqueCount": { "apr23": 2, "mar23": 2, "feb23": 2, "jan23": 10 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Melinda Gisbert"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 135,
+      "client_frenchiseName": "Sterling Estates",
+      "benchmarkComparison": "Average",
+      "lpcAverage": 1.88,
+      "uniqueCount": { "apr23": 2, "mar23": 5, "feb23": 12, "jan23": 11 },
+      "totalActive": { "apr23": 4, "mar23": 4, "feb23": 4, "jan23": 4 },
+      "status": "Active",
+      "owner": "Laurel McLaughlin",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 136,
+          "client_frenchiseName": "Azalea Estates of Fayetteville",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 1.25,
+          "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 3 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Kim Armstrong"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 137,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 2.25,
+          "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 5, "jan23": 1 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Melinda Gisbert"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 138,
+          "client_frenchiseName": "Sterling Estates of East Cobb",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 3.0,
+          "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 5, "jan23": 6 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 139,
+          "client_frenchiseName": "Sterling Estates of West Cobb",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 1.0,
+          "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        }
+      ]
+    },
+    {
+      "invoicing_entity":"Text Text",
+      "legal_entity":"Text Text",
+      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+      "clientId": 140,
+      "client_frenchiseName": "Still Hopes",
+      "benchmarkComparison": "Average",
+      "lpcAverage": 3.75,
+      "uniqueCount": { "apr23": 8 },
+      "mar23": 11,
+      "feb23": 10,
+      "jan23": 16,
+      "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
+      "status": "Active",
+      "owner": "Kim Armstrong",
+      "children": [
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 141,
+          "client_frenchiseName": "Default",
+          "benchmarkComparison": "Below",
+          "lpcAverage": 0.5,
+          "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Kim Armstrong"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 142,
+          "client_frenchiseName": "Greenway at Still Hopes",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 1.25,
+          "uniqueCount": { "apr23": 0, "mar23": 2, "feb23": 1, "jan23": 2 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Active",
+          "owner": "Melinda Gisbert"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          
+          "clientId": 143,
+          "client_frenchiseName": "Still Hopes Retirement",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 2.0,
+          "uniqueCount": { "apr23": 8, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        },
+        {
+          "invoicing_entity":"Text Text",
+          "legal_entity":"Text Text",
+          "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":4},
+          "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+          "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0,"total":2},
+
+          "clientId": 144,
+          "client_frenchiseName": "Sterling Estates of West Cobb",
+          "benchmarkComparison": "Average",
+          "lpcAverage": 1.0,
+          "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+          "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+          "status": "Inactive",
+          "owner": "Laurel McLaughlin"
+        }
+      ]
+    }
+]

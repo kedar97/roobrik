@@ -1,45 +1,20 @@
-import { Component, ElementRef, OnInit, Renderer2} from '@angular/core';
-import {
-  ColDef,
-  GetServerSideGroupKey,
-  GridApi,
-  GridOptions,
-  GridReadyEvent,
-  ICellRendererParams,
-  IServerSideDatasource,
-  IsServerSideGroup,
-  RowModelType,
-  SideBarDef,
-} from 'ag-grid-community';
+import { Component, ElementRef, Renderer2} from '@angular/core';
+import { ColDef, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from '../../post-login.modal';
-import { Params } from '@angular/router';
 import { PostLoginService } from '../../post-login.service';
+import { HttpClient } from '@angular/common/http';
 import * as alasql from 'alasql';
 
 @Component({
-  selector: 'app-leads-per-community',
-  templateUrl: './leads-per-community.component.html',
-  styleUrls: ['./leads-per-community.component.scss'],
+  selector: 'app-financial-data',
+  templateUrl: './financial-data.component.html',
+  styleUrls: ['./financial-data.component.scss']
 })
-export class LeadsPerCommunityComponent implements OnInit {
-  constructor(
-    private renderer: Renderer2,
-    private ele: ElementRef,
-    private postLoginService: PostLoginService
-  ) {}
+export class FinancialDataComponent {
+  saasRevenueUrl = "assets/saas-revenue-data.json";
 
-  dataUrl = "assets/data.json";
-  public rowModelType: RowModelType = 'serverSide';
-  public isExpanded: boolean = false;
-  totalRows: number;
-  rowIndex: number;
-  selectedNodes = [];
-  defaultColumnState: any;
-  defaultFiltersState: any;
-  gridColumnApi: any;
-  gridData: any;
-  public gridApi!: GridApi | any;
-  public rowSelection: 'single' | 'multiple' = 'multiple';
+  constructor(private postLoginService : PostLoginService, private renderer: Renderer2,private ele: ElementRef, private http:HttpClient){}
+
   selectedValue = 100;
   cacheBlockSize = 100;
   expandedRows: Set<string> = new Set();
@@ -83,41 +58,123 @@ export class LeadsPerCommunityComponent implements OnInit {
     },
   ];
 
-  columnDef: any = [
-    {
-      headerName: 'Benchmark comparison',
-      field: 'benchmarkComparison',
-      sortable: true,
-      lockPinned: true,
-      headerClass: 'padding-left-19',
-      cellRenderer: function (params: Params) {
-        if (params.value === 'Above') {
-          return `<div class="comparison-text green-text">${params.value}</div>`;
-        } else if (params.value === 'Below') {
-          return `<div class="comparison-text red-text">${params.value}</div>`;
-        } else {
-          return `<div class="comparison-text orange-text">${params.value}</div>`;
-        }
-      },
-    },
+  rowModelType: RowModelType = 'serverSide';
+  defaultColumnState: any;
+  defaultFiltersState: any;
+  gridColumnApi: any;
+  gridData: any;
+  gridApi!: GridApi | any;
+  rowSelection: 'single' | 'multiple' = 'multiple';
+  totalRows: number;
+  rowIndex: number;
+  selectedNodes = [];
+  isExpanded: boolean = false;
 
+  columnDef : ColDef[] | any = [
     {
-      headerName: '4-month LPC average',
-      field: 'lpcAverage',
-      sortable: true,
+      field:'invoicing_entity',
+      headerName:'Invoicing entity',
+      pinned: 'left',
       lockPinned: true,
-      width: 170,
-      filter: 'agNumberColumnFilter',
+      width:120,
+      hide:true,
+      sortable: true,
     },
-
     {
-      headerName: 'Account owner',
-      field: 'owner',
-      sortable: true,
+      field:'legal_entity',
+      headerName:'Legal entity',
+      pinned: 'left',
       lockPinned: true,
-      width: 200,
+      width:110,
+      hide:true,
+      sortable: true,
     },
-  ];
+    {
+      field:'',
+      headerName:'2024 revenue',
+      marryChildren: true,
+      children: [
+        { field: 'revenue2024.total', headerName :'', columnGroupShow :'closed', minWidth: 120,filter: 'agNumberColumnFilter'},
+        { field: 'revenue2024.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.apr', headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.may', headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.jun', headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.jul', headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.aug', headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.sep', headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.oct', headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.nov', headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2024.dec', headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+      ]
+    },
+    {
+      field:'',
+      headerName:'2023 revenue',
+      marryChildren: true,
+      children: [
+        { field:'revenue2023.total', headerName :'', columnGroupShow :'closed',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field: 'revenue2023.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.apr', headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.may', headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.jun', headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.jul', headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.aug', headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.sep', headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.oct', headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.nov', headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2023.dec', headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+      ]
+    },
+    {
+      field:'',
+      headerName:'2022 revenue',
+      marryChildren: true,
+      children: [
+        { field:'revenue2022.total', headerName :'', columnGroupShow :'closed',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field: 'revenue2022.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.apr', headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.may', headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.jun', headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.jul', headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.aug', headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.sep', headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.oct', headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.nov', headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2022.dec', headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+      ]
+    },
+    {
+      field:'',
+      headerName:'2021 revenue',
+      marryChildren: true,
+      children: [
+        { field:'revenue2021.total', headerName :'', columnGroupShow :'closed',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field: 'revenue2021.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.apr', headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.may', headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.jun', headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.jul', headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.aug', headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.sep', headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.oct', headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.nov', headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+        { field: 'revenue2021.dec', headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
+      ]
+    },
+    {
+      field:'owner',
+      headerName:'Account owner',
+      sortable: true,
+    }
+  ]
 
   public defaultColDef: ColDef = {
     filter: 'agTextColumnFilter',
@@ -127,35 +184,25 @@ export class LeadsPerCommunityComponent implements OnInit {
 
   public autoGroupColumnDef: ColDef = {
     field: 'client_frenchiseName',
-    headerCheckboxSelection: true,
     headerName: 'Client/franchise name',
+    headerCheckboxSelection:true,
     sortable: true,
-    width: 350,
-    pinned: 'left',
-    lockPinned: true,
+    width: 300,
     cellStyle: {
       'text-overflow': 'ellipsis',
       overflow: 'hidden',
       display: 'block',
       'padding-top': '4px',
     },
-    cellRendererParams: {
-      innerRenderer: (params: ICellRendererParams) => {
-        if (!params.data.children) return params.data.client_frenchiseName;
-        else
-          return `${params.data.client_frenchiseName} (${params.data.children.length})`;
-      },
-    },
   };
 
+  rowData = [];
   public isServerSideGroup: IsServerSideGroup = (dataItem: any) => {
     return dataItem.children;
   };
   public getServerSideGroupKey: GetServerSideGroupKey = (dataItem: any) => {
     return dataItem.client_frenchiseName;
   };
-
-  rowData!: any[];
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
     toolPanels: [
@@ -197,7 +244,15 @@ export class LeadsPerCommunityComponent implements OnInit {
     onRowGroupOpened: this.onRowExpanded.bind(this),
   };
 
-  ngOnInit(): void {}
+  onRowExpanded(event: any) {
+    if (event.expanded) {
+      this.expandedRows.add(event.node.key);
+    } else {
+      this.expandedRows.delete(event.node.key);
+    }
+  }
+
+  ngOnInit(){}
 
   ngAfterViewInit() {
     const nextButtons = document.querySelector(
@@ -209,14 +264,6 @@ export class LeadsPerCommunityComponent implements OnInit {
     );
   }
 
-  onRowExpanded(event: any) {
-    if (event.expanded) {
-      this.expandedRows.add(event.node.key);
-    } else {
-      this.expandedRows.delete(event.node.key);
-    }
-  }
-
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.gridData = params;
@@ -224,179 +271,34 @@ export class LeadsPerCommunityComponent implements OnInit {
     this.defaultColumnState = this.gridColumnApi.getColumnState();
     this.defaultFiltersState = this.gridApi.getFilterModel();
 
-    this.postLoginService.getTableData(this.dataUrl).subscribe((data) => {
-      let uniqueCountColumnNames = Object.keys(data[0].uniqueCount);
-      let totalActiveColumnNames = Object.keys(data[0].totalActive);
-      let lastMonth;
-      const uniqueCountColumns = uniqueCountColumnNames.map((column, index) => {
-        const monthAbbreviation = column.substring(0, 3);
-        const year = column.substring(3);
-        const monthTitleCase =
-          monthAbbreviation.charAt(0).toUpperCase() +
-          monthAbbreviation.slice(1);
-        const resultString = `${monthTitleCase}-${year}`;
+    const currentDate = new Date();
+    const lastFullMonth = new Date(currentDate);
+    lastFullMonth.setMonth(lastFullMonth.getMonth() - 1);
+    const lastMonthFormatted = lastFullMonth.toLocaleDateString("en-US", { month: "short", year: "numeric"});
+    const modifiedColumnDefs = [
+      ...this.columnDef.slice(0,6),
+      {
+        headerName: `Status as of ${lastMonthFormatted}`,
+        field: 'status',
+        sortable: true,
+        width: 200,
+        minWidth: 100,
+        resizable: true,
+        lockPinned: true,
+      },
+      ...this.columnDef.slice(-1),
+    ]
 
-        return {
-          headerName: `${resultString}`,
-          field: `uniqueCount.${column}`,
-          cellRenderer: (params) => {
-            if (params.data.uniqueCount[column] === 'inactive') {
-              return '<img class="cell-image" src="/assets/images/dash.svg" >';
-            } else if (params.data.uniqueCount[column] === 'right') {
-              return '<img class="cell-image" src="/assets/images/right.svg" >';
-            } else if (params.data.uniqueCount[column] === 'wrong') {
-              return '<img class="cell-image cell-wrong" src="/assets/images/wrong.svg" >';
-            } else {
-              return params.data.uniqueCount[column];
-            }
-          },
-          filter: 'agNumberColumnFilter',
-          width: 80,
-          resizable: true,
-        };
-      });
+    this.columnDef = modifiedColumnDefs;
+    this.totalRows = this.gridApi.paginationGetPageSize();
 
-      const totalActiveColumns = totalActiveColumnNames.map((column, i) => {
-        const monthAbbreviation = column.substring(0, 3);
-        const year = column.substring(3);
-        const monthTitleCase =
-          monthAbbreviation.charAt(0).toUpperCase() +
-          monthAbbreviation.slice(1);
-        const monthYearCol = `${monthTitleCase}-${year}`;
-
-        if (i === 0) {
-          lastMonth = monthYearCol;
-        }
-
-        return {
-          headerName: `${monthYearCol}`,
-          field: `totalActive.${column}`,
-          cellRenderer: (params) => {
-            if (params.data.totalActive[column] === 'inactive') {
-              return '<img class="cell-image" src="/assets/images/dash.svg" >';
-            } else if (params.data.totalActive[column] === 'right') {
-              return '<img class="cell-image" src="/assets/images/right.svg" >';
-            } else if (params.data.totalActive[column] === 'wrong') {
-              return '<img class="cell-image cell-wrong" src="/assets/images/wrong.svg" >';
-            } else {
-              return params.data.totalActive[column];
-            }
-          },
-          filter: 'agNumberColumnFilter',
-          width: 80,
-          resizable: true,
-        };
-      });
-
-      const modifiedColumnDefs = [
-        ...this.columnDef.slice(0, 2),
-        {
-          headerName: 'Unique SQL count',
-          sortable: false,
-          children: [...uniqueCountColumns],
-          lockPinned: true,
-        },
-        {
-          headerName: 'Total active franchises',
-          sortable: false,
-          children: [...totalActiveColumns],
-          lockPinned: true,
-        },
-        {
-          headerName: `Status as of ${lastMonth}`,
-          field: 'status',
-          sortable: true,
-          width: 200,
-          minWidth: 100,
-          resizable: true,
-          filter: 'agTextColumnFilter',
-          lockPinned: true,
-        },
-        ...this.columnDef.slice(2),
-      ];
-
-      this.columnDef = modifiedColumnDefs;
-      this.totalRows = this.gridApi.paginationGetPageSize();
-
-      let fakeServer = FakeServer(data, this.expandedRows, this.gridData);
+    this.http.get(this.saasRevenueUrl).subscribe(data=>{
+      let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
       let datasource = getServerSideDatasource(fakeServer);
       this.gridApi.setServerSideDatasource(datasource);
-    });
+    })
   }
-
-  getMonthValue(data: any, type: string, month: string) {
-    const monthData = data[type].find((item) => Object.keys(item)[0] === month);
-    return monthData ? monthData[month] : 0;
-  }
-
-  onSearch() {
-    this.rowIndex = null;
-    setTimeout(() => {
-      let term = (
-        document.getElementById('filter-text-box') as HTMLInputElement
-      ).value.toLowerCase();
-      this.postLoginService.getSearchedTableData(term,this.dataUrl).subscribe((data) => {
-        data.forEach(item =>{
-          item.children = item.children.filter(child => this.postLoginService.checkPropertyValue(child,term))
-        })
-        this.handleSearchAndExpansion(data, term);
-        let fakeServer = FakeServer(data, this.expandedRows, this.gridData);
-        var datasource = getServerSideDatasource(fakeServer);
-        this.gridApi.setServerSideDatasource(datasource);
-      });
-    }, 1000);
-  }
-
-  onPaginationButtonClicked() {
-    let term = (document.getElementById('filter-text-box') as HTMLInputElement)
-      .value;
-    if (term) {
-      this.postLoginService.getSearchedTableData(term,this.dataUrl).subscribe((data) => {
-        this.handleSearchAndExpansion(data, term);
-      });
-    }
-  }
-
-  handleSearchAndExpansion(data, term) {
-    let serchArr = false;
-    setTimeout(() => {
-      data.forEach((item) => {
-        const searchTerm = term.toLowerCase();
-        serchArr = this.postLoginService.checkPropertyValue(
-          item.children,
-          searchTerm
-        );
-        if (serchArr) {
-          const nodeData = this.gridData.api.rowModel.nodeManager.rowNodes;
-          const mapped = Object.keys(nodeData).map((key) => ({
-            value: nodeData[key],
-          }));
-          if (term) {
-            mapped.forEach((node) => {
-              if (item.client_frenchiseName === node.value.key) {
-                node.value.setExpanded(true);
-              }
-            });
-          } else {
-            mapped.forEach((node) => {
-              if (item.client_frenchiseName === node.value.key) {
-                node.value.setExpanded(false);
-              }
-            });
-
-            this.expandedRows.forEach(item =>{
-              mapped.forEach((node) => {
-                if (item === node.value.key) {
-                  node.value.setExpanded(true);
-                }
-              });
-            })
-          }
-        }
-      });
-    }, 1000);
-  }
-
+  
   onItemsPerPageChange(newPageSize: any) {
     this.rowIndex = null;
     if (newPageSize === 'all') {
@@ -405,45 +307,6 @@ export class LeadsPerCommunityComponent implements OnInit {
       this.gridApi.paginationSetPageSize(Number(newPageSize));
     }
     this.totalRows = this.gridApi.paginationGetPageSize();
-  }
-
-  onSelectionChanged(event: any) {
-    if (event.source === 'uiSelectAll') {
-      const rowNodes = event.api.rowModel.nodeManager.rowNodes;
-      const matchedRowNodes = Object.entries(rowNodes)
-        .filter(([key, value]) => value !== undefined)
-        .map(([key, value]) => value);
-      this.isExpanded = !this.isExpanded;
-      let allNodesExpanded;
-      const checkbox = document.querySelector('.ag-checkbox-input-wrapper');
-      new Promise((resolve, reject) => {
-        matchedRowNodes.forEach((node: any) => {
-          if (node.level === 0) {
-            node.setExpanded(this.isExpanded);
-            if (node.rowIndex && node.expanded) {
-              allNodesExpanded = true;
-            } else if (node.rowIndex && !node.expanded) {
-              allNodesExpanded = false;
-            }
-          }
-        });
-        resolve(allNodesExpanded)
-      }).then((value : any) => {
-          if(value === true) {
-            checkbox.classList.add('icon-clicked');
-            } else {
-            checkbox.classList.remove('icon-clicked');
-            }
-          }
-      ).catch((err) => 
-        console.log(err)
-      );
-    } else if (event.source === 'rowClicked') {
-      this.selectedNodes = this.gridOptions.api.getSelectedNodes();
-      if (this.selectedNodes.length === 1) {
-        this.rowIndex = this.selectedNodes[0].rowIndex;
-      }
-    }
   }
 
   onToolPanelVisibleChanged(params: any) {
@@ -494,6 +357,103 @@ export class LeadsPerCommunityComponent implements OnInit {
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
   }
+
+  onSelectionChanged(event: any) {
+    if (event.source === 'uiSelectAll') {
+      let checkboxDiv = document.querySelector('.ag-header-viewport .ag-header-select-all .ag-checkbox-input-wrapper');
+      const rowNodes = event.api.rowModel.nodeManager.rowNodes;
+      const matchedRowNodes = Object.entries(rowNodes).filter(([key, value]) => value !== undefined).map(([key, value]) => value);
+      this.isExpanded = !this.isExpanded;
+      let allNodesExpanded = false;
+      new Promise((resolve,reject)=>{
+        matchedRowNodes.forEach((node:any)=>{
+          if(node.level == 0){
+            node.setExpanded(this.isExpanded);
+            if (node.rowIndex && node.expanded) {
+              allNodesExpanded = true;
+            } else if (node.rowIndex && !node.expanded) {
+              allNodesExpanded = false;
+            }
+          }
+        })
+        resolve(allNodesExpanded)
+      }).then((value:boolean)=>{
+        if(value == true){
+          checkboxDiv.classList.add('icon-clicked')
+        }
+        else{
+          checkboxDiv.classList.remove('icon-clicked')
+        }
+      })
+    } else if (event.source === 'rowClicked') {
+      this.selectedNodes = this.gridOptions.api.getSelectedNodes();
+      if (this.selectedNodes.length === 1) {
+        this.rowIndex = this.selectedNodes[0].rowIndex;
+      }
+    }
+  }
+
+  onSearch(){
+    this.rowIndex = null;
+    setTimeout(() => {
+      let term = (document.getElementById('filter-text-box') as HTMLInputElement).value.toLowerCase();
+      this.postLoginService.getSearchedTableData(term,this.saasRevenueUrl).subscribe(data=>{
+        data.forEach(item =>{
+          item.children = item.children.filter(child => this.postLoginService.checkPropertyValue(child,term))
+        })
+        this.handleSearchAndExpansion(data, term)
+        let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
+        let datasource = getServerSideDatasource(fakeServer);
+        this.gridApi.setServerSideDatasource(datasource);
+      })
+    }, 1000);
+  }
+
+  onPaginationButtonClicked() {
+    let term = (document.getElementById('filter-text-box') as HTMLInputElement)
+      .value;
+    if (term) {
+      this.postLoginService.getSearchedTableData(term,this.saasRevenueUrl).subscribe((data) => {
+        this.handleSearchAndExpansion(data, term);
+      });
+    }
+  }
+
+  handleSearchAndExpansion(data, term){
+    let searchFlag = false;
+    setTimeout(() => {
+      data.forEach((item) => {
+        searchFlag = this.postLoginService.checkPropertyValue(item.children,term);
+        if (searchFlag) {
+          const nodeData = this.gridData.api.rowModel.nodeManager.rowNodes;
+          const mapped = Object.keys(nodeData).map((key) => ({
+            value: nodeData[key],
+          }));
+          if (term) {
+            mapped.forEach((node) => {
+              if (item.client_frenchiseName === node.value.key) {
+                node.value.setExpanded(true);
+              }
+            });
+          } else {
+            mapped.forEach((node) => {
+              if (item.client_frenchiseName === node.value.key) {
+                node.value.setExpanded(false);
+              }
+            });
+
+            this.expandedRows.forEach(item =>{
+              mapped.forEach((node) => {
+                if (item === node.value.key) {
+                  node.value.setExpanded(true);
+                }
+              });
+            })
+          }
+        }
+      });
+    }, 1000);
+  }
 }
 
 function getServerSideDatasource(server: any): IServerSideDatasource {
@@ -525,8 +485,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
 
   return {
     getData: function (request) {
-      const hasFilter =
-        request.filterModel && Object.keys(request.filterModel).length;
+      const hasFilter = request.filterModel && Object.keys(request.filterModel).length;
       results = executeQuery(request, hasFilter);
       
       if (hasFilter) {
@@ -611,6 +570,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
   }
 
   function checkPropertyValue(value: any, term: any): boolean {
+    console.log('check property',value,term)
     if (typeof value === 'string') {
       if(typeof term === 'string' && term.toLowerCase() != 'active' && term.toLowerCase() != 'inactive'){
         return value.toLowerCase().includes(term.toLowerCase());
@@ -622,7 +582,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
         return false;
       }
     } else if (typeof value === 'number') {
-      return value === +term;
+      return value === term;
     } else if (Array.isArray(value)) {
       return value.some((item) => checkPropertyValue(item, term));
     } else if (typeof value === 'object') {
@@ -808,8 +768,26 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
       "'" +
       orderBySql(request);
 
-    let data = alasql(sql, [processedData, allResults])
+    let data = alasql(sql, [processedData, allResults]);
 
+    // var filterModel = request.filterModel; 
+    // if (filterModel && Object.keys(filterModel).length) {
+    //   Object.keys(filterModel).forEach(function (key) {
+    //     filterItem = filterModel[key];
+    //     if (key === 'ag-Grid-AutoColumn') {
+    //       key = 'client_frenchiseName';
+    //     }
+    //     columnName = key;
+    //     let nestedColumns = key.includes('.') ? true : false;  
+
+    //     data = data.filter(item =>{
+    //       let flag = (Object.keys(filterModel).length > 1) && (typeof filterItem.filter != 'number') ? 
+    //             checkPropertyValue(item,filterItem.filter) : checkChildValues(item,nestedColumns,filterItem.filter);
+    //           return flag;
+    //     })
+    //   })
+    // }
+    
     var filterModel = request.filterModel; 
     if (filterModel && Object.keys(filterModel).length) {
       Object.keys(filterModel).forEach(function (key) {
@@ -838,6 +816,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
         data = data.filter(item => searchObject(item,filterItem.filter));
       })
     }
+    
     return data;
   }
 

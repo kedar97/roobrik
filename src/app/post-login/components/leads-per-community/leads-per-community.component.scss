@@ -169,7 +169,7 @@ button:focus {
   .ag-floating-filter {
     border-top: none !important;
 
-    &:after {
+    &::after {
       display: none;
     }
   }
@@ -259,7 +259,11 @@ button:focus {
   }
 
   .ag-side-bar-right .ag-tool-panel-wrapper {
-    margin-top: 48px;
+    margin-top: 64px;
+  }
+
+  .ag-column-panel-column-select{
+    border-top: none;
   }
 }
 
@@ -411,7 +415,7 @@ button:focus {
   position: absolute;
   background-color: #f7f7f7;
   border-right: 1px solid rgb(189, 195, 199) !important;
-  height: 48px;
+  height: 64px;
   width: 87.5%;
   border: 0;
   font-size: 14px;
@@ -419,7 +423,7 @@ button:focus {
   font-weight: 700;
   top: 0;
   left: 0;
-
+  border-bottom: 1px solid rgb(189, 195, 199);
   &:hover {
     background: #c8d3dc !important;
   }

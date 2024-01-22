@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class PostLoginService {
   dataUrl = "assets/data.json";
+  saasRevenueUrl = "assets/saas-revenue-data.json";
 
   leadRoutingUserData: any;
   confirmDialogMessage: string;
@@ -31,18 +32,18 @@ export class PostLoginService {
     this.router.navigate(['dashboard/edit-lead-routing']);
   }
 
-  getTableData():Observable<any[]>{
-    return this.http.get<any[]>(this.dataUrl);
+  getTableData(url):Observable<any[]>{
+    return this.http.get<any[]>(url);
   }
 
-  getSearchedData(term: string): Observable<any[]> {
-    if (!term) {
-      return this.http.get<any[]>(this.dataUrl);
-    } else {
-      const searchTerm = term.toLowerCase();
-      return this.http.get<any[]>(this.dataUrl).pipe(
-        map(dataArray => dataArray.filter(item => this.searchObject(item, searchTerm)))
-      );
+  getSearchedTableData(term: string, url : string){
+    if(!term){
+      return this.http.get<any[]>(url)
+    }
+    else{
+      return this.http.get<any[]>(url).pipe(
+        map(dataArray => dataArray.filter(item => this.searchObject(item,term)))
+      )
     }
   }
 
@@ -57,7 +58,15 @@ export class PostLoginService {
 
   checkPropertyValue(value: any, term: string): boolean {
     if (typeof value === 'string') {
-      return value.toLowerCase().includes(term);
+        if(typeof term === 'string' && term.toLowerCase() != 'active' && term.toLowerCase() != 'inactive'){
+          return value.toLowerCase().includes(term.toLowerCase());
+        }
+        else if(typeof term === 'string' && (term.toLowerCase() === 'active' || term.toLowerCase() === 'inactive')){
+          return value.toLowerCase() === term.toLowerCase()
+        }
+        else{
+          return value.toLowerCase().includes(term);
+        }
     } else if (typeof value === 'number') {
       return String(value) === term;
     } else if (Array.isArray(value)) {

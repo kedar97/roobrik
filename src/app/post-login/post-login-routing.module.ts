@@ -10,7 +10,7 @@ import { CustomReportsComponent } from './components/custom-reports/custom-repor
 import { AddEditLeadRoutingComponent } from './components/add-edit-lead-routing/add-edit-lead-routing.component';
 import { ComingSoonComponent } from '../shared/components/coming-soon/coming-soon.component';
 import { LeadsPerCommunityComponent } from './components/leads-per-community/leads-per-community.component';
-
+import { FinancialDataComponent } from './components/financial-data/financial-data.component';
 const routes: Routes = [
   {
     path: '',
@@ -47,6 +47,10 @@ const routes: Routes = [
       {
         path: 'leads-per-community',
         component: LeadsPerCommunityComponent,
+      },
+      {
+        path: 'financial-data',
+        component: FinancialDataComponent,
       },
       {
         path: '',
