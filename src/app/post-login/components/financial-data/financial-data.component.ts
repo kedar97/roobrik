@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer2} from '@angular/core';
-import { ColDef, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef } from 'ag-grid-community';
+import { ColDef, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from '../../post-login.modal';
 import { PostLoginService } from '../../post-login.service';
 import { HttpClient } from '@angular/common/http';
@@ -74,8 +74,6 @@ export class FinancialDataComponent {
     {
       field:'invoicing_entity',
       headerName:'Invoicing entity',
-      pinned: 'left',
-      lockPinned: true,
       width:120,
       hide:true,
       sortable: true,
@@ -83,18 +81,16 @@ export class FinancialDataComponent {
     {
       field:'legal_entity',
       headerName:'Legal entity',
-      pinned: 'left',
-      lockPinned: true,
       width:110,
       hide:true,
       sortable: true,
     },
     {
       field:'',
-      headerName:'2024 revenue',
+      headerName:'2024 total revenue',
       marryChildren: true,
       children: [
-        { field: 'revenue2024.total', headerName :'', columnGroupShow :'closed', minWidth: 120,filter: 'agNumberColumnFilter'},
+        { field: 'revenue2024.total', headerName :'', columnGroupShow :'null', Width: 70,filter: 'agNumberColumnFilter'},
         { field: 'revenue2024.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2024.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2024.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -111,10 +107,10 @@ export class FinancialDataComponent {
     },
     {
       field:'',
-      headerName:'2023 revenue',
+      headerName:'2023 total revenue',
       marryChildren: true,
       children: [
-        { field:'revenue2023.total', headerName :'', columnGroupShow :'closed',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field:'revenue2023.total', headerName :'', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter'},
         { field: 'revenue2023.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2023.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2023.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -131,10 +127,10 @@ export class FinancialDataComponent {
     },
     {
       field:'',
-      headerName:'2022 revenue',
+      headerName:'2022 total revenue',
       marryChildren: true,
       children: [
-        { field:'revenue2022.total', headerName :'', columnGroupShow :'closed',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field:'revenue2022.total', headerName :'', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter'},
         { field: 'revenue2022.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2022.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2022.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -151,10 +147,10 @@ export class FinancialDataComponent {
     },
     {
       field:'',
-      headerName:'2021 revenue',
+      headerName:'2021 total revenue',
       marryChildren: true,
       children: [
-        { field:'revenue2021.total', headerName :'', columnGroupShow :'closed',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field:'revenue2021.total', headerName :'', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter'},
         { field: 'revenue2021.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2021.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2021.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -186,6 +182,8 @@ export class FinancialDataComponent {
     field: 'client_frenchiseName',
     headerName: 'Client/franchise name',
     headerCheckboxSelection:true,
+    pinned: 'left',
+    lockPinned: true,
     sortable: true,
     width: 300,
     cellStyle: {
@@ -193,6 +191,16 @@ export class FinancialDataComponent {
       overflow: 'hidden',
       display: 'block',
       'padding-top': '4px',
+    },
+    cellRendererParams: {
+      innerRenderer: (params: ICellRendererParams) => {
+        if(params.node.level == 0){
+          return `<a href='#' class='parent-link'> <div class='dot-container'>${params.value}</a>`
+        }
+        else{
+          return `${params.value}`
+        }
+      },
     },
   };
 
@@ -271,31 +279,31 @@ export class FinancialDataComponent {
     this.defaultColumnState = this.gridColumnApi.getColumnState();
     this.defaultFiltersState = this.gridApi.getFilterModel();
 
-    const currentDate = new Date();
-    const lastFullMonth = new Date(currentDate);
-    lastFullMonth.setMonth(lastFullMonth.getMonth() - 1);
-    const lastMonthFormatted = lastFullMonth.toLocaleDateString("en-US", { month: "short", year: "numeric"});
-    const modifiedColumnDefs = [
-      ...this.columnDef.slice(0,6),
-      {
-        headerName: `Status as of ${lastMonthFormatted}`,
-        field: 'status',
-        sortable: true,
-        width: 200,
-        minWidth: 100,
-        resizable: true,
-        lockPinned: true,
-      },
-      ...this.columnDef.slice(-1),
-    ]
+    this.postLoginService.getTableData(this.saasRevenueUrl).subscribe(data=>{
+      const currentDate = new Date();
+      const lastFullMonth = new Date(currentDate);
+      lastFullMonth.setMonth(lastFullMonth.getMonth() - 1);
+      const lastMonthFormatted = lastFullMonth.toLocaleDateString("en-US", { month: "short", year: "numeric"});
+      const modifiedColumnDefs = [
+        ...this.columnDef.slice(0,6),
+        {
+          headerName: `Status as of ${lastMonthFormatted}`,
+          field: 'status',
+          sortable: true,
+          width: 200,
+          minWidth: 100,
+          resizable: true,
+          lockPinned: true,
+        },
+        ...this.columnDef.slice(-1),
+      ]
 
-    this.columnDef = modifiedColumnDefs;
-    this.totalRows = this.gridApi.paginationGetPageSize();
+      this.columnDef = modifiedColumnDefs;
+      this.totalRows = this.gridApi.paginationGetPageSize();
 
-    this.http.get(this.saasRevenueUrl).subscribe(data=>{
       let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
-      let datasource = getServerSideDatasource(fakeServer);
-      this.gridApi.setServerSideDatasource(datasource);
+        let datasource = getServerSideDatasource(fakeServer);
+        this.gridApi.setServerSideDatasource(datasource);
     })
   }
   
@@ -360,14 +368,16 @@ export class FinancialDataComponent {
 
   onSelectionChanged(event: any) {
     if (event.source === 'uiSelectAll') {
-      let checkboxDiv = document.querySelector('.ag-header-viewport .ag-header-select-all .ag-checkbox-input-wrapper');
       const rowNodes = event.api.rowModel.nodeManager.rowNodes;
-      const matchedRowNodes = Object.entries(rowNodes).filter(([key, value]) => value !== undefined).map(([key, value]) => value);
+      const matchedRowNodes = Object.entries(rowNodes)
+        .filter(([key, value]) => value !== undefined)
+        .map(([key, value]) => value);
       this.isExpanded = !this.isExpanded;
-      let allNodesExpanded = false;
-      new Promise((resolve,reject)=>{
-        matchedRowNodes.forEach((node:any)=>{
-          if(node.level == 0){
+      let allNodesExpanded;
+      const checkbox = document.querySelector('.ag-checkbox-input-wrapper');
+      new Promise((resolve, reject) => {
+        matchedRowNodes.forEach((node: any) => {
+          if (node.level === 0) {
             node.setExpanded(this.isExpanded);
             if (node.rowIndex && node.expanded) {
               allNodesExpanded = true;
@@ -375,16 +385,18 @@ export class FinancialDataComponent {
               allNodesExpanded = false;
             }
           }
-        })
+        });
         resolve(allNodesExpanded)
-      }).then((value:boolean)=>{
-        if(value == true){
-          checkboxDiv.classList.add('icon-clicked')
-        }
-        else{
-          checkboxDiv.classList.remove('icon-clicked')
-        }
-      })
+      }).then((value : any) => {
+          if(value === true) {
+            checkbox.classList.add('icon-clicked');
+            } else {
+            checkbox.classList.remove('icon-clicked');
+            }
+          }
+      ).catch((err) => 
+        console.log(err)
+      );
     } else if (event.source === 'rowClicked') {
       this.selectedNodes = this.gridOptions.api.getSelectedNodes();
       if (this.selectedNodes.length === 1) {
@@ -402,7 +414,7 @@ export class FinancialDataComponent {
           item.children = item.children.filter(child => this.postLoginService.checkPropertyValue(child,term))
         })
         this.handleSearchAndExpansion(data, term)
-        let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
+        let fakeServer = FakeServer(data,this.expandedRows,this.gridData,);
         let datasource = getServerSideDatasource(fakeServer);
         this.gridApi.setServerSideDatasource(datasource);
       })
@@ -420,11 +432,14 @@ export class FinancialDataComponent {
   }
 
   handleSearchAndExpansion(data, term){
+    const filterModel = this.gridApi.getFilterModel();
+    const isFilterApplied = Object.keys(filterModel).length > 0;
+
     let searchFlag = false;
     setTimeout(() => {
       data.forEach((item) => {
         searchFlag = this.postLoginService.checkPropertyValue(item.children,term);
-        if (searchFlag) {
+        if (searchFlag && !isFilterApplied) {
           const nodeData = this.gridData.api.rowModel.nodeManager.rowNodes;
           const mapped = Object.keys(nodeData).map((key) => ({
             value: nodeData[key],
@@ -486,6 +501,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
   return {
     getData: function (request) {
       const hasFilter = request.filterModel && Object.keys(request.filterModel).length;
+      console.log(hasFilter,'has filter')
       results = executeQuery(request, hasFilter);
       
       if (hasFilter) {
@@ -570,7 +586,6 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
   }
 
   function checkPropertyValue(value: any, term: any): boolean {
-    console.log('check property',value,term)
     if (typeof value === 'string') {
       if(typeof term === 'string' && term.toLowerCase() != 'active' && term.toLowerCase() != 'inactive'){
         return value.toLowerCase().includes(term.toLowerCase());
@@ -769,24 +784,6 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
       orderBySql(request);
 
     let data = alasql(sql, [processedData, allResults]);
-
-    // var filterModel = request.filterModel; 
-    // if (filterModel && Object.keys(filterModel).length) {
-    //   Object.keys(filterModel).forEach(function (key) {
-    //     filterItem = filterModel[key];
-    //     if (key === 'ag-Grid-AutoColumn') {
-    //       key = 'client_frenchiseName';
-    //     }
-    //     columnName = key;
-    //     let nestedColumns = key.includes('.') ? true : false;  
-
-    //     data = data.filter(item =>{
-    //       let flag = (Object.keys(filterModel).length > 1) && (typeof filterItem.filter != 'number') ? 
-    //             checkPropertyValue(item,filterItem.filter) : checkChildValues(item,nestedColumns,filterItem.filter);
-    //           return flag;
-    //     })
-    //   })
-    // }
     
     var filterModel = request.filterModel; 
     if (filterModel && Object.keys(filterModel).length) {
@@ -812,10 +809,21 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
 
     if (filterModel && Object.keys(filterModel).length) {
       Object.keys(filterModel).forEach(function (key) {
-        filterItem = filterModel[key];
+        filterItem = filterModel[key]; if (key === 'ag-Grid-AutoColumn') {
+          key = 'client_frenchiseName';
+        }
+        columnName = key;
+        let nestedColumns = key.includes('.') ? true : false;  
         data = data.filter(item => searchObject(item,filterItem.filter));
+
+        // FOR HANDLING MONTH DATA
+        if((Object.keys(filterModel).length == 1) && (typeof filterItem.filter == 'number')){
+          data = data.filter(item => checkChildValues(item,nestedColumns,filterItem.filter))
+        }
       })
     }
+
+    console.log('data recursive',data)
     
     return data;
   }

@@ -131,7 +131,7 @@ export class LeadsPerCommunityComponent implements OnInit {
     headerName: 'Client/franchise name',
     sortable: true,
     width: 350,
-    pinned: 'left',
+    pinned: 'left', 
     lockPinned: true,
     cellStyle: {
       'text-overflow': 'ellipsis',
@@ -358,6 +358,9 @@ export class LeadsPerCommunityComponent implements OnInit {
   }
 
   handleSearchAndExpansion(data, term) {
+    const filterModel = this.gridApi.getFilterModel();
+    const isFilterApplied = Object.keys(filterModel).length > 0;
+
     let serchArr = false;
     setTimeout(() => {
       data.forEach((item) => {
@@ -366,7 +369,7 @@ export class LeadsPerCommunityComponent implements OnInit {
           item.children,
           searchTerm
         );
-        if (serchArr) {
+        if (serchArr && !isFilterApplied) {
           const nodeData = this.gridData.api.rowModel.nodeManager.rowNodes;
           const mapped = Object.keys(nodeData).map((key) => ({
             value: nodeData[key],

@@ -81,4 +81,9 @@ export class HeaderComponent {
     this.router.navigate(['/dashboard/custom-reports']);
     this.showReportMenu = !this.showReportMenu;
   }
+
+  onSignOut(){
+    localStorage.setItem('homePopupShow','true');
+    this.router.navigate(['/']);
+  }
 }

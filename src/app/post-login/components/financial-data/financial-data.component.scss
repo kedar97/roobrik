@@ -212,7 +212,7 @@ button:focus {
 }
 
 // CHECKBOX //
-:host ::ng-deep .ag-header .ag-header-viewport{
+:host ::ng-deep .ag-pinned-left-header {
     .ag-checkbox-input {
       appearance: none;
       -webkit-appearance: none;
@@ -430,3 +430,10 @@ button:focus {
       position: absolute !important;
     }
   }
+
+  //PARENT LINK
+  :host ::ng-deep .parent-link{
+    text-decoration: none;
+    color: #446a94;
+    font-weight: 500;
+}

@@ -3,13 +3,16 @@ import { FormBuilder } from '@angular/forms';
 import { DashboardCard } from '../../post-login.modal';
 import { BaseUnit, ChartComponent } from '@progress/kendo-angular-charts';
 import { MultiSelectTreeComponent } from '@progress/kendo-angular-dropdowns';
+import { DialogService } from '@progress/kendo-angular-dialog';
+import { TourVideoPopUpComponent } from '../tour-video-pop-up/tour-video-pop-up.component';
+import { PostLoginService } from '../../post-login.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,private dialogService: DialogService, private postLoginService : PostLoginService) {}
 
   @ViewChild(ChartComponent) chart: any;
   @ViewChild('locationTree') locationTree : MultiSelectTreeComponent;
@@ -359,7 +362,19 @@ export class HomeComponent {
 
   dateWithYear = { month: 'short', day: 'numeric', year:'numeric' };
   dateWithoutYear  = { month: 'short', day: 'numeric' }
+  
+  showVideoPopup: boolean = false;
+
   ngOnInit() {
+    let homePopupShow = localStorage.getItem('homePopupShow');
+
+    if(homePopupShow === 'true'){
+      this.showVideoPopup = !this.showVideoPopup;
+      this.dialogService.open({
+        content : TourVideoPopUpComponent,
+      });
+    }
+
     setTimeout(() => {
       this.isLoading = false;
     }, 100);
