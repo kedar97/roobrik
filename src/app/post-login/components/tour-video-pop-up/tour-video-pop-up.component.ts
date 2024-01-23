@@ -9,9 +9,7 @@ import { PostLoginService } from '../../post-login.service';
   styleUrls: ['./tour-video-pop-up.component.scss']
 })
 export class TourVideoPopUpComponent {
-  constructor(public dialogRef: DialogRef,private sanitizer: DomSanitizer,private postLoginServie : PostLoginService) {}
-
-  iframeSrc=this.sanitizer.bypassSecurityTrustResourceUrl('https://player.vimeo.com/video/302706764?h=fa08057428&title=0&byline=0&portrait=0');
+  constructor(public dialogRef: DialogRef) {}
 
   onDialogClose(){
     this.dialogRef.close();
