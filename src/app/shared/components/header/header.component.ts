@@ -2,7 +2,6 @@ import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { DialogService } from '@progress/kendo-angular-dialog';
 import { DialogComponent } from 'src/app/post-login/components/dialog/dialog.component';
-import { BehaviorSubject } from 'rxjs';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 
 @Component({

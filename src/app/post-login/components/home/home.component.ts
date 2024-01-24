@@ -360,16 +360,9 @@ export class HomeComponent {
     return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear() || date > today;
   };
 
-  dateWithYear = { month: 'short', day: 'numeric', year:'numeric' };
-  dateWithoutYear  = { month: 'short', day: 'numeric' }
-  
-  showVideoPopup: boolean = false;
-
   ngOnInit() {
     let homePopupShow = localStorage.getItem('homePopupShow');
-
     if(homePopupShow === 'true'){
-      this.showVideoPopup = !this.showVideoPopup;
       this.dialogService.open({
         content : TourVideoPopUpComponent,
       });

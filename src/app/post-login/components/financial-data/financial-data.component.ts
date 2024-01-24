@@ -501,7 +501,6 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
   return {
     getData: function (request) {
       const hasFilter = request.filterModel && Object.keys(request.filterModel).length;
-      console.log(hasFilter,'has filter')
       results = executeQuery(request, hasFilter);
       
       if (hasFilter) {
@@ -821,10 +820,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
           data = data.filter(item => checkChildValues(item,nestedColumns,filterItem.filter))
         }
       })
-    }
-
-    console.log('data recursive',data)
-    
+    }    
     return data;
   }
 
