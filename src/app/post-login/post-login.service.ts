@@ -13,9 +13,8 @@ export class PostLoginService {
 
   leadRoutingUserData: any;
   confirmDialogMessage: string;
-  hideNotifiation: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
+  bannerSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  hideNotifiation: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private router: Router, private http:HttpClient) {}
 

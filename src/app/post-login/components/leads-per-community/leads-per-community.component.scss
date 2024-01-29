@@ -15,6 +15,12 @@ button:focus {
 
 .main-container {
   padding: 81px 104px 47px 113px;
+
+  @media (min-width: 1920px) {
+    width: 1694px !important;
+    margin: 33px auto 42px !important;
+    padding: 81px 0px 47px 0px;
+  }
 }
 
 // HEADER STYLE //

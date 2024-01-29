@@ -563,6 +563,10 @@ export class LeadRoutingComponent implements OnInit, OnDestroy {
     statusButton.classList.add('btn', 'btn-status');
     statusButton.innerHTML = '<img src="assets/images/activate-icon.svg">';
 
+    statusButton.addEventListener('click',function(){
+      self.postLoginService.bannerSubject.next(true)
+    })
+
     const userStatus = document.createElement('p');
     userStatus.classList.add('user-status');
     userStatus.textContent =

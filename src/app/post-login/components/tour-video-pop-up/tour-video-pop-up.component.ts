@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { DialogRef, DialogService } from '@progress/kendo-angular-dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 @Component({
@@ -8,7 +7,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./tour-video-pop-up.component.scss']
 })
 export class TourVideoPopUpComponent {
-  constructor(public dialogRef: DialogRef,    private dialogService: DialogService) {}
+  constructor(public dialogRef: DialogRef, private dialogService: DialogService) {}
 
   onDialogClose(){
     this.dialogRef.close();

@@ -141,8 +141,6 @@ export class AddEditLeadRoutingComponent implements OnInit {
     const self = this;
     this.gridApi = params.api;
     const nodeList = this.gridApi.getRenderedNodes();
-    console.log('nodeList', nodeList);
-    console.log('self.userData.locations', self.userData.locations);
     nodeList.forEach((node: any) => {
       self.userData.locations.forEach((location) => {
         if (node.data.location.trim() === location.name.trim()) {

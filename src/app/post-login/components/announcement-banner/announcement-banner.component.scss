@@ -1,0 +1,47 @@
+.banner-container{
+    padding: 6px 0px;
+    display: flex;
+    justify-content: end;
+    height: 44px;
+    background-color: #29649B;
+}
+
+.message-container{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+    align-items: center;
+    color: #FFF;
+    font-family: Helvetica;
+    font-weight: 400;
+    line-height: 14px;
+}
+
+.close-btn{
+    background: none;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    border: none;
+    color: #FFF;
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    margin-left: auto
+}
+
+.main-text{
+    font-size: 14px;
+}
+
+.sub-text{
+    font-size: 10px;
+}
+
+p{
+    margin: 0;
+}

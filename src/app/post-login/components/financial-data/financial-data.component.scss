@@ -10,6 +10,12 @@ button:focus {
 
 .main-container {
     padding: 42px 104px 165px 113px;
+
+    @media (min-width: 1920px) {
+        width: 1694px !important;
+        margin: 33px auto 42px !important;
+        padding: 42px 0px 165px 0px;
+    }
 }
 
 .section-navbar{

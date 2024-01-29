@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { PostLoginService } from './post-login.service';
 
 @Component({
   selector: 'app-post-login',
@@ -7,7 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./post-login.component.scss'],
 })
 export class PostLoginComponent {
-  constructor(private router: Router) {}
+  bannerDisplay : boolean = false;
+
+  constructor(private router: Router,private postLoginService :PostLoginService) {
+    postLoginService.bannerSubject.subscribe( res =>{
+      this.bannerDisplay = res;
+    })
+  }
 
   hideFooter(): boolean {
     if (this.router.url.includes('leads-per-community')) {
@@ -15,4 +22,5 @@ export class PostLoginComponent {
     }
     return false;
   }
+
 }
