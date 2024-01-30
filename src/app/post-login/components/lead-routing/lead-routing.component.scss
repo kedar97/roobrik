@@ -409,7 +409,7 @@ select:focus {
   .ag-tool-panel-wrapper,
   .ag-group-title {
     color: #2f2f2f;
-    font-family: Helvetica Neue;
+    font-family: 'Helvetica Neue';
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
@@ -524,7 +524,7 @@ select:focus {
   position: absolute;
   background-color: #f7f7f7;
   border-right: 1px solid rgb(189, 195, 199) !important;
-  height: 48px;
+  height: 47px;
   width: 86%;
   border: 0;
   font-size: 14px;
@@ -540,6 +540,7 @@ select:focus {
 
 :host ::ng-deep .ag-tool-panel-wrapper {
   border-top: 1px solid rgb(189, 195, 199);
+  margin-top: 47px;
 }
 
 :host ::ng-deep .ag-column-panel-column-select {

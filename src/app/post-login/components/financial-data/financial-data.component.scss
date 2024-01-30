@@ -215,6 +215,27 @@ button:focus {
     .ag-icon-expanded{
         margin-top: -8px;
     }
+
+    .ag-column-panel-column-select{
+        border-top: none;
+    }
+
+    .ag-column-select-header-icon .ag-icon-tree-open,
+    .ag-column-select-column-group .ag-icon-tree-open,
+    .ag-filter-toolpanel-group-title-bar-icon,
+    .ag-filter-toolpanel-expand{
+        margin-top: -6px;
+    }
+
+    .ag-column-select-header-icon .ag-icon-tree-closed,
+    .ag-filter-toolpanel-group-title-bar-icon .ag-icon-tree-open,
+    .ag-filter-toolpanel-expand .ag-icon-tree-open{
+        margin-top: -3px;
+    }
+
+    .ag-column-select-column-group .ag-icon-tree-closed{
+        margin-top: -5px;
+    }
 }
 
 // CHECKBOX //
@@ -268,7 +289,8 @@ button:focus {
     font-weight: 700;
     top: 0;
     left: 0;
-  
+    border-bottom: 1px solid rgb(189,195,199);
+
     &:hover {
       background: #c8d3dc !important;
     }
@@ -401,7 +423,6 @@ button:focus {
 
     .ag-paging-page-summary-panel {
         position: absolute;
-        // right: 0;
         right: 12px;
     }
 
@@ -442,4 +463,8 @@ button:focus {
     text-decoration: none;
     color: #446a94;
     font-weight: 500;
+}
+
+::ng-deep .hide-header-name .ag-header-cell-comp-wrapper .ag-cell-label-container .ag-header-cell-label .ag-header-cell-text{
+    display: none;
 }

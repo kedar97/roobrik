@@ -90,7 +90,9 @@ export class FinancialDataComponent {
       headerName:'2024 total revenue',
       marryChildren: true,
       children: [
-        { field: 'revenue2024.total', headerName :'', columnGroupShow :'null', Width: 70,filter: 'agNumberColumnFilter'},
+        { field: 'totalRevenue2024', headerName :'Total', columnGroupShow :'null', Width: 70,filter: 'agNumberColumnFilter',
+          headerClass: 'hide-header-name',
+        },
         { field: 'revenue2024.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2024.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2024.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -110,7 +112,9 @@ export class FinancialDataComponent {
       headerName:'2023 total revenue',
       marryChildren: true,
       children: [
-        { field:'revenue2023.total', headerName :'', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field:'totalRevenue2023', headerName :'Total', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter',
+          headerClass: 'hide-header-name',
+        },
         { field: 'revenue2023.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2023.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2023.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -130,7 +134,9 @@ export class FinancialDataComponent {
       headerName:'2022 total revenue',
       marryChildren: true,
       children: [
-        { field:'revenue2022.total', headerName :'', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field:'totalRevenue2022', headerName :'Total', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter',
+          headerClass: 'hide-header-name',
+        },
         { field: 'revenue2022.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2022.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2022.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -150,7 +156,9 @@ export class FinancialDataComponent {
       headerName:'2021 total revenue',
       marryChildren: true,
       children: [
-        { field:'revenue2021.total', headerName :'', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter'},
+        { field:'totalRevenue2021', headerName :'Total', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter',
+          headerClass: 'hide-header-name',
+        },
         { field: 'revenue2021.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2021.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
         { field: 'revenue2021.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
