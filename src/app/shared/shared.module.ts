@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { HeaderTwoComponent } from './components/header-two/header-two.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     HeaderComponent,
     ComingSoonComponent,
     NotificationsComponent,
-    LoaderComponent
+    LoaderComponent,
+    HeaderTwoComponent
   ],
   imports: [
     CommonModule,
@@ -34,6 +36,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     KendoModule,
     FormsModule,
     ReactiveFormsModule,
+    HeaderTwoComponent
   ]
 })
 export class SharedModule { }

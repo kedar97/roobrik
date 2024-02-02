@@ -90,7 +90,7 @@ export class FinancialDataComponent {
       headerName:'2024 total revenue',
       marryChildren: true,
       children: [
-        { field: 'totalRevenue2024', headerName :'Total', columnGroupShow :'null', Width: 70,filter: 'agNumberColumnFilter',
+        { field: 'totalRevenue2024', headerName :'Total', columnGroupShow :null, minWidth: 70,filter: 'agNumberColumnFilter',
           headerClass: 'hide-header-name',
         },
         { field: 'revenue2024.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -112,7 +112,7 @@ export class FinancialDataComponent {
       headerName:'2023 total revenue',
       marryChildren: true,
       children: [
-        { field:'totalRevenue2023', headerName :'Total', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter',
+        { field:'totalRevenue2023', headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter',
           headerClass: 'hide-header-name',
         },
         { field: 'revenue2023.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -134,7 +134,7 @@ export class FinancialDataComponent {
       headerName:'2022 total revenue',
       marryChildren: true,
       children: [
-        { field:'totalRevenue2022', headerName :'Total', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter',
+        { field:'totalRevenue2022', headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter',
           headerClass: 'hide-header-name',
         },
         { field: 'revenue2022.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -156,7 +156,7 @@ export class FinancialDataComponent {
       headerName:'2021 total revenue',
       marryChildren: true,
       children: [
-        { field:'totalRevenue2021', headerName :'Total', columnGroupShow :'null',minWidth: 120, filter: 'agNumberColumnFilter',
+        { field:'totalRevenue2021', headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter',
           headerClass: 'hide-header-name',
         },
         { field: 'revenue2021.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter' },
@@ -803,7 +803,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
         let nestedColumns = key.includes('.') ? true : false;  
 
         data.forEach(item =>{
-          if(item.children){
+          if(item.children && item.children.length > 0){
             item.children = item.children.filter( child => {
               let flag = (Object.keys(filterModel).length > 1) && (typeof filterItem.filter != 'number') ? 
                 checkPropertyValue(child,filterItem.filter) : checkChildValues(child,nestedColumns,filterItem.filter);
@@ -816,16 +816,35 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
 
     if (filterModel && Object.keys(filterModel).length) {
       Object.keys(filterModel).forEach(function (key) {
-        filterItem = filterModel[key]; if (key === 'ag-Grid-AutoColumn') {
+        filterItem = filterModel[key]; 
+        if (key === 'ag-Grid-AutoColumn') {
           key = 'client_frenchiseName';
         }
         columnName = key;
         let nestedColumns = key.includes('.') ? true : false;  
         data = data.filter(item => searchObject(item,filterItem.filter));
+        let childFlag;
 
         // FOR HANDLING MONTH DATA
-        if((Object.keys(filterModel).length == 1) && (typeof filterItem.filter == 'number')){
-          data = data.filter(item => checkChildValues(item,nestedColumns,filterItem.filter))
+        if(((Object.keys(filterModel).length == 1) && (typeof filterItem.filter == 'number')) || ((Object.keys(filterModel)).length > 1 && Object.values(filterModel).every((obj:any) => obj.filterType === 'number'))){
+
+          let res = data.filter(item=>{
+            return Object.keys(item).some(property => {
+              if (property === columnName) {
+                return checkPropertyValue(item[property], filterItem.filter);
+              }
+              else if(property === 'children' && item.children != undefined){
+                item.children.filter( child => {
+                  childFlag = checkChildValues(child,nestedColumns,filterItem.filter);
+                })
+                return childFlag;
+              } 
+              else {
+                return false;
+              }
+            });
+          });
+          data = res.length > 0 ? res : data;
         }
       })
     }    

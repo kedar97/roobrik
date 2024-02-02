@@ -1,0 +1,164 @@
+.custom-gap-20{
+    gap: 20px;
+}
+.header-container{
+    background-color: rgba(61,144,173,255);
+    padding: 20px 30px;
+    gap: 20px;
+}
+
+.roobrik-icon{
+    width: 150px;
+}
+
+.navbar{
+    gap: 30px;
+}
+
+.link{
+    color: #FFF;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    font-size: 16px;
+}
+
+.client-dashboard{
+    position: relative;
+}
+
+.reports-container{
+    position: relative;
+}
+
+.popup span{
+    font-size: 14px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.popup{
+    background-color:#f4fcfc ;
+    padding: 10px 5px;
+    width: max-content;
+    left: -20px;
+    top: calc(100% + (84px - 100%) / 2);
+    z-index: 9;
+}
+
+.popup-client-dashboard{
+    position: absolute;
+}
+
+.popup-reports{
+    position: absolute;
+}
+
+.arrow {
+    transform: rotate(270deg);
+    margin-left: 22px;
+    margin-bottom: 4px;
+    position: relative;
+}
+
+.arrow::before {
+content: " ";
+    border-left: 2px solid #FFF;
+    border-bottom: 2px solid #FFF;
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    display: block;
+}
+
+a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-size: 20px;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: #FFF;
+      transition: width 0.3s;
+    }
+
+    &:hover::before,
+    &.active-link::before {
+      width: 100%;
+    }
+}
+
+.breadcrumb-container{
+    gap: 4px;
+    padding: 10px;
+    color: #444;
+}
+
+p{
+    margin: 0;
+}
+
+.profile-container{
+    margin-left: auto;
+    position: relative;
+    display: flex;
+    gap: 20px;
+}
+
+.popup-profile{
+    position: absolute;
+    left: -100px;
+}
+
+.profile-button{
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a4569 ;
+    color: #FFF;
+    height: 24px;
+    width: 24px;
+    align-self: center;
+    padding: 18px;
+    text-transform: uppercase;
+    &:active{
+        outline: none;
+        border: none;
+    }
+
+    &:hover,
+    &.active {
+      background-color: #3d9ad3 !important;
+    }
+}
+
+::ng-deep .k-breadcrumb-last-item .k-breadcrumb-link{
+    color: black;
+}
+
+::ng-deep .k-breadcrumb-root-link{
+    color: #0a4569;
+}
+
+::ng-deep .k-breadcrumb{
+    padding: 10px;
+    padding-left: 30px;
+    box-shadow: 0px 4px 5px rgba(#000,.4);
+}
+
+.divider{
+    height: 40px;
+    width: 1px;
+    background-color: #D9D9D9;
+}

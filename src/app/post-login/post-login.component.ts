@@ -23,4 +23,13 @@ export class PostLoginComponent {
     return false;
   }
 
+  hideAdmin2Header(): boolean{
+    if(this.router.url.includes('leads-per-community') || this.router.url.includes('financial-data')){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
 }

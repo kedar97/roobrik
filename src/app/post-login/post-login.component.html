@@ -1,6 +1,7 @@
 <app-announcement-banner *ngIf="bannerDisplay"></app-announcement-banner>
 <div class="container-wrapper d-flex flex-column">
-  <app-header></app-header>
+  <app-header-two *ngIf="hideAdmin2Header()"></app-header-two>
+  <app-header  *ngIf="!hideAdmin2Header()"></app-header>
   <div class="routing-page">
     <router-outlet></router-outlet>
   </div>
