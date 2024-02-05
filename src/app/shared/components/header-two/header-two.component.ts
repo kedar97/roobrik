@@ -28,7 +28,7 @@ export class HeaderTwoComponent {
       this.breadcrumbParent = 'Client Dashboard'
     }
   }
-  
+
   showClientDashboardOptions(event){
     this.showClientDashboardMenu = !this.showClientDashboardMenu;
     this.showReportsMenu = false;
@@ -82,11 +82,6 @@ export class HeaderTwoComponent {
   onSignOut(){
     localStorage.setItem('homePopupShow','true');
     this.router.navigate(['/']);
-  }
-
-  showProfileBtn(event: Event) {
-    this.showProfileMenu = !this.showProfileMenu;
-    event.stopPropagation();
   }
 
   onProfile(){

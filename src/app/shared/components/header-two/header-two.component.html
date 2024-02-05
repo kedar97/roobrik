@@ -3,7 +3,7 @@
         <img src="../../../../assets/images/roobrik_white_horizontal.svg" alt="Roobrik logo" class="roobrik-icon">
         <div class="divider"></div>
     </div>
-   
+
 
     <nav class="d-flex navbar">
         <div>
@@ -11,7 +11,7 @@
         </div>
 
         <div class="client-dashboard">
-            <a 
+            <a
                 class="link dashboard-popup-btn"
                 (click)="showClientDashboardOptions($event)"
                 [ngClass]="{ 'active-link': showClientDashboardMenu }">
@@ -30,7 +30,7 @@
         </div>
 
         <div class="reports-container">
-            <a 
+            <a
                 class="link report-popup-btn"
                 (click)="showReportsOptions($event)"
                 [ngClass]="{ 'active-link': showReportsMenu }">
@@ -50,21 +50,7 @@
 
     <div class="profile-container">
         <div class="divider"></div>
-        <button 
-            kendoButton
-            class="btn profile-button"
-            (click)="showProfileBtn($event)"
-            [ngClass]="{ active: showProfileMenu }"
-        >JV</button>
-
-        <div
-            class="popup popup-profile d-flex flex-column"
-            *ngIf="showProfileMenu"
-        >
-            <span (click)="onProfile()"> Profile</span>
-            <span (click)="onSelectAccount()">Switch Account</span>
-            <span (click)="onSignOut()">Sign Out</span>
-        </div>
+        <div class="profile-button">JV</div>
     </div>
 </div>
 <kendo-breadcrumb [items]="items"></kendo-breadcrumb>

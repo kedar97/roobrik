@@ -132,15 +132,6 @@ p{
     align-self: center;
     padding: 18px;
     text-transform: uppercase;
-    &:active{
-        outline: none;
-        border: none;
-    }
-
-    &:hover,
-    &.active {
-      background-color: #3d9ad3 !important;
-    }
 }
 
 ::ng-deep .k-breadcrumb-last-item .k-breadcrumb-link{
@@ -154,7 +145,6 @@ p{
 ::ng-deep .k-breadcrumb{
     padding: 10px;
     padding-left: 30px;
-    box-shadow: 0px 4px 5px rgba(#000,.4);
 }
 
 .divider{
