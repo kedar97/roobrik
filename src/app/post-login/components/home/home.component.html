@@ -68,7 +68,13 @@
             </kendo-dropdownlist>
 
             <div class="date-range-picker" #dateRangePicker *ngIf="selectedRangeOption === 'Custom range'">
-              <kendo-multiviewcalendar kendoDateRangeSelection [selectionRange]="range" (selectionRangeChange)="onDateRangeSelect($event)" [disabledDates]="disabledDate"> 
+                <kendo-multiviewcalendar
+                  kendoDateRangeSelection
+                  (selectionRangeChange)="onDateRangeSelect($event)"
+                  [disabledDates]="disabledDate"
+                  [selectionRange]="range"
+                  [focusedDate]="range.start || range.end"
+                >
                 <ng-template kendoCalendarHeaderTitleTemplate let-title>
                   <div class="calender-heading">
                     <p>{{title.split('-')[0]}}</p>
@@ -77,9 +83,21 @@
 
                 </ng-template>
               </kendo-multiviewcalendar>
-              <div class="calender-buttons d-flex align-items-center justify-content-end">
-                <button class=" btn-cancel" (click)="onCancel()">Cancel</button>
-                <button class=" btn-save" (click)="onDateRangeSave()" [disabled]="range.end === null">Save</button>
+              <div class="calender-buttons d-flex align-items-center justify-content-between">
+                <div class="date-selection-inputs d-flex gap-2">
+                  <div class="date-start-input">
+                    <label for="startDate" class="date-label">Start date</label>
+                    <kendo-dateinput id="startDate" class="date-input" [(value)]="range.start"></kendo-dateinput>
+                  </div>
+                  <div class="date-start-input">
+                    <label for="endDate" class="date-label">End date</label>
+                    <kendo-dateinput id="endDate" class="date-input" [(value)]="range.end"></kendo-dateinput>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <button class=" btn-cancel" (click)="onCancel()">Cancel</button>
+                  <button class=" btn-save" (click)="onDateRangeSave()" [disabled]="range.end === null">Save</button>
+                </div>
               </div>
             </div>
           </div>

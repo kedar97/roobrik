@@ -74,6 +74,7 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
   defaultColumnState: any;
   defaultFiltersState: any;
   hideNotificationSubscription: Subscription;
+  isExpand : boolean = false;
 
   constructor(
     private renderer: Renderer2,
@@ -234,6 +235,21 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
       checkbox: true,
       innerRenderer: badgeCellRenderer(),
     },
+    headerComponentParams: {
+     template:
+      '<div class="ag-cell-label-container" role="presentation">' +
+      '<img src="../../../../assets/images/chevron-right-icon.svg" alt="header icon" class="expand-icon">' +
+          '  <span ref="eMenu" class="ag-header-icon ag-header-cell-menu-button"></span>' +
+          '  <div ref="eLabel" class="ag-header-cell-label" role="presentation">' +
+          '    <span ref="eText" class="ag-header-cell-text" role="columnheader"></span>' +
+          '    <span ref="eSortOrder" class="ag-header-icon ag-sort-order"></span>' +
+          '    <span ref="eSortAsc" class="ag-header-icon ag-sort-ascending-icon"></span>' +
+          '    <span ref="eSortDesc" class="ag-header-icon ag-sort-descending-icon"></span>' +
+          '    <span ref="eSortNone" class="ag-header-icon ag-sort-none-icon"></span>' +
+          '    <span ref="eFilter" class="ag-header-icon ag-filter-icon"></span>' +
+          '  </div>' +
+          '</div>'
+    }
   };
 
   paginationOptions: PaginationOption[] = [
@@ -455,7 +471,21 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
     this.gridColumnApi = params.columnApi;
     this.defaultColumnState = this.gridColumnApi.getColumnState();
     this.defaultFiltersState = this.gridApi.getFilterModel();
+
+    let headerIcon = document.querySelector('.expand-icon');
+    headerIcon.addEventListener('click',function(){
+      this.isExpand = !this.isExpand ;
+      if(this.isExpand == true){
+        params.api.expandAll();
+        headerIcon.classList.add('row-expanded')
+      }
+      else{
+        params.api.collapseAll();
+        headerIcon.classList.remove('row-expanded')
+      }
+    })
   }
+
   onPageSizeChanged() {
     var value = (document.getElementById('page-size') as HTMLInputElement)
       .value;

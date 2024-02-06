@@ -599,3 +599,13 @@
     line-height: 16px;
   }
 }
+
+::ng-deep .expand-icon{
+  position: absolute;
+  left: 25px;
+  height: 20px;
+}
+
+::ng-deep .row-expanded{
+  transform: rotate(90deg);
+}

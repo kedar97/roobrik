@@ -392,6 +392,8 @@ export class HomeComponent {
     const formattedStart = startRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
     this.selectedRange = `${formattedStart} - ${this.endDate}`;
     this.setCardPrevDaysText(this.minDate,this.maxDate);
+    this.range.start = this.minDate;
+    this.range.end = this.maxDate
   }
 
   tagMapper(tags: any[]) {
@@ -456,6 +458,12 @@ export class HomeComponent {
   }
 
   onDateRangeSave(){
+    const startRange = new Date(this.range.start);
+    const endRange = new Date(this.range.end);
+    this.startDate = startRange;
+    this.formattedStart = startRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+    this.formattedEnd = endRange.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
     this.selectedRange = `${this.formattedStart} - ${this.formattedEnd}`;
     this.selectedRangeOption = '';
     this.defaultRange = this.range;

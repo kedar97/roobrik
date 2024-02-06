@@ -496,3 +496,35 @@ p {
   grid-column-start: 3;
   grid-column-end: -1;
 }
+
+
+.date-start-input{
+  position: relative;
+}
+
+.date-label{
+  position: absolute;
+  top: -7px;
+  padding: 0 10px;
+  z-index: 9;
+  font-size: 12px;
+  background: white;
+  left: 10px;
+  color: #949494;
+}
+
+.date-input{
+  width: 110px;
+  padding-top: 5px ;
+  padding-bottom: 0;
+  border: 2px solid #2B6789;
+  border-radius: 4px;
+}
+
+::ng-deep .date-input .k-input-inner{
+  text-align: center;
+}
+
+.error{
+  border: 2px solid red;
+}
