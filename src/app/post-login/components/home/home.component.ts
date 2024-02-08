@@ -354,12 +354,30 @@ export class HomeComponent {
   oldSqlCounts : number ;
   oldMqlCounts : number ;
   yearsDifference : number;
-
+  invalidStartDate: boolean = false;
+  invalidEndDate: boolean = false;
   disabledDate = (date: Date): boolean => {
     const today = new Date();
     return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear() || date > today;
   };
 
+  checkForInvalidDate(date){
+    const today = new Date();
+    if(date){
+      if(date === this.range.start){
+        this.invalidStartDate = date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear() || date > today;
+        return this.invalidStartDate;
+      }
+      else{
+        this.invalidEndDate = date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear() || date > today;
+        return this.invalidEndDate;
+      }
+    }
+    else{
+      return false;
+    }
+    
+  }
   ngOnInit() {
     let homePopupShow = localStorage.getItem('homePopupShow');
     if(homePopupShow === 'true'){

@@ -125,7 +125,7 @@ p{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #0a4569 ;
+    background: #296689 ;
     color: #FFF;
     height: 24px;
     width: 24px;
@@ -145,6 +145,10 @@ p{
 ::ng-deep .k-breadcrumb{
     padding: 10px;
     padding-left: 30px;
+}
+
+::ng-deep .k-breadcrumb-link{
+    color: #0a4569;
 }
 
 .divider{

@@ -24,6 +24,7 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
 import { FinancialDataComponent } from './components/financial-data/financial-data.component';
 import { TourVideoPopUpComponent } from './components/tour-video-pop-up/tour-video-pop-up.component';
 import { AnnouncementBannerComponent } from './components/announcement-banner/announcement-banner.component';
+import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-revenue/edit-saas-revenue.component';
 ModuleRegistry.registerModules([ExcelExportModule]);
 
 @NgModule({
@@ -40,6 +41,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     FinancialDataComponent,
     TourVideoPopUpComponent,
     AnnouncementBannerComponent,
+    EditSaasRevenueComponent,
   ],
   imports: [
     CommonModule,

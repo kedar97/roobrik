@@ -11,6 +11,7 @@ import { AddEditLeadRoutingComponent } from './components/add-edit-lead-routing/
 import { ComingSoonComponent } from '../shared/components/coming-soon/coming-soon.component';
 import { LeadsPerCommunityComponent } from './components/leads-per-community/leads-per-community.component';
 import { FinancialDataComponent } from './components/financial-data/financial-data.component';
+import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-revenue/edit-saas-revenue.component';
 const routes: Routes = [
   {
     path: '',
@@ -45,19 +46,29 @@ const routes: Routes = [
         component: ComingSoonComponent,
       },
       {
-        path: 'leads-per-community',
-        component: LeadsPerCommunityComponent,
-      },
-      {
-        path: 'financial-data',
-        component: FinancialDataComponent,
-      },
-      {
         path: '',
         component: HomeComponent,
       },
     ],
   },
+  {
+    path:'',
+    component:PostLoginComponent,
+    children : [
+      {
+        path: 'saas-revenue',
+        component: FinancialDataComponent,
+      },
+      {
+        path: 'saas-revenue/:client_frenchiseName',
+        component: EditSaasRevenueComponent,
+      },
+      {
+        path: 'client-health-metrics',
+        component: LeadsPerCommunityComponent,
+      },
+    ]
+  }
 ];
 
 @NgModule({

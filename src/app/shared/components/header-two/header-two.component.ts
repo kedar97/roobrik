@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { DialogService } from '@progress/kendo-angular-dialog';
+import { BreadCrumbItem } from '@progress/kendo-angular-navigation';
 import { Subscription } from 'rxjs';
 import { DialogComponent } from 'src/app/post-login/components/dialog/dialog.component';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
@@ -42,12 +43,12 @@ export class HeaderTwoComponent {
   }
 
   onClientHealthMetrics(event) {
-    this.router.navigate(['/dashboard/leads-per-community']);
+    this.router.navigate(['/reports/client-health-metrics']);
     this.showReportsMenu = !this.showReportsMenu;
   }
 
   onSaasRevenue(event) {
-    this.router.navigate(['/dashboard/financial-data']);
+    this.router.navigate(['/reports/saas-revenue']);
     this.showReportsMenu = !this.showReportsMenu;
   }
 
@@ -94,23 +95,39 @@ export class HeaderTwoComponent {
     this.showClientDashboardMenu = !this.showClientDashboardMenu;
   }
 
+  allItems;
   private initRoutes(): void {
     this.routesData = this.router.events.subscribe(() => {
-        const route = this.router.url;
-        this.items = route
-            .substring(0, route.indexOf('?') !== -1 ? route.indexOf('?') : route.length)
-            .split('/')
-            .filter(Boolean)
-            .map((segment) => {
-              if(segment === 'dashboard'){
-                segment = this.breadcrumbParent;
-              }
-                return {
-                    text: segment.charAt(0).toUpperCase() + segment.slice(1),
-                    title: segment,
-                };
-            });
-    });
+      const route = this.router.url;
+      this.allItems = route
+        .substring(0, route.indexOf('?') !== -1 ? route.indexOf('?') : route.length)
+        .split('/')
+        .filter(Boolean)
+        .map((segment) => {
+          let words = segment.split('-');
+          let capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+          let newStr = capitalizedWords.join(' ');
+          return {
+            text: unescape(newStr),
+            title: segment,
+          };
+        });
+        this.items = this.allItems.slice(-2);
+      });
+    }
+    
+    public onItemClick(item: BreadCrumbItem): void {
+    this.allItems.forEach(item =>{
+      let words = item.text.split(' ');
+      let lowercaseWords = words.map(word => word.toLowerCase());
+      let newStr = lowercaseWords.join('-');
+      item.text = newStr;
+    })
+    const selectedItemIndex = this.allItems.findIndex((i) => i.text === item.text);
+    const url = this.allItems
+      .slice(0, selectedItemIndex + 1)
+      .map((i) => i.text.toLowerCase());
+    this.router.navigate(url);
   }
 
   public ngOnDestroy(): void {

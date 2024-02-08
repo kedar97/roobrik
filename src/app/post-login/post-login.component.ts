@@ -17,14 +17,14 @@ export class PostLoginComponent {
   }
 
   hideFooter(): boolean {
-    if (this.router.url.includes('leads-per-community')) {
+    if (this.router.url.includes('leads-per-community') || this.router.url.includes('client-health-metrics')) {
       return true;
     }
     return false;
   }
 
   hideAdmin2Header(): boolean{
-    if(this.router.url.includes('leads-per-community') || this.router.url.includes('financial-data')){
+    if(this.router.url.includes('client-health-metrics') || this.router.url.includes('saas-revenue') || this.router.url.includes('edit-saas-revenue')){
       return true;
     }
     else{

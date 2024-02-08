@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FinancialDataComponent } from './post-login/components/financial-data/financial-data.component';
 
 const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () =>
       import('./post-login/post-login.module').then((m) => m.PostLoginModule),
+  },
+  {
+    path: 'reports',
+    loadChildren: () =>
+    import('./post-login/post-login.module').then((m) => m.PostLoginModule),
   },
   {
     path: '',

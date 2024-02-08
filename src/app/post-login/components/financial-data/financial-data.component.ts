@@ -4,6 +4,7 @@ import { PaginationOption } from '../../post-login.modal';
 import { PostLoginService } from '../../post-login.service';
 import { HttpClient } from '@angular/common/http';
 import * as alasql from 'alasql';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-financial-data',
@@ -13,7 +14,7 @@ import * as alasql from 'alasql';
 export class FinancialDataComponent {
   saasRevenueUrl = "assets/saas-revenue-data.json";
 
-  constructor(private postLoginService : PostLoginService, private renderer: Renderer2,private ele: ElementRef, private http:HttpClient){}
+  constructor(private postLoginService : PostLoginService, private renderer: Renderer2,private ele: ElementRef, private http:HttpClient,private router:Router){}
 
   selectedValue = 100;
   cacheBlockSize = 100;
@@ -226,14 +227,30 @@ export class FinancialDataComponent {
     cellRendererParams: {
       innerRenderer: (params: ICellRendererParams) => {
         if(params.node.level == 0){
-          return `<a href='#' class='parent-link'> <div class='dot-container'>${params.value}</a>`
+          return `<div class='parent-link'>${params.value}</div>`
         }
         else{
           return `${params.value}`
         }
       },
     },
+    onCellClicked: this.onCellClicked.bind(this)
   };
+
+  onCellClicked(event: any): void {
+    const self = this;
+    const element = event.event.target as HTMLElement;
+    if (element.classList.contains('parent-link')) {
+      const linkData = event.data;
+      const client_frenchiseName = linkData.client_frenchiseName;
+      const navigationExtras: NavigationExtras = {
+        state: {
+          linkData: linkData
+        }
+      };
+      self.router.navigate(['reports/saas-revenue',client_frenchiseName],navigationExtras)
+    }
+  }
 
   rowData = [];
   public isServerSideGroup: IsServerSideGroup = (dataItem: any) => {
@@ -311,6 +328,18 @@ export class FinancialDataComponent {
     this.defaultFiltersState = this.gridApi.getFilterModel();
 
     this.postLoginService.getTableData(this.saasRevenueUrl).subscribe(data=>{
+      data.forEach(parent => {
+        parent.children.forEach(child => {
+          for (const year of ['2025', '2024', '2023', '2022', '2021']) {
+              for (const month of Object.keys(child[`revenue${year}`])) {
+                  parent[`revenue${year}`] = parent[`revenue${year}`] || {};
+                  parent[`revenue${year}`][month] = (parent[`revenue${year}`][month] || 0) + (child[`revenue${year}`][month] || 0);
+              }
+              parent[`totalRevenue${year}`] = (parent[`totalRevenue${year}`] || 0) + (child[`totalRevenue${year}`] || 0);
+          }
+        });
+      });
+
       const currentDate = new Date();
       const lastFullMonth = new Date(currentDate);
       lastFullMonth.setMonth(lastFullMonth.getMonth() - 1);
@@ -441,6 +470,18 @@ export class FinancialDataComponent {
     setTimeout(() => {
       let term = (document.getElementById('filter-text-box') as HTMLInputElement).value.toLowerCase();
       this.postLoginService.getSearchedTableData(term,this.saasRevenueUrl).subscribe(data=>{
+        data.forEach(parent => {
+          parent.children.forEach(child => {
+            for (const year of ['2025', '2024', '2023', '2022', '2021']) {
+                for (const month of Object.keys(child[`revenue${year}`])) {
+                    parent[`revenue${year}`] = parent[`revenue${year}`] || {};
+                    parent[`revenue${year}`][month] = (parent[`revenue${year}`][month] || 0) + (child[`revenue${year}`][month] || 0);
+                }
+                parent[`totalRevenue${year}`] = (parent[`totalRevenue${year}`] || 0) + (child[`totalRevenue${year}`] || 0);
+            }
+          });
+        });
+
         data.forEach(item =>{
           item.children = item.children.filter(child => this.postLoginService.checkPropertyValue(child,term))
         })
@@ -487,14 +528,6 @@ export class FinancialDataComponent {
                 node.value.setExpanded(false);
               }
             });
-
-            this.expandedRows.forEach(item =>{
-              mapped.forEach((node) => {
-                if (item === node.value.key) {
-                  node.value.setExpanded(true);
-                }
-              });
-            })
           }
         }
       });

@@ -2,17 +2,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-      
+    
       "clientId": 101,
       "client_frenchiseName": "12 Oaks Senior Living",
       "benchmarkComparison": "Above",
@@ -73,17 +63,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":14, "feb":16,"mar":14, "apr":13, "may":14, "jun":16, "jul":14,"aug":13,"sep":14,"oct":14,"nov":16,"dec":14},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":172,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-
+      
       "clientId": 104,
       "client_frenchiseName": "Advanced Nursing + Home Support",
       "benchmarkComparison": "Average",
@@ -121,16 +101,6 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":14, "feb":16,"mar":14, "apr":12, "may":14, "jun":16, "jul":14,"aug":12,"sep":14,"oct":15,"nov":15,"dec":13},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":169,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
 
       "clientId": 106,
       "client_frenchiseName": "Agemark Senior Living",
@@ -307,17 +277,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-
+      
       "clientId": 114,
       "client_frenchiseName": "AgeWell Middle Tennessee",
       "benchmarkComparison": "Above",
@@ -378,17 +338,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-
+     
       "clientId": 117,
       "client_frenchiseName": "AgeWell Solvere Living",
       "benchmarkComparison": "Average",
@@ -449,16 +399,6 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
 
       "clientId": 120,
       "client_frenchiseName": "Aldersgate",
@@ -497,17 +437,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-
+      
       "clientId": 122,
       "client_frenchiseName": "All Seasons Living",
       "benchmarkComparison": "Average",
@@ -571,17 +501,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-
+     
       "clientId": 125,
       "client_frenchiseName": "Allegro Senior Living",
       "benchmarkComparison": "Average",
@@ -645,16 +565,6 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
 
       "clientId": 128,
       "client_frenchiseName": "Americare",
@@ -693,17 +603,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-
+     
       "clientId": 130,
       "client_frenchiseName": "Smith Village",
       "benchmarkComparison": "Above",
@@ -744,17 +644,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-
+    
       "clientId": 132,
       "client_frenchiseName": "Solera Senior Living",
       "benchmarkComparison": "Average",
@@ -815,17 +705,7 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
-
+     
       "clientId": 135,
       "client_frenchiseName": "Sterling Estates",
       "benchmarkComparison": "Average",
@@ -932,16 +812,6 @@
     {
       "invoicing_entity":"Text Text",
       "legal_entity":"Text Text",
-      "revenue2025":{"jan":0, "feb":1,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2024":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2023":{"jan":1, "feb":1,"mar":1, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2022":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "revenue2021":{"jan":1, "feb":0,"mar":0, "apr":0, "may":0, "jun":1, "jul":0,"aug":0,"sep":0,"oct":0,"nov":0,"dec":0},
-      "totalRevenue2025":2,
-      "totalRevenue2024":2,
-      "totalRevenue2023":4,
-      "totalRevenue2022":2,
-      "totalRevenue2021":2,
 
       "clientId": 140,
       "client_frenchiseName": "Still Hopes",

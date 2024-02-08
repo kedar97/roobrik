@@ -1,8 +1,8 @@
 <div class="main-container">
     <div class="section-header">
         <div class="heading-text d-flex">
-            <img src="assets/images/bar-chart-icon.png" alt="Bar-chart icon">
-            <h1>SaaS-Revenue</h1>
+            <img src="assets/images/client-icon.png" alt="Bar-chart icon">
+            <h1>{{clientName}}</h1>
         </div>
         <div class="search-section">
             <div class="input-container">
@@ -25,21 +25,14 @@
             class="ag-theme-balham ag-grid"
             [rowHeight]="36"
             [columnDefs]="columnDef"
+            [rowData]="rowData"
             [defaultColDef]="defaultColDef"
-            [autoGroupColumnDef]="autoGroupColumnDef"
-            [rowModelType]="rowModelType"
-            [treeData]="true"
-            [isServerSideGroup]="isServerSideGroup"
-            [getServerSideGroupKey]="getServerSideGroupKey"
             [gridOptions]="gridOptions"
             [sideBar]="sideBar"
             [rowSelection]="rowSelection"
             (selectionChanged)="onSelectionChanged($event)"
             (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
             [pagination]="true"
-            [cacheBlockSize]="cacheBlockSize"
-            [paginationPageSize]="100"
-            [paginateChildRows]="true"
             (gridReady)="onGridReady($event)"
             >
         </ag-grid-angular>
@@ -51,13 +44,15 @@
         <select
             class="items-dropdown"
             [(ngModel)]="selectedValue"
-            (change)="onItemsPerPageChange(selectedValue)">
-                <option
-                    *ngFor="let option of paginationOptions"
-                    [attr.selected]="option.value == 100"
-                    [value]="option.value">
-                {{ option.title }}
-                </option>
-      </select>
+            (change)="onItemsPerPageChange(selectedValue)"
+        >
+            <option
+            *ngFor="let option of paginationOptions"
+            [attr.selected]="option.value == 10"
+            [value]="option.value"
+            >
+            {{ option.title }}
+            </option>
+        </select>
     </div>
 </div>
