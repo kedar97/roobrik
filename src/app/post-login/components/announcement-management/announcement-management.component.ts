@@ -346,6 +346,10 @@ export class AnnouncementManagementComponent {
   onSaveChanges(){
     this.isAnnouncementEditable = false;
   }
+
+  onCancel() {
+    this.isAnnouncementEditable = false;
+  }
 }
 
 function createServerSideDatasource(server: any): IServerSideDatasource {
