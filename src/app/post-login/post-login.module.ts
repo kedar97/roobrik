@@ -25,6 +25,7 @@ import { FinancialDataComponent } from './components/financial-data/financial-da
 import { TourVideoPopUpComponent } from './components/tour-video-pop-up/tour-video-pop-up.component';
 import { AnnouncementBannerComponent } from './components/announcement-banner/announcement-banner.component';
 import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-revenue/edit-saas-revenue.component';
+import { AnnouncementManagementComponent } from './components/announcement-management/announcement-management.component';
 ModuleRegistry.registerModules([ExcelExportModule]);
 
 @NgModule({
@@ -42,6 +43,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     TourVideoPopUpComponent,
     AnnouncementBannerComponent,
     EditSaasRevenueComponent,
+    AnnouncementManagementComponent,
   ],
   imports: [
     CommonModule,

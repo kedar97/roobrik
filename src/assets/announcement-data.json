@@ -1,0 +1,85 @@
+[
+    {
+        "title":"Announcement 1",
+        "subtitle":"Announcement subtitle 1",
+        "status":"Active"
+    },
+    {
+        "title":"Announcement 2",
+        "subtitle":"Announcement subtitle 2",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement 3",
+        "subtitle":"Announcement subtitle 3",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement 4",
+        "subtitle":"Announcement subtitle 4",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement 5",
+        "subtitle":"Announcement subtitle 5",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },  {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Active"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },
+    {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Inactive"
+    },  {
+        "title":"Announcement Title",
+        "subtitle":"Announcement subtitle",
+        "status":"Active"
+    },
+    {
+        "title":"Franchise Name 001",
+        "subtitle":"avitaofneed",
+        "status":"Active"
+    }
+]

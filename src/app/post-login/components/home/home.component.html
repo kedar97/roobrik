@@ -205,7 +205,8 @@
             </kendo-chart-legend>
             <kendo-chart-series>
               <kendo-chart-series-item
-                type="scatterLine"
+                [style]="style"
+                [type]="chartType"
                 name="Engaged Users"
                 [data]="engagedUsersData"
                 color="#ED9F22"
@@ -221,7 +222,8 @@
               >
               </kendo-chart-series-item>
               <kendo-chart-series-item
-                type="scatterLine"
+                [style]="style"
+                [type]="chartType"
                 name="Completes"
                 [data]="completesData"
                 color="#7CB342"
@@ -237,7 +239,8 @@
               >
               </kendo-chart-series-item>
               <kendo-chart-series-item
-                type="scatterLine"
+                [style]="style"
+                [type]="chartType"
                 name="SQLs"
                 [data]="sqlsData"
                 color="#B31F5F"
@@ -253,7 +256,8 @@
               >
               </kendo-chart-series-item>
               <kendo-chart-series-item
-                type="scatterLine"
+                [style]="style"
+                [type]="chartType"
                 name="MQLs"
                 [data]="mqlsData"
                 color="#0B4569"

@@ -24,7 +24,7 @@ export class PostLoginComponent {
   }
 
   hideAdmin2Header(): boolean{
-    if(this.router.url.includes('client-health-metrics') || this.router.url.includes('saas-revenue') || this.router.url.includes('edit-saas-revenue')){
+    if(this.router.url.includes('client-health-metrics') || this.router.url.includes('saas-revenue') || this.router.url.includes('edit-saas-revenue') || this.router.url.includes('announcement-management')){
       return true;
     }
     else{

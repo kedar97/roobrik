@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DashboardCard } from '../../post-login.modal';
-import { BaseUnit, ChartComponent } from '@progress/kendo-angular-charts';
+import { BaseUnit, ChartComponent, LineStyle, SeriesType } from '@progress/kendo-angular-charts';
 import { MultiSelectTreeComponent } from '@progress/kendo-angular-dropdowns';
 import { DialogService } from '@progress/kendo-angular-dialog';
 import { TourVideoPopUpComponent } from '../tour-video-pop-up/tour-video-pop-up.component';
@@ -12,6 +12,9 @@ import { PostLoginService } from '../../post-login.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  public style: LineStyle = "smooth";
+  chartType:SeriesType = 'scatterLine'
+
   constructor(private fb: FormBuilder,private dialogService: DialogService, private postLoginService : PostLoginService) {}
 
   @ViewChild(ChartComponent) chart: any;

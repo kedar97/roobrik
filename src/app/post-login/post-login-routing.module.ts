@@ -12,6 +12,7 @@ import { ComingSoonComponent } from '../shared/components/coming-soon/coming-soo
 import { LeadsPerCommunityComponent } from './components/leads-per-community/leads-per-community.component';
 import { FinancialDataComponent } from './components/financial-data/financial-data.component';
 import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-revenue/edit-saas-revenue.component';
+import { AnnouncementManagementComponent } from './components/announcement-management/announcement-management.component';
 const routes: Routes = [
   {
     path: '',
@@ -66,6 +67,17 @@ const routes: Routes = [
       {
         path: 'client-health-metrics',
         component: LeadsPerCommunityComponent,
+      },
+    ]
+  },
+
+  {
+    path:'',
+    component:PostLoginComponent,
+    children : [
+      {
+        path: 'announcement-management',
+        component:AnnouncementManagementComponent,
       },
     ]
   }

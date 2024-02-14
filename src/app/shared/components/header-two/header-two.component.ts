@@ -90,8 +90,8 @@ export class HeaderTwoComponent {
     this.showProfileMenu = !this.showProfileMenu
   }
 
-  onDataAndReports(){
-    this.router.navigate(['/dashboard/custom-reports']);
+  onDashboardAnnouncement(){
+    this.router.navigate(['/client-dashbaord/announcement-management']);
     this.showClientDashboardMenu = !this.showClientDashboardMenu;
   }
 
