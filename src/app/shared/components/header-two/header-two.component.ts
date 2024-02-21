@@ -18,6 +18,8 @@ export class HeaderTwoComponent {
   showClientDashboardMenu : boolean = false;
   showReportsMenu : boolean = false;
   showProfileMenu: boolean = false;
+  allItems: any;
+
 
   breadcrumbParent: string ='';
   constructor(private router : Router, public postLoginService : PostLoginService, private dialogService: DialogService,){
@@ -95,7 +97,6 @@ export class HeaderTwoComponent {
     this.showClientDashboardMenu = !this.showClientDashboardMenu;
   }
 
-  allItems;
   private initRoutes(): void {
     this.routesData = this.router.events.subscribe(() => {
       const route = this.router.url;
