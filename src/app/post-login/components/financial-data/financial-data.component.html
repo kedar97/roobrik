@@ -14,8 +14,8 @@
                 >
                 <img src="assets/images/search-icon.png" alt="Search icon">
             </div>
-            <button class="btn btn-export">EXPORT</button>
-            <button class="btn btn-create-new">CREATE NEW</button>
+            <button class="btn btn-export" (click)="onAddNewRow()">ADD ROW</button>
+            <button class="btn btn-create-new" >SAVE</button>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
             [cacheBlockSize]="cacheBlockSize"
             [paginationPageSize]="100"
             [paginateChildRows]="true"
-            (gridReady)="onGridReady($event)"
+                        (gridReady)="onGridReady($event)"
             >
         </ag-grid-angular>
 

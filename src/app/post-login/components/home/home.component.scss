@@ -524,6 +524,11 @@ p {
 ::ng-deep .date-input .k-input-inner{
   text-align: center;
 }
+::ng-deep .k-multiselecttree-popup {
+  min-width: 100%;
+  width: min-content;
+  max-width: 150%;
+}
 
 .error{
   border:2px solid red;

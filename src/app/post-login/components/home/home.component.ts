@@ -6,6 +6,7 @@ import { MultiSelectTreeComponent } from '@progress/kendo-angular-dropdowns';
 import { DialogService } from '@progress/kendo-angular-dialog';
 import { TourVideoPopUpComponent } from '../tour-video-pop-up/tour-video-pop-up.component';
 import { PostLoginService } from '../../post-login.service';
+import { Data } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -71,7 +72,7 @@ export class HomeComponent {
     {
       text: 'Select all',
       items: [
-        { text: 'Cedarhurst Villages' },
+        { text: 'Cedarhurst Villages Cedarhurst Cedarhurst Villages Cedarhurst Cedarhurst Villages Cedarhurst  Cedarhurst Villages Cedarhurst Cedarhurst Villages Cedarhurst'  },
         { text: 'Brightview Bridgewater' },
         { text: 'Fort Mill' },
         { text: 'Highpoint at Cape Coral' },
@@ -606,14 +607,18 @@ export class HomeComponent {
   onSubmit(){
     this.minDate = new Date(this.startDate);
     this.maxDate = new Date(this.selectedRange.split('-')[1]);
-    this.chartDateTitle = `${this.selectedRangeOption === '' ? 'Custom range' : this.selectedRangeOption}: ${this.selectedRange} `;
+    const timeDiff = Math.abs(this.maxDate.getTime() - this.minDate.getTime());
 
+    // Convert the difference to years
+    const yearsDiff = Math.floor(timeDiff / (1000 * 3600 * 24 * 365.25)); 
+    console.log("",yearsDiff)
+    this.chartDateTitle = `${this.selectedRangeOption === '' ? 'Custom range' : this.selectedRangeOption}: ${this.selectedRange} `;
     this.setCardCountsValue(this.minDate,this.maxDate);
     this.setCardPrevDaysText(this.minDate,this.maxDate)
-    this.getBaseUnits(this.selectedRangeOption);
+    this.getBaseUnits(this.selectedRangeOption,this.maxDate,this.minDate);
   }
 
-  getBaseUnits(selectedRangeOption : string){
+  getBaseUnits(selectedRangeOption : string,maxDate:Date,minDate:Data){
     switch (selectedRangeOption){
       case 'Yesterday':
         this.baseUnit = 'days';
@@ -628,8 +633,17 @@ export class HomeComponent {
         this.labelFormat ='{0:MMM dd}';
         break;
       case 'Last 90 days':
-        this.baseUnit = 'months';
-        this.labelFormat ='MMM';
+        const startYear = minDate.getFullYear();
+        const endYear = maxDate.getFullYear();
+        const yearsAreDifferent = startYear !== endYear;
+        if(yearsAreDifferent){
+          this.baseUnit = 'months';
+          this.labelFormat ='MMM yyyy';
+        }
+        else{
+          this.baseUnit = 'months';
+          this.labelFormat ='MMM';
+        }
         break;
       case 'Year to date':
         this.baseUnit = 'months';
@@ -653,8 +667,23 @@ export class HomeComponent {
           this.labelFormat ='MMM';
         }
         else if(yearsDifference > 0){
-          this.baseUnit = 'years';
-          this.labelFormat ='yyyy';
+          if(daysDifference <= 15){
+            this.baseUnit = 'days';
+            this.labelFormat ='{0:MMM dd yyy}';
+          }
+          else if (daysDifference > 15 && daysDifference <= 31 ){
+            this.baseUnit = 'weeks';
+            this.labelFormat ='{0:MMM dd yyy }';
+          }
+          else if( daysDifference > 31 && daysDifference <= 366 ){
+            this.baseUnit = 'months';
+            this.labelFormat ='MMM yyyy';
+          }
+          else{
+            this.baseUnit = 'years';
+            this.labelFormat ='MMM yyyy';
+          }
+       
         }
         else{
           this.baseUnit = 'weeks';
@@ -750,7 +779,7 @@ export class HomeComponent {
     if(type ==='location'){
       this.isLocationDropdownOpen = false;
       this.isLocationTree = false;
-    }
+          }
     else if(type === 'assessment'){
       this.isAssesmentsDropdownOpen= false;
       this.isAssessmentTree = false;

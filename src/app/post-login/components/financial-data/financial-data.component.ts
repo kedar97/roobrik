@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer2} from '@angular/core';
-import { ColDef, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef } from 'ag-grid-community';
+import { ColDef, GetRowIdFunc, GetRowIdParams, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, INumberCellEditorParams, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef, StoreRefreshedEvent } from 'ag-grid-community';
 import { PaginationOption } from '../../post-login.modal';
 import { PostLoginService } from '../../post-login.service';
 import { HttpClient } from '@angular/common/http';
@@ -70,7 +70,7 @@ export class FinancialDataComponent {
   rowIndex: number;
   selectedNodes = [];
   isExpanded: boolean = false;
-
+  
   columnDef : ColDef[] | any = [
     {
       field:'invoicing_entity',
@@ -78,14 +78,14 @@ export class FinancialDataComponent {
       width:120,
       hide:true,
       sortable: true,
-    },
+          },
     {
       field:'legal_entity',
       headerName:'Legal entity',
       width:110,
-      hide:true,
+hide:true,
       sortable: true,
-    },
+          },
     {
       field:'',
       headerName:'2021 total revenue',
@@ -224,7 +224,7 @@ export class FinancialDataComponent {
       display: 'block',
       'padding-top': '4px',
     },
-    cellRendererParams: {
+        cellRendererParams: {
       innerRenderer: (params: ICellRendererParams) => {
         if(params.node.level == 0){
           return `<div class='parent-link'>${params.value}</div>`
@@ -287,6 +287,9 @@ export class FinancialDataComponent {
 
   gridOptions: GridOptions = {
     enableRangeSelection: true,
+    getRowId:(data) => {
+      return data.data.clientId;
+    },
     statusBar: {
       statusPanels: [
         {
@@ -297,7 +300,7 @@ export class FinancialDataComponent {
         },
       ],
     },
-    onRowGroupOpened: this.onRowExpanded.bind(this),
+    // onRowGroupOpened: this.onRowExpanded.bind(this),
   };
 
   onRowExpanded(event: any) {
@@ -362,11 +365,46 @@ export class FinancialDataComponent {
       this.totalRows = this.gridApi.paginationGetPageSize();
 
       let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
-        let datasource = getServerSideDatasource(fakeServer);
-        this.gridApi.setServerSideDatasource(datasource);
+      let datasource = getServerSideDatasource(fakeServer);
+      this.gridApi.setServerSideDatasource(datasource);
     })
+  
   }
   
+  onAddNewRow(){
+    const selectedNodes = this.gridApi.getSelectedNodes();
+    console.log(selectedNodes)
+    if (selectedNodes) {
+      const selectedRow = selectedNodes[0].data;
+      const newData = {  
+        client_frenchiseName:'', 
+        invoicing_entity: null, 
+        legal_entity: null, 
+        totalRevenue2021: null, 
+        revenue2021: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+        revenue2022: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+        revenue2023: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+        revenue2024: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+        revenue2025: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+        owner: null , 
+      };
+      if (!selectedRow.children) {
+        selectedRow.children = [];
+      }
+      selectedRow.children.push(newData);
+      const transaction = { 
+        route: [selectedRow.client_frenchiseName],
+        add: [newData],
+      };
+      this.gridApi.applyServerSideTransaction(transaction);
+      this.gridApi.refreshCells();
+      }
+     else {
+      console.error('No row selected.');
+    }
+
+  }
+
   onItemsPerPageChange(newPageSize: any) {
     this.rowIndex = null;
     if (newPageSize === 'all') {
