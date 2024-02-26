@@ -215,11 +215,60 @@
                   type: 'circle',
                   background: '#ED9F22'
                 }"
-                [tooltip]="{ visible: true, format: '{1} Engaged Users,  {0:d MMM}' }"
                 yField="value"
                 xField="Date"
                 [width]="2"
               >
+              <kendo-chart-series-item-tooltip>
+                <ng-template
+                  let-value="value"
+                  let-category="category"
+                  let-dataItem="dataItem"
+                >
+                  <div>
+                    <span class="chart-tooltip-date">{{   
+                      dataItem.Date | date : "EEEE, MMM d ,yyyy"
+                    }}</span>
+                    <!-- Iterate over all series -->
+                    <div *ngFor="let item of mqlsData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker mqls-marker"></div>
+                        MQLs : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of sqlsData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker sqls-marker"></div>
+                        SQLs : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of completesData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker completes-marker"></div>
+                        Completes : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of engagedUsersData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker engagedUsers-marker"></div>
+                        EngagedUsers : {{ item.value }}
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </kendo-chart-series-item-tooltip>
               </kendo-chart-series-item>
               <kendo-chart-series-item
                 [style]="style"
@@ -232,11 +281,60 @@
                   type: 'circle',
                   background: '#7CB342'
                 }"
-                [tooltip]="{ visible: true, format: '{1} Completes, {0:d MMM}' }"
                 yField="value"
                 xField="Date"
                 [width]="2"
               >
+              <kendo-chart-series-item-tooltip>
+                <ng-template
+                  let-value="value"
+                  let-category="category"
+                  let-dataItem="dataItem"
+                >
+                  <div>
+                    <span class="chart-tooltip-date">{{   
+                      dataItem.Date | date : "EEEE, MMM d ,yyyy"
+                    }}</span>
+                    <!-- Iterate over all series -->
+                    <div *ngFor="let item of mqlsData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker mqls-marker"></div>
+                        MQLs : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of sqlsData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker sqls-marker"></div>
+                        SQLs : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of completesData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker completes-marker"></div>
+                        Completes : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of engagedUsersData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker engagedUsers-marker"></div>
+                        EngagedUsers : {{ item.value }}
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </kendo-chart-series-item-tooltip>
               </kendo-chart-series-item>
               <kendo-chart-series-item
                 [style]="style"
@@ -249,11 +347,60 @@
                   type: 'circle',
                   background: '#B31F5F'
                 }"
-                [tooltip]="{ visible: true, format: '{1} SQLs,  {0:d MMM}' }"
                 yField="value"
                 xField="Date"
                 [width]="2"
               >
+              <kendo-chart-series-item-tooltip>
+                <ng-template
+                  let-value="value"
+                  let-category="category"
+                  let-dataItem="dataItem"
+                >
+                  <div>
+                    <span class="chart-tooltip-date">{{   
+                      dataItem.Date | date : "EEEE, MMM d ,yyyy"
+                    }}</span>
+                    <!-- Iterate over all series -->
+                    <div *ngFor="let item of mqlsData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker mqls-marker"></div>
+                        MQLs : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of sqlsData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker sqls-marker"></div>
+                        SQLs : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of completesData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker completes-marker"></div>
+                        Completes : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of engagedUsersData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker engagedUsers-marker"></div>
+                        EngagedUsers : {{ item.value }}
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </kendo-chart-series-item-tooltip>
               </kendo-chart-series-item>
               <kendo-chart-series-item
                 [style]="style"
@@ -266,11 +413,60 @@
                   type: 'circle',
                   background: '#0B4569'
                 }"
-                [tooltip]="{ visible: true, format: '{1} MQLs,  {0:d MMM}' }"
                 yField="value"
                 xField="Date"
                 [width]="2"
               >
+              <kendo-chart-series-item-tooltip>
+                <ng-template
+                  let-value="value"
+                  let-category="category"
+                  let-dataItem="dataItem"
+                >
+                  <div>
+                    <span class="chart-tooltip-date">{{   
+                      dataItem.Date | date : "EEEE, MMM d ,yyyy"
+                    }}</span>
+                    <!-- Iterate over all series -->
+                    <div *ngFor="let item of mqlsData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker mqls-marker"></div>
+                        MQLs : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of sqlsData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker sqls-marker"></div>
+                        SQLs : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of completesData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker completes-marker"></div>
+                        Completes : {{ item.value }}
+                      </div>
+                    </div>
+                    <div *ngFor="let item of engagedUsersData">
+                      <div
+                        *ngIf="isDateMatching(item.Date, dataItem.Date)"
+                        class="d-flex align-items-center"
+                      >
+                        <div class="marker engagedUsers-marker"></div>
+                        EngagedUsers : {{ item.value }}
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </kendo-chart-series-item-tooltip>
               </kendo-chart-series-item>
             </kendo-chart-series>
             <kendo-chart-x-axis>

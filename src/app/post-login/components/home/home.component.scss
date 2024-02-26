@@ -533,3 +533,38 @@ p {
 .error{
   border:2px solid red;
 }
+
+// TOOLTIP //
+.chart-tooltip-date{
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.marker{
+  width: 8px;
+  height: 8px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.mqls-marker{
+  background-color:#0B4569;
+}
+
+.sqls-marker{
+  background-color: #B31F5F;
+}
+
+.completes-marker{
+  background-color: #7CB342;
+}
+
+.engagedUsers-marker{
+  background-color: #ED9F22;
+}
+
+::ng-deep .k-chart-tooltip {
+  background-color: #fff !important;
+  border: 1px solid #999 !important;
+  color: #000;
+}

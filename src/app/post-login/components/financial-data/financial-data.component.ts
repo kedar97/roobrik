@@ -78,14 +78,14 @@ export class FinancialDataComponent {
       width:120,
       hide:true,
       sortable: true,
-          },
+    },
     {
       field:'legal_entity',
       headerName:'Legal entity',
       width:110,
-hide:true,
+      hide:true,
       sortable: true,
-          },
+    },
     {
       field:'',
       headerName:'2021 total revenue',
@@ -373,7 +373,7 @@ hide:true,
   
   onAddNewRow(){
     const selectedNodes = this.gridApi.getSelectedNodes();
-    console.log(selectedNodes)
+console.log(selectedNodes)
     if (selectedNodes) {
       const selectedRow = selectedNodes[0].data;
       const newData = {  

@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ActivationEnd, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
@@ -10,7 +10,8 @@ import { PostLoginService } from 'src/app/post-login/post-login.service';
   styleUrls: ['./edit-saas-revenue.component.scss']
 })
 export class EditSaasRevenueComponent {
-
+  public undoRedoCellEditingLimit = 5;
+  changesUnSaved : boolean = true;
   defaultColumnState: any;
   defaultFiltersState: any;
   gridColumnApi: any;
@@ -91,7 +92,7 @@ export class EditSaasRevenueComponent {
     ],
   };
   
-  constructor(private router: Router, private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService) {
+  constructor(private router: Router, private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService,private route: ActivatedRoute) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
       this.linkData= navigation.extras.state.linkData;
@@ -103,19 +104,30 @@ export class EditSaasRevenueComponent {
 
   columnDef : ColDef[] | any = [
     {
+      field:'invoicing_entity',
+      headerName:'Invoicing entity',
+      editable: this.isCellEditable,
+    },
+    {
+      field:'legal_entity',
+      headerName:'Legal entity',
+      editable: this.isCellEditable,
+    },
+    {
       field:'client_frenchiseName',
       headerName:'Franchise Name',
       pinned:'left',
       lockPosition:true,
       sortable: true,
       width: 300,
-      editable: true,
+      editable: this.isCellEditable,
       cellStyle: {
         'text-overflow': 'ellipsis',
         overflow: 'hidden',
         display: 'block',
         'padding-top': '4px',
       },
+      suppressFillHandle:true 
     },
     {
       field:'',
@@ -233,8 +245,13 @@ export class EditSaasRevenueComponent {
       field:'owner',
       headerName:'Account owner',
       sortable: true,
+      editable: this.isCellEditable,
     }
   ]
+
+  isCellEditable(params) {
+    return (params.node.data.client_frenchiseName === '') || (params.node.data.invoicing_entity == null) || (params.node.data.legal_entity == null) || (params.node.data.owner == null) || (params.node.data.status == null) ? true : false ;
+  }
 
   public defaultColDef: ColDef = {
     filter: 'agTextColumnFilter',
@@ -269,7 +286,7 @@ export class EditSaasRevenueComponent {
       lastFullMonth.setMonth(lastFullMonth.getMonth() - 1);
       const lastMonthFormatted = lastFullMonth.toLocaleDateString("en-US", { month: "short", year: "numeric"});
       const modifiedColumnDefs = [
-        ...this.columnDef.slice(0,6),
+        ...this.columnDef.slice(0,8),
         {
           headerName: `Status as of ${lastMonthFormatted}`,
           field: 'status',
@@ -279,6 +296,7 @@ export class EditSaasRevenueComponent {
           resizable: true,
           lockPinned: true,
           filter: 'agTextColumnFilter', 
+          editable: this.isCellEditable,
           filterParams: {
             textCustomComparator: function(filter, value,params) {
               return params === value;
@@ -375,30 +393,43 @@ export class EditSaasRevenueComponent {
   onCellValueChanged(event:any){
     const { data } = event.node;
     const { colDef} = event;
-
-    const year = colDef.field.match(/\d{4}/)[0];
-    data[`totalRevenue${year}`] = 0;
-    for (const month of Object.keys(data[`revenue${year}`])) {
-        console.log(month,data[`revenue${year}`][month])
-        data[`totalRevenue${year}`] +=data[`revenue${year}`][month]
+    let updatedData = [data]; 
+    if(event.colDef.field.includes('revenue')){
+      const year = colDef.field.match(/\d{4}/)[0];
+      data[`totalRevenue${year}`] = 0;
+      for (const month of Object.keys(data[`revenue${year}`])) {
+          data[`totalRevenue${year}`] +=data[`revenue${year}`][month]
+      }
+      updatedData = [data]; 
     }
-    const updatedData = [data]; 
     this.gridApi.applyServerSideTransaction({ update: updatedData });
     this.gridApi.refreshCells();
   }
 
-  onCellEditingStopped(event:any){
-    const { data } = event.node;
-    const { colDef} = event;
-
-    const year = colDef.field.match(/\d{4}/)[0];
-    data[`totalRevenue${year}`] = 0;
-    for (const month of Object.keys(data[`revenue${year}`])) {
-        console.log(month,data[`revenue${year}`][month])
-        data[`totalRevenue${year}`] +=data[`revenue${year}`][month]
-    }
-    const updatedData = [data]; 
-    this.gridApi.applyServerSideTransaction({ update: updatedData });
+  onAddNewRow(){
+    const newData = {  
+      client_frenchiseName:'', 
+      invoicing_entity: null, 
+      legal_entity: null, 
+      totalRevenue2021: null, 
+      revenue2021: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      revenue2022: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      revenue2023: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      revenue2024: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      revenue2025: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      owner: null, 
+      status:null
+    };
+    const transaction = { 
+      route: [],
+      add: [newData],
+    };
+    this.gridApi.applyTransaction(transaction);
     this.gridApi.refreshCells();
-}
+  }
+
+  onSaveChanges(){
+    this.changesUnSaved = false;
+  }
+
 }

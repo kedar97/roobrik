@@ -607,11 +607,12 @@ export class HomeComponent {
   onSubmit(){
     this.minDate = new Date(this.startDate);
     this.maxDate = new Date(this.selectedRange.split('-')[1]);
-    const timeDiff = Math.abs(this.maxDate.getTime() - this.minDate.getTime());
 
-    // Convert the difference to years
-    const yearsDiff = Math.floor(timeDiff / (1000 * 3600 * 24 * 365.25)); 
-    console.log("",yearsDiff)
+    if((this.maxDate.getDate()===this.minDate.getDate())&&(this.maxDate.getMonth()===this.minDate.getMonth())&&(this.maxDate.getFullYear()===this.minDate.getFullYear())){
+      this.minDate.setDate(this.minDate.getDate() - 1);
+      this.maxDate.setDate(this.maxDate.getDate() + 1);
+    }
+
     this.chartDateTitle = `${this.selectedRangeOption === '' ? 'Custom range' : this.selectedRangeOption}: ${this.selectedRange} `;
     this.setCardCountsValue(this.minDate,this.maxDate);
     this.setCardPrevDaysText(this.minDate,this.maxDate)
@@ -785,6 +786,15 @@ export class HomeComponent {
       this.isAssessmentTree = false;
     } else {
       this.submitBtnDisabled = false;
+    }
+  }
+
+  isDateMatching(date1: Date, date2: Date): boolean {
+    if((date1.getDate() === date2.getDate()) && (date1.getMonth() === date2.getMonth()) && (date1.getFullYear() === date2.getFullYear())){
+      return true;
+    }
+   else{
+    return false;
     }
   }
 }

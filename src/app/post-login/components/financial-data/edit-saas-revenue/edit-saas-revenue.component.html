@@ -14,8 +14,8 @@
                 >
                 <img src="assets/images/search-icon.png" alt="Search icon">
             </div>
-            <button class="btn btn-export">EXPORT</button>
-            <button class="btn btn-create-new">CREATE NEW</button>
+            <button class="btn btn-export" (click)="onAddNewRow()">ADD ROW</button>
+            <button class="btn btn-create-new" (click)="onSaveChanges()">SAVE</button>
         </div>
     </div>
 
@@ -26,19 +26,19 @@
             [rowHeight]="36"
             [columnDefs]="columnDef"
             [rowData]="rowData"
+            [enableRangeSelection]="true"
+            [enableFillHandle]="true"
+            [undoRedoCellEditing]="true"
+            [undoRedoCellEditingLimit]="undoRedoCellEditingLimit"
+            [enableCellChangeFlash]="true"
             [defaultColDef]="defaultColDef"
             [gridOptions]="gridOptions"
             [sideBar]="sideBar"
             [rowSelection]="rowSelection"
-            [enableRangeSelection]="true"
-            [enableFillHandle]="true"
-            [undoRedoCellEditing]="true"
-            [enableCellChangeFlash]="true"
-            (cellValueChanged)="onCellValueChanged($event)"
-            (cellEditingStopped)="onCellEditingStopped($event)"
             (selectionChanged)="onSelectionChanged($event)"
             (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
             [pagination]="true"
+            (cellValueChanged)="onCellValueChanged($event)"
             (gridReady)="onGridReady($event)"
             >
         </ag-grid-angular>
