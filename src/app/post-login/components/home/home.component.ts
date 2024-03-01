@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DashboardCard } from '../../post-login.modal';
-import { BaseUnit, ChartComponent, LineStyle, SeriesType } from '@progress/kendo-angular-charts';
+import { AxisLabelsPosition, BaseUnit, ChartComponent, LineStyle, SeriesType } from '@progress/kendo-angular-charts';
 import { MultiSelectTreeComponent } from '@progress/kendo-angular-dropdowns';
 import { DialogService } from '@progress/kendo-angular-dialog';
 import { TourVideoPopUpComponent } from '../tour-video-pop-up/tour-video-pop-up.component';
@@ -15,6 +15,7 @@ import { Data } from '@angular/router';
 export class HomeComponent {
   public style: LineStyle = "smooth";
   chartType:SeriesType = 'scatterLine'
+  isMarkerVisible : boolean = false;
 
   constructor(private fb: FormBuilder,private dialogService: DialogService, private postLoginService : PostLoginService) {}
 
@@ -608,15 +609,19 @@ export class HomeComponent {
     this.minDate = new Date(this.startDate);
     this.maxDate = new Date(this.selectedRange.split('-')[1]);
 
-    if((this.maxDate.getDate()===this.minDate.getDate())&&(this.maxDate.getMonth()===this.minDate.getMonth())&&(this.maxDate.getFullYear()===this.minDate.getFullYear())){
-      this.minDate.setDate(this.minDate.getDate() - 1);
-      this.maxDate.setDate(this.maxDate.getDate() + 1);
-    }
-
     this.chartDateTitle = `${this.selectedRangeOption === '' ? 'Custom range' : this.selectedRangeOption}: ${this.selectedRange} `;
     this.setCardCountsValue(this.minDate,this.maxDate);
     this.setCardPrevDaysText(this.minDate,this.maxDate)
     this.getBaseUnits(this.selectedRangeOption,this.maxDate,this.minDate);
+
+    if((this.maxDate.getDate() === this.minDate.getDate()) && (this.maxDate.getMonth() === this.minDate.getMonth()) && (this. maxDate.getFullYear() === this.minDate.getFullYear())){
+      this.baseUnit= "days";
+      this.labelFormat= "{0:EEEE, MMMM d, yyyy}";
+      this.isMarkerVisible = true;
+
+      this.minDate.setDate(this.minDate.getDate() - 1);
+      this.maxDate.setDate(this.maxDate.getDate() + 1);  
+    }
   }
 
   getBaseUnits(selectedRangeOption : string,maxDate:Date,minDate:Data){
@@ -772,7 +777,6 @@ export class HomeComponent {
         }
       } else {
         this.submitBtnDisabled = true;
-        this.selectedRangeOption ='';
       }
   }
 
@@ -793,8 +797,8 @@ export class HomeComponent {
     if((date1.getDate() === date2.getDate()) && (date1.getMonth() === date2.getMonth()) && (date1.getFullYear() === date2.getFullYear())){
       return true;
     }
-   else{
-    return false;
+    else{
+      return false;
     }
   }
 }

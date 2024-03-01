@@ -26,6 +26,7 @@ import { TourVideoPopUpComponent } from './components/tour-video-pop-up/tour-vid
 import { AnnouncementBannerComponent } from './components/announcement-banner/announcement-banner.component';
 import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-revenue/edit-saas-revenue.component';
 import { AnnouncementManagementComponent } from './components/announcement-management/announcement-management.component';
+import { CustomDropDownEditorComponent } from './components/financial-data/custom-drop-down-editor/custom-drop-down-editor.component';
 ModuleRegistry.registerModules([ExcelExportModule]);
 
 @NgModule({
@@ -44,6 +45,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     AnnouncementBannerComponent,
     EditSaasRevenueComponent,
     AnnouncementManagementComponent,
+    CustomDropDownEditorComponent,
   ],
   imports: [
     CommonModule,

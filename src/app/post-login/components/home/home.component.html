@@ -211,7 +211,7 @@
                 [data]="engagedUsersData"
                 color="#ED9F22"
                 [markers]="{
-                  visible: false,
+                  visible: isMarkerVisible,
                   type: 'circle',
                   background: '#ED9F22'
                 }"
@@ -277,7 +277,7 @@
                 [data]="completesData"
                 color="#7CB342"
                 [markers]="{
-                  visible: false,
+                  visible: isMarkerVisible,
                   type: 'circle',
                   background: '#7CB342'
                 }"
@@ -343,7 +343,7 @@
                 [data]="sqlsData"
                 color="#B31F5F"
                 [markers]="{
-                  visible: false,
+                  visible: isMarkerVisible,
                   type: 'circle',
                   background: '#B31F5F'
                 }"
@@ -409,7 +409,7 @@
                 [data]="mqlsData"
                 color="#0B4569"
                 [markers]="{
-                  visible: false,
+                  visible: isMarkerVisible,
                   type: 'circle',
                   background: '#0B4569'
                 }"
@@ -476,8 +476,7 @@
                 [max]="maxDate"
                 [majorUnit]="1"
               >
-                <kendo-chart-x-axis-item-labels [format]="labelFormat">
-                </kendo-chart-x-axis-item-labels>
+                <kendo-chart-x-axis-item-labels [format]="labelFormat"></kendo-chart-x-axis-item-labels>
               </kendo-chart-x-axis-item>
             </kendo-chart-x-axis>
           </kendo-chart>

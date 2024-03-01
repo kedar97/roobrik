@@ -13,6 +13,7 @@ import { LeadsPerCommunityComponent } from './components/leads-per-community/lea
 import { FinancialDataComponent } from './components/financial-data/financial-data.component';
 import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-revenue/edit-saas-revenue.component';
 import { AnnouncementManagementComponent } from './components/announcement-management/announcement-management.component';
+import { UnsavedChangesGuard } from './components/financial-data/edit-saas-revenue/unsaved-changes.guard';
 const routes: Routes = [
   {
     path: '',
@@ -63,6 +64,7 @@ const routes: Routes = [
       {
         path: 'saas-revenue/:client_frenchiseName',
         component: EditSaasRevenueComponent,
+        canDeactivate: [UnsavedChangesGuard]
       },
       {
         path: 'client-health-metrics',

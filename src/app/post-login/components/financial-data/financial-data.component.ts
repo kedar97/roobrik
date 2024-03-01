@@ -241,8 +241,8 @@ export class FinancialDataComponent {
     const self = this;
     const element = event.event.target as HTMLElement;
     if (element.classList.contains('parent-link')) {
-      const linkData = event.data;
-      const client_frenchiseName = linkData.client_frenchiseName;
+      const linkData = [event.data];
+      const client_frenchiseName = linkData[0].client_frenchiseName;
       const navigationExtras: NavigationExtras = {
         state: {
           linkData: linkData
