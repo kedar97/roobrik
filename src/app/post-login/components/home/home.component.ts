@@ -75,7 +75,7 @@ export class HomeComponent {
     {
       text: 'Select all',
       items: [
-        { text: 'Cedarhurst Villages Cedarhurst Cedarhurst Villages Cedarhurst Cedarhurst Villages Cedarhurst  Cedarhurst Villages Cedarhurst Cedarhurst Villages Cedarhurst'  },
+        { text: 'Cedarhurst Villages'  },
         { text: 'Brightview Bridgewater' },
         { text: 'Fort Mill' },
         { text: 'Highpoint at Cape Coral' },
@@ -738,12 +738,21 @@ export class HomeComponent {
     if(type === 'location') {
       this.locationsList = [];
       value.map((v: {text: string}) => this.locationsList?.push(v.text));
+
+      let index = this.locationsList.indexOf("Select all");
+      if (index !== -1) {
+        this.locationsList.splice(index, 1);
+      }
     }
     
     else if (type === 'assessment') {
       this.assessmentList = [];
       value.map((v: {text: string}) => this.assessmentList?.push(v.text));
-    
+      
+      let index = this.assessmentList.indexOf("Select all");
+      if (index !== -1) {
+        this.assessmentList.splice(index, 1);
+      }
     }
 
 
