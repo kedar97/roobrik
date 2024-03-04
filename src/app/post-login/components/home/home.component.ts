@@ -62,6 +62,8 @@ export class HomeComponent {
   defaultRange = {start:null,end:null};
   chartDateTitle = '';
   submitBtnDisabled: boolean = false;
+  locationsList: string[] = [];
+  assessmentList: string[] = [];
 
   form = this.fb.group({
     location: [''],
@@ -732,6 +734,19 @@ export class HomeComponent {
 
   // FOR DEFAULT STATE OF MULTISELECT TREE //
   valueChange(value : any, type : string): void {
+
+    if(type === 'location') {
+      this.locationsList = [];
+      value.map((v: {text: string}) => this.locationsList?.push(v.text));
+    }
+    
+    else if (type === 'assessment') {
+      this.assessmentList = [];
+      value.map((v: {text: string}) => this.assessmentList?.push(v.text));
+    
+    }
+
+
     if(value.length > 0){
       if(type === 'location'){
         this.selectedLocations = value;
