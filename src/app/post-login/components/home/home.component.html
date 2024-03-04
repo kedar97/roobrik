@@ -11,41 +11,60 @@
       <div class="grid-container">
         <div class="d-flex flex-column input input-location">
           <kendo-label class="label-text"> Location(s) </kendo-label>
-          <kendo-multiselecttree
-            #locationTree
-            [kendoMultiSelectTreeHierarchyBinding]="dataLocations"
-            childrenField="items"
-            textField="text"
-            valueField="text"
-            [filterable]="true"
-            class="dropdown"
-            [ngClass]="valueChangedLocation ? 'location':''"
-            [class.location-open]="isLocationDropdownOpen"
-            (open)="dropdownOpen('location')"
-            (close)="dropdownClose('location')"
-            [tagMapper]="tagMapper.bind(this)"
-            (valueChange)="valueChange($event,'location')"
-          ></kendo-multiselecttree>
+          <div kendoTooltip filter=".k-chip"  [tooltipTemplate]="locationTemplate">
+            <ng-template  #locationTemplate >
+              <div *ngIf="locationsList">
+                <div *ngFor="let location of locationsList">
+                  {{ location }}
+                </div>
+              </div>
+            </ng-template>
+            <kendo-multiselecttree
+              #locationTree
+              [kendoMultiSelectTreeHierarchyBinding]="dataLocations"
+              childrenField="items"
+              textField="text"
+              valueField="text"
+              [filterable]="true"
+              class="dropdown locationsDropdwon"
+              [ngClass]="valueChangedLocation ? 'location':''"
+              [class.location-open]="isLocationDropdownOpen"
+              (open)="dropdownOpen('location')"
+              (close)="dropdownClose('location')"
+              [tagMapper]="tagMapper.bind(this)"
+              (valueChange)="valueChange($event,'location')"
+            >
+            </kendo-multiselecttree>
+          </div>          
         </div>
 
         <div class="d-flex flex-column input input-assessment">
           <kendo-label class="label-text"> Assessment(s) </kendo-label>
-          <kendo-multiselecttree
-            #assessmentTree
-            [kendoMultiSelectTreeHierarchyBinding]="dataAssesments"
-            childrenField="items"
-            textField="text"
-            valueField="text"
-            [filterable]="true"
-            class="dropdown"
-            [ngClass]="valueChangedAssesments?'assessment':''"
-            [class.assessment-open]="isAssesmentsDropdownOpen"
-            (open)="dropdownOpen('assessment')"
-            (close)="dropdownClose('assessment')"
-            [tagMapper]="tagMapper.bind(this)"
-            (valueChange)="valueChange($event,'assessment')"
-          >
-          </kendo-multiselecttree>
+          <div kendoTooltip filter=".k-chip"  [tooltipTemplate]="assessmentTemplate">
+            <ng-template  #assessmentTemplate >
+              <div *ngIf="assessmentList">
+                <div *ngFor="let assessment of assessmentList">
+                  {{ assessment }}
+                </div>
+              </div>
+            </ng-template>
+            <kendo-multiselecttree
+              #assessmentTree
+              [kendoMultiSelectTreeHierarchyBinding]="dataAssesments"
+              childrenField="items"
+              textField="text"
+              valueField="text"
+              [filterable]="true"
+              class="dropdown assessmentDropdwon"
+              [ngClass]="valueChangedAssesments?'assessment':''"
+              [class.assessment-open]="isAssesmentsDropdownOpen"
+              (open)="dropdownOpen('assessment')"
+              (close)="dropdownClose('assessment')"
+              [tagMapper]="tagMapper.bind(this)"
+              (valueChange)="valueChange($event,'assessment')"
+            >
+            </kendo-multiselecttree>
+          </div>
         </div>
 
         <div class="d-flex input-action-container">
