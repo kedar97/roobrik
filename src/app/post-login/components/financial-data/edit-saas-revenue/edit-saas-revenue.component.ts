@@ -130,7 +130,10 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
 
   customCurrencyFormatter(params: ICellRendererParams): string {
     const value = params.value;
-    return '$' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    if(value != null || value != undefined){
+      return '$' + value?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+    return value;
   }
 
   columnDef : ColDef[] | any = [
@@ -491,7 +494,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
         (document.getElementById('filter-text-box') as HTMLInputElement).value
       );
     }
-    this.groupDefaultExpanded = 1
+    this.groupDefaultExpanded = 1;
   }
 
   onItemsPerPageChange(newPageSize: any) {
