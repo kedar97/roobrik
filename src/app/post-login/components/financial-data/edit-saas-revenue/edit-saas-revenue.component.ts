@@ -134,12 +134,15 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
       headerName:'Invoicing entity',
       editable: this.isCellEditable,
       sortable:true,
+      suppressFillHandle:true
     },
     {
       field:'legal_entity',
       headerName:'Legal entity',
       editable: this.isCellEditable,
       sortable:true,
+      suppressFillHandle:true
+
     },
     {
       field:'',
@@ -551,6 +554,15 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     });
 
     this.rowData = filteredData;
+    this.groupDefaultExpanded = -1;
+  }
+
+  onUndo() {
+    this.gridApi.undoCellEditing();
+  }
+
+  onRedo() {
+    this.gridApi.redoCellEditing();
   }
 
   onAddNewRow(){

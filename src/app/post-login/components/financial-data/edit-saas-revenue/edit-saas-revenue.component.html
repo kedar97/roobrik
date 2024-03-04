@@ -14,6 +14,14 @@
                 >
                 <img src="assets/images/search-icon.png" alt="Search icon">
             </div>
+            <button class="btn btn-undo-redo" (click)="onUndo()">
+                <img class="undo-redo-icon" src="assets/images/undo.svg" />
+                UNDO
+            </button>
+            <button class="btn btn-undo-redo" (click)="onRedo()">
+                <img class="undo-redo-icon" src="assets/images/redo.svg" />
+                REDO
+            </button>
             <button class="btn btn-export" (click)="onAddNewRow()">ADD ROW</button>
             <button class="btn btn-create-new" (click)="onSaveChanges()">SAVE</button>
         </div>
