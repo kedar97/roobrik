@@ -14,7 +14,7 @@ import { CustomDropDownEditorComponent } from '../custom-drop-down-editor/custom
 })
 
 export class EditSaasRevenueComponent implements CanComponentDeactivate {
-  public undoRedoCellEditingLimit = 5;
+  public undoRedoCellEditingLimit = 20;
   changesUnsaved : boolean = false;
   updatedData = [];
   defaultTableData = [];
@@ -134,15 +134,12 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
       headerName:'Invoicing entity',
       editable: this.isCellEditable,
       sortable:true,
-      suppressFillHandle:true
     },
     {
       field:'legal_entity',
       headerName:'Legal entity',
       editable: this.isCellEditable,
       sortable:true,
-      suppressFillHandle:true
-
     },
     {
       field:'',
@@ -311,6 +308,20 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     else{
       this.rowData = this.defaultTableData;
     }    
+
+
+    // GET PARENT VALUE
+    let parentNode ;
+    const nodeData = this.gridApi.rowModel.nodeManager.allNodesMap;
+    const mapped = Object.keys(nodeData).map((key) => ({ value: nodeData[key]}));
+    mapped.forEach(node=>{
+      if(node.value.key === this.clientName){
+        parentNode = node;
+      }
+    })
+
+    let parentData = parentNode.value.data;
+    this.rowData.unshift(parentData)
   }
 
   isRevenueMonthEditable(params){
@@ -461,7 +472,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
       term = term.toLowerCase();
       let filteredData = [];
       this.rowData.forEach(item =>{
-        if(item.status.toLowerCase() === term){
+        if(item.status?.toLowerCase() === term){
           filteredData.push(item)
         }
       })
@@ -543,18 +554,6 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     this.gridApi.refreshCells();
     this.changesUnsaved = true;
     this.rowData.push(...this.updatedData);
-
-    let uniqueClients = {};
-    let filteredData = this.rowData.filter(item => {
-    if (!uniqueClients[item.clientId]) {
-      uniqueClients[item.clientId] = true;
-      return true;
-    }
-    return false;
-    });
-
-    this.rowData = filteredData;
-    this.groupDefaultExpanded = -1;
   }
 
   onUndo() {
