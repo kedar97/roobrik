@@ -47,13 +47,16 @@ export class PostLoginService {
   }
 
   searchObject(obj: any, term: string): boolean {
-    return Object.entries(obj).some(([key, value]) => {
-      if (key === 'clientId') {
-        return false;
-      }
-      return this.checkPropertyValue(value, term);
-    });
-  }
+    if (obj && typeof obj === 'object') {
+        return Object.entries(obj).some(([key, value]) => {
+            if (key === 'clientId') {
+                return false;
+            }
+            return this.checkPropertyValue(value, term);
+        });
+    }
+    return false;
+}
 
   checkPropertyValue(value: any, term: string): boolean {
     if (typeof value === 'string') {

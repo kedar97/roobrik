@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
-import { ActivatedRoute, ActivationEnd, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ColDef, GetDataPath, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
@@ -106,7 +106,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     ],
   };
   
-  constructor(private router: Router, private renderer: Renderer2,private ele: ElementRef) {
+  constructor(private router: Router, private renderer: Renderer2,private ele: ElementRef, private postLoginServie: PostLoginService) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
       this.linkData = navigation.extras.state.linkData;
@@ -179,7 +179,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
         { field:'totalRevenue2022', headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter',
           headerClass: 'hide-header-name',hide:true, suppressFillHandle:true, valueFormatter: this.customCurrencyFormatter
         },
-        { field: 'revenue2022.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter',hide:true, editable:this.isRevenueMonthEditable },
+        { field: 'revenue2022.jan', headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter',hide:true, editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
         { field: 'revenue2022.feb', headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter',hide:true, editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
         { field: 'revenue2022.mar', headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter',hide:true, editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
         { field: 'revenue2022.apr', headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter',hide:true, editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
@@ -381,7 +381,35 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
       ],
     },
     onRowGroupOpened: this.onRowExpanded.bind(this),
+    isExternalFilterPresent : this.isExternalFilterPresent.bind(this),
+    doesExternalFilterPass : this.doesExternalFilterPass.bind(this),
+    quickFilterText : ''
   };
+
+  isExternalFilterPresent(): boolean {
+    return true;
+  }
+
+  doesExternalFilterPass(node: any): boolean {
+    const quickFilterText = this.gridOptions.quickFilterText.toLowerCase();
+    const nodeData = node.allLeafChildren;
+    const mapped = Object.keys(nodeData).map((key) => ({ value: nodeData[key]}));
+    
+    let newData = [];
+    mapped.forEach(node=>{
+      newData.push(node.value.data)
+    })
+    if (node.level === 0) {
+      return false;
+    }
+    else{
+      let flag = false;
+      newData.forEach(item =>{
+        flag = this.postLoginServie.checkPropertyValue(item,quickFilterText)
+      })
+      return flag;
+    }
+  }
 
   onRowExpanded(){
     this.totalRows = this.gridApi.getDisplayedRowCount();
@@ -475,25 +503,9 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
   }
 
   onSearch() {    
-    let term = (document.getElementById('filter-text-box') as HTMLInputElement).value;
-    if(term === 'active'){
-      term = term.toLowerCase();
-      let filteredData = [];
-      this.rowData.forEach(item =>{
-        if(item.status?.toLowerCase() === term){
-          filteredData.push(item)
-        }
-      })
-      this.rowData = filteredData;
-    }
-    else if(!term){
-      this.rowData = this.defaultTableData;      
-    }
-    else{
-      this.gridApi.setQuickFilter(
-        (document.getElementById('filter-text-box') as HTMLInputElement).value
-      );
-    }
+    this.gridApi.setQuickFilter(
+      (document.getElementById('filter-text-box') as HTMLInputElement).value
+    );
     this.groupDefaultExpanded = 1;
   }
 
