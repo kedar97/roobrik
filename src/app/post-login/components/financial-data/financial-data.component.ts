@@ -5,6 +5,8 @@ import { PostLoginService } from '../../post-login.service';
 import { HttpClient } from '@angular/common/http';
 import * as alasql from 'alasql';
 import { NavigationExtras, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { last, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-financial-data',
@@ -71,9 +73,46 @@ export class FinancialDataComponent {
   selectedNodes = [];
   isExpanded: boolean = false;
 
+  public form = new FormGroup({
+    clientName : new FormControl('',Validators.required),
+    invoicingEntity : new FormControl(),
+    legalEntity : new FormControl(),
+    franchiseCount : new FormControl()
+  });
+
+  clientNameList : Array<string> = [
+    "Add client",
+    "Client 1",
+    "Client 2",
+    "Client 3",
+    "Client 4"
+  ];
+
+  invoicingEntityList = [
+    "Data",
+    "Text",
+    "Data Data",
+    "Text Text"
+  ];
+
+  legalEntityList = [
+    "Data",
+    "Text",
+    "Data Data",
+    "Text Text"
+  ];
+
+  isClientDropDownOpen : boolean = false;
+  isInvoicingDropDownOpen : boolean = false;
+  isLegalDropDownOpen : boolean = false;
+  isAddFlyOutOpen : boolean = false;
+
   customCurrencyFormatter(params: ICellRendererParams): string {
     const value = params.value;
-    return '$' + value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    if(value != null || value != undefined){
+      return '$' + value?.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    }
+    return value;
   }
   
   columnDef : ColDef[] | any = [
@@ -376,40 +415,6 @@ export class FinancialDataComponent {
     })
   
   }
-  
-  onAddNewRow(){
-    const selectedNodes = this.gridApi.getSelectedNodes();
-console.log(selectedNodes)
-    if (selectedNodes) {
-      const selectedRow = selectedNodes[0].data;
-      const newData = {  
-        client_frenchiseName:'', 
-        invoicing_entity: null, 
-        legal_entity: null, 
-        totalRevenue2021: null, 
-        revenue2021: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
-        revenue2022: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
-        revenue2023: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
-        revenue2024: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
-        revenue2025: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
-        owner: null , 
-      };
-      if (!selectedRow.children) {
-        selectedRow.children = [];
-      }
-      selectedRow.children.push(newData);
-      const transaction = { 
-        route: [selectedRow.client_frenchiseName],
-        add: [newData],
-      };
-      this.gridApi.applyServerSideTransaction(transaction);
-      this.gridApi.refreshCells();
-      }
-     else {
-      console.error('No row selected.');
-    }
-
-  }
 
   onItemsPerPageChange(newPageSize: any) {
     this.rowIndex = null;
@@ -576,6 +581,146 @@ console.log(selectedNodes)
         }
       });
     }, 1000);
+  }
+
+  onCreateNew(){
+    const nodeData = this.gridApi.rowModel.nodeManager.rowNodes;
+    const mapped = Object.keys(nodeData).map((key) => ({value: nodeData[key],}));
+    mapped.forEach((node) => {
+      if (node.value.level === 0) {
+        node.value.setExpanded(false);
+      }
+    }   );
+    this.isAddFlyOutOpen = true;
+  }
+
+  newClient;
+  onSaveChanges(data :any){
+
+    let childCount = data.value.franchiseCount;
+    let children =[];
+    const nodeData = this.gridApi.rowModel.nodeManager.rowNodes;
+    const mapped = Object.keys(nodeData).map((key) => ({value: nodeData[key],}));
+    let lastNode = mapped[mapped.length-1];
+    let lastNodeData ;
+    if(lastNode.value.key === null && lastNode.value.level != 0){
+      lastNodeData = lastNode.value.parent.data;
+    }
+    else{
+      lastNodeData = lastNode.value.data;
+    }
+
+    this.newClient = {
+      clientId :  lastNodeData.clientId + lastNodeData.children.length + 1,
+      client_frenchiseName  : data.value.clientName,
+      invoicing_entity : data.value.invoicingEntity == null ? data.value.clientName : data.value.invoicingEntity,
+      legal_entity : data.value.legalEntity == null ? data.value.clientName : data.value.legalEntity,
+    }
+
+    for(let i = 0; i < childCount; i++){
+      children.push(
+        { client_frenchiseName:`[${this.form.value.clientName}] - Franchise ${i} - Temporary`,
+        invoicing_entity:'',
+        legal_entity:'',
+        clientId: this.newClient.clientId + i + 1,
+      }
+      )
+    }
+
+    let alreadyClientExist = false;
+    mapped.forEach( node =>{
+      if(this.newClient.client_frenchiseName === node.value.data.client_frenchiseName){
+        alreadyClientExist = true;
+      }
+    })
+
+    if(alreadyClientExist){
+      alert('Already client with that name is exits');
+      this.onAddFlyOutClose();
+      return;
+    }
+
+    const transaction = { 
+      add: [this.newClient],
+    };
+
+    this.gridApi.applyServerSideTransaction(transaction);
+    this.gridApi.refreshCells();
+    this.addChildToNewClient(children);
+    this.onAddFlyOutClose();
+  }
+  
+  addChildToNewClient(children){
+    let newClientData;
+    const nodeData = this.gridApi.rowModel.nodeManager.rowNodes;
+    const mapped = Object.keys(nodeData).map((key) => ({value: nodeData[key],}));
+    
+    mapped.forEach( node =>{
+      if(node.value.id = this.newClient.clientId){
+        newClientData = node.value.data;
+      }
+    });
+    
+    if(!newClientData.children){
+      newClientData.children = [];
+    }
+
+    children.forEach(child => {
+      newClientData.children.push(child);
+    })
+
+    const transaction = { 
+      route: [newClientData.client_frenchiseName],
+      add: [...children],
+    };
+
+    this.gridApi.applyServerSideTransaction(transaction);
+    this.gridApi.refreshCells({ force: true });
+    let currentTableData = [];    
+    mapped.forEach((node:any) =>{
+      if(node.value.level === 0){
+        currentTableData.push(node.value.data);
+      }
+    });
+    let fakeServer = FakeServer(currentTableData,this.expandedRows,this.gridData);
+    let datasource = getServerSideDatasource(fakeServer);
+    this.gridApi.setServerSideDatasource(datasource);
+  }
+
+  onAddFlyOutClose(){
+    this.isAddFlyOutOpen = false;
+    this.form.reset()
+  }
+
+  onClientDropDownValueChange(event){
+  }
+
+  formDropDownOpen(name : string){
+    switch (name){
+      case 'clientname':
+        this.isClientDropDownOpen = true;
+        this.isInvoicingDropDownOpen = false;
+        this.isLegalDropDownOpen = false;
+        break;
+      case 'invoicingEntity':
+        this.isInvoicingDropDownOpen = true;
+        this.isClientDropDownOpen = false;
+        this.isLegalDropDownOpen = false;
+        break;
+      case 'legalEntity':
+        this.isLegalDropDownOpen = true;
+        this.isClientDropDownOpen = false;
+        this.isInvoicingDropDownOpen = false;
+        break;
+      default:
+        break;
+    }
+  }
+
+  formDropDownClose(){
+    this.isClientDropDownOpen = false;
+    this.isInvoicingDropDownOpen = false;
+    this.isLegalDropDownOpen = false;
   }
 }
 
