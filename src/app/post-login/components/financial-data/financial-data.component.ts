@@ -635,7 +635,7 @@ export class FinancialDataComponent {
     })
 
     if(alreadyClientExist){
-      alert('Already client with that name is exits');
+      alert('Client name already exists');
       this.onAddFlyOutClose();
       return;
     }
