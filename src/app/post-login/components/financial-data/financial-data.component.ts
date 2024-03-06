@@ -627,14 +627,14 @@ export class FinancialDataComponent {
       )
     }
 
-    let alreadyClientExist = false;
+    let clientExists = false;
     mapped.forEach( node =>{
       if(this.newClient.client_frenchiseName === node.value.data.client_frenchiseName){
-        alreadyClientExist = true;
+        clientExists = true;
       }
     })
 
-    if(alreadyClientExist){
+    if(clientExists){
       alert('Client name already exists');
       this.onAddFlyOutClose();
       return;
