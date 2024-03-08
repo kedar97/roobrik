@@ -1,0 +1,147 @@
+<div class="d-flex gap-4">
+    <div class="main-container" [class.custom-padding-right]="!isAddFlyOutOpen">
+        <div class="section-header">
+            <div class="heading-text d-flex">
+                <img src="assets/images/person-pin-outline-rounded.svg" alt="Bar-chart icon">
+                <h1>{{pageTitle}}</h1>
+            </div>
+            <div class="search-section">
+                <div class="input-container">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        id="filter-text-box"
+                        (input)="onSearch()"
+                    >
+                    <img src="assets/images/search-icon.png" alt="Search icon">
+                </div>
+                <button class="btn btn-create-new" (click)="onAddNewClient()">Add New Client</button>
+            </div>
+        </div>
+    
+        <div class="table-section">
+            <ag-grid-angular
+                style="flex-grow: 1; height: 655px"
+                class="ag-theme-balham ag-grid"
+                [rowHeight]="36"
+                [columnDefs]="columnDef"
+                [rowData]="rowData"
+                [defaultColDef]="defaultColDef"
+                [gridOptions]="gridOptions"
+                [sideBar]="sideBar"
+                [rowSelection]="rowSelection"
+                [autoGroupColumnDef]="autoGroupColumnDef"
+                [treeData]="true"
+                [groupSelectsChildren]="true"
+                [getDataPath]="getDataPath"
+                [enableRangeSelection]="true"
+                [enableFillHandle]="true"
+                (cellValueChanged)="onCellValueChanged($event)"
+                (selectionChanged)="onSelectionChanged($event)"
+                (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+                [pagination]="true"
+                [groupDefaultExpanded]="groupDefaultExpanded"
+                (filterChanged)="onFilterChanged($event)"
+                (gridReady)="onGridReady($event)"
+                >
+            </ag-grid-angular>
+    
+            <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
+                <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
+            </div>
+    
+            <select
+                class="items-dropdown"
+                [(ngModel)]="selectedValue"
+                (change)="onItemsPerPageChange(selectedValue)"
+            >
+                <option
+                *ngFor="let option of paginationOptions"
+                [attr.selected]="option.value == 10"
+                [value]="option.value"
+                >
+                {{ option.title }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    
+    <div class="add-new-section" *ngIf="isAddFlyOutOpen">
+        <img src="assets/images/close-icon-black.svg" alt="Close Icon" class="close-icon" (click)="onAddFlyOutClose()">
+        <h1 class="add-new-section-header">Create New Client</h1>
+
+        <form class="k-form k-form-md" [formGroup]="form" (ngSubmit)="onSaveChanges(form)">
+            <div class="formSection d-flex flex-column custom-gap-5">
+                <kendo-formfield>
+                   <kendo-label class="label-text">Client Name</kendo-label>
+                   <kendo-dropdownlist
+                   *ngIf="!isTextBoxDisplay"
+                    formControlName="clientName"
+                    [data]="clientNameList"
+                    class="dropdown"
+                    (open)="formDropDownOpen('clientname')"
+                    (close)="formDropDownClose()"
+                    (valueChange)="onClientDropDownValueChange($event)"
+                    [class.dropdown-open]="isClientDropDownOpen"
+                    >
+                   </kendo-dropdownlist>
+                   <input
+                    *ngIf="isTextBoxDisplay"
+                    formControlName="clientName"
+                    kendoTextBox
+                    >
+                </kendo-formfield>  
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Invoicing Entity</kendo-label>
+                    <kendo-dropdownlist
+                     formControlName="invoicingEntity"
+                     [data]="invoicingEntityList"
+                     class="dropdown"
+                     (open)="formDropDownOpen('invoicingEntity')"
+                     (close)="formDropDownClose()"
+                     [class.dropdown-open]="isInvoicingDropDownOpen"
+                     >
+                    </kendo-dropdownlist>
+                 </kendo-formfield>  
+
+                 <kendo-formfield>
+                    <kendo-label class="label-text">Legal Entity</kendo-label>
+                    <kendo-dropdownlist
+                     formControlName="legalEntity"
+                     [data]="legalEntityList"
+                     class="dropdown"
+                     (open)="formDropDownOpen('legalEntity')"
+                     (close)="formDropDownClose()"
+                     [class.dropdown-open]="isLegalDropDownOpen"
+                     >
+                    </kendo-dropdownlist>
+                 </kendo-formfield>  
+
+                 <kendo-formfield>
+                    <div class="d-flex gap-2 align-items-center margin-bottom-8">
+                        <kendo-label class="label-text mb-0">Starting Franchise Count</kendo-label>
+                        <div kendoTooltip filter="strong" class="custom-margin-top-2">
+                            <strong title="Do not include the default/corporate site in this count">
+                                <img src="assets/images/information-circle-icon.png" alt="Info Icon" class="info-icon">
+                            </strong>                        
+                        </div>
+                    </div>
+                    <input
+                        formControlName="franchiseCount"
+                        kendoTextBox
+                        pattern="^(?!.*e)[0-9]*$"
+                    />
+                 </kendo-formfield>
+
+                 <div class="buttons-container d-flex gap-2">
+                    <button class="btn btn-create-new" type="submit" [disabled]="!form.valid">Save Changes</button>
+                    <button class="btn btn-export" (click)="onAddFlyOutClose()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

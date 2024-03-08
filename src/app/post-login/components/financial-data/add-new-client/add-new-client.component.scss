@@ -9,7 +9,8 @@ button:focus {
 }
 
 .main-container {
-    padding: 42px 104px 165px 113px;
+    padding: 42px 0px 165px 113px;
+    flex-grow: 1;
 
     @media (min-width: 1920px) {
         width: 1694px !important;
@@ -18,49 +19,8 @@ button:focus {
     }
 }
 
-.saas-revenue-table .btn-create-new{
-    display: flex;
-    height: 32px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    background: #296689;
-    padding: 8px 14px 8px 15px;
-    text-transform: uppercase;
-    font-family: 'Proxima Nova';
-    color: #FFF;
-    font-size: 12px;
-    line-height: 16px;
-}
-
-.saas-revenue-table .btn-export{
-    display: flex;
-    width: 92px;
-    height: 32px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-    background: #e4eff3;
-    padding: 8px 14px 8px 15px;
-    text-transform: uppercase;
-    font-family: 'Proxima Nova';
-    color: #296689;
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 16px; 
-}
-
-.section-navbar{
-    padding: 15px 29px;
-    border: 1px solid #BBB;
-    background: #E0E2E3;
-
-    &-text{
-        color: #2E2E2E;
-        font-family: 'Proxima Nova';
-        font-size: 14px;
-        font-weight: 700;
-    }
+.custom-padding-right{
+    padding-right: 104px;
 }
 
 .section-header{
@@ -73,8 +33,8 @@ button:focus {
         align-items: center;
 
         img{
-            width: 27px;
-            height: 24px;
+            width: 35px;
+            height: 35px;
         }
     
         h1{
@@ -89,6 +49,10 @@ button:focus {
         display: flex;
         gap: 20px;
         align-items: center;
+
+        @media (max-width:1300px) {
+            gap: 5px;
+        }
 
         .input-container{
             position: relative;
@@ -112,6 +76,10 @@ button:focus {
                 border-radius: 4px;
                 border: 1px solid #DFDFDF;
                 background:  #FFF;
+
+                @media (max-width:1300px) {
+                    width: 400px;
+                }
             }
         }
     }
@@ -124,13 +92,43 @@ button:focus {
     font-weight: 400;
     line-height: 16px;
 }
+.btn-create-new{
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background: #296689;
+    padding: 8px 14px 8px 15px;
+    text-transform: uppercase;
+    font-family: 'Proxima Nova';
+    color: #FFF;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.btn-export{
+    display: flex;
+    width: 92px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background: #e4eff3;
+    padding: 8px 14px 8px 15px;
+    text-transform: uppercase;
+    font-family: 'Proxima Nova';
+    color: #296689;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px; 
+}
 
 .table-section{
     margin-top: 24px;
     position: relative;
 }
 
-// TABLE STYLE //
 .ag-theme-balham {
     --ag-selected-row-background-color: #f3f6f7 !important;
     --ag-row-hover-color: none !important;
@@ -161,30 +159,6 @@ button:focus {
         font-family:'Proxima Nova';
         font-size: 14px;
         font-weight: 400;
-        line-height: 16px; 
-    }
-
-    .ag-cell-expandable {
-        align-items: center;
-    }
-
-    .ag-row-level-1 {
-        background: rgba(217, 217, 217, 0.2);
-    }
-
-    .ag-icon-tree-closed::before {
-        content: url("../../../../assets/images/chevron-right-icon.svg");
-    }
-
-    .ag-icon-tree-open::before {
-        content: url("../../../../assets/images/chevron-down-icon.svg");
-    }
-
-    .ag-group-contracted,
-    .ag-group-expanded {
-        width: 11px;
-        height: unset !important;
-        margin-top: -5px;
     }
 
     // FLOATING FILTER
@@ -200,7 +174,7 @@ button:focus {
     }
 
     .ag-icon-filter::before {
-        content: url("../../../../assets/images/floating-filter-icon.svg");
+        content: url("/assets/images/floating-filter-icon.svg");
     }
 
     .ag-header-row-column-filter {
@@ -218,10 +192,10 @@ button:focus {
     }
 
     .ag-header-expand-icon-collapsed .ag-icon-contracted::before{
-        content: url("../../../../assets/images/chevron-right-icon.svg");
+        content: url("/assets/images/chevron-right-icon.svg");
     }
     .ag-icon-expanded::before{
-        content: url("../../../../assets/images/chevron-left.svg");
+        content: url("/assets/images/chevron-left.svg");
     }
 
     .ag-icon-contracted{
@@ -254,6 +228,10 @@ button:focus {
     }
 }
 
+::ng-deep .hide-header-name .ag-header-cell-comp-wrapper .ag-cell-label-container .ag-header-cell-label .ag-header-cell-text{
+    display: none;
+}
+
 // CHECKBOX //
 :host ::ng-deep .ag-pinned-left-header {
     .ag-checkbox-input {
@@ -275,7 +253,7 @@ button:focus {
   
     .ag-checkbox-input-wrapper::after {
       display: block;
-      content: url("../../../../assets/images/chevron-right-icon.svg");
+      content: url("/assets/images/chevron-right-icon.svg");
       background: fixed;
       background-size: cover;
       margin-left: 2px;
@@ -284,7 +262,7 @@ button:focus {
   
     .ag-checkbox-input-wrapper.icon-clicked::after {
       display: block;
-      content: url("../../../../assets/images/chevron-down-icon.svg");
+      content: url("/assets/images/chevron-down-icon.svg");
       background: fixed;
       background-size: cover;
       margin-left: 0;
@@ -359,50 +337,6 @@ button:focus {
         margin-top: 63px;
     }
 }
-
-// STATUSBAR //
-:host ::ng-deep {
-    .ag-status-name-value {
-      color: #2a2a2a;
-      font-family: "Proxima Nova";
-      font-size: 12px;
-      line-height: 16px;
-      padding: 0;
-    }
-  
-    .ag-status-name-value-value {
-      font-weight: 700;
-    }
-  
-    .ag-status-name-value span:first-child {
-      font-weight: 400;
-    }
-  
-    .ag-status-bar {
-      min-height: 37px;
-      padding: 11px 25px;
-    }
-}
-
-.status-bar-text {
-    position: absolute;
-    left: 24px;
-    bottom: 48px;
-  
-    p {
-        color: #2A2A2A;
-        font-family: 'Proxima Nova';
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 16px;
-    }
-  
-    span {
-      font-weight: 700;
-    }
-}
-
-
 // PAGING PANEL 
 .items-dropdown {
     position: absolute;
@@ -473,15 +407,137 @@ button:focus {
       position: absolute !important;
     }
   }
+// STATUSBAR //
+:host ::ng-deep {
+    .ag-status-name-value {
+      color: #2a2a2a;
+      font-family: "Proxima Nova";
+      font-size: 12px;
+      line-height: 16px;
+      padding: 0;
+    }
+  
+    .ag-status-name-value-value {
+      font-weight: 700;
+    }
+  
+    .ag-status-name-value span:first-child {
+      font-weight: 400;
+    }
+  
+    .ag-status-bar {
+      min-height: 37px;
+      padding: 11px 25px;
+    }
+}
 
-  //PARENT LINK
-  :host ::ng-deep .parent-link{
-    text-decoration: none;
-    color: #446a94;
-    font-weight: 500;
+.status-bar-text {
+    position: absolute;
+    left: 24px;
+    bottom: 48px;
+  
+    p {
+        color: #2A2A2A;
+        font-family: 'Proxima Nova';
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+    }
+  
+    span {
+      font-weight: 700;
+    }
+}
+
+// CREATE NEW CLIENT FLYOUT PANEL //
+.add-new-section{
+    width: 331px;
+    padding: 25px 20px;
+    box-shadow: 0px 4px 10px rgba(#000, 0.4);
+    position: relative;
+    margin-top: -52px;
+
+    &-header{
+        font-size: 16px;
+        color: #2A2A2A;
+        font-weight: 700;
+        font-family:  'Proxima Nova';
+        line-height: 24px;
+        margin-bottom: 10px;
+    }
+}
+
+.add-new-section .close-icon{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 25px;
     cursor: pointer;
 }
 
-::ng-deep .hide-header-name .ag-header-cell-comp-wrapper .ag-cell-label-container .ag-header-cell-label .ag-header-cell-text{
-    display: none;
+.dropdown {
+    border: 1px solid #dfdfdf;
+    height: 30px;
+    background-color: #FFF;
+    font-family: 'Proxima Nova';
+    font-size: 12px;
+}
+
+:host ::ng-deep .dropdown .k-input-value-text {
+    font-family: 'Proxima Nova';
+    font-size: 12px;
+    font-weight: 600;
+}
+
+:host ::ng-deep .dropdown{
+    .k-input-button{
+        display: none;
+    }
+
+    .k-input-inner::after{
+        content: url('../../../../../assets/images/chevron-down-icon.svg');
+        margin-top: 4px;
+    }
+
+    &-open{
+        .k-input-inner::after{
+            content: url("../../../../../assets/images/up-arrow.svg");
+        }  
+    }
+}
+
+::ng-deep.k-list-content .k-list-item.k-selected{
+    background: #296689;
+}
+
+.add-new-section .label-text{
+    font-family: 'Proxima Nova';
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.buttons-container{
+    border-top: 1px solid #DFDFDF;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.custom-gap-5{
+    gap:5px;
+}
+
+.info-icon{
+    height: 10px;
+    width: 10px;
+    cursor: pointer;
+}
+
+.margin-bottom-8{
+    margin-bottom: 8px;
+}
+
+.custom-margin-top-2{
+    margin-top: -2px;
 }

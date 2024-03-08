@@ -14,6 +14,7 @@ import { FinancialDataComponent } from './components/financial-data/financial-da
 import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-revenue/edit-saas-revenue.component';
 import { AnnouncementManagementComponent } from './components/announcement-management/announcement-management.component';
 import { UnsavedChangesGuard } from './components/financial-data/edit-saas-revenue/unsaved-changes.guard';
+import { AddNewClientComponent } from './components/financial-data/add-new-client/add-new-client.component';
 const routes: Routes = [
   {
     path: '',
@@ -60,6 +61,10 @@ const routes: Routes = [
       {
         path: 'saas-revenue',
         component: FinancialDataComponent,
+      },
+      {
+        path: 'saas-revenue/new-client',
+        component: AddNewClientComponent,
       },
       {
         path: 'saas-revenue/:client_frenchiseName',

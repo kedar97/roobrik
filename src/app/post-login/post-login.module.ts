@@ -28,6 +28,7 @@ import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-
 import { AnnouncementManagementComponent } from './components/announcement-management/announcement-management.component';
 import { CustomDropDownEditorComponent } from './components/financial-data/custom-drop-down-editor/custom-drop-down-editor.component';
 import { TooltipModule } from '@progress/kendo-angular-tooltip';
+import { AddNewClientComponent } from './components/financial-data/add-new-client/add-new-client.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -48,6 +49,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     EditSaasRevenueComponent,
     AnnouncementManagementComponent,
     CustomDropDownEditorComponent,
+    AddNewClientComponent,
   ],
   imports: [
     CommonModule,

@@ -1,117 +1,117 @@
-<div class="main-container">
-    <div class="section-header">
-        <div class="heading-text d-flex">
-            <img src="assets/images/person-pin-outline-rounded.svg" alt="Icon">
-            <h1>Announcement Management</h1>
-        </div>
-        <div class="search-section">
-            <div class="input-container">
-                <input
-                    type="text"
-                    placeholder="Search"
-                    id="filter-text-box"
-                    (input)="onSearch()"
-                >
-                <img src="assets/images/search-icon.png" alt="Search icon">
+<div class="d-flex">
+    <div class="main-container">
+        <div class="section-header">
+            <div class="heading-text d-flex">
+                <img src="assets/images/person-pin-outline-rounded.svg" alt="Icon">
+                <h1>Announcement Management</h1>
             </div>
-            <button class="btn btn-create-new" (click)="onCreateNew()">CREATE NEW</button>
+            <div class="search-section">
+                <div class="input-container">
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        id="filter-text-box"
+                        (input)="onSearch()"
+                    >
+                    <img src="assets/images/search-icon.png" alt="Search icon">
+                </div>
+                <button class="btn btn-create-new" (click)="onCreateNew()">CREATE NEW</button>
+            </div>
+        </div>
+
+        <div class="table-section d-flex gap-4">
+            <ag-grid-angular
+                style="flex-grow: 1; height: 655px"
+                class="ag-theme-balham ag-grid"
+                [rowHeight]="56"
+                [headerHeight]="36"
+                [columnDefs]="columnDef"
+                [defaultColDef]="defaultColDef"
+                [rowModelType]="rowModelType"
+                [gridOptions]="gridOptions"
+                [sideBar]="sideBar"
+                [rowSelection]="rowSelection"
+                (selectionChanged)="onSelectionChanged($event)"
+                (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+                [pagination]="true"
+                [cacheBlockSize]="cacheBlockSize"
+                [paginationPageSize]="100"
+                [paginateChildRows]="true"
+                (gridReady)="onGridReady($event)"
+            >
+            </ag-grid-angular>
+            
+            <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
+                <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
+            </div>
+
+            <select
+                class="items-dropdown"
+                [(ngModel)]="selectedValue"
+                (change)="onItemsPerPageChange(selectedValue)">
+                    <option
+                        *ngFor="let option of paginationOptions"
+                        [attr.selected]="option.value == 100"
+                        [value]="option.value">
+                    {{ option.title }}
+                    </option>
+        </select>
         </div>
     </div>
-
-    <div class="table-section d-flex gap-4">
-        <ag-grid-angular
-            style="flex-grow: 1; height: 655px"
-            class="ag-theme-balham ag-grid"
-            [rowHeight]="56"
-            [headerHeight]="36"
-            [columnDefs]="columnDef"
-            [defaultColDef]="defaultColDef"
-            [rowModelType]="rowModelType"
-            [gridOptions]="gridOptions"
-            [sideBar]="sideBar"
-            [rowSelection]="rowSelection"
-            (selectionChanged)="onSelectionChanged($event)"
-            (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
-            [pagination]="true"
-            [cacheBlockSize]="cacheBlockSize"
-            [paginationPageSize]="100"
-            [paginateChildRows]="true"
-            (gridReady)="onGridReady($event)"
-        >
-        </ag-grid-angular>
-        
-        <div class="edit-announcement-container" *ngIf="isAnnouncementEditable">
-            <img src="assets/images/close-icon-black.svg" alt="Close Icon" class="close-icon" (click)="onCloseAnnouncementPanel()">
-            <h1 class="announcement-header">Add/Edit Announcement</h1>
-
-            <div class="d-flex flex-column custom-gap-20">
-                <div class="status-dropdown">
-                    <p class="title-text">Status</p>
-                    <kendo-dropdownlist
-                        [data]="statusList"
-                        [(value)]="defaultStatus"
-                        class="dropdown"
-                        (open)="statusDropDownOpen($event)"
-                        (close)="statusDropDownClose($event)"
-                        [class.dropdown-open]="isStatusDropDownOpen"
-                    >
-                    <ng-template kendoDropDownListValueTemplate let-dataItem>
-                      <span class="status-circle"></span>
-                      <span class="mb-2px">{{ dataItem }}</span>
-                    </ng-template>
-                  </kendo-dropdownlist>
-                </div>
+    <div class="edit-announcement-container" *ngIf="isAnnouncementEditable">
+        <img src="assets/images/close-icon-black.svg" alt="Close Icon" class="close-icon" (click)="onCloseAnnouncementPanel()">
+        <h1 class="announcement-header">Add/Edit Announcement</h1>
     
-                <div class="title-div">
-                    <div class="d-flex gap-2 align-items-center margin-bottom-8">
-                        <p class="title-text m-0">Title</p>
-                        <img src="assets/images/information-circle-icon.png" alt="Info Icon" class="info-icon">
-                    </div>
-                    <kendo-textarea
-                        placeholder="Franchise Name 001"
-                        [rows]="3"
-                        resizable="none"
-                        class="inputbox-text"
-                    ></kendo-textarea>
-                </div>
-    
-                <div class="subtitle-div">
-                    <div class="title-text">Subtilte</div>
-                    <kendo-textarea
-                        placeholder="avitaofneed"
-                        [rows]="3"
-                        resizable="none"
-                        class="inputbox-text"
-                ></kendo-textarea>
-                </div>
-    
-                <div class="toggle-button">
-                    <kendo-switch></kendo-switch>
-                    <span class="dismissable-toggle">Dismissable</span>
-                </div>
-    
-                <div class="buttons-container d-flex gap-2">
-                    <button class="btn btn-create-new" (click)="onSaveChanges()">Save Changes</button>
-                    <button class="btn btn-cancle" (click)="onCancel()">Cancel</button>
-                </div>
+        <div class="d-flex flex-column custom-gap-20">
+            <div class="status-dropdown">
+                <p class="title-text">Status</p>
+                <kendo-dropdownlist
+                    [data]="statusList"
+                    [(value)]="defaultStatus"
+                    class="dropdown"
+                    (open)="statusDropDownOpen($event)"
+                    (close)="statusDropDownClose($event)"
+                    [class.dropdown-open]="isStatusDropDownOpen"
+                >
+                <ng-template kendoDropDownListValueTemplate let-dataItem>
+                  <span class="status-circle"></span>
+                  <span class="mb-2px">{{ dataItem }}</span>
+                </ng-template>
+              </kendo-dropdownlist>
             </div>
-            
+    
+            <div class="title-div">
+                <div class="d-flex gap-2 align-items-center margin-bottom-8">
+                    <p class="title-text m-0">Title</p>
+                    <img src="assets/images/information-circle-icon.png" alt="Info Icon" class="info-icon">
+                </div>
+                <kendo-textarea
+                    placeholder="Franchise Name 001"
+                    [rows]="3"
+                    resizable="none"
+                    class="inputbox-text"
+                ></kendo-textarea>
+            </div>
+    
+            <div class="subtitle-div">
+                <div class="title-text">Subtitle</div>
+                <kendo-textarea
+                    placeholder="avitaofneed"
+                    [rows]="3"
+                    resizable="none"
+                    class="inputbox-text"
+            ></kendo-textarea>
+            </div>
+    
+            <div class="toggle-button">
+                <kendo-switch></kendo-switch>
+                <span class="dismissable-toggle">Dismissable</span>
+            </div>
+    
+            <div class="buttons-container d-flex gap-2">
+                <button class="btn btn-create-new" (click)="onSaveChanges()">Save Changes</button>
+                <button class="btn btn-cancle" (click)="onCancel()">Cancel</button>
+            </div>
         </div>
-
-        <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
-            <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
-        </div>
-
-        <select
-            class="items-dropdown"
-            [(ngModel)]="selectedValue"
-            (change)="onItemsPerPageChange(selectedValue)">
-                <option
-                    *ngFor="let option of paginationOptions"
-                    [attr.selected]="option.value == 100"
-                    [value]="option.value">
-                {{ option.title }}
-                </option>
-      </select>
     </div>
 </div>
