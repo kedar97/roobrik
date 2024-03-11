@@ -69,7 +69,7 @@ export class AddNewClientComponent {
   updatedData = [];
   clientName : string ;
   currentTableData = [];    
-  editedRow ;
+  editedRow: any;
 
 
   paginationOptions: PaginationOption[] = [
@@ -379,7 +379,7 @@ export class AddNewClientComponent {
       newData.push(node.value.data)
     })
     newData.forEach(item =>{
-      flag = this.postLoginServie.checkPropertyValue(item,quickFilterText)
+      flag = this.postLoginServie.checkPropertyValue(item,quickFilterText);
     })
     return flag;
   }
@@ -393,16 +393,40 @@ export class AddNewClientComponent {
     let filteredData = [];
     let filterTerm = this.gridApi?.getFilterModel()?.[`${columnToFilter}`]?.filter;
     if(filterTerm){
-      if(typeof filterTerm === 'string' && filterTerm.toLowerCase() === 'active' && columnToFilter === 'status'){
+      if(typeof filterTerm === 'string' && (filterTerm.toLowerCase() === 'active' || filterTerm.toLowerCase() === 'inactive') && columnToFilter === 'status'){
         filterTerm = filterTerm.toLowerCase();
         filteredData = [];
+
+        let parentNodes = [] ;
+        const nodeData = this.gridApi.rowModel.nodeManager.allNodesMap;
+        let mapped = Object.keys(nodeData).map(key => nodeData[key]).filter(node => node.rowIndex !== null)
+        .map(node => ({ value: node }));
+        
         this.rowData.forEach(item => {
           if(item[columnToFilter]?.toLowerCase() === filterTerm){
             filteredData.push(item);
+            mapped.forEach(node => {
+              if(node.value.key === item.client_frenchiseName[0]){
+                parentNodes.push(node.value.data);
+              }
+            })
           }
-        })
-  
+        });
+
+        let uniqueClients = {};
+        let filteredParents = parentNodes.filter(item => {
+        if (!uniqueClients[item.clientId]) {
+          uniqueClients[item.clientId] = true;
+          return true;
+        }
+        return false;
+        });
+
+        parentNodes = filteredParents;
         this.rowData = filteredData;
+        parentNodes.forEach(parent =>{
+          this.rowData.push(parent)
+        })
         this.groupDefaultExpanded = 1;
       }
       else if(columnToFilter.toLowerCase().includes('revenue')){
@@ -415,37 +439,59 @@ export class AddNewClientComponent {
           })
 
           this.rowData = filteredData;
+          this.rowData.unshift(this.editedRow.parent.data)
           this.groupDefaultExpanded = 1;
         }
         else{
           filteredData = [];
           let revenue = columnToFilter.split('.')[0];
           let revenueMonth = columnToFilter.split('.')[1];
-  
           this.rowData.forEach(item => {
-            if(parseInt(item[revenue][revenueMonth]) === filterTerm){
+            item[revenue][revenueMonth] = parseInt(item[revenue][revenueMonth]);
+            if( item[revenue][revenueMonth] === filterTerm){
               filteredData.push(item);
             }
           })
-
+          
           this.rowData = filteredData;
+          this.rowData.unshift(this.editedRow.parent.data)
           this.groupDefaultExpanded = 1;
         }
       }
     }
     else{
-      this.rowData = this.currentTableData;
-    }    
+      let term = (document.getElementById('filter-text-box') as HTMLInputElement).value;
+      let newData = [];
+      let flag = false;
 
-    let parentNode = this.editedRow.parent;
-    let parentData = parentNode.data;
-    this.currentTableData.forEach(item =>{
-      if(item.clientId === parentData.clientId){
-        item = parentData
+      if(term){
+        this.currentTableData.forEach(item => {
+          flag = this.postLoginServie.searchObject(item,term);
+          if(flag){
+            newData.push(item);
+          }
+        })       
+        this.rowData = newData;
       }
-    })
-
-    this.rowData = this.currentTableData;
+      else{
+        this.currentTableData.forEach(obj => {
+          for(let year in obj) {
+            if (year.startsWith('revenue')) {
+              for (let month in obj[year]) {
+                if (Number.isNaN(obj[year][month])) {
+                  obj[year][month] = 0;
+                }
+              }
+            } else if (year.startsWith('totalRevenue')) {
+              if (Number.isNaN(obj[year])) {
+                obj[year] = 0;
+              }
+            }
+          }
+      });
+        this.rowData = this.currentTableData;
+      }
+    }    
   }
 
   onSearch() {    
@@ -494,25 +540,20 @@ export class AddNewClientComponent {
       this.updatedData = [data]; 
 
       // UPDATING PARENT VALUE
-      let parentNode ;
       const nodeData = this.gridApi.rowModel.nodeManager.allNodesMap;
       let mapped = Object.keys(nodeData).map(key => nodeData[key]).filter(node => node.rowIndex !== null)
       .map(node => ({ value: node }));
 
-      mapped.forEach(node=>{
-        if(node.value.key === this.clientName[0]){
-          parentNode = node;
-        }
-      })
-  
-      let parentData = parentNode.value.data;
+      let parentData = this.editedRow.parent.data;
+
       parentData[revenueYear][revenueMonth]= 0;
       parentData[`totalRevenue${year}`] = 0;
       for (const month of Object.keys(parentData[`revenue${year}`])) {
         parentData[`revenue${year}`][month] = 0;
       }
 
-      mapped = mapped.filter(node => node.value.key.includes(parentData.client_frenchiseName))
+      mapped = mapped.filter(node => node.value.key.includes(this.editedRow.parent.key.split('-')[0].trim()));
+
       mapped.forEach( node =>{
         parentData[`totalRevenue${year}`] += (node.value.data[`totalRevenue${year}`] == null || node.value.level === 0) ? 0 : +node.value.data[`totalRevenue${year}`];
 
@@ -607,7 +648,7 @@ export class AddNewClientComponent {
     this.addChildToNewClient(children);
     this.onAddFlyOutClose();
     this.totalRows = this.gridApi.getDisplayedRowCount();
-    this.clientName = this.newClient.client_frenchiseName
+    this.clientName = this.newClient.client_frenchiseName;
   }
 
   addChildToNewClient(children){
@@ -628,7 +669,8 @@ export class AddNewClientComponent {
     }
     
     children.forEach(child =>{
-      child.client_frenchiseName = [...newClientData.client_frenchiseName,child.client_frenchiseName]
+      newClientData.children.push(child)
+      child.client_frenchiseName = [...newClientData.client_frenchiseName,child.client_frenchiseName];
     })
 
     this.currentTableData = [...this.currentTableData,...children];

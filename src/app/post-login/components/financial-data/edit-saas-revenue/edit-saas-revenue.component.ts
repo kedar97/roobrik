@@ -40,6 +40,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
   totalRows :number;
   linkData :any;
   clientName : string =''
+  editedRow: any;
 
   paginationOptions: PaginationOption[] = [
     {
@@ -279,7 +280,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
         filterTerm = filterTerm.toLowerCase();
         filteredData = [];
         this.rowData.forEach(item => {
-          if(item[columnToFilter].toLowerCase() === filterTerm){
+          if(item[columnToFilter]?.toLowerCase() === filterTerm){
             filteredData.push(item);
           }
         })
@@ -296,6 +297,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
             }
           })
           this.rowData = filteredData;
+          this.rowData.unshift(this.editedRow.parent.data)
           this.groupDefaultExpanded = 1;
         }
         else{
@@ -309,27 +311,29 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
             }
           })
           this.rowData = filteredData;
+          this.rowData.unshift(this.editedRow.parent.data)
           this.groupDefaultExpanded = 1;
         }
       }
     }
     else{
-      this.rowData = this.defaultTableData;
-    }    
+      let term = (document.getElementById('filter-text-box') as HTMLInputElement).value;
+      let newData = [];
+      let flag = false;
 
-
-    // GET PARENT VALUE
-    let parentNode ;
-    const nodeData = this.gridApi.rowModel.nodeManager.allNodesMap;
-    const mapped = Object.keys(nodeData).map((key) => ({ value: nodeData[key]}));
-    mapped.forEach(node=>{
-      if(node.value.key === this.clientName){
-        parentNode = node;
+      if(term){
+        this.defaultTableData.forEach(item => {
+          flag = this.postLoginServie.searchObject(item,term);
+          if(flag){
+            newData.push(item);
+          }
+        })       
+        this.rowData = newData;
       }
-    })
-
-    let parentData = parentNode.value.data;
-    this.rowData.unshift(parentData)
+      else{
+        this.rowData = this.defaultTableData
+      }
+    }    
   }
 
   isRevenueMonthEditable(params){
@@ -399,16 +403,11 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     mapped.forEach(node=>{
       newData.push(node.value.data)
     })
-    if (node.level === 0) {
-      return false;
-    }
-    else{
-      let flag = false;
-      newData.forEach(item =>{
-        flag = this.postLoginServie.checkPropertyValue(item,quickFilterText)
-      })
-      return flag;
-    }
+    let flag = false;
+    newData.forEach(item =>{
+      flag = this.postLoginServie.checkPropertyValue(item,quickFilterText)
+    })
+    return flag;
   }
 
   onRowExpanded(){
@@ -515,6 +514,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
 
   onCellValueChanged(event:any){
     const { data } = event.node;
+    this.editedRow = event.node;
     const { colDef} = event;
     let updatedColumn = event.colDef.field;
     let revenueYear:string;
@@ -546,22 +546,26 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
       this.updatedData = [data]; 
 
       // UPDATING PARENT VALUE
-      let parentNode ;
       const nodeData = this.gridApi.rowModel.nodeManager.allNodesMap;
-      const mapped = Object.keys(nodeData).map((key) => ({ value: nodeData[key]}));
-      mapped.forEach(node=>{
-        if(node.value.key === this.clientName){
-          parentNode = node;
-        }
-      })
-  
-      let parentData = parentNode.value.data;
+      let mapped = Object.keys(nodeData).map((key) => ({ value: nodeData[key]}));
+      let parentData = this.editedRow.parent.data;
+
       parentData[revenueYear][revenueMonth]= 0;
       parentData[`totalRevenue${year}`] = 0;
       for (const month of Object.keys(parentData[`revenue${year}`])) {
         parentData[`revenue${year}`][month] = 0;
       }
 
+      let uniqueClients = {};
+      let filteredNodes = mapped.filter(item => {
+      if (!uniqueClients[item.value.key]) {
+        uniqueClients[item.value.key] = true;
+        return true;
+      }
+      return false;
+      });
+
+      mapped = filteredNodes;
       mapped.forEach(node => {
         parentData[`totalRevenue${year}`] += node.value.data[`totalRevenue${year}`] == null ? 0 : node.value.data[`totalRevenue${year}`];
 
