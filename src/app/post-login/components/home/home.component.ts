@@ -75,12 +75,12 @@ export class HomeComponent {
     {
       text: 'Select all',
       items: [
-        { text: 'Cedarhurst Villages'  },
-        { text: 'Brightview Bridgewater' },
-        { text: 'Fort Mill' },
-        { text: 'Highpoint at Cape Coral' },
-        { text: 'Belmont Village' },
-        { text: 'rightview Meadows' },
+        { text: 'Cedarhurst Villages', isActive: true  },
+        { text: 'Brightview Bridgewater', isActive: false },
+        { text: 'Fort Mill', isActive: false },
+        { text: 'Highpoint at Cape Coral', isActive: true },
+        { text: 'Belmont Village', isActive: true },
+        { text: 'rightview Meadows', isActive: true },
       ],
     },
   ];
@@ -403,8 +403,16 @@ export class HomeComponent {
     this.cardData[1].upDowns.count = 0;
     this.cardData[2].upDowns.count = 0;
     this.cardData[3].upDowns.count = 0;
-  }
 
+    this.dataLocations[0].items.sort((a, b) => {
+      if (a.isActive !== b.isActive) {
+        return a.isActive ? -1 : 1;
+      } else {
+        return a.text.localeCompare(b.text);
+      }
+    });
+  }
+ 
   getDefaultDateRange(){
     this.today = new Date();
     this.today.setDate(this.today.getDate()-1);
@@ -825,4 +833,10 @@ export class HomeComponent {
       return false;
     }
   }
+
+  itemDisabled(dataItem: any, index: string) {
+    console.log("dataItem", dataItem);
+    return dataItem.isActive === false;
+  }
+  
 }

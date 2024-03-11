@@ -22,6 +22,7 @@
             <kendo-multiselecttree
               #locationTree
               [kendoMultiSelectTreeHierarchyBinding]="dataLocations"
+              [itemDisabled]="itemDisabled"
               childrenField="items"
               textField="text"
               valueField="text"
