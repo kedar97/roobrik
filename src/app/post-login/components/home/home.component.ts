@@ -404,13 +404,17 @@ export class HomeComponent {
     this.cardData[2].upDowns.count = 0;
     this.cardData[3].upDowns.count = 0;
 
-    this.dataLocations[0].items.sort((a, b) => {
-      if (a.isActive !== b.isActive) {
-        return a.isActive ? -1 : 1;
-      } else {
-        return a.text.localeCompare(b.text);
-      }
-    });
+    const activeItems = this.dataLocations[0].items.filter(item => item.isActive);
+    const inactiveItems = this.dataLocations[0].items.filter(item => !item.isActive);
+    
+    activeItems.sort((a, b) => a.text.localeCompare(b.text));
+    inactiveItems.sort((a, b) => a.text.localeCompare(b.text));
+    
+    const resultItems = [...activeItems, { text: 'Corporate site', isActive: true }, ...inactiveItems];
+    
+    this.dataLocations[0].items = resultItems;
+    
+
   }
  
   getDefaultDateRange(){
