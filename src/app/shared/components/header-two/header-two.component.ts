@@ -30,6 +30,11 @@ export class HeaderTwoComponent {
     else if(router.url.includes('custom-reports')){
       this.breadcrumbParent = 'Client Dashboard'
     }
+    else if(router.url.includes('new-client')){
+      postLoginService.breadCrumbItems.subscribe(breadCrumbItems =>{
+        this.items = breadCrumbItems;
+      })
+    }
   }
 
   showClientDashboardOptions(event){

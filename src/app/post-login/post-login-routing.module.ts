@@ -65,6 +65,7 @@ const routes: Routes = [
       {
         path: 'saas-revenue/new-client',
         component: AddNewClientComponent,
+        canDeactivate: [UnsavedChangesGuard]
       },
       {
         path: 'saas-revenue/:client_frenchiseName',

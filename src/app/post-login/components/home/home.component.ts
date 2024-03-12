@@ -839,7 +839,6 @@ export class HomeComponent {
   }
 
   itemDisabled(dataItem: any, index: string) {
-    console.log("dataItem", dataItem);
     return dataItem.isActive === false;
   }
   

@@ -15,7 +15,18 @@
                     >
                     <img src="assets/images/search-icon.png" alt="Search icon">
                 </div>
-                <button class="btn btn-create-new" (click)="onAddNewClient()">Add New Client</button>
+                <div class="d-flex gap-2" *ngIf="isNewClientSaved">
+                    <button class="btn btn-undo-redo" (click)="onUndo()">
+                        <img class="undo-redo-icon" src="assets/images/undo.svg" />
+                        UNDO
+                    </button>
+                    <button class="btn btn-undo-redo" (click)="onRedo()">
+                        <img class="undo-redo-icon" src="assets/images/redo.svg" />
+                        REDO
+                    </button>
+                    <button class="btn btn-export" (click)="onAddNewRow()">ADD ROW</button>
+                    <button class="btn btn-create-new" (click)="onSave()">SAVE</button>
+                </div>
             </div>
         </div>
     
@@ -36,6 +47,9 @@
                 [getDataPath]="getDataPath"
                 [enableRangeSelection]="true"
                 [enableFillHandle]="true"
+                [undoRedoCellEditing]="true"
+                [undoRedoCellEditingLimit]="undoRedoCellEditingLimit"
+                [enableCellChangeFlash]="true"
                 (cellValueChanged)="onCellValueChanged($event)"
                 (selectionChanged)="onSelectionChanged($event)"
                 (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"

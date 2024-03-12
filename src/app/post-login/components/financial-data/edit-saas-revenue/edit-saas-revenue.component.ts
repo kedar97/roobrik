@@ -344,7 +344,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     return ((params.node.data.client_frenchiseName === '') || (params.node.data.invoicing_entity == null) || (params.node.data.legal_entity == null) || (params.node.data.owner == null) || (params.node.data.status == null) && (params.node.data.children == undefined) && params.data.children == undefined) ? true : false ;
   }
 
-  public groupDefaultExpanded = 0;
+  public groupDefaultExpanded = 1;
   public getDataPath: GetDataPath = (data: any) => {
     return data.client_frenchiseName;
   };

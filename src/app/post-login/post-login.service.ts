@@ -15,7 +15,7 @@ export class PostLoginService {
   confirmDialogMessage: string;
   bannerSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   hideNotifiation: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
+  breadCrumbItems :BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(private router: Router, private http:HttpClient) {}
 
   setConfirmDialogMessage(message: string) {

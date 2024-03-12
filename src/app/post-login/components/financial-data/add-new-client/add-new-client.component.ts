@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ColDef, GetDataPath, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
+import { CustomDropDownEditorComponent } from '../custom-drop-down-editor/custom-drop-down-editor.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-new-client',
@@ -14,6 +16,14 @@ export class AddNewClientComponent {
 
   constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginServie: PostLoginService) {}
 
+  canDeactivate(): Observable<boolean> | boolean {
+    if (this.changesUnSaved) {
+      return confirm('You have unsaved changes. Are you sure you want to leave?');
+    }
+    return true;
+  }
+  
+  undoRedoCellEditingLimit = 20;
   pageTitle : string = 'New Client';
   defaultColumnState: any;
   defaultFiltersState: any;
@@ -64,12 +74,14 @@ export class AddNewClientComponent {
   isAddFlyOutOpen : boolean = true;
   isTextBoxDisplay : boolean = false;
   newClient;
-  groupDefaultExpanded = 0;
+  groupDefaultExpanded = 1;
   defaultTableData = [];
   updatedData = [];
   clientName : string ;
   currentTableData = [];    
   editedRow: any;
+  isNewClientSaved: boolean = false;
+  changesUnSaved: boolean = false;
 
 
   paginationOptions: PaginationOption[] = [
@@ -310,7 +322,7 @@ export class AddNewClientComponent {
   };
   
   public autoGroupColumnDef: ColDef = {
-      headerName:'Franchise Name',
+      headerName:'Client/franchise name',
       pinned:'left',
       lockPosition:true,
       sortable: true,
@@ -322,6 +334,8 @@ export class AddNewClientComponent {
         'padding-top': '4px',
       },
       suppressFillHandle:true,
+      cellEditor:CustomDropDownEditorComponent,
+      editable: this.isCellEditable,
   };
 
   public defaultColDef: ColDef = {
@@ -528,13 +542,13 @@ export class AddNewClientComponent {
       const changedMonthIndex = months.indexOf(revenueMonth);
       for (let i = changedMonthIndex + 1; i < months.length; i++) {
         const month = months[i];
-        data[`revenue${year}`][month] = +newValue;
+        data[`revenue${year}`][month] = newValue!= null ? +newValue : null;
       }
 
       // CALCULATE TOTLA REVENUE OF MONTHS
       data[`totalRevenue${year}`] = 0;
       for (const month of Object.keys(data[`revenue${year}`])) {
-        data[`totalRevenue${year}`] += +data[`revenue${year}`][month];
+        data[`totalRevenue${year}`] = data[`revenue${year}`][month] != null ? data[`totalRevenue${year}`] + (+data[`revenue${year}`][month]) : null;
       }
 
       this.updatedData = [data]; 
@@ -552,8 +566,6 @@ export class AddNewClientComponent {
         parentData[`revenue${year}`][month] = 0;
       }
 
-      mapped = mapped.filter(node => node.value.key.includes(this.editedRow.parent.key.split('-')[0].trim()));
-
       mapped.forEach( node =>{
         parentData[`totalRevenue${year}`] += (node.value.data[`totalRevenue${year}`] == null || node.value.level === 0) ? 0 : +node.value.data[`totalRevenue${year}`];
 
@@ -563,8 +575,10 @@ export class AddNewClientComponent {
 
       })
 
-      this.gridApi.applyTransaction({ update: this.updatedData });
+      this.gridApi.applyServerSideTransaction({ update: this.updatedData });
       this.gridApi.refreshCells();
+      this.changesUnSaved = true;
+      this.rowData.push(...this.updatedData);
     }
 
   }
@@ -648,7 +662,11 @@ export class AddNewClientComponent {
     this.addChildToNewClient(children);
     this.onAddFlyOutClose();
     this.totalRows = this.gridApi.getDisplayedRowCount();
-    this.clientName = this.newClient.client_frenchiseName;
+    this.pageTitle = this.newClient.client_frenchiseName;
+    this.isNewClientSaved = true;
+
+    let breadcrumbItems = [{text:'Saas Revenue', title:'saas-revenue'},{text:`${this.pageTitle}`, title:`${this.pageTitle}`}];
+    this.postLoginServie.breadCrumbItems.next(breadcrumbItems);
   }
 
   addChildToNewClient(children){
@@ -713,8 +731,55 @@ export class AddNewClientComponent {
     this.isLegalDropDownOpen = false;
   }
 
-  onAddNewClient(){
-    this.isAddFlyOutOpen = true;
+  onUndo(){
+    this.gridApi.undoCellEditing();
+  }
+
+  onRedo(){
+    this.gridApi.redoCellEditing();
+  }
+
+  onAddNewRow(){
+    const nodes = this.gridApi.rowModel.nodeManager.allNodesMap;
+    const mapped = Object.keys(nodes).map((key) => ({value: nodes[key],}));
+    let parentRow ;
+    mapped.forEach(node =>{
+      if(node.value.level === 0){
+        parentRow = node.value.data; 
+      }
+    })
+
+    const newData = {  
+      client_frenchiseName:[this.pageTitle,''], 
+      invoicing_entity: null, 
+      legal_entity: null, 
+      totalRevenue2021: null, 
+      revenue2021: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      revenue2022: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      revenue2023: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      revenue2024: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      revenue2025: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
+      owner: null,
+      status:null,
+      clientId : parentRow.clientId + parentRow.children.length + 1,
+    };
+
+    if(!parentRow.children){
+      parentRow.children=[]
+    }
+
+    parentRow.children.push(newData);
+    const transaction = { 
+      route: [parentRow.client_frenchiseName],
+      add: [newData],
+    };
+    this.gridApi.applyTransaction(transaction);
+    this.gridApi.refreshCells({ force: true });
+    this.totalRows = this.gridApi.getDisplayedRowCount();
+  }
+
+  onSave(){
+    this.changesUnSaved = false;
   }
 
   onItemsPerPageChange(newPageSize: any) {

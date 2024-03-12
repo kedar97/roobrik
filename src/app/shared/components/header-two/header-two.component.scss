@@ -151,6 +151,10 @@ p{
     color: #0a4569;
 }
 
+::ng-deep .k-breadcrumb-last-item{
+    text-transform: capitalize;
+}
+
 .divider{
     height: 40px;
     width: 1px;
