@@ -9,6 +9,7 @@ import { ICellEditorAngularComp } from 'ag-grid-angular';
 })
 export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
 
+  columnToChange ;
   selectedValue = '';
   isTextBoxDisplay : boolean = false;
   textBoxValue = '';
@@ -30,6 +31,12 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
 
   agInit(params: any): void {
     this.params = params;
+
+    if(params.column.colDef.colId === 'ag-Grid-AutoColumn'){
+      this.columnToChange = 'client_frenchiseName'
+    }else{
+      this.columnToChange = params.column.colDef.field;
+    }
   }
 
   getValue(): any {
@@ -42,7 +49,16 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
     }
     else{
       this.selectedValue = event;
-      this.params.data.client_frenchiseName = [this.params.node.parent.key,event];
+      if(this.columnToChange === 'client_frenchiseName'){
+        this.params.data[this.columnToChange] = [this.params.node.parent.key,event];
+      }
+      else if(this.columnToChange === 'invoicing_entity'){
+        this.params.data.invoicing_entity = event;
+      }
+      else{
+        this.params.data.legal_entity = event;
+      }
+
       this.params.api.applyTransaction({ update: [this.params.data] });
       this.params.api.refreshCells();
     }
@@ -51,7 +67,15 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
   onInput(){
     this.textBoxValue = (document.querySelector('.textBox') as HTMLInputElement).value;
     setTimeout(()=>{
-      this.params.data.client_frenchiseName = [this.params.node.parent.key,this.textBoxValue];
+      if(this.columnToChange === 'client_frenchiseName'){
+        this.params.data[this.columnToChange] = [this.params.node.parent.key,this.textBoxValue];
+      }
+      else if(this.columnToChange === 'invoicing_entity'){
+        this.params.data.invoicing_entity = this.textBoxValue;
+      }
+      else{
+        this.params.data.legal_entity = this.textBoxValue;
+      }
       this.params.api.applyTransaction({ update: [this.params.data] });
       this.params.api.refreshCells();
     },1000)  

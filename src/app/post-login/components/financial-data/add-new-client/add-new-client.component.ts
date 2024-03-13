@@ -5,6 +5,7 @@ import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 import { CustomDropDownEditorComponent } from '../custom-drop-down-editor/custom-drop-down-editor.component';
 import { Observable } from 'rxjs';
+import { DialogRef, DialogService } from '@progress/kendo-angular-dialog';
 
 @Component({
   selector: 'app-add-new-client',
@@ -13,15 +14,34 @@ import { Observable } from 'rxjs';
 })
 export class AddNewClientComponent {
   saasRevenueUrl = "assets/saas-revenue-data.json";
-
-  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginServie: PostLoginService) {}
-
+  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginServie: PostLoginService,private dialogService: DialogService) {}
+  
   canDeactivate(): Observable<boolean> | boolean {
     if (this.changesUnSaved) {
-      return confirm('You have unsaved changes. Are you sure you want to leave?');
+      const dialogRef: DialogRef = this.dialogService.open({
+        title: 'Confirmation',
+        content: 'You have unsaved changes. Are you sure you want to leave?',
+        actions: [
+          { text: 'Cancel', primary: false },
+          { text: 'OK', primary: true }
+        ]
+      });
+
+      return new Observable<boolean>((observer:any) => {
+        dialogRef.result.subscribe((result) => {
+          if (result instanceof Object && 'primary' in result) {
+            observer.next(result.primary);
+            observer.complete();
+          } else {
+            observer.next(false);
+            observer.complete();
+          }
+        });
+      });
     }
     return true;
   }
+
   
   undoRedoCellEditingLimit = 20;
   pageTitle : string = 'New Client';
@@ -164,12 +184,14 @@ export class AddNewClientComponent {
       headerName:'Invoicing entity',
       sortable:true,
       editable:this.isCellEditable,
+      cellEditor:CustomDropDownEditorComponent,
     },
     {
       field:'legal_entity',
       headerName:'Legal entity',
       sortable:true,
       editable:this.isCellEditable,
+      cellEditor:CustomDropDownEditorComponent,
     },
     {
       field:'',
@@ -640,8 +662,8 @@ export class AddNewClientComponent {
     
     children = Array.from({ length: childCount }).map((_, i) => ({
       client_frenchiseName: `[${this.form.value.clientName}] - Franchise ${i}`,
-      invoicing_entity: '',
-      legal_entity: '',
+      invoicing_entity: this.newClient.invoicing_entity,
+      legal_entity: this.newClient.legal_entity,
       clientId: this.newClient.clientId + i + 1,
       revenue2021: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },
       revenue2022: { jan: null, feb: null, mar: null, apr: null, may: null, jun: null, jul: null, aug: null, sep: null, oct: null, nov: null, dec: null },

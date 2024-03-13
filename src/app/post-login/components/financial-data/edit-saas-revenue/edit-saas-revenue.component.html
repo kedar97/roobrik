@@ -22,6 +22,16 @@
                 <img class="undo-redo-icon" src="assets/images/redo.svg" />
                 REDO
             </button>
+            <button class="btn btn-undo-redo" (click)="onAddColumn()">
+                ADD YEAR
+            </button>
+            <kendo-dialog title="Confirmation" *ngIf="addColumnPopUp" (close)="onCloseColumnPopUp()">
+                <p>Are you sure you want to add columns for {{yearToAdd}}?</p>
+                <kendo-dialog-actions>
+                  <button kendoButton class="btn btn-create-new" (click)="onCloseColumnPopUp()">Cancel</button>
+                  <button kendoButton class="btn btn-export" (click)="onAddYearColumn()">YES ADD {{yearToAdd}}</button>
+                </kendo-dialog-actions>
+              </kendo-dialog>
             <button class="btn btn-export" (click)="onAddNewRow()">ADD ROW</button>
             <button class="btn btn-create-new" (click)="onSaveChanges()">SAVE</button>
         </div>

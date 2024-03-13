@@ -1,11 +1,12 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ColDef, GetDataPath, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, SideBarDef } from 'ag-grid-community';
+import { ColDef, GetDataPath, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, SideBarDef, ValueGetterParams } from 'ag-grid-community';
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 import { CanComponentDeactivate } from './unsaved-changes.guard';
 import { Observable} from 'rxjs';
 import { CustomDropDownEditorComponent } from '../custom-drop-down-editor/custom-drop-down-editor.component';
+import { DialogRef, DialogService } from '@progress/kendo-angular-dialog';
 
 @Component({
   selector: 'app-edit-saas-revenue',
@@ -18,10 +19,32 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
   changesUnsaved : boolean = false;
   updatedData = [];
   defaultTableData = [];
-
+  addColumnPopUp : boolean = false;
+  yearToAdd;
+  statusColIndex;
+  
   canDeactivate(): Observable<boolean> | boolean {
     if (this.changesUnsaved) {
-      return confirm('You have unsaved changes. Are you sure you want to leave?');
+      const dialogRef: DialogRef = this.dialogService.open({
+        title: 'Confirmation',
+        content: 'You have unsaved changes. Are you sure you want to leave?',
+        actions: [
+          { text: 'Cancel', primary: false },
+          { text: 'OK', primary: true }
+        ]
+      });
+
+      return new Observable<boolean>((observer:any) => {
+        dialogRef.result.subscribe((result) => {
+          if (result instanceof Object && 'primary' in result) {
+            observer.next(result.primary);
+            observer.complete();
+          } else {
+            observer.next(false);
+            observer.complete();
+          }
+        });
+      });
     }
     return true;
   }
@@ -107,7 +130,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     ],
   };
   
-  constructor(private router: Router, private renderer: Renderer2,private ele: ElementRef, private postLoginServie: PostLoginService) {
+  constructor(private router: Router, private renderer: Renderer2,private ele: ElementRef, private postLoginServie: PostLoginService,private dialogService: DialogService) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
       this.linkData = navigation.extras.state.linkData;
@@ -623,5 +646,73 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
   onSaveChanges(){
     this.changesUnsaved =  false;
   }
+
+  onAddColumn(){
+    this.addColumnPopUp = true;
+    let columnArray = this.gridApi.getColumnDefs()
+    this.statusColIndex = columnArray.findIndex(column => column.colId === 'status');
+    let lastYearColumn = columnArray[this.statusColIndex-1];
+    this.yearToAdd = (parseInt(lastYearColumn.headerName.match(/\d+/)[0]) + 1);
+  }
   
+  onCloseColumnPopUp(){
+    this.addColumnPopUp = false;
+  }
+
+  onAddYearColumn(){
+    this.addColumnPopUp = false;
+    const modifiedColumnDefs = [
+      ...this.columnDef.slice(0,this.statusColIndex),
+      {
+        field:'',
+        headerName:`${this.yearToAdd} total revenue`,
+        marryChildren: true,
+        children: [
+          { field:`totalRevenue${this.yearToAdd}`, headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter',
+            headerClass: 'hide-header-name', suppressFillHandle:true, valueFormatter: this.customCurrencyFormatter,
+          },
+          { field: `revenue${this.yearToAdd}.jan`, headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.feb`, headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.mar`, headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.apr`, headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.may`, headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.jun`, headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.jul`, headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.aug`, headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.sep`, headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.oct`, headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.nov`, headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.dec`, headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
+        ]
+      },
+      ...this.columnDef.slice(this.statusColIndex),
+    ]
+
+    this.columnDef = modifiedColumnDefs;     
+    this.gridApi.setColumnDefs(modifiedColumnDefs);
+    let months = Object.keys(this.rowData[0][`revenue${this.yearToAdd -1}`]);
+
+    this.rowData.forEach(item =>{
+      item[`revenue${this.yearToAdd}`] = {
+        "jan": '',
+        "feb": '',
+        "mar": '',
+        "apr": '',
+        "may": '',
+        "jun": '',
+        "jul": '',
+        "aug": '',
+        "sep": '',
+        "oct": '',
+        "nov": '',
+        "dec": ''}
+    })
+
+    this.rowData.forEach(item =>{
+      item[`totalRevenue${this.yearToAdd}`] = item[`totalRevenue${this.yearToAdd-1}`];
+      months.forEach(month =>{
+        item[`revenue${this.yearToAdd}`][month] = item[`revenue${this.yearToAdd -1}`][month]
+      })
+    })
+  }
 }
