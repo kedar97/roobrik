@@ -2,7 +2,8 @@ import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { DialogService } from '@progress/kendo-angular-dialog';
 import { BreadCrumbItem } from '@progress/kendo-angular-navigation';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { DialogComponent } from 'src/app/post-login/components/dialog/dialog.component';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 
@@ -19,34 +20,25 @@ export class HeaderTwoComponent {
   showReportsMenu : boolean = false;
   showProfileMenu: boolean = false;
   allItems: any;
+  destroy$ = new Subject<void>();
 
 
-  breadcrumbParent: string ='';
   constructor(private router : Router, public postLoginService : PostLoginService, private dialogService: DialogService,){
     this.initRoutes();
-    if(router.url.includes('leads-per-community') || router.url.includes('financial-data')){
-      this.breadcrumbParent = 'Reports';
-    }
-    else if(router.url.includes('custom-reports')){
-      this.breadcrumbParent = 'Client Dashboard'
-    }
-    else if(router.url.includes('new-client')){
-      postLoginService.breadCrumbItems.subscribe(breadCrumbItems =>{
-        this.items = breadCrumbItems;
-      })
-    }
+
+    postLoginService.breadCrumbItems.pipe(takeUntil(this.destroy$)).subscribe(breadCrumbItems =>{
+      this.items = breadCrumbItems;
+    })
   }
 
   showClientDashboardOptions(event){
     this.showClientDashboardMenu = !this.showClientDashboardMenu;
     this.showReportsMenu = false;
-    this.breadcrumbParent = event.target.innerText;
   }
 
   showReportsOptions(event){
     this.showReportsMenu = !this.showReportsMenu;
     this.showClientDashboardMenu = false;
-    this.breadcrumbParent = event.target.innerText;
   }
 
   onClientHealthMetrics(event) {
@@ -138,5 +130,7 @@ export class HeaderTwoComponent {
 
   public ngOnDestroy(): void {
     this.routesData.unsubscribe();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
