@@ -15,15 +15,15 @@
                     >
                     <img src="assets/images/search-icon.png" alt="Search icon">
                 </div>
-                <div class="d-flex gap-2" *ngIf="isNewClientSaved">
-                    <button class="btn btn-undo-redo" (click)="onUndo()">
-                        <img class="undo-redo-icon" src="assets/images/undo.svg" />
-                        UNDO
-                    </button>
-                    <button class="btn btn-undo-redo" (click)="onRedo()">
-                        <img class="undo-redo-icon" src="assets/images/redo.svg" />
-                        REDO
-                    </button>
+                <button *ngIf="isUndoAvailable > 0" class="btn btn-undo-redo" (click)="onUndo()">
+                    <img class="undo-redo-icon" src="assets/images/undo.svg" />
+                    UNDO
+                </button>
+                <button *ngIf="isRedoAvailable > 0" class="btn btn-undo-redo" (click)="onRedo()">
+                    <img class="undo-redo-icon" src="assets/images/redo.svg" />
+                    REDO
+                </button>
+                <div class="d-flex gap-2" *ngIf="isNewClientSaved">                   
                     <button class="btn btn-export" (click)="onAddNewRow()">ADD ROW</button>
                     <button class="btn btn-create-new" (click)="onSave()">SAVE</button>
                 </div>
@@ -88,49 +88,89 @@
         <form class="k-form k-form-md" [formGroup]="form" (ngSubmit)="onSaveChanges(form)">
             <div class="formSection d-flex flex-column custom-gap-5">
                 <kendo-formfield>
-                   <kendo-label class="label-text">Client Name</kendo-label>
+                    <div class="dropdown-title-container">
+                        <kendo-label class="label-text">Client Name</kendo-label>
+                        <div class="add-dropdown" *ngIf="clientDropdownTextbox" (click)="activateDropdown('client')">Activate Dropdown</div>
+                    </div>
                    <kendo-dropdownlist
-                   *ngIf="!isTextBoxDisplay"
-                    formControlName="clientName"
-                    [data]="clientNameList"
-                    class="dropdown"
-                    (open)="formDropDownOpen('clientname')"
-                    (close)="formDropDownClose()"
-                    (valueChange)="onClientDropDownValueChange($event)"
-                    [class.dropdown-open]="isClientDropDownOpen"
+                        *ngIf="!clientDropdownTextbox"
+                         formControlName="clientName"
+                         [data]="clientNameList"
+                         onSaveChanges
+                         [valuePrimitive] =true
+                         textField="name"
+                         valueField="id"
+                         [filterable]="true"
+                         class="dropdown"
+                         (open)="formDropDownOpen('clientname')"
+                         (close)="formDropDownClose()"
+                         (valueChange)="onClientDropDownValueChange($event, 'client')"
+                         [class.dropdown-open]="isClientDropDownOpen"
+                         (filterChange)="handleFilter($event, 'client')"
                     >
                    </kendo-dropdownlist>
                    <input
-                    *ngIf="isTextBoxDisplay"
-                    formControlName="clientName"
-                    kendoTextBox
+                        *ngIf="clientDropdownTextbox"
+                        formControlName="clientName"
+                        kendoTextBox
                     >
-                </kendo-formfield>  
+                </kendo-formfield>
 
                 <kendo-formfield>
-                    <kendo-label class="label-text">Invoicing Entity</kendo-label>
+                    <div class="dropdown-title-container">
+                        <kendo-label class="label-text">Invoicing Entity</kendo-label>
+                        <div class="add-dropdown" *ngIf="invoicingDropdownTextbox" (click)="activateDropdown('invoicing')">Activate Dropdown</div>
+                    </div>
                     <kendo-dropdownlist
-                     formControlName="invoicingEntity"
-                     [data]="invoicingEntityList"
-                     class="dropdown"
-                     (open)="formDropDownOpen('invoicingEntity')"
-                     (close)="formDropDownClose()"
-                     [class.dropdown-open]="isInvoicingDropDownOpen"
+                        *ngIf="!invoicingDropdownTextbox"
+                        formControlName="invoicingEntity"
+                        [data]="invoicingEntityList"
+                        textField="name"
+                        valueField="id"
+                        [filterable]="true"
+                        [valuePrimitive]=true
+                        class="dropdown"
+                        (open)="formDropDownOpen('invoicingEntity')"
+                        (close)="formDropDownClose()"
+                        (valueChange)="onClientDropDownValueChange($event, 'invoicing')"
+                        [class.dropdown-open]="isInvoicingDropDownOpen"
+                        (filterChange)="handleFilter($event, 'invoicing')"
+
                      >
                     </kendo-dropdownlist>
+                    <input
+                        *ngIf="invoicingDropdownTextbox"
+                        formControlName="invoicingEntity"
+                        kendoTextBox
+                    >
                  </kendo-formfield>  
 
                  <kendo-formfield>
-                    <kendo-label class="label-text">Legal Entity</kendo-label>
+                    <div class="dropdown-title-container">
+                        <kendo-label class="label-text">Legal Entity</kendo-label>
+                        <div class="add-dropdown" *ngIf="legalDropdownTextbox" (click)="activateDropdown('legal')">Activate Dropdown</div>
+                    </div>
                     <kendo-dropdownlist
-                     formControlName="legalEntity"
-                     [data]="legalEntityList"
-                     class="dropdown"
-                     (open)="formDropDownOpen('legalEntity')"
-                     (close)="formDropDownClose()"
-                     [class.dropdown-open]="isLegalDropDownOpen"
+                        *ngIf="!legalDropdownTextbox"
+                        formControlName="legalEntity"
+                        [data]="legalEntityList"
+                        [filterable]="true"
+                        textField="name"
+                        valueField="id"
+                        [valuePrimitive]=true
+                        class="dropdown"
+                        (open)="formDropDownOpen('legalEntity')"
+                        (close)="formDropDownClose()"
+                        (valueChange)="onClientDropDownValueChange($event, 'legal')"
+                        [class.dropdown-open]="isLegalDropDownOpen"
+                        (filterChange)="handleFilter($event, 'legal')"
                      >
                     </kendo-dropdownlist>
+                    <input
+                        *ngIf="legalDropdownTextbox"
+                        formControlName="legalEntity"
+                        kendoTextBox
+                    >
                  </kendo-formfield>  
 
                  <kendo-formfield>

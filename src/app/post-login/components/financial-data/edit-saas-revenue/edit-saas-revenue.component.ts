@@ -19,18 +19,20 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
   changesUnsaved : boolean = false;
   updatedData = [];
   defaultTableData = [];
-  addColumnPopUp : boolean = false;
-  yearToAdd;
-  statusColIndex;
+  deleteClientPopUp : boolean = false;
+  yearToAdd : number;
+  statusColIndex : number;
+  isUndoAvailable: number;
+  isRedoAvailable: number;
   
   canDeactivate(): Observable<boolean> | boolean {
     if (this.changesUnsaved) {
       const dialogRef: DialogRef = this.dialogService.open({
         title: 'Confirmation',
-        content: 'You have unsaved changes. Are you sure you want to leave?',
+        content: 'You have unsaved changes. Are you sure you want to leave this page without saving?',
         actions: [
-          { text: 'Cancel', primary: false },
-          { text: 'OK', primary: true }
+          { text: 'Cancel', primary: false ,cssClass:'cancel-btn' },
+          { text: 'YES, LEAVE PAGE', primary: true ,cssClass:'ok-btn'}
         ]
       });
 
@@ -151,6 +153,8 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
       this.rowData = this.defaultTableData;
     }
   }
+
+  ngOnInit() {}
 
   customCurrencyFormatter(params: ICellRendererParams): string {
     const value = params.value;
@@ -443,7 +447,9 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     this.gridColumnApi = params.columnApi;
     this.defaultColumnState = this.gridColumnApi.getColumnState();
     this.defaultFiltersState = this.gridApi.getFilterModel();
-
+    this.isUndoAvailable = this.gridApi.getCurrentUndoSize();
+    this.isRedoAvailable = this.gridApi.getCurrentUndoSize();
+    
     const currentDate = new Date();
       const lastFullMonth = new Date(currentDate);
       lastFullMonth.setMonth(lastFullMonth.getMonth() - 1);
@@ -547,6 +553,10 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     data[updatedColumn] = newValue;
     this.updatedData = [data]; 
 
+    this.isUndoAvailable = this.gridApi.getCurrentUndoSize();
+    this.isRedoAvailable = this.gridApi.getCurrentRedoSize();
+
+
     if(event.colDef.field.includes('revenue')){
       revenueYear = updatedColumn.split('.')[0];
       revenueMonth = updatedColumn.split('.')[1];
@@ -647,72 +657,18 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     this.changesUnsaved =  false;
   }
 
-  onAddColumn(){
-    this.addColumnPopUp = true;
-    let columnArray = this.gridApi.getColumnDefs()
-    this.statusColIndex = columnArray.findIndex(column => column.colId === 'status');
-    let lastYearColumn = columnArray[this.statusColIndex-1];
-    this.yearToAdd = (parseInt(lastYearColumn.headerName.match(/\d+/)[0]) + 1);
+  onDeleteClient(){
+    this.deleteClientPopUp = true;
   }
   
-  onCloseColumnPopUp(){
-    this.addColumnPopUp = false;
+  onCloseDeletePopUp(){
+    this.deleteClientPopUp = false;
   }
 
-  onAddYearColumn(){
-    this.addColumnPopUp = false;
-    const modifiedColumnDefs = [
-      ...this.columnDef.slice(0,this.statusColIndex),
-      {
-        field:'',
-        headerName:`${this.yearToAdd} total revenue`,
-        marryChildren: true,
-        children: [
-          { field:`totalRevenue${this.yearToAdd}`, headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter',
-            headerClass: 'hide-header-name', suppressFillHandle:true, valueFormatter: this.customCurrencyFormatter,
-          },
-          { field: `revenue${this.yearToAdd}.jan`, headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.feb`, headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.mar`, headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.apr`, headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.may`, headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.jun`, headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.jul`, headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.aug`, headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.sep`, headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.oct`, headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.nov`, headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}.dec`, headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', editable:this.isRevenueMonthEditable, valueFormatter: this.customCurrencyFormatter },
-        ]
-      },
-      ...this.columnDef.slice(this.statusColIndex),
-    ]
-
-    this.columnDef = modifiedColumnDefs;     
-    this.gridApi.setColumnDefs(modifiedColumnDefs);
-    let months = Object.keys(this.rowData[0][`revenue${this.yearToAdd -1}`]);
-
-    this.rowData.forEach(item =>{
-      item[`revenue${this.yearToAdd}`] = {
-        "jan": '',
-        "feb": '',
-        "mar": '',
-        "apr": '',
-        "may": '',
-        "jun": '',
-        "jul": '',
-        "aug": '',
-        "sep": '',
-        "oct": '',
-        "nov": '',
-        "dec": ''}
-    })
-
-    this.rowData.forEach(item =>{
-      item[`totalRevenue${this.yearToAdd}`] = item[`totalRevenue${this.yearToAdd-1}`];
-      months.forEach(month =>{
-        item[`revenue${this.yearToAdd}`][month] = item[`revenue${this.yearToAdd -1}`][month]
-      })
-    })
+  onDeleteClientData(){
+    this.rowData = [];
+    this.clientName = '';
+    this.deleteClientPopUp = false;
+    this.router.navigate(['/reports/saas-revenue']);
   }
 }

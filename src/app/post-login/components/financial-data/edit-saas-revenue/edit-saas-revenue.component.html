@@ -14,24 +14,24 @@
                 >
                 <img src="assets/images/search-icon.png" alt="Search icon">
             </div>
-            <button class="btn btn-undo-redo" (click)="onUndo()">
+            <button *ngIf="isUndoAvailable > 0" class="btn btn-undo-redo" (click)="onUndo()">
                 <img class="undo-redo-icon" src="assets/images/undo.svg" />
                 UNDO
             </button>
-            <button class="btn btn-undo-redo" (click)="onRedo()">
+            <button *ngIf="isRedoAvailable > 0" class="btn btn-undo-redo" (click)="onRedo()">
                 <img class="undo-redo-icon" src="assets/images/redo.svg" />
                 REDO
             </button>
-            <button class="btn btn-undo-redo" (click)="onAddColumn()">
-                ADD YEAR
+            <button class="btn btn-undo-redo" (click)="onDeleteClient()">
+                DELETE
             </button>
-            <kendo-dialog title="Confirmation" *ngIf="addColumnPopUp" (close)="onCloseColumnPopUp()">
-                <p>Are you sure you want to add columns for {{yearToAdd}}?</p>
+            <kendo-dialog title="Confirmation" *ngIf="deleteClientPopUp" (close)="onCloseDeletePopUp()">
+                <p>Are you sure you want to delete {{clientName}} and all of the associated franchises?</p>
                 <kendo-dialog-actions>
-                  <button kendoButton class="btn btn-create-new" (click)="onCloseColumnPopUp()">Cancel</button>
-                  <button kendoButton class="btn btn-export" (click)="onAddYearColumn()">YES ADD {{yearToAdd}}</button>
+                  <button kendoButton class="btn btn-create-new" (click)="onCloseDeletePopUp()">CANCEL</button>
+                  <button kendoButton class="btn btn-export" (click)="onDeleteClientData()">YES, DELETE</button>
                 </kendo-dialog-actions>
-              </kendo-dialog>
+            </kendo-dialog>
             <button class="btn btn-export" (click)="onAddNewRow()">ADD ROW</button>
             <button class="btn btn-create-new" (click)="onSaveChanges()">SAVE</button>
         </div>

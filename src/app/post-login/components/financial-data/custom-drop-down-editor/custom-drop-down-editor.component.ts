@@ -25,7 +25,17 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
 
   ngOnInit(){
     if(this.router.url.includes('new-client')){
-      this.franchiseList.unshift('Add franchise manually')
+      switch(this.columnToChange){
+        case 'invoicing_entity':
+          this.franchiseList.unshift('Add Invoicing entity manually');
+          break;
+        case 'legal_entity':
+          this.franchiseList.unshift('Add Legal entity manually');
+          break;
+        default:
+          this.franchiseList.unshift('Add franchise manually');
+          break;
+      }
     }
   }
 

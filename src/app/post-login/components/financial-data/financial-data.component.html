@@ -14,6 +14,16 @@
                 >
                 <img src="assets/images/search-icon.png" alt="Search icon">
             </div>
+            <button class="btn btn-add-year" (click)="onAddColumn()">
+                ADD YEAR
+            </button>
+            <kendo-dialog title="Confirmation" *ngIf="addColumnPopUp" (close)="onCloseColumnPopUp()">
+                <p>Are you sure you want to add columns for {{yearToAdd}}?</p>
+                <kendo-dialog-actions>
+                  <button kendoButton class="btn btn-create-new" (click)="onCloseColumnPopUp()">Cancel</button>
+                  <button kendoButton class="btn btn-export" (click)="onAddYearColumn()">YES, ADD {{yearToAdd}}</button>
+                </kendo-dialog-actions>
+            </kendo-dialog>
             <button class="btn btn-export">Export</button>
             <button class="btn btn-create-new" (click)="onCreateNew()">CREATE NEW</button>
         </div>
@@ -40,6 +50,7 @@
             [cacheBlockSize]="cacheBlockSize"
             [paginationPageSize]="100"
             [paginateChildRows]="true"
+            [getRowStyle]="getFirstRowStyle"
             (gridReady)="onGridReady($event)"
             >
         </ag-grid-angular>

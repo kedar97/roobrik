@@ -450,3 +450,89 @@ button:focus {
       font-weight: 700;
     }
 }
+
+// UNSAVED CHNAGES POPUP
+::ng-deep {
+    .ok-btn{
+        display: flex;
+        height: 32px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        background: #296689;
+        padding: 8px 14px 8px 15px;
+        text-transform: uppercase;
+        font-family: 'Proxima Nova';
+        color: #FFF;
+        font-size: 14px;
+        line-height: 16px;
+        font-weight: 600;
+
+        &:hover {
+            background: #296689;
+        }
+    }
+
+    .cancel-btn {
+        display: flex;
+        width: 92px;
+        height: 32px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        background: #e4eff3;
+        padding: 8px 14px 8px 15px;
+        text-transform: uppercase;
+        font-family: 'Proxima Nova';
+        color: #296689;
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 16px;
+
+        &:hover {
+            background: #e4eff3;
+        }
+    }
+
+    .k-dialog-wrapper .k-dialog {
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .k-dialog-actions {
+        width: 65% !important;
+        border: transparent !important;
+        padding-inline: 16px !important;
+    }
+
+    .k-window-title {
+        font-size: 20px;
+        font-weight: 600;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #DADADA;
+    }
+
+    .k-window-titlebar {
+        padding: 12px 0px 12px 12px;
+    }
+
+    .k-dialog-titlebar {
+        background-color: transparent;
+        border-bottom: 2px solid #fafafa;
+    }
+
+    .k-window-content {
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .k-window-titlebar-actions {
+        padding-bottom: 30px !important;
+
+    }
+
+    .k-button-md.k-icon-button .k-button-icon {
+        border-radius: 50% !important;
+        border: 2px solid black !important;
+    }
+}

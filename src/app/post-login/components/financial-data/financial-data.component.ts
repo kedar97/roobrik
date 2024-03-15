@@ -14,7 +14,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class FinancialDataComponent {
   saasRevenueUrl = "assets/saas-revenue-data.json";
-
+  pinnedTopRowData = [];
+  addColumnPopUp : boolean = false;
+  yearToAdd : number;
+  statusColIndex : number;
+  
   constructor(private postLoginService : PostLoginService, private renderer: Renderer2,private ele: ElementRef, private http:HttpClient,private router:Router){}
 
   selectedValue = 100;
@@ -257,7 +261,7 @@ export class FinancialDataComponent {
   onCellClicked(event: any): void {
     const self = this;
     const element = event.event.target as HTMLElement;
-    if (element.classList.contains('parent-link')) {
+    if (element.classList.contains('parent-link') && event.value != 'Saas Revenue Summary') {
       const linkData = [event.data];
       const client_frenchiseName = linkData[0].client_frenchiseName;
       const navigationExtras: NavigationExtras = {
@@ -340,6 +344,13 @@ export class FinancialDataComponent {
     );
   }
 
+  getFirstRowStyle(params: any): any {
+    if (params.node.rowIndex === 0) {
+      return { background: 'rgba(102, 163, 212, 0.3)' };
+    }
+    return null;
+}
+
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.gridData = params;
@@ -351,14 +362,83 @@ export class FinancialDataComponent {
       data.forEach(parent => {
         parent.children.forEach(child => {
           for (const year of ['2025', '2024', '2023', '2022', '2021']) {
-              for (const month of Object.keys(child[`revenue${year}`])) {
-                  parent[`revenue${year}`] = parent[`revenue${year}`] || {};
-                  parent[`revenue${year}`][month] = (parent[`revenue${year}`][month] || 0) + (child[`revenue${year}`][month] || 0);
-              }
-              parent[`totalRevenue${year}`] = (parent[`totalRevenue${year}`] || 0) + (child[`totalRevenue${year}`] || 0);
+            for (const month of Object.keys(child[`revenue${year}`])) {
+              parent[`revenue${year}`] = parent[`revenue${year}`] || {};
+              parent[`revenue${year}`][month] = (parent[`revenue${year}`][month] || 0) + (child[`revenue${year}`][month] || 0);
+            }
+            parent[`totalRevenue${year}`] = (parent[`totalRevenue${year}`] || 0) + (child[`totalRevenue${year}`] || 0);
           }
         });
       });
+
+      const revenueYears = Object.keys(data[0]).filter(key => key.startsWith('revenue')).map(key => key.slice(7));
+      this.pinnedTopRowData = [{
+        clientId: data[data.length-1].clientId + data[data.length-1].children.length,
+        client_frenchiseName : "Saas Revenue Summary",
+        children : [
+          {  client_frenchiseName: "ARR",},
+          {  client_frenchiseName: "MRR",}
+        ]
+      }]
+
+
+      //  SET REVENUE PROPERTY OF TOP PINNED ROW
+      data.forEach(item => {
+        revenueYears.forEach(year => {
+          this.pinnedTopRowData[0].children.forEach((child,index) => {
+            child.clientId = this.pinnedTopRowData[0].clientId + index + 1;
+            if(child.client_frenchiseName === 'MRR'){
+              child[`totalRevenue${year}`] = 0;
+            }
+            if (!child[`revenue${year}`]) {
+              child[`revenue${year}`] = {};
+            }
+            for (const month of Object.keys(item[`revenue${year}`])) {
+              if (!child[`revenue${year}`][month]) {
+                child[`revenue${year}`][month] = 0;
+              }
+            }
+          })
+        })
+      })
+      
+      // SET VALUE FOR MRR REVENUE MONTH
+      data.forEach(item =>{
+        this.pinnedTopRowData[0].children.forEach(child => {
+          revenueYears.forEach(year =>{
+            for (const month of Object.keys(item[`revenue${year}`])) {
+              if(child.client_frenchiseName === 'MRR'){
+                child[`revenue${year}`][month] += item[`revenue${year}`][month];
+              }
+            }
+          })
+        })
+      })
+
+      // SET VALUE FOR MRR TOTAL REVENUE YEAR
+      this.pinnedTopRowData[0].children.forEach(child =>{
+        if(child.client_frenchiseName === 'MRR'){
+          revenueYears.forEach(year =>{
+            for (const month of Object.keys(child[`revenue${year}`])) {
+              child[`totalRevenue${year}`] = child[`revenue${year}`][month] != null ? child[`totalRevenue${year}`] + (child[`revenue${year}`][month]) : null;
+            }
+          })
+        } 
+      })
+
+      //SET ARR REVENUE MOTNH VALUE (MRR * 12)
+      let mrrIndex = this.pinnedTopRowData[0].children.findIndex(item => item.client_frenchiseName === 'MRR');
+      this.pinnedTopRowData[0].children.forEach(child =>{
+        revenueYears.forEach(year =>{
+          for (const month of Object.keys(child[`revenue${year}`])) {
+            if(child.client_frenchiseName === 'ARR'){
+              child[`revenue${year}`][month] = this.pinnedTopRowData[0].children[mrrIndex][`revenue${year}`][month] * 12;
+            }
+          }
+        })
+      })
+
+      data.unshift(...this.pinnedTopRowData)
 
       const currentDate = new Date();
       const lastFullMonth = new Date(currentDate);
@@ -381,7 +461,7 @@ export class FinancialDataComponent {
       this.columnDef = modifiedColumnDefs;
       this.totalRows = this.gridApi.paginationGetPageSize();
 
-      let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
+      let fakeServer = FakeServer(data,this.expandedRows,this.gridData,this.pinnedTopRowData);
       let datasource = getServerSideDatasource(fakeServer);
       this.gridApi.setServerSideDatasource(datasource);
     })
@@ -506,8 +586,9 @@ export class FinancialDataComponent {
         data.forEach(item =>{
           item.children = item.children.filter(child => this.postLoginService.checkPropertyValue(child,term))
         })
-        this.handleSearchAndExpansion(data, term)
-        let fakeServer = FakeServer(data,this.expandedRows,this.gridData,);
+        this.handleSearchAndExpansion(data, term);
+        data.unshift(...this.pinnedTopRowData)
+        let fakeServer = FakeServer(data,this.expandedRows,this.gridData,this.pinnedTopRowData);
         let datasource = getServerSideDatasource(fakeServer);
         this.gridApi.setServerSideDatasource(datasource);
       })
@@ -558,6 +639,151 @@ export class FinancialDataComponent {
   onCreateNew(){
     this.router.navigate(['/reports/saas-revenue/new-client'])
   }
+
+  onAddColumn(){
+    this.addColumnPopUp = true;
+    let columnArray = this.gridApi.getColumnDefs()
+    this.statusColIndex = columnArray.findIndex(column => column.colId === 'status');
+    let lastYearColumn = columnArray[this.statusColIndex-1];
+    this.yearToAdd = (parseInt(lastYearColumn.headerName.match(/\d+/)[0]) + 1);
+  }
+  
+  onCloseColumnPopUp(){
+    this.addColumnPopUp = false;
+  }
+
+  onAddYearColumn(){
+    this.addColumnPopUp = false;
+    const modifiedColumnDefs = [
+      ...this.columnDef.slice(0,this.statusColIndex),
+      {
+        field:'',
+        headerName:`${this.yearToAdd} total revenue`,
+        marryChildren: true,
+        children: [
+          { field:`totalRevenue${this.yearToAdd}`, headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter',
+            headerClass: 'hide-header-name', suppressFillHandle:true, valueFormatter: this.customCurrencyFormatter,
+          },
+          { field: `revenue${this.yearToAdd}.jan`, headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.feb`, headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.mar`, headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.apr`, headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.may`, headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.jun`, headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.jul`, headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.aug`, headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.sep`, headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.oct`, headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.nov`, headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          { field: `revenue${this.yearToAdd}.dec`, headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+        ]
+      },
+      ...this.columnDef.slice(this.statusColIndex),
+    ]
+
+    this.columnDef = modifiedColumnDefs;     
+    this.gridApi.setColumnDefs(modifiedColumnDefs);
+    
+    this.postLoginService.getTableData(this.saasRevenueUrl).subscribe(data => {
+      data.forEach(item => {
+        item[`revenue${this.yearToAdd}`] = {
+          "jan": '',
+          "feb": '',
+          "mar": '',
+          "apr": '',
+          "may": '',
+          "jun": '',
+          "jul": '',
+          "aug": '',
+          "sep": '',
+          "oct": '',
+          "nov": '',
+          "dec": ''}
+        })
+        
+      const revenueYears = Object.keys(data[0]).filter(key => key.startsWith('revenue')).map(key => key.slice(7)); 
+      
+      data.forEach(parent => {
+        parent.children.forEach(child => {
+          for (const year of ['2025', '2024', '2023', '2022', '2021']) {
+            for (const month of Object.keys(child[`revenue${year}`])) {
+              parent[`revenue${year}`] = parent[`revenue${year}`] || {};
+              parent[`revenue${year}`][month] = (parent[`revenue${year}`][month] || 0) + (child[`revenue${year}`][month] || 0);
+            }
+            parent[`totalRevenue${year}`] = (parent[`totalRevenue${year}`] || 0) + (child[`totalRevenue${year}`] || 0);
+          }
+        });
+      });
+
+  
+      data.forEach(item =>{
+        item[`totalRevenue${this.yearToAdd}`] = item[`totalRevenue${this.yearToAdd-1}`];
+        for (const month of Object.keys(item[`revenue${this.yearToAdd -1 }`])) {
+          item[`revenue${this.yearToAdd}`][month] = item[`revenue${this.yearToAdd -1}`][month]
+        }
+      })
+
+      data.forEach(item => {
+        revenueYears.forEach(year => {
+          this.pinnedTopRowData[0].children.forEach((child,index) => {
+            child.clientId = this.pinnedTopRowData[0].clientId + index + 1;
+            if(child.client_frenchiseName === 'MRR'){
+              child[`totalRevenue${year}`] = 0;
+            }
+            if (!child[`revenue${year}`]) {
+              child[`revenue${year}`] = {};
+            }
+            for (const month of Object.keys(item[`revenue${year}`])) {
+              if (!child[`revenue${year}`][month]) {
+                child[`revenue${year}`][month] = 0;
+              }
+            }
+          })
+        })
+      })
+      
+      // SET VALUE FOR MRR REVENUE MONTH
+      data.forEach(item =>{
+        this.pinnedTopRowData[0].children.forEach(child => {
+          revenueYears.forEach(year =>{
+            for (const month of Object.keys(item[`revenue${year}`])) {
+              if(child.client_frenchiseName === 'MRR'){
+                child[`revenue${year}`][month] += item[`revenue${year}`][month];
+              }
+            }
+          })
+        })
+      })
+
+      // SET VALUE FOR MRR TOTAL REVENUE YEAR
+      this.pinnedTopRowData[0].children.forEach(child =>{
+        if(child.client_frenchiseName === 'MRR'){
+          revenueYears.forEach(year =>{
+            for (const month of Object.keys(child[`revenue${year}`])) {
+              child[`totalRevenue${year}`] = child[`revenue${year}`][month] != null ? child[`totalRevenue${year}`] + (child[`revenue${year}`][month]) : null;
+            }
+          })
+        } 
+      })
+
+      //SET ARR REVENUE MOTNH VALUE (MRR * 12)
+      let mrrIndex = this.pinnedTopRowData[0].children.findIndex(item => item.client_frenchiseName === 'MRR');
+      this.pinnedTopRowData[0].children.forEach(child =>{
+        revenueYears.forEach(year =>{
+          for (const month of Object.keys(child[`revenue${year}`])) {
+            if(child.client_frenchiseName === 'ARR'){
+              child[`revenue${year}`][month] = this.pinnedTopRowData[0].children[mrrIndex][`revenue${year}`][month] * 12;
+            }
+          }
+        })
+      })
+
+      data.unshift(...this.pinnedTopRowData)
+      let fakeServer = FakeServer(data,this.expandedRows,this.gridData,this.pinnedTopRowData);
+      let datasource = getServerSideDatasource(fakeServer);
+      this.gridApi.setServerSideDatasource(datasource);
+    })
+  }
 }
 
 function getServerSideDatasource(server: any): IServerSideDatasource {
@@ -578,7 +804,7 @@ function getServerSideDatasource(server: any): IServerSideDatasource {
   };
 }
 
-function FakeServer(allData, rowsToExpand?, gridData?) {
+function FakeServer(allData, rowsToExpand?, gridData?,pinnedTopRowData?) {
   var processedData = processData(allData);
   alasql.options.cache = false;
   var filterItem;
@@ -637,6 +863,8 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
             }
           })
         },200)
+
+        results.unshift(...pinnedTopRowData)
       }   
       else{
         processedData = processData(allData);

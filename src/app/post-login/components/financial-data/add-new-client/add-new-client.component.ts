@@ -7,23 +7,74 @@ import { CustomDropDownEditorComponent } from '../custom-drop-down-editor/custom
 import { Observable } from 'rxjs';
 import { DialogRef, DialogService } from '@progress/kendo-angular-dialog';
 
+interface DropdownData {
+  id: number,
+  name: string
+}
+
 @Component({
   selector: 'app-add-new-client',
   templateUrl: './add-new-client.component.html',
   styleUrls: ['./add-new-client.component.scss']
 })
+
+
 export class AddNewClientComponent {
-  saasRevenueUrl = "assets/saas-revenue-data.json";
+  saasRevenueUrl: string = "assets/saas-revenue-data.json";
+  undoRedoCellEditingLimit = 20;
+  pageTitle : string = 'New Client';
+  defaultColumnState: any;
+  defaultFiltersState: any;
+  gridColumnApi: any;
+  gridData: any;
+  gridApi!: GridApi | any;
+  rowSelection: 'single' | 'multiple' = 'multiple';
+  selectedNodes = [];
+  isExpanded: boolean = false;
+  rowIndex: number;
+  selectedValue = 100;
+  rowData = [];
+  totalRows :number;
+  linkData :any;
+  isClientDropDownOpen : boolean = false;
+  isInvoicingDropDownOpen : boolean = false;
+  isLegalDropDownOpen : boolean = false;
+  isAddFlyOutOpen : boolean = true;
+  clientDropdownTextbox : boolean = false;
+  invoicingDropdownTextbox : boolean = false;
+  legalDropdownTextbox : boolean = false;
+  newClient;
+  groupDefaultExpanded = 1;
+  defaultTableData = [];
+  updatedData = [];
+  clientName : string ;
+  currentTableData = [];    
+  editedRow: any;
+  isNewClientSaved: boolean = false;
+  changesUnSaved: boolean = false;
+  clientnameListCopy: DropdownData[];
+  invoicingEntityListCopy: DropdownData[];
+  legalEntityListCopy: DropdownData[];
+  dropdownInputValue: number = 1;
+  isUndoAvailable: number;
+  isRedoAvailable: number;
+
   constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginServie: PostLoginService,private dialogService: DialogService) {}
   
+  ngOnInit() {
+    this.clientnameListCopy = JSON.parse(JSON.stringify(this.clientNameList));
+    this.invoicingEntityListCopy = JSON.parse(JSON.stringify(this.invoicingEntityList));
+    this.legalEntityListCopy = JSON.parse(JSON.stringify(this.legalEntityList));
+  }
+
   canDeactivate(): Observable<boolean> | boolean {
     if (this.changesUnSaved) {
       const dialogRef: DialogRef = this.dialogService.open({
         title: 'Confirmation',
-        content: 'You have unsaved changes. Are you sure you want to leave?',
+        content: 'You have unsaved changes. Are you sure you want to leave this page without saving?',
         actions: [
-          { text: 'Cancel', primary: false },
-          { text: 'OK', primary: true }
+          { text: 'Cancel', primary: false ,cssClass:'cancel-btn' },
+          { text: 'YES, LEAVE PAGE', primary: true ,cssClass:'ok-btn'}
         ]
       });
 
@@ -43,21 +94,7 @@ export class AddNewClientComponent {
   }
 
   
-  undoRedoCellEditingLimit = 20;
-  pageTitle : string = 'New Client';
-  defaultColumnState: any;
-  defaultFiltersState: any;
-  gridColumnApi: any;
-  gridData: any;
-  gridApi!: GridApi | any;
-  rowSelection: 'single' | 'multiple' = 'multiple';
-  selectedNodes = [];
-  isExpanded: boolean = false;
-  rowIndex: number;
-  selectedValue = 100;
-  rowData = [];
-  totalRows :number;
-  linkData :any;
+
 
   public form = new FormGroup({
     clientName : new FormControl('',Validators.required),
@@ -66,43 +103,74 @@ export class AddNewClientComponent {
     franchiseCount : new FormControl()
   });
 
-  clientNameList : Array<string> = [
-    "Add client manually",
-    "Client 1",
-    "Client 2",
-    "Client 3",
-    "Client 4"
+  clientNameList : DropdownData[] = [
+    {
+      id: 1,
+      name: 'Add client manually'
+    },
+    {
+      id: 2,
+      name: 'Client 1'
+    },
+    {
+      id: 3,
+      name: 'Client 2'
+    },
+    {
+      id: 4,
+      name: 'Client 3'
+    },
+    {
+      id: 5,
+      name: 'Client 4'
+    },
   ];
 
-  invoicingEntityList = [
-    "Data",
-    "Text",
-    "Data Data",
-    "Text Text"
+  invoicingEntityList: DropdownData[] = [
+    {
+      id: 1,
+      name: 'Add Invoicing Entity manually'
+    },
+    {
+      id: 2,
+      name: 'Invoicing Entity 1'
+    },
+    {
+      id: 3,
+      name: 'Invoicing Entity 2'
+    },
+    {
+      id: 4,
+      name: 'Invoicing Entity 3'
+    },
+    {
+      id: 5,
+      name: 'Invoicing Entity 4'
+    },
   ];
 
-  legalEntityList = [
-    "Data",
-    "Text",
-    "Data Data",
-    "Text Text"
+  legalEntityList: DropdownData[] = [
+    {
+      id: 1,
+      name: 'Add Legal Entity manually'
+    },
+    {
+      id: 2,
+      name: 'Legal Entity 1'
+    },
+    {
+      id: 3,
+      name: 'Legal Entity 2'
+    },
+    {
+      id: 4,
+      name: 'Legal Entity 3'
+    },
+    {
+      id: 5,
+      name: 'Legal Entity 4'
+    },
   ];
-
-  isClientDropDownOpen : boolean = false;
-  isInvoicingDropDownOpen : boolean = false;
-  isLegalDropDownOpen : boolean = false;
-  isAddFlyOutOpen : boolean = true;
-  isTextBoxDisplay : boolean = false;
-  newClient;
-  groupDefaultExpanded = 1;
-  defaultTableData = [];
-  updatedData = [];
-  clientName : string ;
-  currentTableData = [];    
-  editedRow: any;
-  isNewClientSaved: boolean = false;
-  changesUnSaved: boolean = false;
-
 
   paginationOptions: PaginationOption[] = [
     {
@@ -372,7 +440,9 @@ export class AddNewClientComponent {
     this.gridColumnApi = params.columnApi;
     this.defaultColumnState = this.gridColumnApi.getColumnState();
     this.defaultFiltersState = this.gridApi.getFilterModel();
-
+    this.isUndoAvailable = this.gridApi.getCurrentUndoSize();
+    this.isRedoAvailable = this.gridApi.getCurrentUndoSize();
+    
     this.postLoginServie.getTableData(this.saasRevenueUrl).subscribe(res => {
       this.defaultTableData = res;
     })
@@ -540,7 +610,7 @@ export class AddNewClientComponent {
   onAddFlyOutClose(){
     this.isAddFlyOutOpen = false;
     this.form.reset();
-    this.isTextBoxDisplay = false;
+    this.clientDropdownTextbox = false;
   }
 
   onCellValueChanged(event){
@@ -554,6 +624,10 @@ export class AddNewClientComponent {
 
     data[updatedColumn] = newValue;
     this.updatedData = [data]; 
+
+    this.isUndoAvailable = this.gridApi.getCurrentUndoSize();
+    this.isRedoAvailable = this.gridApi.getCurrentRedoSize();
+
     if(event.colDef.field.includes('revenue')){
       revenueYear = updatedColumn.split('.')[0];
       revenueMonth = updatedColumn.split('.')[1];
@@ -605,13 +679,36 @@ export class AddNewClientComponent {
 
   }
 
-  onSaveChanges(data :any){
+  onSaveChanges(data : any){
     let childCount = data.value.franchiseCount;
     let children =[];
     let lastNode ;
     let lastNodeData ;
     let isEmptyTable = this.gridApi.rowModel.rowsToDisplay;
     let alreadyClientExist = false;
+
+    if(!(typeof data.value.clientName === 'string')) {
+      const client = this.clientNameList.find(client => client.id === data.value.clientName);
+      data.value.clientName = client ? client.name : '';
+    }
+
+    if(!(typeof data.value.invoicingEntity === 'string') && data.value.invoicingEntity != null ){
+      const invoicingEntity = this.invoicingEntityList.find(entity => entity.id === data.value.invoicingEntity);
+      data.value.invoicingEntity = invoicingEntity ? invoicingEntity.name : '';
+    }
+    else if(data.value.invoicingEntity == null){
+      const invoicingEntity = data.value.clientName;
+      data.value.invoicingEntity = invoicingEntity;
+    }
+
+    if(!(typeof data.value.legalEntity === 'string') && data.value.legalEntity != null ){
+      const legalEntity = this.legalEntityList.find(entity => entity.id === data.value.legalEntity);
+      data.value.legalEntity = legalEntity ? legalEntity.name : '';
+    }
+    else if(data.value.legalEntity == null){
+      const legalEntity = data.value.clientName;
+      data.value.legalEntity = legalEntity;
+    }
 
     if(isEmptyTable.length === 0 ){
       lastNodeData = this.defaultTableData[this.defaultTableData.length-1];
@@ -656,12 +753,14 @@ export class AddNewClientComponent {
       status:null,
     }
 
-    if(this.isTextBoxDisplay){
+    let temporary: boolean = false;
+    if(this.clientDropdownTextbox){
       this.newClient.client_frenchiseName = [`${this.newClient.client_frenchiseName} - TEMPORARY`];
+      temporary = true;
     }
     
     children = Array.from({ length: childCount }).map((_, i) => ({
-      client_frenchiseName: `[${this.form.value.clientName}] - Franchise ${i}`,
+      client_frenchiseName: temporary ? `[${this.form.value.clientName}] - Franchise ${i} - TEMPORARY` : `[${this.form.value.clientName}] - Franchise ${i}`,
       invoicing_entity: this.newClient.invoicing_entity,
       legal_entity: this.newClient.legal_entity,
       clientId: this.newClient.clientId + i + 1,
@@ -718,10 +817,18 @@ export class AddNewClientComponent {
     this.totalRows = this.gridApi.getDisplayedRowCount();
   }
 
-  onClientDropDownValueChange(event){
-    if(event === 'Add client manually'){
-      this.isTextBoxDisplay = true;
-      this.form.get('clientName').reset();
+  onClientDropDownValueChange(event: number , dropdown: string){
+    if(event === 1){
+      if(dropdown === 'client') {
+        this.clientDropdownTextbox = true;
+        this.form.get('clientName').reset();
+      } else if(dropdown === 'invoicing') {
+        this.invoicingDropdownTextbox = true;
+        this.form.get('invoicingEntity').reset();
+      } else {
+        this.legalDropdownTextbox = true;
+        this.form.get('legalEntity').reset();
+      }
     }
   }
 
@@ -732,16 +839,19 @@ export class AddNewClientComponent {
         this.isInvoicingDropDownOpen = false;
         this.isLegalDropDownOpen = false;
         break;
+
       case 'invoicingEntity':
         this.isInvoicingDropDownOpen = true;
         this.isClientDropDownOpen = false;
         this.isLegalDropDownOpen = false;
         break;
+
       case 'legalEntity':
         this.isLegalDropDownOpen = true;
         this.isClientDropDownOpen = false;
         this.isInvoicingDropDownOpen = false;
         break;
+
       default:
         break;
     }
@@ -862,5 +972,31 @@ export class AddNewClientComponent {
 
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
+  }
+
+  handleFilter(value, dropdown: string) {
+    if(dropdown === 'client') {
+      this.clientNameList = this.clientnameListCopy.filter(
+        (s) => s.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    } else if(dropdown === 'invoicing') {
+      this.invoicingEntityList = this.invoicingEntityListCopy.filter(
+        (s) => s.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    } else {
+      this.legalEntityList = this.legalEntityListCopy.filter(
+        (s) => s.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    }
+  }
+
+  activateDropdown(dropdown: string) {
+    if(dropdown === 'client') {
+      this.clientDropdownTextbox = false;
+    } else if(dropdown === 'invoicing') {
+      this.invoicingDropdownTextbox = false;
+    } else {
+      this.legalDropdownTextbox = false;
+    }
   }
 }

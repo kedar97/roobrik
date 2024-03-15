@@ -1,13 +1,13 @@
 <kendo-dropdownlist 
-*ngIf="!isTextBoxDisplay"
-[data]="franchiseList" 
-(valueChange)="onValueChange($event)"
-[value]="selectedValue"
+    *ngIf="!isTextBoxDisplay"
+    [data]="franchiseList" 
+    (valueChange)="onValueChange($event)"
+    [value]="selectedValue"
 ></kendo-dropdownlist>
 
 <input
-*ngIf="isTextBoxDisplay"
-kendoTextBox
-class="textBox"
-(input)="onInput()"
+    *ngIf="isTextBoxDisplay"
+    kendoTextBox
+    class="textBox"
+    (input)="onInput()"
 >
