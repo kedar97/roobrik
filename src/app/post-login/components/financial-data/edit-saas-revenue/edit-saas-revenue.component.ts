@@ -1,12 +1,14 @@
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { ColDef, GetDataPath, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, SideBarDef, ValueGetterParams } from 'ag-grid-community';
+import { ColDef, GetDataPath, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 import { CanComponentDeactivate } from './unsaved-changes.guard';
-import { Observable} from 'rxjs';
+import { Observable, Subscription} from 'rxjs';
 import { CustomDropDownEditorComponent } from '../custom-drop-down-editor/custom-drop-down-editor.component';
 import { DialogRef, DialogService } from '@progress/kendo-angular-dialog';
+import { NotificationRef, NotificationService } from '@progress/kendo-angular-notification';
+import { NotificationsComponent } from 'src/app/shared/components/notifications/notifications.component';
 
 @Component({
   selector: 'app-edit-saas-revenue',
@@ -24,7 +26,19 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
   statusColIndex : number;
   isUndoAvailable: number;
   isRedoAvailable: number;
-  
+
+  @ViewChild('toastcontainer', { read: ViewContainerRef }) public container: ViewContainerRef;
+  firstName : string = 'John Doe';
+  notificationMessages = [
+    {
+      type: 'warning',
+      message: `This recored is locked by ${this.firstName} and can not be edited.`,
+    },
+  ];
+
+  notificationRef: NotificationRef;
+  hideNotificationSubscription: Subscription;
+
   canDeactivate(): Observable<boolean> | boolean {
     if (this.changesUnsaved) {
       const dialogRef: DialogRef = this.dialogService.open({
@@ -132,7 +146,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     ],
   };
   
-  constructor(private router: Router, private renderer: Renderer2,private ele: ElementRef, private postLoginServie: PostLoginService,private dialogService: DialogService) {
+  constructor(private router: Router, private renderer: Renderer2,private ele: ElementRef, private postLoginService: PostLoginService,private dialogService: DialogService,private notificationService: NotificationService,    ) {
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras.state) {
       this.linkData = navigation.extras.state.linkData;
@@ -152,9 +166,43 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
       this.defaultTableData= [this.linkData[0],...this.linkData[0].children];
       this.rowData = this.defaultTableData;
     }
+
+    this.hideNotificationSubscription =
+      this.postLoginService.hideNotifiation.subscribe({
+        next: (value: boolean) => {
+          if (value == true && this.container) {
+            this.container.element.nativeElement.innerHTML = '';
+          }
+        },
+        error: (error: any) => {},
+      });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.postLoginService.bannerSubject.next(true);
+  }
+
+  ngAfterViewInit(){
+    this.show();
+  }
+
+  public show(): void {
+    this.container.element.nativeElement.innerHTML = '';
+    this.notificationMessages.forEach((message: any) => {
+      this.notificationRef = this.notificationService.show({
+        content: NotificationsComponent,
+        type: { style: message.type, icon: false },
+        closable: true,
+        position: { horizontal: 'center', vertical: 'top' },
+        appendTo: this.container,
+      });
+
+      const notificationInstance = this.notificationRef.content?.instance;
+      notificationInstance.header = message.message;
+      notificationInstance.tags = "<i class='fa fa-exclamation-triangle' aria-hidden='true'></i>";
+    });
+  }
+  
 
   customCurrencyFormatter(params: ICellRendererParams): string {
     const value = params.value;
@@ -350,7 +398,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
 
       if(term){
         this.defaultTableData.forEach(item => {
-          flag = this.postLoginServie.searchObject(item,term);
+          flag = this.postLoginService.searchObject(item,term);
           if(flag){
             newData.push(item);
           }
@@ -432,7 +480,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     })
     let flag = false;
     newData.forEach(item =>{
-      flag = this.postLoginServie.checkPropertyValue(item,quickFilterText)
+      flag = this.postLoginService.checkPropertyValue(item,quickFilterText)
     })
     return flag;
   }
@@ -670,5 +718,10 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     this.clientName = '';
     this.deleteClientPopUp = false;
     this.router.navigate(['/reports/saas-revenue']);
+  }
+
+  ngOnDestroy(){
+    // this.postLoginService.bannerSubject.next(false);
+    this.hideNotificationSubscription.unsubscribe();
   }
 }

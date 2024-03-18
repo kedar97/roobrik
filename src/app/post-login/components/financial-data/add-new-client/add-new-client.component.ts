@@ -426,6 +426,9 @@ export class AddNewClientComponent {
       suppressFillHandle:true,
       cellEditor:CustomDropDownEditorComponent,
       editable: this.isCellEditable,
+      valueSetter: function(params){
+        return false
+      }
   };
 
   public defaultColDef: ColDef = {
@@ -908,6 +911,7 @@ export class AddNewClientComponent {
     this.gridApi.applyTransaction(transaction);
     this.gridApi.refreshCells({ force: true });
     this.totalRows = this.gridApi.getDisplayedRowCount();
+    this.rowData.push(newData);
   }
 
   onSave(){

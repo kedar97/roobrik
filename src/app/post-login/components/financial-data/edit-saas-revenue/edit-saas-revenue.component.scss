@@ -536,3 +536,18 @@ button:focus {
         border: 2px solid black !important;
     }
 }
+
+.append-container {
+    width: 500px;
+    margin: 0 auto;
+    min-height: 0 !important;
+    position: unset !important;
+}
+
+:host ::ng-deep .k-notification-container{
+    margin-block: unset;
+    margin-inline: unset;
+   &:first-child{
+       margin-top: -52px !important;
+   }
+}

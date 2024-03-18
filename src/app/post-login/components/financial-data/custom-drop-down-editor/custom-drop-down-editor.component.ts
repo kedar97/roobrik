@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Params, Router } from '@angular/router';
 import { ICellEditorAngularComp } from 'ag-grid-angular';
 
 @Component({
@@ -9,7 +9,7 @@ import { ICellEditorAngularComp } from 'ag-grid-angular';
 })
 export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
 
-  columnToChange ;
+  columnToChange = '' ;
   selectedValue = '';
   isTextBoxDisplay : boolean = false;
   textBoxValue = '';
@@ -21,7 +21,8 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
     "Franchise 4",
   ];
 
-  params;
+  params : Params;
+  onInputTimeout: any;
 
   ngOnInit(){
     if(this.router.url.includes('new-client')){
@@ -41,7 +42,6 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
 
   agInit(params: any): void {
     this.params = params;
-
     if(params.column.colDef.colId === 'ag-Grid-AutoColumn'){
       this.columnToChange = 'client_frenchiseName'
     }else{
@@ -50,11 +50,11 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
   }
 
   getValue(): any {
-    return this.selectedValue;
+    return this.selectedValue || this.textBoxValue;
   }
 
   onValueChange(event:any): void {
-    if(event === 'Add franchise manually'){
+    if(event === 'Add franchise manually' || event === 'Add Invoicing entity manually' || event === 'Add Legal entity manually'){
       this.isTextBoxDisplay = true;  
     }
     else{
@@ -75,19 +75,19 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
   }
 
   onInput(){
+    if (this.onInputTimeout) {
+      clearTimeout(this.onInputTimeout);
+    }
+  
     this.textBoxValue = (document.querySelector('.textBox') as HTMLInputElement).value;
-    setTimeout(()=>{
-      if(this.columnToChange === 'client_frenchiseName'){
-        this.params.data[this.columnToChange] = [this.params.node.parent.key,this.textBoxValue];
-      }
-      else if(this.columnToChange === 'invoicing_entity'){
-        this.params.data.invoicing_entity = this.textBoxValue;
-      }
-      else{
-        this.params.data.legal_entity = this.textBoxValue;
+    this.onInputTimeout = setTimeout(() => {
+      if (this.columnToChange === 'client_frenchiseName') {
+        this.params.data[this.columnToChange] = [this.params.node.parent.key, this.textBoxValue];
+      } else {
+        this.params.data[this.columnToChange] = this.textBoxValue;
       }
       this.params.api.applyTransaction({ update: [this.params.data] });
       this.params.api.refreshCells();
-    },1000)  
+    }, 1000);
   }
 }
