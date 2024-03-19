@@ -381,6 +381,10 @@ export class FinancialDataComponent {
     this.postLoginService.getTableData(this.saasRevenueUrl).subscribe(data=>{
       data = this.getSortedData(data);
 
+      data.forEach(item => {
+        item.children = this.getSortedData(item.children);
+      })
+
       data.forEach(parent => {
         parent.children.forEach(child => {
           for (const year of ['2025', '2024', '2023', '2022', '2021']) {
@@ -594,6 +598,10 @@ export class FinancialDataComponent {
       let term = (document.getElementById('filter-text-box') as HTMLInputElement).value.toLowerCase();
       this.postLoginService.getSearchedTableData(term,this.saasRevenueUrl).subscribe(data=>{
         data = this.getSortedData(data);
+
+        data.forEach(item=>{
+          item.children = this.getSortedData(item.children);
+        })
 
         data.forEach(parent => {
           parent.children.forEach(child => {
