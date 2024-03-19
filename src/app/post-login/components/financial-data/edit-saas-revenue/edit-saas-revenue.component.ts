@@ -495,13 +495,13 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
       if (params.data && params.data.status === 'Active') {
         return { color: '#2F2F2F' }; 
       } else if(params.data && params.data.status === 'Inactive') {
-          return { color: '#a7bdcc' }; 
+          return { color: '#c2c2c2' }; 
       } 
     }
     if (params.data && params.data.status === 'Active') {
       return { color: '#2F2F2F' }; 
     } else if(params.data && params.data.status === 'Inactive') {
-        return { color: '#a7bdcc' }; 
+        return { color: '#a7b8cc' }; 
     }
   }
 
