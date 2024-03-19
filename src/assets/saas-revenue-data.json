@@ -429,7 +429,7 @@
           "lpcAverage": 15.5,
           "uniqueCount": { "apr23": 11, "mar23": 20, "feb23": 18, "jan23": 13 },
           "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
-          "status": "Active",
+          "status": "Inactive",
           "owner": "Melinda Gisbert"
         }
       ]

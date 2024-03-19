@@ -27,7 +27,7 @@
             <button class="btn btn-undo-redo" (click)="onDeleteClient()">
                 DELETE
             </button>
-            <kendo-dialog title="Confirmation" *ngIf="deleteClientPopUp" (close)="onCloseDeletePopUp()">
+            <kendo-dialog title="Confirmation" *ngIf="deleteClientPopUp" (close)="onCloseDeletePopUp()" class="delete-popup">
                 <p>Are you sure you want to delete {{clientName}} and all of the associated franchises?</p>
                 <kendo-dialog-actions>
                   <button kendoButton class="btn btn-create-new" (click)="onCloseDeletePopUp()">CANCEL</button>
@@ -65,6 +65,7 @@
             [pagination]="true"
             [groupDefaultExpanded]="groupDefaultExpanded"
             (filterChanged)="onFilterChanged($event)"
+            [getRowStyle]="getRowStyle"
             (gridReady)="onGridReady($event)"
             >
         </ag-grid-angular>

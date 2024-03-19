@@ -249,7 +249,15 @@ export class FinancialDataComponent {
     cellRendererParams: {
       innerRenderer: (params: ICellRendererParams) => {
         if(params.node.level == 0){
-          return `<div class='parent-link'>${params.value}</div>`
+          let element;
+
+          if(params.data.status === 'Active'){
+            element =`<div class='parent-link parent-link-color' >${params.value}</div>`;
+          }
+          else{
+            element = `<div class='parent-link'>${params.value}</div>`;
+          }
+          return element;
         }
         else{
           return `${params.value}`
@@ -345,12 +353,23 @@ export class FinancialDataComponent {
     );
   }
 
-  getFirstRowStyle(params: any): any {
+  getRowStyle(params: any): any {
     if (params.node.rowIndex === 0) {
       return { background: 'rgba(102, 163, 212, 0.3)' };
     }
-    return null;
-}
+    if (params.node.level > 0) {
+      if (params.data && params.data.status === 'Active') {
+        return { color: '#2F2F2F' }; 
+      } else if(params.data && params.data.status === 'Inactive') {
+          return { color: '#c2c2c2' }; 
+      } 
+    }
+    if (params.data && params.data.status === 'Active') { 
+      return { color: '#2F2F2F' }; 
+    } else if(params.data && params.data.status === 'Inactive') {
+        return { color: '#a7bdcc' }; 
+    } 
+  }
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
@@ -360,6 +379,8 @@ export class FinancialDataComponent {
     this.defaultFiltersState = this.gridApi.getFilterModel();
 
     this.postLoginService.getTableData(this.saasRevenueUrl).subscribe(data=>{
+      data = this.getSortedData(data);
+
       data.forEach(parent => {
         parent.children.forEach(child => {
           for (const year of ['2025', '2024', '2023', '2022', '2021']) {
@@ -572,6 +593,8 @@ export class FinancialDataComponent {
     setTimeout(() => {
       let term = (document.getElementById('filter-text-box') as HTMLInputElement).value.toLowerCase();
       this.postLoginService.getSearchedTableData(term,this.saasRevenueUrl).subscribe(data=>{
+        data = this.getSortedData(data);
+
         data.forEach(parent => {
           parent.children.forEach(child => {
             for (const year of ['2025', '2024', '2023', '2022', '2021']) {
@@ -594,6 +617,20 @@ export class FinancialDataComponent {
         this.gridApi.setServerSideDatasource(datasource);
       })
     }, 1000);
+  }
+
+  getSortedData(data){
+    return data.sort((a:any, b:any) => {
+      if (a.status === "Active" && b.status === "Inactive") {
+        return -1; 
+      } else if (a.status === "Inactive" && b.status === "Active") {
+        return 1; 
+      } else {
+        let franchiseA  =a.client_frenchiseName.toLowerCase()
+        let franchiseB =b.client_frenchiseName.toLowerCase()
+        return franchiseA.localeCompare(franchiseB)
+      }
+    });
   }
 
   onPaginationButtonClicked() {
@@ -713,7 +750,7 @@ export class FinancialDataComponent {
     })
 
     currentTableData.forEach(item =>{
-      if(item.client_frenchiseName != this.summaryRowName){
+      if(item.client_frenchiseName != this.summaryRowName && item.client_frenchiseName != 'ARR'){
         item[`totalRevenue${this.yearToAdd}`] = item[`revenue${this.yearToAdd -1}`]['dec'];
         months.forEach(month =>{
           item[`revenue${this.yearToAdd}`][month] = item[`revenue${this.yearToAdd -1}`]['dec']

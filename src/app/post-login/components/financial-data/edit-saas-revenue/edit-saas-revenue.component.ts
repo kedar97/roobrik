@@ -489,6 +489,23 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     this.totalRows = this.gridApi.getDisplayedRowCount();
   }
 
+
+  getRowStyle(params: any): any {
+    if (params.node.level > 0) {
+      if (params.data && params.data.status === 'Active') {
+        return { color: '#2F2F2F' }; 
+      } else if(params.data && params.data.status === 'Inactive') {
+          return { color: '#a7bdcc' }; 
+      } 
+    }
+    if (params.data && params.data.status === 'Active') {
+      return { color: '#2F2F2F' }; 
+    } else if(params.data && params.data.status === 'Inactive') {
+        return { color: '#a7bdcc' }; 
+    }
+  }
+
+
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.gridData = params;

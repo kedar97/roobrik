@@ -162,7 +162,6 @@ button:focus {
     .ag-cell {
         display: flex;
         align-items: center;
-        color: #2F2F2F;
         font-family:'Proxima Nova';
         font-size: 14px;
         font-weight: 400;
@@ -529,13 +528,18 @@ button:focus {
 
     .k-window-titlebar-actions {
         padding-bottom: 30px !important;
-
     }
 
     .k-button-md.k-icon-button .k-button-icon {
         border-radius: 50% !important;
         border: 2px solid black !important;
+        height: 16px;
+        width: 16px;
     }
+}
+
+:host ::ng-deep .delete-popup .k-svg-i-x {
+    content: unset !important;
 }
 
 .append-container {
