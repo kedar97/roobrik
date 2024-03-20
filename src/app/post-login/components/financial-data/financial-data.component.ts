@@ -379,6 +379,15 @@ export class FinancialDataComponent {
     this.defaultFiltersState = this.gridApi.getFilterModel();
 
     this.postLoginService.getTableData(this.saasRevenueUrl).subscribe(data=>{
+      this.pinnedTopRowData = [{
+        clientId: data[data.length-1].clientId + data[data.length-1].children.length + 1,
+        client_frenchiseName : "Saas Revenue Summary",
+        children : [
+          {  client_frenchiseName: "ARR",},
+          {  client_frenchiseName: "MRR",}
+        ]
+      }]
+
       data = this.getSortedData(data);
 
       data.forEach(item => {
@@ -398,16 +407,7 @@ export class FinancialDataComponent {
       });
 
       const revenueYears = Object.keys(data[0]).filter(key => key.startsWith('revenue')).map(key => key.slice(7));
-      this.pinnedTopRowData = [{
-        clientId: data[data.length-1].clientId + data[data.length-1].children.length,
-        client_frenchiseName : "Saas Revenue Summary",
-        children : [
-          {  client_frenchiseName: "ARR",},
-          {  client_frenchiseName: "MRR",}
-        ]
-      }]
-
-
+      
       //  SET REVENUE PROPERTY OF TOP PINNED ROW
       data.forEach(item => {
         revenueYears.forEach(year => {
@@ -863,6 +863,8 @@ function getServerSideDatasource(server: any): IServerSideDatasource {
 
 function FakeServer(allData, rowsToExpand?, gridData?,pinnedTopRowData?) {
   var processedData = processData(allData);
+  let dataToPinned = processedData.slice(0,3);
+  processedData = processedData.slice(3);
   alasql.options.cache = false;
   var filterItem;
   let rowNodes;
@@ -921,7 +923,6 @@ function FakeServer(allData, rowsToExpand?, gridData?,pinnedTopRowData?) {
           })
         },200)
 
-        // results.unshift(...pinnedTopRowData)
       }   
       else{
         processedData = processData(allData);
@@ -1190,6 +1191,16 @@ function FakeServer(allData, rowsToExpand?, gridData?,pinnedTopRowData?) {
         let nestedColumns = key.includes('.') ? true : false;  
         data = data.filter(item => searchObject(item,filterItem.filter));
         let childFlag;
+
+        let finalRes = [];
+        if(data.every(item => item.children != undefined) && data.length > 0){
+          finalRes = [dataToPinned[0],...data];
+          data = finalRes;
+        }
+        else{
+          finalRes = [...data];
+          data = finalRes;
+        }
 
         // FOR HANDLING MONTH DATA
         if(((Object.keys(filterModel).length == 1) && (typeof filterItem.filter == 'number')) || ((Object.keys(filterModel)).length > 1 && Object.values(filterModel).every((obj:any) => obj.filterType === 'number'))){
