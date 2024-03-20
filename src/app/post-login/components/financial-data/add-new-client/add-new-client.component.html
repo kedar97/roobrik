@@ -90,7 +90,7 @@
                 <kendo-formfield>
                     <div class="dropdown-title-container">
                         <kendo-label class="label-text">Client Name</kendo-label>
-                        <div class="add-dropdown" *ngIf="clientDropdownTextbox" (click)="activateDropdown('client')">Activate Dropdown</div>
+                        <div class="add-dropdown"  (click)="activateDropdown('client')">{{clientDropdownTextbox?'Select from dropdown':'Add manually'}}</div>
                     </div>
                    <kendo-dropdownlist
                         *ngIf="!clientDropdownTextbox"
@@ -104,7 +104,6 @@
                          class="dropdown"
                          (open)="formDropDownOpen('clientname')"
                          (close)="formDropDownClose()"
-                         (valueChange)="onClientDropDownValueChange($event, 'client')"
                          [class.dropdown-open]="isClientDropDownOpen"
                          (filterChange)="handleFilter($event, 'client')"
                     >
@@ -119,7 +118,7 @@
                 <kendo-formfield>
                     <div class="dropdown-title-container">
                         <kendo-label class="label-text">Invoicing Entity</kendo-label>
-                        <div class="add-dropdown" *ngIf="invoicingDropdownTextbox" (click)="activateDropdown('invoicing')">Activate Dropdown</div>
+                        <div class="add-dropdown"  (click)="activateDropdown('invoicing')">{{invoicingDropdownTextbox?'Select from dropdown':'Add manually'}}</div>
                     </div>
                     <kendo-dropdownlist
                         *ngIf="!invoicingDropdownTextbox"
@@ -132,7 +131,6 @@
                         class="dropdown"
                         (open)="formDropDownOpen('invoicingEntity')"
                         (close)="formDropDownClose()"
-                        (valueChange)="onClientDropDownValueChange($event, 'invoicing')"
                         [class.dropdown-open]="isInvoicingDropDownOpen"
                         (filterChange)="handleFilter($event, 'invoicing')"
 
@@ -148,7 +146,7 @@
                  <kendo-formfield>
                     <div class="dropdown-title-container">
                         <kendo-label class="label-text">Legal Entity</kendo-label>
-                        <div class="add-dropdown" *ngIf="legalDropdownTextbox" (click)="activateDropdown('legal')">Activate Dropdown</div>
+                        <div class="add-dropdown"  (click)="activateDropdown('legal')">{{legalDropdownTextbox?'Select from dropdown':'Add manually'}}</div>
                     </div>
                     <kendo-dropdownlist
                         *ngIf="!legalDropdownTextbox"
@@ -161,7 +159,6 @@
                         class="dropdown"
                         (open)="formDropDownOpen('legalEntity')"
                         (close)="formDropDownClose()"
-                        (valueChange)="onClientDropDownValueChange($event, 'legal')"
                         [class.dropdown-open]="isLegalDropDownOpen"
                         (filterChange)="handleFilter($event, 'legal')"
                      >

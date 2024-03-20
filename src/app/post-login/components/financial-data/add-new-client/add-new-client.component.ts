@@ -93,9 +93,6 @@ export class AddNewClientComponent {
     return true;
   }
 
-  
-
-
   public form = new FormGroup({
     clientName : new FormControl('',Validators.required),
     invoicingEntity : new FormControl(),
@@ -106,22 +103,18 @@ export class AddNewClientComponent {
   clientNameList : DropdownData[] = [
     {
       id: 1,
-      name: 'Add client manually'
-    },
-    {
-      id: 2,
       name: 'Client 1'
     },
     {
-      id: 3,
+      id: 2,
       name: 'Client 2'
     },
     {
-      id: 4,
+      id: 3,
       name: 'Client 3'
     },
     {
-      id: 5,
+      id: 4,
       name: 'Client 4'
     },
   ];
@@ -129,22 +122,18 @@ export class AddNewClientComponent {
   invoicingEntityList: DropdownData[] = [
     {
       id: 1,
-      name: 'Add Invoicing Entity manually'
-    },
-    {
-      id: 2,
       name: 'Invoicing Entity 1'
     },
     {
-      id: 3,
+      id: 2,
       name: 'Invoicing Entity 2'
     },
     {
-      id: 4,
+      id: 3,
       name: 'Invoicing Entity 3'
     },
     {
-      id: 5,
+      id: 4,
       name: 'Invoicing Entity 4'
     },
   ];
@@ -152,22 +141,18 @@ export class AddNewClientComponent {
   legalEntityList: DropdownData[] = [
     {
       id: 1,
-      name: 'Add Legal Entity manually'
-    },
-    {
-      id: 2,
       name: 'Legal Entity 1'
     },
     {
-      id: 3,
+      id: 2,
       name: 'Legal Entity 2'
     },
     {
-      id: 4,
+      id: 3,
       name: 'Legal Entity 3'
     },
     {
-      id: 5,
+      id: 4,
       name: 'Legal Entity 4'
     },
   ];
@@ -820,21 +805,6 @@ export class AddNewClientComponent {
     this.totalRows = this.gridApi.getDisplayedRowCount();
   }
 
-  onClientDropDownValueChange(event: number , dropdown: string){
-    if(event === 1){
-      if(dropdown === 'client') {
-        this.clientDropdownTextbox = true;
-        this.form.get('clientName').reset();
-      } else if(dropdown === 'invoicing') {
-        this.invoicingDropdownTextbox = true;
-        this.form.get('invoicingEntity').reset();
-      } else {
-        this.legalDropdownTextbox = true;
-        this.form.get('legalEntity').reset();
-      }
-    }
-  }
-
   formDropDownOpen(name : string){
     switch (name){
       case 'clientname':
@@ -996,11 +966,16 @@ export class AddNewClientComponent {
 
   activateDropdown(dropdown: string) {
     if(dropdown === 'client') {
-      this.clientDropdownTextbox = false;
+      this.clientDropdownTextbox = !this.clientDropdownTextbox;
+      this.form.get('clientName').reset();
+     
     } else if(dropdown === 'invoicing') {
-      this.invoicingDropdownTextbox = false;
+      this.invoicingDropdownTextbox = !this.invoicingDropdownTextbox;
+      this.form.get('invoicingEntity').reset();
+    
     } else {
-      this.legalDropdownTextbox = false;
+      this.legalDropdownTextbox = !this.legalDropdownTextbox;
+      this.form.get('legalEntity').reset();
     }
   }
 }

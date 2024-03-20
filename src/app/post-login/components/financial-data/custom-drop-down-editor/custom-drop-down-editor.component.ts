@@ -13,31 +13,32 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
   selectedValue = '';
   isTextBoxDisplay : boolean = false;
   textBoxValue = '';
-  constructor(private router : Router){}
-  public franchiseList: Array<string> = [
-    "Franchise 1",
-    "Franchise 2",
-    "Franchise 3",
-    "Franchise 4",
+  constructor(private router : Router){};
+  franchiseListCopy :Array<{ name: string, id: number }> = [];
+  public franchiseList:Array<{ name: string, id: number }> = [
+    {
+      id: 1,
+      name: 'Franchise 1'
+    },
+    {
+      id: 2,
+      name: 'Franchise 2'
+    },
+    {
+      id: 3,
+      name: 'Franchise 3'
+    },
+    {
+      id: 4,
+      name: 'Franchise 4'
+    },
   ];
 
   params : Params;
   onInputTimeout: any;
 
   ngOnInit(){
-    if(this.router.url.includes('new-client')){
-      switch(this.columnToChange){
-        case 'invoicing_entity':
-          this.franchiseList.unshift('Add Invoicing entity manually');
-          break;
-        case 'legal_entity':
-          this.franchiseList.unshift('Add Legal entity manually');
-          break;
-        default:
-          this.franchiseList.unshift('Add franchise manually');
-          break;
-      }
-    }
+    this.franchiseListCopy = JSON.parse(JSON.stringify(this.franchiseList));
   }
 
   agInit(params: any): void {
@@ -53,20 +54,32 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
     return this.selectedValue || this.textBoxValue;
   }
 
+  handleFilter(value) {
+    this.franchiseList = this.franchiseListCopy.filter(
+      (s) => s.name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+    );
+  }
+
   onValueChange(event:any): void {
-    if(event === 'Add franchise manually' || event === 'Add Invoicing entity manually' || event === 'Add Legal entity manually'){
+    if(event === 'Add franchise manually'){
       this.isTextBoxDisplay = true;  
     }
     else{
       this.selectedValue = event;
       if(this.columnToChange === 'client_frenchiseName'){
-        this.params.data[this.columnToChange] = [this.params.node.parent.key,event];
+        let dataSelected= this.franchiseList.find(el=>el.id===event)
+        this.params.data[this.columnToChange] = [this.params.node.parent.key,dataSelected.name];
       }
       else if(this.columnToChange === 'invoicing_entity'){
-        this.params.data.invoicing_entity = event;
+        console.log(event,this.params.data.invoicing_entity);
+       let dataSelected= this.franchiseList.find(el=>el.id===event)
+       
+        this.params.data.invoicing_entity = dataSelected.name;
       }
       else{
-        this.params.data.legal_entity = event;
+        let dataSelected= this.franchiseList.find(el=>el.id===event)
+        this.params.data.legal_entity = dataSelected.name;
+
       }
 
       this.params.api.applyTransaction({ update: [this.params.data] });

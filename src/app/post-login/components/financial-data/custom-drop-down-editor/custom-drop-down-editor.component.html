@@ -1,8 +1,13 @@
-<kendo-dropdownlist 
+ <kendo-dropdownlist 
     *ngIf="!isTextBoxDisplay"
     [data]="franchiseList" 
     (valueChange)="onValueChange($event)"
     [value]="selectedValue"
+    textField="name"
+    valueField="id"
+    [valuePrimitive]=true
+    [filterable]="true"
+    (filterChange)="handleFilter($event)"
     class="custom-dropdown"
 ></kendo-dropdownlist>
 
