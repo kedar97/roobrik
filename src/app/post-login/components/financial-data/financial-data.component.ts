@@ -330,7 +330,7 @@ export class FinancialDataComponent {
         },
       ],
     },
-    // onRowGroupOpened: this.onRowExpanded.bind(this),
+    onRowGroupOpened: this.onRowExpanded.bind(this),
   };
 
   onRowExpanded(event: any) {
@@ -487,7 +487,7 @@ export class FinancialDataComponent {
       this.columnDef = modifiedColumnDefs;
       this.totalRows = this.gridApi.paginationGetPageSize();
 
-      let fakeServer = FakeServer(data,this.expandedRows,this.gridData,this.pinnedTopRowData);
+      let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
       let datasource = getServerSideDatasource(fakeServer);
       this.gridApi.setServerSideDatasource(datasource);
     })
@@ -620,7 +620,7 @@ export class FinancialDataComponent {
         })
         this.handleSearchAndExpansion(data, term);
         data.unshift(...this.pinnedTopRowData)
-        let fakeServer = FakeServer(data,this.expandedRows,this.gridData,this.pinnedTopRowData);
+        let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
         let datasource = getServerSideDatasource(fakeServer);
         this.gridApi.setServerSideDatasource(datasource);
       })
@@ -861,7 +861,7 @@ function getServerSideDatasource(server: any): IServerSideDatasource {
   };
 }
 
-function FakeServer(allData, rowsToExpand?, gridData?,pinnedTopRowData?) {
+function FakeServer(allData, rowsToExpand?, gridData?) {
   var processedData = processData(allData);
   let dataToPinned = processedData.slice(0,3);
   processedData = processedData.slice(3);
@@ -913,7 +913,7 @@ function FakeServer(allData, rowsToExpand?, gridData?,pinnedTopRowData?) {
         // EXPAND PARENT ROW ON CHILD MATCH
         setTimeout(()=>{
           results.forEach(item=>{
-            if(item.children != undefined && item.children.length > 0){            
+            if(item.children != undefined && item.children.length > 0 && item.client_frenchiseName != 'Saas Revenue Summary'){            
               matchedRowNodes.forEach((node: any) => {
                 if (item.client_frenchiseName === node.key) {
                   node.setExpanded(true);
@@ -1192,16 +1192,22 @@ function FakeServer(allData, rowsToExpand?, gridData?,pinnedTopRowData?) {
         data = data.filter(item => searchObject(item,filterItem.filter));
         let childFlag;
 
-        let finalRes = [];
+        let finalResult = [];
         if(data.every(item => item.children != undefined) && data.length > 0){
-          finalRes = [dataToPinned[0],...data];
-          data = finalRes;
+          finalResult = [dataToPinned[0],...data];
+          data = finalResult;
         }
         else{
-          finalRes = [...data];
-          data = finalRes;
+          if(data.length > 0){
+            finalResult = [...data];
+            data = finalResult;
+          }
+          else if(gridData.api.getDisplayedRowCount() > 1){
+            finalResult = [dataToPinned[1],dataToPinned[2]];
+            data = finalResult;
+          }
         }
-
+        
         // FOR HANDLING MONTH DATA
         if(((Object.keys(filterModel).length == 1) && (typeof filterItem.filter == 'number')) || ((Object.keys(filterModel)).length > 1 && Object.values(filterModel).every((obj:any) => obj.filterType === 'number'))){
 

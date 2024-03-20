@@ -1,4 +1,8 @@
 :host {
     min-width: 100%;
-  }
-  
+}
+
+:host ::ng-deep .custom-dropdown .k-button-md.k-icon-button .k-button-icon {
+  border-radius: unset !important;
+  border: none !important;
+}
