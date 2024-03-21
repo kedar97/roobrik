@@ -336,8 +336,13 @@ export class FinancialDataComponent {
   onRowExpanded(event: any) {
     if (event.expanded) {
       this.expandedRows.add(event.node.key);
+      setTimeout(() => {
+        this.totalRows = this.gridApi.getModel().getRowCount();
+      }, 700);
     } else {
       this.expandedRows.delete(event.node.key);
+      this.totalRows = this.gridApi.getModel().getRowCount() ;
+      this.rowIndex = event.rowIndex;
     }
   }
 
@@ -485,7 +490,6 @@ export class FinancialDataComponent {
       ]
 
       this.columnDef = modifiedColumnDefs;
-      this.totalRows = this.gridApi.paginationGetPageSize();
 
       let fakeServer = FakeServer(data,this.expandedRows,this.gridData);
       let datasource = getServerSideDatasource(fakeServer);
@@ -501,7 +505,6 @@ export class FinancialDataComponent {
     } else {
       this.gridApi.paginationSetPageSize(Number(newPageSize));
     }
-    this.totalRows = this.gridApi.paginationGetPageSize();
   }
 
   onToolPanelVisibleChanged(params: any) {
@@ -554,6 +557,7 @@ export class FinancialDataComponent {
   }
 
   onSelectionChanged(event: any) {
+    this.totalRows = this.gridApi.getModel().getRowCount();
     if (event.source === 'uiSelectAll') {
       const rowNodes = event.api.rowModel.nodeManager.rowNodes;
       const matchedRowNodes = Object.entries(rowNodes)
