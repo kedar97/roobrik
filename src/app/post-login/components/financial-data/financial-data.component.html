@@ -51,6 +51,7 @@
             [paginationPageSize]="100"
             [paginateChildRows]="true"
             [getRowStyle]="getRowStyle"
+            (paginationChanged)="onPaginationChanged($event)"
             (gridReady)="onGridReady($event)"
             >
         </ag-grid-angular>

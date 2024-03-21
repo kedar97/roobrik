@@ -358,6 +358,10 @@ export class FinancialDataComponent {
     );
   }
 
+  onPaginationChanged(event) {
+    this.rowIndex = null;
+  }
+
   getRowStyle(params: any): any {
     if (params.node.rowIndex === 0) {
       return { background: 'rgba(102, 163, 212, 0.3)' };
