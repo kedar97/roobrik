@@ -991,6 +991,15 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
 
   function executeQuery(request, ignoreLimit) {
     var sql = buildSql(request, ignoreLimit);
+    var filterModel = request.filterModel;   
+    if (filterModel && Object.keys(filterModel).length) {
+      const startIndex = sql.indexOf('WHERE') + 5;
+      let newcondition = sql.substring(startIndex).trim();
+
+      let sqlPart = `SELECT * FROM ? WHERE (dataPath LIKE '%saas revenue summary%') OR `;
+      sql = sqlPart+newcondition;
+    }
+
     return alasql(sql, [processedData]);
   }
 
@@ -1178,7 +1187,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
         let nestedColumns = key.includes('.') ? true : false;  
 
         data.forEach(item =>{
-          if(item.children && item.children.length > 0){
+          if(item.children && item.children.length > 0 && item.client_frenchiseName != 'Saas Revenue Summary'){
             item.children = item.children.filter( child => {
               let flag = (Object.keys(filterModel).length > 1) && (typeof filterItem.filter != 'number') ? 
                 checkPropertyValue(child,filterItem.filter) : checkChildValues(child,nestedColumns,filterItem.filter);
@@ -1192,29 +1201,14 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
     if (filterModel && Object.keys(filterModel).length) {
       Object.keys(filterModel).forEach(function (key) {
         filterItem = filterModel[key]; 
+        let isMultipleCondition = Object.keys(filterModel[key]).some(key => key.startsWith('condition'));
         if (key === 'ag-Grid-AutoColumn') {
           key = 'client_frenchiseName';
         }
         columnName = key;
         let nestedColumns = key.includes('.') ? true : false;  
-        data = data.filter(item => searchObject(item,filterItem.filter));
         let childFlag;
-
-        let finalResult = [];
-        if(data.every(item => item.children != undefined) && data.length > 0){
-          finalResult = [dataToPinned[0],...data];
-          data = finalResult;
-        }
-        else{
-          if(data.length > 0){
-            finalResult = [...data];
-            data = finalResult;
-          }
-          else if(gridData.api.getDisplayedRowCount() > 1){
-            finalResult = [dataToPinned[1],dataToPinned[2]];
-            data = finalResult;
-          }
-        }
+        let filteredchild = [];
         
         // FOR HANDLING MONTH DATA
         if(((Object.keys(filterModel).length == 1) && (typeof filterItem.filter == 'number')) || ((Object.keys(filterModel)).length > 1 && Object.values(filterModel).every((obj:any) => obj.filterType === 'number'))){
@@ -1231,11 +1225,76 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
                 return childFlag;
               } 
               else {
-                return false;
+                if(item[property]==='Saas Revenue Summary' || item[property]==='ARR' || item[property]==='MRR'){
+                  return true;
+                }
+                else{
+                  return false;
+                }
               }
             });
           });
           data = res.length > 0 ? res : data;
+        }
+
+        else if(!isMultipleCondition){
+          filteredchild = data.filter(item =>{
+              if(typeof item[key] === 'string' && item.children === undefined){
+                if(item[key]==='Saas Revenue Summary' || item[key]==='ARR' || item[key]==='MRR'){
+                  return true;
+                }else{
+                  return checkPropertyValue(item[key].toLowerCase(),filterItem.filter);
+                }
+              }
+              else if(typeof item[key] != 'string' && item.children === undefined){
+                return checkPropertyValue(item[key],filterItem.filter);
+              }
+              else{
+                return true;
+              }
+          })
+  
+          data = filteredchild;
+        }
+        else{
+          columnName = columnName === 'client_frenchiseName' ? 'ag-Grid-AutoColumn' : columnName;
+          let isRevenueMonthCol = columnName.includes('.') ? true : false;  
+          
+          if(isRevenueMonthCol){
+             data.filter(item=>{
+              return Object.keys(item).some(property => {
+                if (property === columnName) {
+                  return checkPropertyValue(item[property], filterItem.filter);
+                }
+                else if(property === 'children' && item.children != undefined){
+                  item.children.filter( child => {
+                    childFlag = checkChildValues(child,nestedColumns,filterItem.filter);
+                  })
+                  return childFlag;
+                } 
+                else {
+                  return false;
+                }
+              });
+            });
+
+          }
+          else{
+            filterModel[columnName].conditions.forEach(filterItem=>{
+             data.filter(item =>{
+                if(typeof item[key] === 'string' && item.children === undefined){
+                  return checkPropertyValue(item[key].toLowerCase(),filterItem.filter);
+                }
+                else if(typeof item[key] != 'string' && item.children === undefined){
+                  return checkPropertyValue(item[key],filterItem.filter);
+                }
+                else{
+                  return true;
+                }
+              })
+              
+            })
+          }          
         }
       })
     }    
