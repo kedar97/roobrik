@@ -392,8 +392,8 @@ export class FinancialDataComponent {
         clientId: data[data.length-1].clientId + data[data.length-1].children.length + 1,
         client_frenchiseName : "Saas Revenue Summary",
         children : [
-          {  client_frenchiseName: "ARR",},
-          {  client_frenchiseName: "MRR",}
+          {  client_frenchiseName: "ARR", children: null},
+          {  client_frenchiseName: "MRR", children: null}
         ]
       }]
 
@@ -871,14 +871,13 @@ function getServerSideDatasource(server: any): IServerSideDatasource {
 
 function FakeServer(allData, rowsToExpand?, gridData?) {
   var processedData = processData(allData);
-  let dataToPinned = processedData.slice(0,3);
   processedData = processedData.slice(3);
   alasql.options.cache = false;
-  var filterItem;
-  let rowNodes;
-  let matchedRowNodes;
+  var filterItem : any;
+  let rowNodes : any[];
+  let matchedRowNodes : any[];
   let columnName : string;
-  let results;
+  let results : any[];
 
   return {
     getData: function (request) {
@@ -959,12 +958,17 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
   }
 
   function searchObject(obj: any, term: string): boolean {
-    return Object.entries(obj).some(([key, value]) => {
-      if (key === 'clientId' || key === 'dataPath' || key ==='parentPath') {
-        return false;
-      }
-      return checkPropertyValue(value, term);
-    });
+    if(obj){
+      return Object.entries(obj).some(([key, value]) => {
+        if (key === 'clientId' || key === 'dataPath' || key ==='parentPath') {
+          return false;
+        }
+        return checkPropertyValue(value, term);
+      });
+    }
+    else{
+      return false;
+    }
   }
 
   function checkPropertyValue(value: any, term: any): boolean {
@@ -1229,7 +1233,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
                   return true;
                 }
                 else{
-                  return false;
+                  return checkPropertyValue(item,filterItem.filter);
                 }
               }
             });
@@ -1239,21 +1243,20 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
 
         else if(!isMultipleCondition){
           filteredchild = data.filter(item =>{
-              if(typeof item[key] === 'string' && item.children === undefined){
-                if(item[key]==='Saas Revenue Summary' || item[key]==='ARR' || item[key]==='MRR'){
-                  return true;
-                }else{
-                  return checkPropertyValue(item[key].toLowerCase(),filterItem.filter);
-                }
-              }
-              else if(typeof item[key] != 'string' && item.children === undefined){
-                return checkPropertyValue(item[key],filterItem.filter);
-              }
-              else{
+            if(typeof item[key] === 'string' && item.children === undefined){
+              if(item[key] === 'Saas Revenue Summary' || item[key] === 'ARR' || item[key] === 'MRR'){
                 return true;
+              }else{
+                return checkPropertyValue(item[key].toLowerCase(),filterItem.filter);
               }
+            }
+            else if(typeof item[key] != 'string' && item.children === undefined){
+              return checkPropertyValue(item[key],filterItem.filter);
+            }
+            else{
+              return true;
+            }
           })
-  
           data = filteredchild;
         }
         else{
@@ -1261,7 +1264,7 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
           let isRevenueMonthCol = columnName.includes('.') ? true : false;  
           
           if(isRevenueMonthCol){
-             data.filter(item=>{
+            data.filter(item=>{
               return Object.keys(item).some(property => {
                 if (property === columnName) {
                   return checkPropertyValue(item[property], filterItem.filter);
