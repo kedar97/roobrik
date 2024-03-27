@@ -871,7 +871,6 @@ function getServerSideDatasource(server: any): IServerSideDatasource {
 
 function FakeServer(allData, rowsToExpand?, gridData?) {
   var processedData = processData(allData);
-  processedData = processedData.slice(3);
   alasql.options.cache = false;
   var filterItem : any;
   let rowNodes : any[];
@@ -1188,17 +1187,6 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
           key = 'client_frenchiseName';
         }
         columnName = key;
-        let nestedColumns = key.includes('.') ? true : false;  
-
-        data.forEach(item =>{
-          if(item.children && item.children.length > 0 && item.client_frenchiseName != 'Saas Revenue Summary'){
-            item.children = item.children.filter( child => {
-              let flag = (Object.keys(filterModel).length > 1) && (typeof filterItem.filter != 'number') ? 
-                checkPropertyValue(child,filterItem.filter) : checkChildValues(child,nestedColumns,filterItem.filter);
-              return flag;
-            })
-          } 
-        }) 
       })
     }
 
@@ -1229,10 +1217,22 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
                 return childFlag;
               } 
               else {
-                if(item[property]==='Saas Revenue Summary' || item[property]==='ARR' || item[property]==='MRR'){
+                if(item[property] === 'Saas Revenue Summary' || item[property] === 'ARR' || item[property] === 'MRR'){
                   return true;
                 }
                 else{
+                  if(item.client_frenchiseName === 'Saas Revenue Summary' || item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR'){
+                    return true;
+                  }
+                  else{
+                    if(item.children){
+                      item.children = item.children.filter(child => {
+                        let flag = (typeof filterItem.filter != 'number') ? 
+                        checkPropertyValue(child,filterItem.filter) : checkChildValues(child,nestedColumns,filterItem.filter);
+                        return flag;
+                      })
+                    }
+                  } 
                   return checkPropertyValue(item,filterItem.filter);
                 }
               }
@@ -1241,9 +1241,58 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
           data = res.length > 0 ? res : data;
         }
 
+        // IF ONE FILTER CONDITION APPLIED 
         else if(!isMultipleCondition){
           filteredchild = data.filter(item =>{
-            if(typeof item[key] === 'string' && item.children === undefined){
+            if((typeof filterItem.filter == 'number')){ // FOR REVENUE MONTH CHILD 
+              let res = data.filter(item=>{
+                return Object.keys(item).some(property => {
+
+                  if(property === 'children' && item.children != undefined){
+                    item.children.filter( child => {
+                      childFlag = checkChildValues(child,nestedColumns,filterItem.filter);
+                    })
+                    return childFlag;
+                  } 
+                  else {
+                    if(item[property] === 'Saas Revenue Summary' || item[property] === 'ARR' || item[property] === 'MRR'){
+                      return true;
+                    }
+                    else{
+                      if(item.client_frenchiseName === 'Saas Revenue Summary' || item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR'){
+                        return true;
+                      }
+                      else{
+                        if(item.children){
+                          item.children = item.children.filter(child => {
+                            let flag = (typeof filterItem.filter != 'number') ? 
+                            checkPropertyValue(child,filterItem.filter) : checkChildValues(child,nestedColumns,filterItem.filter);
+                            return flag;
+                          })
+                        }
+                      } 
+                      return checkPropertyValue(item,filterItem.filter);
+                    }
+                  }
+                });
+              });
+              data = res.length > 0 ? res : data;
+              return data;
+            }
+            else if(filterItem.filter === 'active'){ // FOR EXACT MATCH OF STATUS : ACTIVE
+              if(item.client_frenchiseName === 'Saas Revenue Summary' || item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR'){
+                return true;
+              }else if(item.status){
+                if(item.children){
+                  item.children = item.children.filter(child => {
+                    let flag = checkPropertyValue(child,filterItem.filter);
+                    return flag;
+                  })
+                }
+                return checkPropertyValue(item[key].toLowerCase(),filterItem.filter);
+              }
+            }
+            else if(typeof item[key] === 'string' && item.children === undefined && item[key] != 'active'){
               if(item[key] === 'Saas Revenue Summary' || item[key] === 'ARR' || item[key] === 'MRR'){
                 return true;
               }else{
@@ -1254,11 +1303,22 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
               return checkPropertyValue(item[key],filterItem.filter);
             }
             else{
+              if(item.client_frenchiseName === 'Saas Revenue Summary' || item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR'){
+                return true;
+              }
+              else{
+                if(item.children){
+                  item.children = item.children.filter(child=>{
+                    return checkPropertyValue(child[key],filterItem.filter)
+                  })
+                }
+              } 
               return true;
             }
           })
           data = filteredchild;
         }
+        // IF MULTIPLE CONDITIONS APPLIED
         else{
           columnName = columnName === 'client_frenchiseName' ? 'ag-Grid-AutoColumn' : columnName;
           let isRevenueMonthCol = columnName.includes('.') ? true : false;  
@@ -1292,7 +1352,12 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
                   return checkPropertyValue(item[key],filterItem.filter);
                 }
                 else{
-                  return true;
+                  if(item.children){
+                    item.children = item.children.filter(child=>{
+                      return checkPropertyValue(child[key],filterItem.filter)
+                    })
+                  }
+                  return checkPropertyValue(item[key],filterItem.filter);
                 }
               })
               
