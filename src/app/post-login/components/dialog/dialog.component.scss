@@ -9,67 +9,9 @@
     font-size: 32px;
     line-height: normal;
     text-align: center;
-    margin: 13px 0 63px 0;
+    margin: 13px 0 30px 0;
+    font-family: 'Helvetica';
   }
-
-  .icon {
-    width: 30.28px;
-    height: 30.28px;
-  }
-
-  .grid-layout-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    .k-grid-layout{
-      background-color: #F9F9F9 !important;
-    }
-    .card-box {
-      display: contents;
-    }
-    .img-box {
-      margin-bottom: 35px;
-    }
-    .img-card {
-      width: 135px;
-      height: 82px;
-      object-fit: contain;
-    }
-
-    .cmp-title {
-      color: #999999c6;
-      font-family: "Helvetica";
-      font-size: 15px;
-      font-weight: 400;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-    }
-    .btn-select {
-      font-family: "Helvetica", sans-serif;
-      font-weight: 400;
-      background-color: #083754;
-      color: white;
-      font-size: 18px;
-      border: none;
-      width: 170px;
-      height: 44px;
-      border-radius: 0;
-      text-transform: uppercase;
-    }
-  }
-}
-
-.card-body {
-  height: 194px;
-  width: 170px;  
-}
-
-.container-center {
-  height: 969px;
 }
 
 .custom-margin{
@@ -77,10 +19,14 @@
   margin-right: 22px;
 }
 
+.close-icon{
+  cursor: pointer;
+}
+
 ::ng-deep .switch-account-dialog .k-window{
   width: 752px !important;
   height: 518px !important;
-  background:#F9F9F9 !important ;
+  background:#FFF !important ;
 }
 
 ::ng-deep .k-window .k-window-content{
@@ -91,4 +37,106 @@
   border-radius: 0 !important;
   border: 1px solid #D8D8D8;
   margin-bottom: 24px !important;
+}
+
+//KENDO-LIST-VIEW 
+:host ::ng-deep .k-listview{
+    width: 596px;
+    padding: 5px 35px;
+    margin: 0 auto;
+    border: none;
+
+    .k-listview-content{
+      height: 266px;
+      width: 596px;
+    }
+
+    .k-listview-item{
+      padding-bottom: 15px;
+      padding-top: 15px;
+      border-bottom: 1px solid #BFBFBF;
+      margin-right: 50px;
+    }
+}
+
+// Kendo Toggle Button
+:host ::ng-deep .k-switch-md .k-switch-track {
+  width: 27px;
+  height: 16px;
+  border: none;
+  background-color: #95959B;
+}
+
+:host ::ng-deep .k-switch-md {
+  width: 27px;
+  height: 16px;
+
+  .k-switch-thumb {
+    width: 14px;
+    height: 14px;
+    background-color: #FFF;
+  }
+
+  .k-switch-label-off,
+  .k-switch-label-on {
+    display: none;
+  }
+}
+
+:host ::ng-deep .k-switch-on:focus .k-switch-track,
+:host ::ng-deep .k-switch-off:focus .k-switch-track {
+  outline: none;
+}
+
+:host ::ng-deep .k-switch-on .k-switch-track {
+  background-color: #296689;
+}
+
+:host ::ng-deep{
+  .k-switch-md.k-switch-off .k-switch-thumb-wrap {
+      left: calc( 7px + 0px );
+  }
+
+  .k-switch-md.k-switch-on .k-switch-thumb-wrap {
+      left: calc( 100% - 7px - 0px );
+  }
+} 
+
+p{
+  margin: 0;
+}
+
+.client-name{
+  font-size: 16px;
+  line-height: 16px;
+  font-family: "Helvetica Neue";
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #2A2A2A;
+}
+
+.sub-text{
+  font-size: 12px;
+  line-height: 16px;
+  font-family: "Helvetica Neue";
+  font-weight: 400;
+  color: #2A2A2A;
+}
+
+::ng-deep .k-listview-content::-webkit-scrollbar {
+  width: 9px;
+}
+
+::ng-deep .k-listview-content::-webkit-scrollbar-track {
+  background-color: #F1F1F1;
+  border-radius: 5px;
+}
+
+::ng-deep .k-listview-content::-webkit-scrollbar-thumb {
+  background-color: #BFBFBF;
+  border-radius: 5px;
+}
+
+.k-listview-content::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }

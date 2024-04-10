@@ -10,6 +10,7 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { ListViewModule } from '@progress/kendo-angular-listview';
 
 @NgModule({
   declarations: [],
@@ -26,7 +27,8 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     InputsModule,
     LabelModule,
     IndicatorsModule,
-    DropDownsModule
+    DropDownsModule,
+    ListViewModule
   ],
   exports: [
     NavigationModule,
@@ -40,8 +42,8 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     InputsModule,
     LabelModule,
     IndicatorsModule,
-    DropDownsModule
-
+    DropDownsModule,
+    ListViewModule
   ]
 })
 export class KendoModule { }

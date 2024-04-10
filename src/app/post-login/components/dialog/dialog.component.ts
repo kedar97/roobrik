@@ -7,38 +7,54 @@ import { DialogRef, DialogService } from '@progress/kendo-angular-dialog';
   styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent implements OnInit {
-  @Output() close = new EventEmitter<void>();
-  clientList: any[] = [
+  displayToggle : boolean = false;
+  accountList : any[] = [
     {
-      imgSrc: 'assets/images/arrow-senior-living-logo.png',
-      clientName: 'Arrow Senior Living Arrow senior living',
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
     },
     {
-      imgSrc: 'assets/images/galloway-senior-living-logo.png',
-      clientName: 'Galloway Senior Living',
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
     },
     {
-      imgSrc: 'assets/images/sunrise-logo.svg',
-      clientName: 'Sunrise Senior Living',
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
     },
     {
-      imgSrc: 'assets/images/arrow-senior-living-logo.png',
-      clientName: 'Arrow Senior Living',
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
     },
     {
-      imgSrc: 'assets/images/galloway-senior-living-logo.png',
-      clientName: 'Galloway Senior Living',
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
     },
     {
-      imgSrc: 'assets/images/sunrise-logo.svg',
-      clientName: 'Sunrise Senior Living',
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
     },
-  ];
+    {
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
+    },
+    {
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
+    },
+    {
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
+    },
+    {
+      clientName :'Senior Living 1',
+      subText :'A monthly look at Roobrik product performance metrics'
+    }
+  ]
   constructor(
     private dialogService: DialogService,
     public dailogRef: DialogRef
   ) {}
+  
   ngOnInit(): void {}
 
-  // closeDailog() {}
 }

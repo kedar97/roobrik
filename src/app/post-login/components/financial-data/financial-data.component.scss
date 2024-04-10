@@ -90,6 +90,10 @@ button:focus {
         gap: 20px;
         align-items: center;
 
+        @media (max-width: 1300px) {
+            gap: 10px;
+        }
+
         .input-container{
             position: relative;
 
@@ -112,6 +116,10 @@ button:focus {
                 border-radius: 4px;
                 border: 1px solid #DFDFDF;
                 background:  #FFF;
+
+                @media (max-width: 1300px) {
+                    width: 400px;
+                }
             }
         }
     }

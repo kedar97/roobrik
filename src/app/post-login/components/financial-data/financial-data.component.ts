@@ -1180,15 +1180,6 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
     let data = alasql(sql, [processedData, allResults]);
     
     var filterModel = request.filterModel; 
-    if (filterModel && Object.keys(filterModel).length) {
-      Object.keys(filterModel).forEach(function (key) {
-        filterItem = filterModel[key];
-        if (key === 'ag-Grid-AutoColumn') {
-          key = 'client_frenchiseName';
-        }
-        columnName = key;
-      })
-    }
 
     if (filterModel && Object.keys(filterModel).length) {
       Object.keys(filterModel).forEach(function (key) {
@@ -1227,13 +1218,27 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
                   else{
                     if(item.children){
                       item.children = item.children.filter(child => {
-                        let flag = (typeof filterItem.filter != 'number') ? 
-                        checkPropertyValue(child,filterItem.filter) : checkChildValues(child,nestedColumns,filterItem.filter);
-                        return flag;
+
+                        if(filterItem.type != 'notEqual'){
+                          let flag = (typeof filterItem.filter != 'number') ? 
+                          checkPropertyValue(child,filterItem.filter) : checkChildValues(child,nestedColumns,filterItem.filter);
+                          return flag;
+                        }
+                        else{
+                          let flag = (typeof filterItem.filter != 'number') ? 
+                          !checkPropertyValue(child,filterItem.filter) : !checkChildValues(child,nestedColumns,filterItem.filter);
+                          return flag;
+                        }                       
                       })
                     }
                   } 
-                  return checkPropertyValue(item,filterItem.filter);
+                  if(filterItem.type != 'notEqual'){
+                    return checkPropertyValue(item,filterItem.filter);
+                  }
+                  else{
+                    return !checkPropertyValue(item,filterItem.filter);
+                  }
+
                 }
               }
             });
@@ -1296,7 +1301,12 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
               if(item[key] === 'Saas Revenue Summary' || item[key] === 'ARR' || item[key] === 'MRR'){
                 return true;
               }else{
-                return checkPropertyValue(item[key].toLowerCase(),filterItem.filter);
+                if(filterItem.type != 'notContains'){
+                  return checkPropertyValue(item[key].toLowerCase(),filterItem.filter);
+                }
+                else{
+                  return !checkPropertyValue(item[key].toLowerCase(),filterItem.filter);
+                }
               }
             }
             else if(typeof item[key] != 'string' && item.children === undefined){
@@ -1309,7 +1319,12 @@ function FakeServer(allData, rowsToExpand?, gridData?) {
               else{
                 if(item.children){
                   item.children = item.children.filter(child=>{
-                    return checkPropertyValue(child[key],filterItem.filter)
+                      if(filterItem.type != 'notContains'){
+                      return checkPropertyValue(child[key],filterItem.filter)
+                    }
+                    else{
+                      return !checkPropertyValue(child[key],filterItem.filter);
+                    }
                   })
                 }
               } 
