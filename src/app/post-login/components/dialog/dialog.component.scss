@@ -52,7 +52,6 @@
     }
 
     .k-listview-item{
-      padding-bottom: 15px;
       padding-top: 15px;
       border-bottom: 1px solid #BFBFBF;
       margin-right: 50px;
@@ -104,6 +103,15 @@
 
 p{
   margin: 0;
+}
+
+.client-details{
+  width: 80%;
+  padding-bottom: 15px;
+}
+
+.toggle-button{
+  margin-left: auto;
 }
 
 .client-name{

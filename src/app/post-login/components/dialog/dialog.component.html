@@ -20,12 +20,12 @@
   <kendo-listview
     [data]="accountList">
     <ng-template kendoListViewItemTemplate let-dataItem="dataItem">
-      <div class="d-flex align-items-center justify-content-between">
-        <div class="">
+      <div class="d-flex align-items-center">
+        <div class="client-details" (click)="dailogRef.close()">
           <p class="client-name">{{dataItem.clientName}}</p>
           <p class="sub-text">{{dataItem.subText}}</p>
         </div>
-        <kendo-switch *ngIf="displayToggle"></kendo-switch>
+        <kendo-switch class="toggle-button" *ngIf="displayToggle"></kendo-switch>
       </div>
       </ng-template>
   </kendo-listview>
