@@ -51,6 +51,11 @@ export class HeaderTwoComponent {
     this.showReportsMenu = !this.showReportsMenu;
   }
 
+  onCustomGroups(event) {
+    this.router.navigate(['/reports/custom-groups']);
+    this.showReportsMenu = !this.showReportsMenu;
+  }
+
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const popupDashboardElement = document.querySelector('.popup-client-dashboard');

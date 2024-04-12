@@ -29,6 +29,8 @@ import { AnnouncementManagementComponent } from './components/announcement-manag
 import { CustomDropDownEditorComponent } from './components/financial-data/custom-drop-down-editor/custom-drop-down-editor.component';
 import { TooltipModule } from '@progress/kendo-angular-tooltip';
 import { AddNewClientComponent } from './components/financial-data/add-new-client/add-new-client.component';
+import { CustomGroupsComponent } from './components/custom-groups/custom-groups.component';
+import { CustomMenuEditorComponent } from './components/custom-groups/custom-menu-editor/custom-menu-editor.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -50,6 +52,8 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     AnnouncementManagementComponent,
     CustomDropDownEditorComponent,
     AddNewClientComponent,
+    CustomGroupsComponent,
+    CustomMenuEditorComponent,
   ],
   imports: [
     CommonModule,

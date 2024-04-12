@@ -15,6 +15,7 @@ import { EditSaasRevenueComponent } from './components/financial-data/edit-saas-
 import { AnnouncementManagementComponent } from './components/announcement-management/announcement-management.component';
 import { UnsavedChangesGuard } from './components/financial-data/edit-saas-revenue/unsaved-changes.guard';
 import { AddNewClientComponent } from './components/financial-data/add-new-client/add-new-client.component';
+import { CustomGroupsComponent } from './components/custom-groups/custom-groups.component';
 const routes: Routes = [
   {
     path: '',
@@ -75,6 +76,10 @@ const routes: Routes = [
       {
         path: 'client-health-metrics',
         component: LeadsPerCommunityComponent,
+      },
+      {
+        path: 'custom-groups',
+        component: CustomGroupsComponent,
       },
     ]
   },

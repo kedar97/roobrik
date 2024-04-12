@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
+import { PopupModule } from '@progress/kendo-angular-popup';
+
 
 
 
@@ -38,6 +40,7 @@ import { IndicatorsModule } from '@progress/kendo-angular-indicators';
     NotificationModule,
     ChartsModule,
     IndicatorsModule,
+    PopupModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

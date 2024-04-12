@@ -39,7 +39,7 @@
     "@progress/kendo-angular-navigation": "13.5.0",
     "@progress/kendo-angular-notification": "^13.5.0",
     "@progress/kendo-angular-pdf-export": "13.5.0",
-    "@progress/kendo-angular-popup": "13.5.0",
+    "@progress/kendo-angular-popup": "^13.5.0",
     "@progress/kendo-angular-progressbar": "13.5.0",
     "@progress/kendo-angular-tooltip": "^15.1.0",
     "@progress/kendo-angular-treeview": "13.5.0",

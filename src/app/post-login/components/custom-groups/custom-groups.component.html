@@ -1,0 +1,59 @@
+<div class="main-container">
+    <div class="section-header">
+        <div class="heading">
+            <img src="assets/images/bar-chart-icon.png" alt="Bar-chart icon">
+            <h1>Custom Groups</h1>
+        </div>
+        <div class="search-section">
+            <div class="input-container">
+                <input 
+                type="text" 
+                placeholder="Search" 
+                (input)="onSearch()"         
+                id="filter-text-box"
+                >
+                <img src="assets/images/search-icon.png" alt="Search icon">
+            </div>
+            <button class="btn btn-create-new">Create New</button>
+        </div>
+    </div>
+
+    <div class="table-section">
+        <ag-grid-angular
+            style="flex-grow: 1; height: 655px"
+            class="ag-theme-balham ag-grid"
+            [rowHeight]="36"
+            [columnDefs]="columnDef"
+            [defaultColDef]="defaultColDef"
+            [rowGroupPanelShow]="rowGroupPanelShow"
+            [rowModelType]="rowModelType"
+            [gridOptions]="gridOptions"
+            [sideBar]="sideBar"
+            [rowSelection]="rowSelection"
+            (selectionChanged)="onSelectionChanged($event)"
+            (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+            [pagination]="true"
+            [cacheBlockSize]="cacheBlockSize"
+            [paginationPageSize]="100"
+            (paginationChanged)="onPaginationChanged($event)"
+            (gridReady)="onGridReady($event)"
+            >
+        </ag-grid-angular>
+
+        <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
+            <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
+        </div>
+
+        <select
+            class="items-dropdown"
+            [(ngModel)]="selectedValue"
+            (change)="onItemsPerPageChange(selectedValue)">
+                <option
+                    *ngFor="let option of paginationOptions"
+                    [attr.selected]="option.value == 100"
+                    [value]="option.value">
+                {{ option.title }}
+                </option>
+      </select>
+    </div>
+</div>
