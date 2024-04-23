@@ -368,6 +368,554 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
       reportFrequency: 'Weekly',
       addedOn: new Date(2018, 7, 17),
     },
+    {
+      reportName: ["Sunrise Senior Living - September 2023"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 6, 14)
+    },
+    
+    {
+      reportName: [
+        "Sunrise Senior Living - September 2023",
+        "Sunrise at West Essex - September 2023"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 6, 14)
+    },
+
+    {
+      reportName: ["Brookdale Senior Living - October 2023"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 7, 14)
+    },
+    
+    {
+      reportName: [
+        "Brookdale Senior Living - October 2023",
+        "Brookdale Canyon Lakes - October 2023"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 7, 14)
+    },
+    {
+      reportName: ["Atria Senior Living - November 2023"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 8, 14)
+    },
+    
+    {
+      reportName: [
+        "Atria Senior Living - November 2023",
+        "Atria Maplewood Place - November 2023"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 8, 14)
+    },
+    {
+      reportName: ["Belmont Village Senior Living - December 2023"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 9, 14)
+    },
+    
+    {
+      reportName: [
+        "Belmont Village Senior Living - December 2023",
+        "Belmont Village Albany - December 2023"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 9, 14)
+    },
+    {
+      reportName: ["Erickson Senior Living - January 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 10, 14)
+    },
+    
+    {
+      reportName: [
+        "Erickson Senior Living - January 2024",
+        "Erickson Living Wind Crest - January 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 10, 14)
+    },
+    {
+      reportName: ["Holiday Retirement - February 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 11, 14)
+    },
+    
+    {
+      reportName: [
+        "Holiday Retirement - February 2024",
+        "Holiday at the Atrium - February 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2023, 11, 14)
+    },
+    {
+      reportName: ["Five Star Senior Living - March 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 0, 14)
+    },
+    
+    {
+      reportName: [
+        "Five Star Senior Living - March 2024",
+        "Five Star Premier Residences of Plantation - March 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 0, 14)
+    },
+    {
+      reportName: ["Enlivant Senior Living - April 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 1, 14)
+    },
+    
+    {
+      reportName: [
+        "Enlivant Senior Living - April 2024",
+        "Enlivant Heartis Amarillo - April 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 1, 14)
+    },
+    {
+      reportName: ["Bickford Senior Living - May 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 2, 14)
+    },
+    
+    {
+      reportName: [
+        "Bickford Senior Living - May 2024",
+        "Bickford of Crystal Lake - May 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 2, 14)
+    },
+    {
+      reportName: ["Artis Senior Living - June 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 3, 14)
+    },
+    
+    {
+      reportName: [
+        "Artis Senior Living - June 2024",
+        "Artis Senior Living of Bartlett - June 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 3, 14)
+    },
+    {
+      reportName: ["Sunrise Senior Living - July 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 4, 14)
+    },
+    
+    {
+      reportName: [
+        "Sunrise Senior Living - July 2024",
+        "Sunrise of Chandler - July 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 4, 14)
+    },
+    {
+      reportName: ["Brookdale Senior Living - August 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 5, 14)
+    },
+    
+    {
+      reportName: [
+        "Brookdale Senior Living - August 2024",
+        "Brookdale Enid - August 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 5, 14)
+    },
+    {
+      reportName: ["Atria Senior Living - September 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 6, 14)
+    },
+    
+    {
+      reportName: [
+        "Atria Senior Living - September 2024",
+        "Atria Woodbridge - September 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 6, 14)
+    },
+
+    {
+      reportName: ["Belmont Village Senior Living - October 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 7, 14)
+    },
+    
+    {
+      reportName: [
+        "Belmont Village Senior Living - October 2024",
+        "Belmont Village Albany - October 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 7, 14)
+    },
+    {
+      reportName: ["Erickson Senior Living - November 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 8, 14)
+    },
+    
+    {
+      reportName: [
+        "Erickson Senior Living - November 2024",
+        "Erickson Living Eagle's Trace - November 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 8, 14)
+    },
+    {
+      reportName: ["Holiday Retirement - December 2024"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 9, 14)
+    },
+    
+    {
+      reportName: [
+        "Holiday Retirement - December 2024",
+        "Holiday at the Atrium - December 2024"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 9, 14)
+    },
+    {
+      reportName: ["Five Star Senior Living - January 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 10, 14)
+    },
+    
+    {
+      reportName: [
+        "Five Star Senior Living - January 2025",
+        "Five Star Premier Residences of Plantation - January 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 10, 14)
+    },
+    {
+      reportName: ["Enlivant Senior Living - February 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 11, 14)
+    },
+    
+    {
+      reportName: [
+        "Enlivant Senior Living - February 2025",
+        "Enlivant Brookdale Wayne - February 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2024, 11, 14)
+    },
+    {
+      reportName: ["Bickford Senior Living - March 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 0, 14)
+    },
+    
+    {
+      reportName: [
+        "Bickford Senior Living - March 2025",
+        "Bickford of Crystal Lake - March 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 0, 14)
+    },
+    {
+      reportName: ["Senior Lifestyle - April 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 1, 14)
+    },
+    
+    {
+      reportName: [
+        "Senior Lifestyle - April 2025",
+        "Senior Lifestyle Autumn Leaves of Arlington - April 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 1, 14)
+    },
+    {
+      reportName: ["The Arbor Company - May 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 2, 14)
+    },
+
+    {
+      reportName: [
+        "The Arbor Company - May 2025",
+        "The Arbor Company at Hamilton Mill - May 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 2, 14)
+    },
+    {
+      reportName: ["Watermark Retirement Communities - June 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 3, 14)
+    },
+    
+    {
+      reportName: [
+        "Watermark Retirement Communities - June 2025",
+        "Watermark at Beverly Hills - June 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 3, 14)
+    },
+    {
+      reportName: ["Merrill Gardens - July 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 4, 14)
+    },
+    
+    {
+      reportName: [
+        "Merrill Gardens - July 2025",
+        "Merrill Gardens at Anthem - July 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 4, 14)
+    },
+    {
+      reportName: ["Pacifica Senior Living - August 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 5, 14)
+    },
+    
+    {
+      reportName: [
+        "Pacifica Senior Living - August 2025",
+        "Pacifica Senior Living Portland - August 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 5, 14)
+    },
+    {
+      reportName: ["Sagora Senior Living - September 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 6, 14)
+    },
+    
+    {
+      reportName: [
+        "Sagora Senior Living - September 2025",
+        "Sagora Senior Living Victoria - September 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 6, 14)
+    },
+    {
+      reportName: ["Integral Senior Living - October 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 7, 14)
+    },
+    
+    {
+      reportName: [
+        "Integral Senior Living - October 2025",
+        "Integral Senior Living at Scottsdale - October 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 7, 14)
+    },
+    {
+      reportName: ["Senior Star - November 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 8, 14)
+    },
+    
+    {
+      reportName: [
+        "Senior Star - November 2025",
+        "Senior Star at Weber Place - November 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 8, 14)
+    },
+    {
+      reportName: ["Spectrum Retirement Communities - December 2025"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 9, 14)
+    },
+    
+    {
+      reportName: [
+        "Spectrum Retirement Communities - December 2025",
+        "Spectrum Retirement Communities at Southpark Meadows - December 2025"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 9, 14)
+    },
+    {
+      reportName: ["Civitas Senior Living - January 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 10, 14)
+    },
+    
+    {
+      reportName: [
+        "Civitas Senior Living - January 2026",
+        "Civitas Senior Living at Las Colinas - January 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 10, 14)
+    },
+    {
+      reportName: ["Discovery Senior Living - February 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 11, 14)
+    },
+    
+    {
+      reportName: [
+        "Discovery Senior Living - February 2026",
+        "Discovery Village at Castle Hills - February 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2025, 11, 14)
+    },
+    {
+      reportName: ["Resort Lifestyle Communities - March 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 0, 14)
+    },
+    
+    {
+      reportName: [
+        "Resort Lifestyle Communities - March 2026",
+        "Resort Lifestyle Communities at Lincoln Park - March 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 0, 14)
+    },
+    {
+      reportName: ["Integral Senior Living - April 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 1, 14)
+    },
+    
+    {
+      reportName: [
+        "Integral Senior Living - April 2026",
+        "Integral Senior Living at Cape Coral - April 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 1, 14)
+    },
+    {
+      reportName: ["Oakmont Senior Living - May 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 2, 14)
+    },
+    
+    {
+      reportName: [
+        "Oakmont Senior Living - May 2026",
+        "Oakmont of San Antonio Heights - May 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 2, 14)
+    },
+    {
+      reportName: ["Milestone Retirement Communities - June 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 3, 14)
+    },
+    
+    {
+      reportName: [
+        "Milestone Retirement Communities - June 2026",
+        "Milestone Retirement Communities at La Quinta - June 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 3, 14)
+    },
+    {
+      reportName: ["Frontier Management - July 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 4, 14)
+    },
+    
+    {
+      reportName: [
+        "Frontier Management - July 2026",
+        "Frontier Management at Tuscany at McCormick Ranch - July 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 4, 14)
+    },
+    {
+      reportName: ["Cedarhurst Senior Living - August 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 5, 14)
+    },
+    
+    {
+      reportName: [
+        "Cedarhurst Senior Living - August 2026",
+        "Cedarhurst Senior Living at Shiloh - August 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 5, 14)
+    },
+    {
+      reportName: ["Vivante Senior Living - September 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 6, 14)
+    },
+    
+    {
+      reportName: [
+        "Vivante Senior Living - September 2026",
+        "Vivante on the Coast - September 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 6, 14)
+    },
+    {
+      reportName: ["Life Care Services - October 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 7, 14)
+    },
+    
+    {
+      reportName: [
+        "Life Care Services - October 2026",
+        "Life Care Services at Mesa - October 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 7, 14)
+    },
+    {
+      reportName: ["Pegasus Senior Living - November 2026"],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 8, 14)
+    },
+    
+    {
+      reportName: [
+        "Pegasus Senior Living - November 2026",
+        "Pegasus Senior Living at Steelecroft Place - November 2026"
+      ],
+      reportFrequency: "Monthly",
+      addedOn: new Date(2026, 8, 14)
+    }    
   ];
 
   show(): void {
