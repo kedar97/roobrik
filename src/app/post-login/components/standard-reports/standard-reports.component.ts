@@ -224,7 +224,7 @@ export class StandardReportsComponent implements OnInit, OnDestroy {
   public autoGroupColumnDef: ColDef = {
     headerCheckboxSelection: true,
     headerName: 'Report Name',
-    filter: 'agGroupColumnFilter',
+    filter: 'agMultiColumnFilter',
     cellStyle: { 'padding-left': '45px' },
     width: 550,
     minWidth: 250,
