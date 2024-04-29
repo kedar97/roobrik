@@ -74,13 +74,39 @@ export class HomeComponent {
   dataLocations: any[] = [
     {
       text: 'Select all',
+      parentId:'Select all',
       items: [
-        { text: 'Cedarhurst Villages', isActive: true  },
-        { text: 'Brightview Bridgewater', isActive: false },
-        { text: 'Fort Mill', isActive: false },
-        { text: 'Highpoint at Cape Coral', isActive: true },
-        { text: 'Belmont Village', isActive: true },
-        { text: 'rightview Meadows', isActive: true },
+        {text:'Brightview', isActive:false, parentId:'BrightView',
+          items:[
+          { text:'Alexandria', isActive:false , parentId:'Alexandria BrightView'},
+          { text:'Annapolis', isActive:false, parentId:'Annapolis BrightView'},
+          { text:'Arlington', isActive:false,parentId:'Arlington BrightView'} 
+          ]
+        },
+        {
+          text: "GardenGrove",isActive: true, parentId:'GardenGrove',
+          items: [
+            { text: "Boston", isActive: false ,  parentId:'Boston GardenGrove',},
+            { text: "Cambridge", isActive: true,  parentId:'Cambridge GardenGrove', },
+            { text: "Somerville", isActive: false,  parentId:'Somerville GardenGrove', }
+          ]
+        },
+        {
+          text: "GreenFields",isActive: false,parentId:'GreenFields',
+          items: [
+            { text: "Chicago", isActive: false ,parentId:'Chicago GreenFields'},
+            { text: "Evanston", isActive: false,parentId:'Evanston GreenFields' },
+            { text: "Naperville", isActive: false,parentId:'Naperville GreenFields' }
+          ]
+        },
+        {
+          text: "Riverwalk",isActive: true,parentId:'Riverwalk',
+          items: [
+            { text: "San Antonio", isActive: false,parentId:'San Antonio Riverwalk' },
+            { text: "New Braunfels", isActive: true,parentId:'New Braunfels Riverwalk' },
+            { text: "Boerne", isActive: true,parentId:'Boerne Riverwalk' }
+          ]
+        },
       ],
     },
   ];
@@ -363,6 +389,7 @@ export class HomeComponent {
   yearsDifference : number;
   invalidStartDate: boolean = false;
   invalidEndDate: boolean = false;
+  activeItems :any = [];
   disabledDate = (date: Date): boolean => {
     const today = new Date();
     return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear() || date > today;
@@ -404,17 +431,31 @@ export class HomeComponent {
     this.cardData[2].upDowns.count = 0;
     this.cardData[3].upDowns.count = 0;
 
-    const activeItems = this.dataLocations[0].items.filter(item => item.isActive);
+    this.activeItems = this.dataLocations[0].items.filter(item => item.isActive);
     const inactiveItems = this.dataLocations[0].items.filter(item => !item.isActive);
     
-    activeItems.sort((a, b) => a.text.localeCompare(b.text));
+    this.activeItems.sort((a, b) => a.text.localeCompare(b.text));
     inactiveItems.sort((a, b) => a.text.localeCompare(b.text));
     
-    const resultItems = [...activeItems, { text: 'Corporate site', isActive: true }, ...inactiveItems];
-    
+    const resultItems = [...this.activeItems, ...inactiveItems];
     this.dataLocations[0].items = resultItems;
-    
 
+    this.dataLocations[0].items.forEach(item => {
+      let activeChildren = item.items.filter(child => child.isActive);
+      let inActiveChildren = item.items.filter(child => !child.isActive);
+
+      activeChildren.sort((a, b) => a.text.localeCompare(b.text));
+      inActiveChildren.sort((a, b) => a.text.localeCompare(b.text));
+
+      if(item.isActive){
+        const parentId = `Corporate site ${item.text}`;
+        item.items = [...activeChildren, { text: 'Corporate site', isActive: true, parentId: parentId }, ...inActiveChildren];
+      }
+      else{
+        const parentId = `Corporate site ${item.text}`;
+        item.items = [...activeChildren, { text: 'Corporate site', isActive: false, parentId : parentId}, ...inActiveChildren];
+      }
+    });
   }
  
   getDefaultDateRange(){
@@ -433,11 +474,37 @@ export class HomeComponent {
     this.range.end = this.maxDate
   }
 
+  countActiveLocations(arr: any[]): number {
+    let count = 0;
+    arr.forEach(item => {
+      if (item.isActive !== false) {
+        count++;
+        if (item.items) {
+          count += this.countActiveLocations(item.items);
+        }
+      }
+    });
+    return count;
+}
+
   tagMapper(tags: any[]) {
     let newTags = [];
+    let totalLoctions = this.countActiveLocations(this.dataLocations);
+    let count = 0;
+    tags.forEach(tag => {
+      this.activeItems.forEach(activeItem => {
+        if (JSON.stringify(tag) === JSON.stringify(activeItem)) {
+          count++;
+        }
+      });
+    });
 
-    if(tags.length > this.dataLocations[0].items.length && this.isLocationTree)
-      return newTags = ['All locations'];
+    if(count == 0 && tags.length >= totalLoctions-this.activeItems.length-1 && this.isLocationTree){
+      return newTags=['All locations'];
+    }
+    if(count >=1 && tags.length - count >= totalLoctions - this.activeItems.length -1 && this.isLocationTree){
+      return newTags=['All locations'];
+    }
 
     if(tags.length > this.dataAssesments[0].items.length && this.isAssessmentTree)
       return newTags = ['All assessments'];
