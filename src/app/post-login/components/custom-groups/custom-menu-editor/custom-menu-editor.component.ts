@@ -11,7 +11,7 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
 
   params : any;
   agInit(params: ICellRendererParams): void {
-    this.params = params
+    this.params = params;
   }
   
   refresh(params: ICellRendererParams) {

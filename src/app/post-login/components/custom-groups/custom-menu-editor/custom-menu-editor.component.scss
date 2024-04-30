@@ -28,10 +28,12 @@ p{
         box-shadow: none !important;
     }
 
-    .k-animation-container{
-        position: absolute !important;
-        width: fit-content !important;
+    .k-child-animation-container{
+        position: absolute;
+        width: fit-content;
+        left: calc(100% + -560%);
         box-shadow: 0px 0px 8px 2px rgba(#000,.2);
+        top: -25px;
     }
 
     .k-list-content{

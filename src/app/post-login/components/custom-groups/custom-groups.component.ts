@@ -103,6 +103,23 @@ export class CustomGroupsComponent {
   }
 
   gridOptions: GridOptions = {
+    getRowId: function(params:any){
+      if (params.data.id != null) {
+        return "leaf-" + params.data.id;
+      }
+      
+      const rowGroupCols = params.columnApi.columnModel.getRowGroupColumns();
+      const rowGroupColIds = rowGroupCols.map((col) => col.getId()).join("-");
+      const thisGroupCol = rowGroupCols[params.level];
+      
+      return (
+        "group-" +
+        rowGroupColIds +
+        "-" +
+        (params.parentKeys || []).join("-") +
+        params.data[thisGroupCol.getColDef().field!]
+      );
+    },
     enableRangeSelection: true,
     statusBar: {
       statusPanels: [
@@ -142,12 +159,13 @@ export class CustomGroupsComponent {
       field: 'client_count',
       headerName: 'Client count',
       enableRowGroup: true,
-      enableValue: true
+      filter: 'agNumberColumnFilter'
     },
     {
       field: 'franchise_count',
       headerName: 'Franchise count',
       enableRowGroup: true,
+      filter: 'agNumberColumnFilter'
     },
     {
       field: 'status',
@@ -172,14 +190,14 @@ export class CustomGroupsComponent {
       hide: true,
     },
     {
-      width:100,
+      width:60,
       suppressColumnsToolPanel: true,
       suppressFiltersToolPanel: true,
       cellRenderer: CustomMenuEditorComponent,
     },
   ]
   
-  rowData: any = []
+  rowData: any = [];
   ngOnInit() {}
 
   onGridReady(params: GridReadyEvent) {
