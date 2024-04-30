@@ -228,6 +228,10 @@ p {
 ::ng-deep .date-section{
   border: 1px solid #dfdfdf;
 
+  .k-button-md.k-icon-button .k-button-icon {
+    border: none !important;
+  }
+
   .k-svg-i-caret-alt-down > svg {
         display: none;
   }
