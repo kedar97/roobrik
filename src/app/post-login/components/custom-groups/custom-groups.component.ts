@@ -4,6 +4,7 @@ import { PaginationOption } from '../../post-login.modal';
 import { PostLoginService } from '../../post-login.service';
 import * as alasql from 'alasql';
 import { CustomMenuEditorComponent } from './custom-menu-editor/custom-menu-editor.component';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-custom-groups',
@@ -12,6 +13,12 @@ import { CustomMenuEditorComponent } from './custom-menu-editor/custom-menu-edit
 })
 export class CustomGroupsComponent {
   customGroupDataUrl = "assets/custom-group-data.json";
+  isGroupEditable : boolean = false;
+  isStatusDropDownOpen : boolean = false;
+  statusList : Array<string> = [
+    "Inactive",
+    "Active"
+  ];
 
   public rowGroupPanelShow: "always" | "onlyWhenGrouping" | "never" = "always";
 
@@ -93,7 +100,35 @@ export class CustomGroupsComponent {
     ],
   };
 
-  constructor(private renderer: Renderer2, private ele: ElementRef, private postLoginService: PostLoginService) { }
+  public form = new FormGroup({
+    groupName : new FormControl(),
+    internalName : new FormControl(),
+    displayName : new FormControl(),
+    description : new FormControl(),
+    excelPassword : new FormControl(),
+    status : new FormControl(),
+    date: new FormControl(),
+  });
+  
+  constructor(private renderer: Renderer2, private ele: ElementRef, private postLoginService: PostLoginService) { 
+    postLoginService.isCustomGroupDetailEditable.subscribe(res =>{
+      this.isGroupEditable = res;
+    })
+
+    postLoginService.selectedGroupData.subscribe((data:any)=>{
+      if(data){
+        this.form.setValue({
+          groupName : data.group_type,
+          internalName: data.internal_name,
+          displayName: data.display_name,
+          description: data.description,
+          excelPassword : data.password,
+          status: data.status,
+          date: null
+        })
+      }      
+    })
+  }
 
   defaultColDef: ColDef = {
     filter: 'agTextColumnFilter',
@@ -294,6 +329,36 @@ export class CustomGroupsComponent {
 
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
+  }
+
+  onCloseEditGroupPanel(){
+    this.postLoginService.isCustomGroupDetailEditable.next(false);
+    this.postLoginService.selectedOption.next(0);
+  }
+
+  statusDropDownOpen(event:any){
+    this.isStatusDropDownOpen = true;
+  }
+
+  statusDropDownClose(event:any){
+    this.isStatusDropDownOpen = false;
+  }
+
+  onSaveChanges(form:any){
+    this.form.reset();
+    this.postLoginService.isCustomGroupDetailEditable.next(false);
+    this.postLoginService.selectedOption.next(0);
+  }
+
+  onCancel(){
+    this.postLoginService.isCustomGroupDetailEditable.next(false);
+    this.postLoginService.selectedOption.next(0);
+  }
+
+  ngOnDestroy(){
+    this.form.reset();
+    this.postLoginService.isCustomGroupDetailEditable.next(false);
+    this.postLoginService.selectedOption.next(0);
   }
 }
 

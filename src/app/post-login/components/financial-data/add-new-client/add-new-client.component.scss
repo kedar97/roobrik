@@ -642,9 +642,19 @@ button:focus {
     .k-window-titlebar-actions {
         padding-bottom: 30px !important;
     }
+}
 
-    .k-button-md.k-icon-button .k-button-icon {
-        border-radius: 50% !important;
-        border: 2px solid black !important;
-    }
-  }
+:host ::ng-deep .k-button-md.k-icon-button .k-button-icon {
+    border-radius: 50% !important;
+    border: 2px solid black !important;
+}
+
+::ng-deep .k-dialog-wrapper .k-button-md.k-icon-button .k-button-icon {
+    border: none !important ;
+    width: 35px !important;
+    height: 35px !important;
+}
+
+::ng-deep .k-dialog-wrapper .k-svg-i-x{
+    content:  url('/assets/images/close-icon-black.svg');
+}

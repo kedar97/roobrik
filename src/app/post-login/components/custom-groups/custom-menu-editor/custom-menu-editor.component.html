@@ -1,12 +1,14 @@
 
 <div class="dropdown-container">
 
-   <kendo-dropdownlist 
+   <kendo-dropdownlist
         [data]="optionList" 
         textField="name"
         valueField="id"
+        [(ngModel)]="selectedOption"
         [valuePrimitive]=true
-        class="custom-dropdown">
+        class="custom-dropdown"
+        (valueChange)="onOptionSelected($event)">
     </kendo-dropdownlist>
 
 </div>

@@ -21,28 +21,23 @@ p{
     .custom-dropdown .k-button-md.k-icon-button .k-button-icon {
         content: url('/assets/images/three-dots.png');
     }
+
+    .custom-dropdown .k-button-md.k-icon-button .k-button-icon {
+        border: none !important;
+    }
 }
 
 ::ng-deep {
     .k-list-item.k-focus{
         box-shadow: none !important;
     }
-
-    .k-child-animation-container{
-        position: absolute;
-        width: fit-content;
-        left: calc(100% + -560%);
-        box-shadow: 0px 0px 8px 2px rgba(#000,.2);
-        top: -25px;
+    .k-animation-container{
+        position: absolute !important;
+        width: fit-content !important;
     }
 
     .k-list-content{
         padding: 5px;
-    }
-
-    .k-list-item-text{
-        font-size: 12px;
-        color:#2A2A2A;
     }
 
     .k-list-content .k-list-item.k-selected{

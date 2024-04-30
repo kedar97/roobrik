@@ -1,60 +1,143 @@
-<div class="main-container">
-    <div class="section-header">
-        <div class="heading">
-            <img src="assets/images/bar-chart-icon.png" alt="Bar-chart icon">
-            <h1>Custom Groups</h1>
-        </div>
-        <div class="search-section">
-            <div class="input-container">
-                <input 
-                type="text" 
-                placeholder="Search" 
-                (input)="onSearch()"         
-                id="filter-text-box"
-                >
-                <img src="assets/images/search-icon.png" alt="Search icon">
+<div class="d-flex">
+    <div class="main-container">
+        <div class="section-header">
+            <div class="heading">
+                <img src="assets/images/bar-chart-icon.png" alt="Bar-chart icon">
+                <h1>Custom Groups</h1>
             </div>
-            <button class="btn btn-create-new">Create New</button>
+            <div class="search-section">
+                <div class="input-container">
+                    <input 
+                    type="text" 
+                    placeholder="Search" 
+                    (input)="onSearch()"         
+                    id="filter-text-box"
+                    >
+                    <img src="assets/images/search-icon.png" alt="Search icon">
+                </div>
+                <button class="btn btn-create-new">Create New</button>
+            </div>
+        </div>
+    
+        <div class="table-section">
+            <ag-grid-angular
+                style="flex-grow: 1; height: 655px"
+                class="ag-theme-balham ag-grid"
+                [rowHeight]="36"
+                [columnDefs]="columnDef"
+                [defaultColDef]="defaultColDef"
+                [rowGroupPanelShow]="rowGroupPanelShow"
+                [rowModelType]="rowModelType"
+                [gridOptions]="gridOptions"
+                [sideBar]="sideBar"
+                [rowSelection]="rowSelection"
+                (selectionChanged)="onSelectionChanged($event)"
+                (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+                [pagination]="true"
+                [cacheBlockSize]="cacheBlockSize"
+                [paginationPageSize]="100"
+                [paginateChildRows]="true"
+                (paginationChanged)="onPaginationChanged($event)"
+                (gridReady)="onGridReady($event)"
+                >
+            </ag-grid-angular>
+    
+            <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
+                <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
+            </div>
+    
+            <select
+                class="items-dropdown"
+                [(ngModel)]="selectedValue"
+                (change)="onItemsPerPageChange(selectedValue)">
+                    <option
+                        *ngFor="let option of paginationOptions"
+                        [attr.selected]="option.value == 100"
+                        [value]="option.value">
+                    {{ option.title }}
+                    </option>
+          </select>
         </div>
     </div>
+    <div class="edit-group-container" *ngIf="isGroupEditable">
+        <img src="assets/images/close-icon-black.svg" alt="Close Icon" class="close-icon" (click)="onCloseEditGroupPanel()">
+        <h1 class="panel-header">Edit group details</h1>
+    
+        <form class="k-form k-form-md" [formGroup]="form" (ngSubmit)="onSaveChanges(form)">
+            <div class="d-flex flex-column custom-gap-20">   
+                <div class="d-flex flex-column">
+                    <kendo-label class="label-text">Group Name</kendo-label>
+                    <input
+                        formControlName="groupName"
+                        kendoTextBox
+                        [readonly]="true"
+                    >
+                 </div>  
 
-    <div class="table-section">
-        <ag-grid-angular
-            style="flex-grow: 1; height: 655px"
-            class="ag-theme-balham ag-grid"
-            [rowHeight]="36"
-            [columnDefs]="columnDef"
-            [defaultColDef]="defaultColDef"
-            [rowGroupPanelShow]="rowGroupPanelShow"
-            [rowModelType]="rowModelType"
-            [gridOptions]="gridOptions"
-            [sideBar]="sideBar"
-            [rowSelection]="rowSelection"
-            (selectionChanged)="onSelectionChanged($event)"
-            (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
-            [pagination]="true"
-            [cacheBlockSize]="cacheBlockSize"
-            [paginationPageSize]="100"
-            [paginateChildRows]="true"
-            (paginationChanged)="onPaginationChanged($event)"
-            (gridReady)="onGridReady($event)"
-            >
-        </ag-grid-angular>
+                 <div class="d-flex flex-column">
+                    <kendo-label class="label-text">Internal name</kendo-label>
+                    <input
+                        formControlName="internalName"
+                        kendoTextBox
+                    >
+                 </div>  
 
-        <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
-            <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
-        </div>
+                 <div class="d-flex flex-column">
+                    <kendo-label class="label-text">Display Name</kendo-label>
+                    <input
+                        formControlName="displayName"
+                        kendoTextBox
+                    >
+                 </div>
 
-        <select
-            class="items-dropdown"
-            [(ngModel)]="selectedValue"
-            (change)="onItemsPerPageChange(selectedValue)">
-                <option
-                    *ngFor="let option of paginationOptions"
-                    [attr.selected]="option.value == 100"
-                    [value]="option.value">
-                {{ option.title }}
-                </option>
-      </select>
+                 <div class="d-flex flex-column">
+                    <kendo-label class="label-text">Description</kendo-label>
+                    <kendo-textarea
+                        [rows]="3"
+                        resizable="none"
+                        class="inputbox-text"
+                        formControlName="description"
+                    ></kendo-textarea>
+                 </div>
+
+                 <div class="d-flex flex-column">
+                    <kendo-label class="label-text">Excel Password</kendo-label>
+                    <input kendoTextBox formControlName="excelPassword">
+                 </div>
+
+                 <div class="d-flex flex-column">
+                    <kendo-label class="label-text">Status</kendo-label>
+                    <kendo-dropdownlist
+                        [data]="statusList"
+                        class="dropdown"
+                        (open)="statusDropDownOpen($event)"
+                        (close)="statusDropDownClose($event)"
+                        [class.dropdown-open]="isStatusDropDownOpen"
+                        formControlName="status"
+                        >
+                        <ng-template kendoDropDownListValueTemplate let-dataItem>
+                        <span class="status-circle"></span>
+                        <span class="mb-2px">{{ dataItem }}</span>
+                        </ng-template>
+                    </kendo-dropdownlist>
+                 </div>
+
+                 <div class="d-flex flex-column" *ngIf="form.get('status').value === 'Inactive'">
+                    <kendo-label class="label-text">Date</kendo-label>
+                    <kendo-datepicker
+                        placeholder="Choose a date ..."
+                        formControlName="date"
+                        class="date-picker"
+                    ></kendo-datepicker>
+                 </div>
+
+                <div class="buttons-container d-flex gap-2">
+                    <button class="btn btn-create-new" type="submit">Save Changes</button>
+                    <button class="btn btn-cancle" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </form>
+        
     </div>
 </div>
+

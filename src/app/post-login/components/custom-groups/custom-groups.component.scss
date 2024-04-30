@@ -15,6 +15,7 @@ button:focus {
 
 .main-container {
   padding: 81px 104px 47px 113px;
+  flex-grow: 1;
 
   @media (min-width: 1920px) {
     width: 1694px !important;
@@ -77,20 +78,20 @@ button:focus {
         background: #fff;
       }
     }
-
-    .btn-create-new {
-      width: fit-content;
-      height: 32px;
-      border-radius: 4;
-      padding: 8px 14px 8px 15px;
-      background-color: #296689;
-      color: #fff;
-      font-family: "Proxima Nova";
-      font-size: 12px;
-      font-weight: 600;
-      line-height: 16px;
-    }
   }
+}
+
+.btn-create-new {
+  width: fit-content;
+  height: 32px;
+  border-radius: 4;
+  padding: 8px 14px 8px 15px;
+  background-color: #296689;
+  color: #fff;
+  font-family: "Proxima Nova";
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
 }
 
 ::-webkit-input-placeholder{
@@ -453,4 +454,142 @@ button:focus {
 :host ::ng-deep .menu-button{
   border: none;
   background: none;
+}
+
+//Add - Edit Announcmet 
+.edit-group-container{
+  width: 331px;
+  padding: 25px 20px;
+  box-shadow: 0px 4px 10px rgba(#000, 0.4);
+  position: relative;
+  margin-top: -52px;
+}
+
+.panel-header{
+  font-size: 16px;
+  color: #2A2A2A;
+  font-weight: 700;
+  font-family:  'Proxima Nova';
+  line-height: 24px;
+  margin-bottom: 24px;
+}
+
+.edit-group-container .close-icon{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.edit-group-container .label-text{
+  font-family: 'Proxima Nova';
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.custom-gap-20{
+  gap:20px;
+}
+
+.buttons-container{
+  border-top: 1px solid #DFDFDF;
+  padding-top: 20px;
+}
+
+.btn-cancle{
+  display: flex;
+  width: 92px;
+  height: 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: #e4eff3;
+  padding: 8px 14px 8px 15px;
+  text-transform: uppercase;
+  font-family: 'Proxima Nova';
+  color: #296689;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px; 
+}
+
+.status-circle{
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  background: #808080;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.dropdown {
+  border: 1px solid #dfdfdf;
+  height: 30px;
+  background-color: #FFF;
+  font-family: 'Proxima Nova';
+  font-size: 12px;
+}
+
+.mb-2px{
+  margin-bottom: -2px;
+}
+
+.inputbox-text{
+  font-family: 'Proxima Nova';
+  font-size: 14px;
+  border : 1px solid #dfdfdf;
+}
+
+:host ::ng-deep .dropdown .k-input-value-text {
+  display: flex;
+  align-items: center;
+}
+
+:host ::ng-deep .dropdown{
+  .k-input-button{
+      display: none;
+  }
+
+  .k-input-inner::after{
+      content: url('../../../../assets/images/chevron-down-icon.svg');
+      margin-top: 4px;
+  }
+
+  &-open{
+      .k-input-inner::after{
+          content: url("../../../../assets/images/up-arrow.svg");
+      }  
+  }
+}
+
+::ng-deep.k-list-content .k-list-item.k-selected{
+    background: #296689;
+}
+
+:host ::ng-deep .edit-group-container .k-textbox{
+  font-size: 14px;
+  font-family: 'Proxima Nova';
+}
+
+::ng-deep {
+  .k-button-flat-primary{
+    color: #3e91c1;
+  }
+
+  .k-calendar .k-calendar-view .k-today,
+  .k-calendar .k-calendar-navigation li:hover{
+    color: #3e91c1;
+  }
+
+  .k-calendar .k-calendar-td.k-selected:hover .k-link,
+  .k-calendar .k-calendar-td.k-selected .k-link {
+    background-color: #3e91c1 !important;
+  }
+}
+
+::ng-deep .date-picker .k-button-md.k-icon-button .k-button-icon {
+  border: none !important ;
 }

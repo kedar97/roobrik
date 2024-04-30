@@ -16,6 +16,10 @@ export class PostLoginService {
   bannerSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
   hideNotifiation: BehaviorSubject<boolean> = new BehaviorSubject(false);
   breadCrumbItems :BehaviorSubject<any> = new BehaviorSubject([]);
+  isCustomGroupDetailEditable : BehaviorSubject<boolean> = new BehaviorSubject(false);
+  selectedGroupData : BehaviorSubject<any> = new BehaviorSubject(null);
+  selectedOption : BehaviorSubject<number> = new BehaviorSubject(0);
+
   constructor(private router: Router, private http:HttpClient) {}
 
   setConfirmDialogMessage(message: string) {

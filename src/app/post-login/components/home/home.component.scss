@@ -274,8 +274,9 @@ p {
       color: #858585;
     }
 
-    .k-calendar-td.k-selected .k-link{
-      background: #0B4569;
+    .k-calendar-td.k-selected .k-link,
+    .k-calendar-td.k-selected:hover .k-link{
+      background: #0B4569 !important;
       border-radius: 8px;
     }
   }

@@ -10,7 +10,8 @@
     "status": "Active",
     "createdBy": "Executive Team",
     "create_date": "2023-01-12",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"test@123"
   },
   {
     "id": 2,
@@ -23,7 +24,9 @@
     "status": "Active",
     "createdBy": "Management Team",
     "create_date": "2023-02-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"xyz@2024"
+
   },
   {
     "id": 3,
@@ -36,7 +39,8 @@
     "status": "Active",
     "createdBy": "Operations Department",
     "create_date": "2023-03-20",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"Acme@solutions"
   },
   {
     "id": 4,
@@ -49,7 +53,8 @@
     "status": "Active",
     "createdBy": "Founders",
     "create_date": "2023-04-10",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"sunshine23$"
   },
   {
     "id": 5,
@@ -62,7 +67,9 @@
     "status": "Active",
     "createdBy": "Environmentalists",
     "create_date": "2023-05-05",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"global@green5"
+
   },
   {
     "id": 6,
@@ -75,7 +82,9 @@
     "status": "Active",
     "createdBy": "Philanthropists",
     "create_date": "2023-06-18",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"silverline@18"
+
   },
   {
     "id": 7,
@@ -88,7 +97,8 @@
     "status": "Active",
     "createdBy": "Humanitarian Workers",
     "create_date": "2023-07-22",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"hope22$"
   },
   {
     "id": 8,
@@ -101,7 +111,8 @@
     "status": "Active",
     "createdBy": "Media Professionals",
     "create_date": "2023-08-10",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"creative@minds"
   },
   {
     "id": 9,
@@ -114,7 +125,8 @@
     "status": "Active",
     "createdBy": "Healthcare Experts",
     "create_date": "2023-09-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"harmonywellness@15"
   },
   {
     "id": 10,
@@ -127,7 +139,8 @@
     "status": "Active",
     "createdBy": "Technology Enthusiasts",
     "create_date": "2023-10-20",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"bluewavetech"
   },
   {
     "id": 11,
@@ -140,7 +153,8 @@
     "status": "Active",
     "createdBy": "Tech Enthusiasts",
     "create_date": "2023-11-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"tech@innovate15"
   },
   {
     "id": 12,
@@ -153,7 +167,8 @@
     "status": "Inactive",
     "createdBy": "Education Advocates",
     "create_date": "2023-12-20",
-    "deactivated_date": "2024-03-10"
+    "deactivated_date": "2024-03-10",
+    "password":"bright@20"
   },
   {
     "id": 13,
@@ -166,7 +181,8 @@
     "status": "Active",
     "createdBy": "Humanitarian Leaders",
     "create_date": "2024-01-25",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"globalvision@25"
   },
   {
     "id": 14,
@@ -179,7 +195,8 @@
     "status": "Active",
     "createdBy": "Community Leaders",
     "create_date": "2024-02-10",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"dreambuilder$"
   },
   {
     "id": 15,
@@ -192,7 +209,8 @@
     "status": "Active",
     "createdBy": "Business Consultants",
     "create_date": "2024-03-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"infinitesolutions"
   },
   {
     "id": 16,
@@ -205,7 +223,8 @@
     "status": "Inactive",
     "createdBy": "Environmentalists",
     "create_date": "2024-04-20",
-    "deactivated_date": "2024-06-10"
+    "deactivated_date": "2024-06-10",
+    "password":"evergreen@tech"
   },
   {
     "id": 17,
@@ -218,7 +237,8 @@
     "status": "Active",
     "createdBy": "Product Developers",
     "create_date": "2024-05-05",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password": "innov@te2023"
   },
   {
     "id": 18,
@@ -231,7 +251,8 @@
     "status": "Inactive",
     "createdBy": "Philanthropists",
     "create_date": "2024-06-18",
-    "deactivated_date": "2024-08-10"
+    "deactivated_date": "2024-08-10",
+    "password":"sunsetphil@n"
   },
   {
     "id": 19,
@@ -244,7 +265,8 @@
     "status": "Active",
     "createdBy": "Software Engineers",
     "create_date": "2024-07-22",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"dynamicdev$"
   },
   {
     "id": 20,
@@ -257,7 +279,8 @@
     "status": "Inactive",
     "createdBy": "Management Consultants",
     "create_date": "2024-08-10",
-    "deactivated_date": "2024-10-05"
+    "deactivated_date": "2024-10-05",
+    "password":"crystalM@nagement"
   },
   {
     "id": 21,
@@ -270,7 +293,8 @@
     "status": "Active",
     "createdBy": "Tech Enthusiasts",
     "create_date": "2024-11-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"techGen@15"
   },
   {
     "id": 22,
@@ -283,7 +307,8 @@
     "status": "Inactive",
     "createdBy": "Education Advocates",
     "create_date": "2024-12-20",
-    "deactivated_date": "2025-03-10"
+    "deactivated_date": "2025-03-10",
+    "password":"brighter@educ@tion"
   },
   {
     "id": 23,
@@ -296,7 +321,8 @@
     "status": "Active",
     "createdBy": "Humanitarian Leaders",
     "create_date": "2025-01-25",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"unityleader@25"
   },
   {
     "id": 24,
@@ -309,7 +335,8 @@
     "status": "Active",
     "createdBy": "Community Leaders",
     "create_date": "2025-02-10",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"dreamCommunity@10"
   },
   {
     "id": 25,
@@ -322,7 +349,8 @@
     "status": "Active",
     "createdBy": "Tech Experts",
     "create_date": "2025-03-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"infiniteTechDev$"
   },
   {
     "id": 26,
@@ -335,7 +363,8 @@
     "status": "Inactive",
     "createdBy": "Environmentalists",
     "create_date": "2025-04-20",
-    "deactivated_date": "2025-06-10"
+    "deactivated_date": "2025-06-10",
+    "password":"techGreen@20"
   },
   {
     "id": 27,
@@ -348,7 +377,8 @@
     "status": "Inactive",
     "createdBy": "Philanthropists",
     "create_date": "2025-06-18",
-    "deactivated_date": "2025-08-10"
+    "deactivated_date": "2025-08-10",
+    "password":"brightPhilan@10"
   },
   {
     "id": 28,
@@ -361,7 +391,8 @@
     "status": "Active",
     "createdBy": "Software Engineers",
     "create_date": "2025-07-22",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"dyn@micSolutions"
   },
   {
     "id": 29,
@@ -374,7 +405,8 @@
     "status": "Inactive",
     "createdBy": "Management Consultants",
     "create_date": "2025-08-10",
-    "deactivated_date": "2025-10-05"
+    "deactivated_date": "2025-10-05",
+    "password":"cryst@lConsulting"
   },
   {
     "id": 30,
@@ -387,7 +419,8 @@
     "status": "Active",
     "createdBy": "Tech Entrepreneurs",
     "create_date": "2025-09-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"techHive@15"
   },
   {
     "id": 31,
@@ -400,7 +433,8 @@
     "status": "Active",
     "createdBy": "Tech Enthusiasts",
     "create_date": "2025-11-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"Innovative@tech"
   },
   {
     "id": 32,
@@ -413,7 +447,8 @@
     "status": "Inactive",
     "createdBy": "Education Advocates",
     "create_date": "2025-12-20",
-    "deactivated_date": "2026-03-10"
+    "deactivated_date": "2026-03-10",
+    "password":"brightMindsEdu$"
   },
   {
     "id": 33,
@@ -426,7 +461,8 @@
     "status": "Active",
     "createdBy": "Humanitarian Leaders",
     "create_date": "2026-01-25",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"glob@lSupport"
   },
   {
     "id": 34,
@@ -439,7 +475,8 @@
     "status": "Active",
     "createdBy": "Animation Artists",
     "create_date": "2026-02-10",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"anim@tionArtist"
   },
   {
     "id": 35,
@@ -452,7 +489,8 @@
     "status": "Active",
     "createdBy": "Tech Experts",
     "create_date": "2026-03-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"techExperts@15"
   },
   {
     "id": 36,
@@ -465,7 +503,8 @@
     "status": "Inactive",
     "createdBy": "Environmentalists",
     "create_date": "2026-04-20",
-    "deactivated_date": "2026-06-10"
+    "deactivated_date": "2026-06-10",
+    "password":"echoTech@10"
   },
   {
     "id": 37,
@@ -478,7 +517,8 @@
     "status": "Active",
     "createdBy": "Global Activists",
     "create_date": "2028-03-25",
-    "deactivated_date": "2028-06-10"
+    "deactivated_date": "2028-06-10",
+    "password":"glob@lRe@ch"
   },
   {
     "id": 38,
@@ -491,7 +531,8 @@
     "status": "Active",
     "createdBy": "Software Engineers",
     "create_date": "2026-07-22",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"geniusTech@22"
   },
   {
     "id": 39,
@@ -504,7 +545,8 @@
     "status": "Inactive",
     "createdBy": "Management Consultants",
     "create_date": "2026-08-10",
-    "deactivated_date": "2026-10-05"
+    "deactivated_date": "2026-10-05",
+    "password":"crystal@05con"
   },
   {
     "id": 40,
@@ -517,7 +559,8 @@
     "status": "Active",
     "createdBy": "Tech Entrepreneurs",
     "create_date": "2026-09-15",
-    "deactivated_date": "N/A"
+    "deactivated_date": "N/A",
+    "password":"techIncub@tor"
   },
   {
     "id": 41,
@@ -530,7 +573,8 @@
     "status": "Active",
     "createdBy": "Tech Enthusiasts",
     "create_date": "2026-11-15",
-    "deactivated_date": "2027-02-10"
+    "deactivated_date": "2027-02-10",
+    "password":"innoTech@15"
   },
   {
     "id": 42,
@@ -543,7 +587,8 @@
     "status": "Active",
     "createdBy": "Tech Strategists",
     "create_date": "2028-08-30",
-    "deactivated_date": "2028-11-05"
+    "deactivated_date": "2028-11-05",
+    "password":"wiseSolution@05"
   },
   {
     "id": 43,
@@ -556,11 +601,12 @@
     "status": "Active",
     "createdBy": "Humanitarian Leaders",
     "create_date": "2027-01-25",
-    "deactivated_date": "2027-04-10"
+    "deactivated_date": "2027-04-10",
+    "password":"aidGlob@l"
   },
   {
     "id": 44,
-    "internal_name": "DreamWorks",
+    "internal_name": "DreamWorks Innovation",
     "display_name": "DreamWorks",
     "description": "Creative studio producing animated films",
     "group_type": "Entertainment",
@@ -569,7 +615,8 @@
     "status": "Active",
     "createdBy": "Animation Artists",
     "create_date": "2027-02-10",
-    "deactivated_date": "2027-05-15"
+    "deactivated_date": "2027-05-15",
+    "password":"dreamTechDev$"
   },
   {
     "id": 45,
@@ -582,7 +629,8 @@
     "status": "Inactive",
     "createdBy": "Tech Visionaries",
     "create_date": "2028-07-25",
-    "deactivated_date": "2028-10-30"
+    "deactivated_date": "2028-10-30",
+    "password":"visinory@tech"
   },
   {
     "id": 46,
@@ -595,7 +643,8 @@
     "status": "Inactive",
     "createdBy": "Environmentalists",
     "create_date": "2027-04-20",
-    "deactivated_date": "2027-07-25"
+    "deactivated_date": "2027-07-25",
+    "password":"echoTechSolutions"
   },
   {
     "id": 47,
@@ -608,7 +657,8 @@
     "status": "Active",
     "createdBy": "Tech Experts",
     "create_date": "2028-05-15",
-    "deactivated_date": "2028-08-20"
+    "deactivated_date": "2028-08-20",
+    "password":"s@vvyTech15"
   },
   {
     "id": 48,
@@ -621,7 +671,8 @@
     "status": "Active",
     "createdBy": "Software Engineers",
     "create_date": "2027-07-22",
-    "deactivated_date": "2027-10-05"
+    "deactivated_date": "2027-10-05",
+    "password":"techG@22"
   },
   {
     "id": 49,
@@ -634,7 +685,8 @@
     "status": "Active",
     "createdBy": "Tech Enthusiasts",
     "create_date": "2028-01-15",
-    "deactivated_date": "2028-04-10"
+    "deactivated_date": "2028-04-10",
+    "password":"swiftTech@10"
   },
   {
     "id": 50,
@@ -647,6 +699,7 @@
     "status": "Active",
     "createdBy": "Tech Enthusiasts",
     "create_date": "2028-10-10",
-    "deactivated_date": "2029-01-15"
+    "deactivated_date": "2029-01-15",
+    "password":"techSp@rk10"
   }
 ]
