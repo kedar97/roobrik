@@ -75,6 +75,7 @@ export class HomeComponent {
     {
       text: 'Select all',
       parentId:'Select all',
+      isActive:true,
       items: [
         {text:'Brightview', isActive:false, parentId:'BrightView',
           items:[
@@ -389,7 +390,7 @@ export class HomeComponent {
   yearsDifference : number;
   invalidStartDate: boolean = false;
   invalidEndDate: boolean = false;
-  activeItems :any = [];
+
   disabledDate = (date: Date): boolean => {
     const today = new Date();
     return date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear() || date > today;
@@ -431,13 +432,13 @@ export class HomeComponent {
     this.cardData[2].upDowns.count = 0;
     this.cardData[3].upDowns.count = 0;
 
-    this.activeItems = this.dataLocations[0].items.filter(item => item.isActive);
+    const activeItems = this.dataLocations[0].items.filter(item => item.isActive);
     const inactiveItems = this.dataLocations[0].items.filter(item => !item.isActive);
     
-    this.activeItems.sort((a, b) => a.text.localeCompare(b.text));
+    activeItems.sort((a, b) => a.text.localeCompare(b.text));
     inactiveItems.sort((a, b) => a.text.localeCompare(b.text));
     
-    const resultItems = [...this.activeItems, ...inactiveItems];
+    const resultItems = [...activeItems, ...inactiveItems];
     this.dataLocations[0].items = resultItems;
 
     this.dataLocations[0].items.forEach(item => {
@@ -474,37 +475,23 @@ export class HomeComponent {
     this.range.end = this.maxDate
   }
 
-  countActiveLocations(arr: any[]): number {
-    let count = 0;
-    arr.forEach(item => {
-      if (item.isActive !== false) {
-        count++;
-        if (item.items) {
-          count += this.countActiveLocations(item.items);
-        }
+  getTotalLocations(data: any[]): number {
+    let totalLength = 0;
+    data.forEach(item => {
+      totalLength++;
+      if (item.items) {
+        totalLength += this.getTotalLocations(item.items);
       }
     });
-    return count;
-}
+    return totalLength;
+  }
 
   tagMapper(tags: any[]) {
     let newTags = [];
-    let totalLoctions = this.countActiveLocations(this.dataLocations);
-    let count = 0;
-    tags.forEach(tag => {
-      this.activeItems.forEach(activeItem => {
-        if (JSON.stringify(tag) === JSON.stringify(activeItem)) {
-          count++;
-        }
-      });
-    });
+    let totalLoctions = this.getTotalLocations(this.dataLocations)
 
-    if(count == 0 && tags.length >= totalLoctions-this.activeItems.length-1 && this.isLocationTree){
-      return newTags=['All locations'];
-    }
-    if(count >=1 && tags.length - count >= totalLoctions - this.activeItems.length -1 && this.isLocationTree){
-      return newTags=['All locations'];
-    }
+    if(tags.length > totalLoctions-1 && this.isLocationTree)
+      return newTags = ['All locations'];
 
     if(tags.length > this.dataAssesments[0].items.length && this.isAssessmentTree)
       return newTags = ['All assessments'];

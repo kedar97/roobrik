@@ -22,7 +22,6 @@
             <kendo-multiselecttree
               #locationTree
               [kendoMultiSelectTreeHierarchyBinding]="dataLocations"
-              [itemDisabled]="itemDisabled"
               childrenField="items"
               textField="text"
               valueField="parentId"
@@ -35,6 +34,9 @@
               [tagMapper]="tagMapper.bind(this)"
               (valueChange)="valueChange($event,'location')"
             >
+            <ng-template kendoMultiSelectTreeNodeTemplate let-dataItem>
+              <p [style.color]="!dataItem.isActive ? '#7c7c7c' : '#424242'">{{ dataItem.text }}</p>
+            </ng-template>
             </kendo-multiselecttree>
           </div>          
         </div>

@@ -14,14 +14,18 @@ button:focus {
 }
 
 .main-container {
-  padding: 81px 104px 47px 113px;
+  padding: 81px 0px 47px 113px;
   flex-grow: 1;
 
   @media (min-width: 1920px) {
     width: 1694px !important;
-    margin: 33px auto 42px !important;
-    padding: 81px 0px 47px 0px;
+    flex-grow: 0 !important;
+    margin: 0 auto !important;
   }
+}
+
+.custom-padding-right{
+  padding-right: 104px;
 }
 
 // HEADER STYLE //
