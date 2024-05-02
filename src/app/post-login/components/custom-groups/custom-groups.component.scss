@@ -106,6 +106,17 @@ button:focus {
     line-height: 16px;
 }
 
+.custom-header{
+  .search-section{
+    gap: 10px;
+    & .input-container {
+      & input {
+        width: 400px;
+      }
+    }
+  }
+}
+
 .table-section{
     margin-top: 24px;
     position: relative;
@@ -231,6 +242,16 @@ button:focus {
 
   .ag-column-select-column-group .ag-icon-tree-closed{
       margin-top: -5px;
+  }
+
+  .ag-pinned-right-header,
+  .ag-horizontal-right-spacer{
+    width: 60px !important;
+    min-width: 60px !important;
+  }
+
+  .ag-pinned-right-cols-container{
+    margin-right: 0px !important;
   }
 }
 
@@ -467,6 +488,10 @@ button:focus {
   box-shadow: 0px 4px 10px rgba(#000, 0.4);
   position: relative;
   margin-top: -52px;
+
+  @media (min-width:1920px) {
+    width: 500px;
+  }
 }
 
 .panel-header{

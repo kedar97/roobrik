@@ -12,6 +12,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./custom-groups.component.scss']
 })
 export class CustomGroupsComponent {
+
+  isSmallDesktopScreen: boolean = false;
   customGroupDataUrl = "assets/custom-group-data.json";
   isGroupEditable : boolean = false;
   isStatusDropDownOpen : boolean = false;
@@ -229,11 +231,17 @@ export class CustomGroupsComponent {
       suppressColumnsToolPanel: true,
       suppressFiltersToolPanel: true,
       cellRenderer: CustomMenuEditorComponent,
+      pinned: 'right',
+      lockPinned: true,
+      floatingFilter:false,
+      filter:false
     },
   ]
   
   rowData: any = [];
-  ngOnInit() {}
+  ngOnInit() {
+    this.isSmallDesktopScreen = window.innerWidth <= 1366;
+  }
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
@@ -333,7 +341,6 @@ export class CustomGroupsComponent {
 
   onCloseEditGroupPanel(){
     this.postLoginService.isCustomGroupDetailEditable.next(false);
-    this.postLoginService.selectedOption.next(0);
   }
 
   statusDropDownOpen(event:any){
@@ -347,18 +354,15 @@ export class CustomGroupsComponent {
   onSaveChanges(form:any){
     this.form.reset();
     this.postLoginService.isCustomGroupDetailEditable.next(false);
-    this.postLoginService.selectedOption.next(0);
   }
 
   onCancel(){
     this.postLoginService.isCustomGroupDetailEditable.next(false);
-    this.postLoginService.selectedOption.next(0);
   }
 
   ngOnDestroy(){
     this.form.reset();
     this.postLoginService.isCustomGroupDetailEditable.next(false);
-    this.postLoginService.selectedOption.next(0);
   }
 }
 

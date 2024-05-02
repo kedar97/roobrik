@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -18,7 +18,6 @@ export class PostLoginService {
   breadCrumbItems :BehaviorSubject<any> = new BehaviorSubject([]);
   isCustomGroupDetailEditable : BehaviorSubject<boolean> = new BehaviorSubject(false);
   selectedGroupData : BehaviorSubject<any> = new BehaviorSubject(null);
-  selectedOption : BehaviorSubject<number> = new BehaviorSubject(0);
 
   constructor(private router: Router, private http:HttpClient) {}
 

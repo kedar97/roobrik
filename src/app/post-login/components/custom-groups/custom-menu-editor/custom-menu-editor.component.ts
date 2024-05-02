@@ -13,11 +13,7 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
   params : any;
   selectedRowData : any;
   selectedOption:number = 0;
-  constructor(private postLoginService : PostLoginService){
-    postLoginService.selectedOption.subscribe(data =>{
-      this.selectedOption = data;
-    })
-  }
+  constructor(private postLoginService : PostLoginService){}
 
   agInit(params: ICellRendererParams): void {
     this.params = params;
@@ -36,9 +32,12 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
   onOptionSelected(event:any){
     if (event === 1) {
       this.selectedRowData = this.params.data;
-      this.postLoginService.selectedOption.next(event)
       this.postLoginService.isCustomGroupDetailEditable.next(true);
       this.postLoginService.selectedGroupData.next(this.selectedRowData);
     }
+  }
+
+  onMenuDropdownOpen(){
+    this.selectedOption = 0;
   }
 }

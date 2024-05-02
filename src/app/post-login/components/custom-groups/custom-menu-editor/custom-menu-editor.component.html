@@ -8,7 +8,8 @@
         [(ngModel)]="selectedOption"
         [valuePrimitive]=true
         class="custom-dropdown"
-        (valueChange)="onOptionSelected($event)">
+        (valueChange)="onOptionSelected($event)"
+        (open)="onMenuDropdownOpen()">
     </kendo-dropdownlist>
 
 </div>
