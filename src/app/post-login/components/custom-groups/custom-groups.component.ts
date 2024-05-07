@@ -5,6 +5,7 @@ import { PostLoginService } from '../../post-login.service';
 import * as alasql from 'alasql';
 import { CustomMenuEditorComponent } from './custom-menu-editor/custom-menu-editor.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-custom-groups',
@@ -112,7 +113,7 @@ export class CustomGroupsComponent {
     date: new FormControl(),
   });
   
-  constructor(private renderer: Renderer2, private ele: ElementRef, private postLoginService: PostLoginService) { 
+  constructor(private renderer: Renderer2, private ele: ElementRef, private postLoginService: PostLoginService, private router:Router) { 
     postLoginService.isCustomGroupDetailEditable.subscribe(res =>{
       this.isGroupEditable = res;
     })
@@ -358,6 +359,10 @@ export class CustomGroupsComponent {
 
   onCancel(){
     this.postLoginService.isCustomGroupDetailEditable.next(false);
+  }
+
+  onCreateNewGroup(){
+    this.router.navigate(['reports/custom-groups/create-new-group'])
   }
 
   ngOnDestroy(){

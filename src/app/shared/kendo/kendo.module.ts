@@ -12,6 +12,7 @@ import { IndicatorsModule } from '@progress/kendo-angular-indicators';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { ListViewModule } from '@progress/kendo-angular-listview';
 import { PopupModule } from '@progress/kendo-angular-popup';
+import { TreeViewModule } from '@progress/kendo-angular-treeview';
 @NgModule({
   declarations: [],
   imports: [
@@ -29,7 +30,8 @@ import { PopupModule } from '@progress/kendo-angular-popup';
     IndicatorsModule,
     DropDownsModule,
     ListViewModule,
-    PopupModule
+    PopupModule,
+    TreeViewModule
   ],
   exports: [
     NavigationModule,
@@ -45,7 +47,8 @@ import { PopupModule } from '@progress/kendo-angular-popup';
     IndicatorsModule,
     DropDownsModule,
     ListViewModule,
-    PopupModule
+    PopupModule,
+    TreeViewModule
   ]
 })
 export class KendoModule { }

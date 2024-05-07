@@ -16,6 +16,7 @@ import { AnnouncementManagementComponent } from './components/announcement-manag
 import { UnsavedChangesGuard } from './components/financial-data/edit-saas-revenue/unsaved-changes.guard';
 import { AddNewClientComponent } from './components/financial-data/add-new-client/add-new-client.component';
 import { CustomGroupsComponent } from './components/custom-groups/custom-groups.component';
+import { CreateNewGroupComponent } from './components/custom-groups/create-new-group/create-new-group.component';
 const routes: Routes = [
   {
     path: '',
@@ -80,6 +81,10 @@ const routes: Routes = [
       {
         path: 'custom-groups',
         component: CustomGroupsComponent,
+      },
+      {
+        path: 'custom-groups/create-new-group',
+        component: CreateNewGroupComponent,
       },
     ]
   },

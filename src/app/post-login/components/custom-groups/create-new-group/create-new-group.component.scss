@@ -1,0 +1,351 @@
+h1,p{
+    margin: 0;
+}
+
+button:focus{
+    outline: none;
+}
+
+.main-container{
+    padding: 0 31px 101px 35px;
+    margin-top: 22px;
+}
+
+.heading-text{
+    gap: 14px;
+    align-items: center;
+    text-transform: capitalize;
+
+    img{
+        width: 35px;
+        height: 35px;
+    }
+
+    h1{
+        color: #2E2E2E;
+        font-family: 'Proxima Nova';
+        font-size: 24px;
+        font-weight: 700;
+    }
+}
+
+.form-container{
+    margin-top: 41px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows:repeat(4,auto);
+    row-gap: 28px;
+    column-gap: 25px;
+
+    .label-text{
+        text-transform: capitalize;
+        color: #2E2E2E;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .input-box{
+        height: 38px;
+    }
+}
+
+.gap-25{
+    gap: 25px;
+}
+
+.gap-28{
+    gap: 28px;
+}
+
+// DROPDOWN STYLE //
+.dropdown{
+    height: 38px;
+    border-radius: 5px;
+    border: 1px solid #C3C3C3;
+    background: #FFF;
+    color: #B0B0B0;
+    font-family: "Proxima Nova";
+    font-size: 14px;
+    font-weight: 500;
+}
+
+:host ::ng-deep .dropdown{
+    .k-input-button{
+        display: none;
+    }
+
+    .k-input-inner::after{
+        content: url('../../../../../assets/images/chevron-down-icon.svg');
+        margin-top: 4px;
+    }
+
+    &-open{
+        .k-input-inner::after{
+            content: url("../../../../../assets/images/up-arrow.svg");
+        }  
+    }
+
+    .k-input-inner{
+        background-color: #FFF;
+    }
+}
+
+::ng-deep.k-list-content .k-list-item.k-selected{
+    background: #296689;
+}
+
+
+// INPUT STYLE //
+:host ::ng-deep {
+    .k-input{
+        border-radius: 5px;
+        border: 1px solid #C3C3C3;
+        background: #FFF;
+    }
+
+    .k-input textarea{
+        padding: 16px 18px;
+
+        &::-webkit-input-placeholder {
+            color: #B0B0B0;
+            font-family: "Proxima Nova";
+            font-size: 14px;
+            font-weight: 500;
+        }
+    }
+
+    .k-label{
+        margin-bottom: 14px;
+    }
+
+    .k-treeview-top.k-treeview-bot{
+        border-bottom: 1px solid #DFDFDF;
+        padding-bottom: 11px;
+        margin-bottom: 16px;
+    }
+
+    .k-input-value-text{
+        font-size:14px;
+        color:#2A2A2A;
+        font-weight: 500;
+    }
+}
+
+::-webkit-input-placeholder{
+    color: #B0B0B0;
+    font-family: "Proxima Nova";
+    font-size: 14px;
+    font-weight: 500;
+}
+
+// Kendo Toggle Button
+.toggle-text{
+    color:#2A2A2A;
+    font-family: "Proxima Nova";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-left: 12px;
+}
+
+:host ::ng-deep .k-switch-md .k-switch-track {
+    width: 40px;
+    height: 24px;
+    border: none;
+    background-color: #D9D9D9;
+}
+  
+:host ::ng-deep .k-switch-md {
+    width: 40px;
+    height: 24px;
+  
+    .k-switch-thumb {
+      width: 20px;
+      height: 20px;
+      background-color: #B9B9B9;
+    }
+  
+    .k-switch-label-off,
+    .k-switch-label-on {
+      display: none;
+    }
+}
+  
+:host ::ng-deep .k-switch-on:focus .k-switch-track,
+:host ::ng-deep .k-switch-off:focus .k-switch-track {
+    outline: none;
+}
+  
+:host ::ng-deep .k-switch-on .k-switch-track {
+    background-color: #296689;
+}
+
+:host ::ng-deep{
+    .k-switch-md.k-switch-off .k-switch-thumb-wrap {
+        left: calc( 12px + 0px );
+    }
+
+    .k-switch-md.k-switch-on .k-switch-thumb-wrap {
+        left: calc( 100% - 12px - 0px );
+    }
+} 
+
+.input-container {
+    grid-column: 3 / 4;
+    grid-row: 2 / 4;
+}
+
+//LISTBOX SECTION STYLE //
+.listbox-section{
+    grid-column: 1/3;
+    
+    &-heading,
+    .list-heading{
+        color: #2E2E2E;
+        font-family: "Proxima Nova";
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 7px;
+    }
+}
+
+.list-container{
+    padding: 24px 50px 39px 49px;
+    border: 1px solid #DFDFDF;
+
+    .parent-list,
+    .child-list{
+        flex-grow: 1;
+        position: relative;
+    }
+}
+
+:host ::ng-deep .list-container{
+    .k-treeview{
+        padding: 15px 16px 45px 13px;
+        border-radius: 5px;
+        border: 1px solid #DFDFDF;
+        height: 540px;
+    }
+
+    .k-treeview-leaf{
+        color: #2A2A2A;
+        font-family: "Proxima Nova";
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 16px; 
+    }
+
+    .k-checkbox:checked{
+        border-color:#0a4569;
+        background-color:#0a4569;
+    }
+
+    .k-checkbox:checked:focus{
+        box-shadow: none;
+    }
+
+
+}
+
+.button-container{
+    display: flex;
+    flex-direction: column;
+    gap:12px;
+    align-items: center;
+}
+
+.btn{
+    font-family: "Proxima Nova";
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-light{
+    border-radius: 5px;
+    background: #E2EFF3;
+    color: #296689;
+    padding: 15px 13px 14px 13px;
+    width: 79px;
+}
+
+.form-actions{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.btn-save{
+    border-radius: 4px;
+    background: #296689;
+    width: 82px;
+    height: 32px;
+    padding: 8px 20px;
+    color: #FFF;
+
+    &:active{
+        background-color:#296689;
+        color: #FFF;
+    }
+}
+
+.btn-cancel{
+    border-radius: 4px;
+    background: rgba(61, 146, 174, 0.15);
+    padding: 8px 17px;
+    color:  #296689;
+    width: 82px;
+    height: 32px;
+
+    &:active{
+        background: rgba(61, 146, 174, 0.15);
+    }
+}
+
+.total-section{
+    position: absolute;
+    bottom: 1px;
+    left: 13px;
+    right: 15px;
+    border-top: 1px solid #DFDFDF;
+    padding: 8px;
+    padding-left: 24px;
+    background-color: #FFF;
+    z-index: 99;
+
+    color: #2A2A2A;
+    font-family: "Proxima Nova";
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+
+    & input{
+        margin-right: 12px;
+        height: 16px;
+        width: 16px;
+    }
+}
+
+::ng-deep .k-treeview::-webkit-scrollbar {
+    width: 8px;
+}
+  
+::ng-deep .k-treeview::-webkit-scrollbar-track {
+    background-color: #FFF;
+    border-radius: 5px;
+    
+}
+  
+::ng-deep .k-treeview::-webkit-scrollbar-thumb {
+    background-color: #BFBFBF;
+    border-radius: 10px;
+}
+  
+.k-treeview::-webkit-scrollbar-thumb:hover {
+    background-color: #acacac;
+}

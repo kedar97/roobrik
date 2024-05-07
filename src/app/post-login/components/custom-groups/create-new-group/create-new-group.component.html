@@ -1,0 +1,148 @@
+<div class="main-container">
+    <div class="heading-text d-flex">
+        <img src="assets/images/person-pin-outline-rounded.svg" alt="Bar-chart icon">
+        <h1>{{pageTitle}}</h1>
+    </div>
+
+    <form [formGroup]="form" class="form-container" (ngSubmit)="onSave(form)">
+        <kendo-formfield>
+            <kendo-label class="label-text">Group Type</kendo-label>
+            <kendo-dropdownlist 
+                formControlName="groupType" 
+                [data]="groupTypeList" 
+                [valuePrimitive]=true
+                textField="value"
+                valueField="id"
+                (open)="formDropDownOpen('groupType')"
+                (close)="formDropDownClose('groupType')" 
+                (valueChange)="handleFilter($event, 'group')" 
+                class="dropdown"
+                [class.dropdown-open]="isGroupDropDownOpen"
+                [itemDisabled]="itemDisabled">
+            </kendo-dropdownlist>
+        </kendo-formfield>
+
+        <div>
+            <kendo-formfield *ngIf="isShowSelectClient">
+                <kendo-label class="label-text">Select Client</kendo-label>
+                <kendo-dropdownlist 
+                    formControlName="selectedClient" 
+                    [data]="clientList" 
+                    [valuePrimitive]=true
+                    textField="value" 
+                    valueField="id" 
+                    (open)="formDropDownOpen('selectClient')"
+                    (close)="formDropDownClose('selectClient')" 
+                    (valuehange)="handleFilter($event, 'client')"
+                    class="dropdown" 
+                    [class.dropdown-open]="isClientDropDownOpen"
+                    [itemDisabled]="itemDisabled">
+                </kendo-dropdownlist>
+            </kendo-formfield>
+        </div>
+
+        <div>
+            <kendo-formfield *ngIf="isShowSelectClient">
+                <kendo-label class="label-text">Group Default Franchise</kendo-label>
+                <kendo-dropdownlist 
+                    formControlName="defaultFranchise" 
+                    [data]="defaultFranchiseList" 
+                    [valuePrimitive]=true
+                    textField="value" 
+                    valueField="id" 
+                    (open)="formDropDownOpen('franchiseCount')"
+                    (close)="formDropDownClose('franchiseCount')" 
+                    (valueChange)="handleFilter($event, 'franchise')"
+                    class="dropdown" 
+                    [class.dropdown-open]="isFranchiseDropDownOpen">
+                </kendo-dropdownlist>
+            </kendo-formfield>
+        </div>
+        
+        <kendo-formfield>
+            <kendo-label class="label-text">Internal Name</kendo-label>
+            <input formControlName="internalName" kendoTextBox class="input-box" />
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <kendo-label class="label-text">Display Name</kendo-label>
+            <input formControlName="displayName" kendoTextBox class="input-box" />
+        </kendo-formfield>
+
+        <div class="input-container">
+            <kendo-label class="label-text">Description</kendo-label>
+            <kendo-textarea placeholder="Description..." resizable="none" formControlName="description"[rows]="5">
+            </kendo-textarea>
+        </div>
+
+        <kendo-formfield>
+            <kendo-label class="label-text">Excel Password</kendo-label>
+            <input formControlName="excelPassword" kendoTextBox placeholder="Fk2xPeHcyZVGzVV" class="input-box" />
+        </kendo-formfield>
+
+        <kendo-formfield>
+            <div class="d-flex justify-content-between">
+                <kendo-label class="label-text">Default Effective Date</kendo-label>
+                <div class="">
+                    <kendo-switch></kendo-switch>
+                    <span class="toggle-text">{{toggleText}}</span>
+                </div>
+            </div>
+            <input formControlName="effectiveDate" kendoTextBox placeholder="Report Name..." class="input-box" />
+        </kendo-formfield>
+
+        <div class="listbox-section">
+            <div class="listbox-section-heading">{{selectionHeading}}</div>
+            <div class="list-container d-flex gap-25 align-items-center">
+                <div class="parent-list">
+                    <div class="list-heading">{{parentListHeading}}</div>
+                    <kendo-treeview
+                        kendoTreeViewHierarchyBinding
+                        kendoTreeViewCheckable
+                        [filterable]="true"
+                        [nodes]="parentListData"
+                        childrenField="items"
+                        textField="text"
+                        [(checkedKeys)]="checkedKeys"
+                        [checkBy]="key">
+                    </kendo-treeview>
+
+                    <div class="total-section d-flex align-items-center">
+                        <input type="checkbox" #notification kendoCheckBox [checked]="checkedKeys.length === getTotalItemsCount([parentListData])"/>
+                        <span>{{checkedKeys.length}} / {{ getTotalItemsCount(parentListData) }}</span>
+                    </div>
+                </div>
+
+                <div class="button-container">
+                    <button class="btn btn-light" (click)="onAddSelected()">Add Selected</button>
+                    <button class="btn btn-light" (click)="onAddAll()">Add All</button>
+                    <button class="btn btn-light" (click)="onRemoveSelected()">Remove Selected</button>
+                    <button class="btn btn-light" (click)="onRemoveAll()">Remove All</button>
+                </div>
+
+                <div class="child-list">
+                    <div class="list-heading">{{childListHeading}}</div>
+                    <kendo-treeview
+                        kendoTreeViewHierarchyBinding
+                        kendoTreeViewCheckable
+                        [filterable]="true"
+                        [nodes]="selectedData"
+                        childrenField="items"
+                        textField="text"
+                        [(checkedKeys)]="childCheckedKeys"
+                        [checkBy]="key">
+                    </kendo-treeview>
+                    <div class="total-section d-flex align-items-center">
+                        <input type="checkbox" #notification kendoCheckBox [checked]="checkedKeys.length === getTotalItemsCount(selectedData)"/>
+                        <span>{{childCheckedKeys.length}} / {{ getTotalItemsCount(selectedData) }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button class="btn btn-save">Save</button>
+            <button class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</div>

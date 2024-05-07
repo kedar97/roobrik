@@ -31,6 +31,7 @@ import { TooltipModule } from '@progress/kendo-angular-tooltip';
 import { AddNewClientComponent } from './components/financial-data/add-new-client/add-new-client.component';
 import { CustomGroupsComponent } from './components/custom-groups/custom-groups.component';
 import { CustomMenuEditorComponent } from './components/custom-groups/custom-menu-editor/custom-menu-editor.component';
+import { CreateNewGroupComponent } from './components/custom-groups/create-new-group/create-new-group.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -54,6 +55,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     AddNewClientComponent,
     CustomGroupsComponent,
     CustomMenuEditorComponent,
+    CreateNewGroupComponent,
   ],
   imports: [
     CommonModule,
