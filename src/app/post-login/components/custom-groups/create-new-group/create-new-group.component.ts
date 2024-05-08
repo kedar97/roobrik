@@ -1,12 +1,14 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { Form, FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { parentListData } from '../listData';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-new-group',
   templateUrl: './create-new-group.component.html',
-  styleUrls: ['./create-new-group.component.scss']
+  styleUrls: ['./create-new-group.component.scss'],
+  providers: [DatePipe]
 })
 export class CreateNewGroupComponent {
   pageTitle = 'Create new group';
@@ -21,7 +23,10 @@ export class CreateNewGroupComponent {
   childListHeading : string = 'Selected Client/franchise';
   isParentList : boolean = false;
   isChildList : boolean = false;
-
+  today : string;
+  isGroupOptionSelected : boolean = false;
+  isClientOptionSelected : boolean = false;
+  isListDisabled : boolean = true;
   public checkedKeys: any[] = [];
   public childCheckedKeys :any[] =[];
   public key = 'text';
@@ -40,31 +45,10 @@ export class CreateNewGroupComponent {
   ];
 
   clientList = [
-    {id:null,value:'Select...'} ,
-    {id:1,value:'Bright Horizons'},
-    {id:2,value:'Sunflower Care'},
-    {id:3,value:'Meadowbrook Senior Living'},
-    {id:4,value:'Bluebell Assisted Living'},
-    {id:5,value:'Golden Acres Retirement Community'},
-    {id:6,value:'Serenity Gardens'},
-    {id:7,value:'Maplewood Senior Care'},
-    {id:8,value:'Willowbrook Residence'},
-    {id:9,value:'Tranquil Meadows Assisted Living'},
-    {id:10,value:'Harmony Hills Senior Living'},
+    {id:null,value:'Select...'}
   ];
 
-  defaultFranchiseList = [
-    'FreshBite Cafe',
-    'SpeedyPrint Solutions',
-    'TechTune Electronics',
-    'HappyPaws Pet Store',
-    'CleanSweep Janitorial Services',
-    'QuickFix Phone Repairs',
-    'FitZone Gym',
-    'TastyBite Burger Joint',
-    'TrendyThreads Fashion Outlet',
-    'GreenThumb Landscaping Services',
-  ];
+  defaultFranchiseList = [];
 
   public form = new FormGroup({
     groupType : new FormControl(),
@@ -77,12 +61,27 @@ export class CreateNewGroupComponent {
     description :  new FormControl()
   });
   
-  constructor(private cdr: ChangeDetectorRef){}
+  constructor(private datePipe: DatePipe){}
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.today = this.datePipe.transform(new Date(), 'MM/dd/yyyy');
+    this.parentListData.forEach(item =>{
+      if(item.items){
+        item.items.forEach((client,index) =>{
+          this.clientList.push({ id: index+1, value: client.text })
 
-  public itemDisabled(itemArgs: { dataItem: string; index: number }) {
-    return itemArgs.index === 0;
+          if(client.items){
+            client.items.forEach(child=>{
+              this.defaultFranchiseList.push(child.text)
+            })
+          }
+        })
+      }
+    })
+  }
+
+  public itemDisabled(itemArgs: { dataItem: any; index: number }) {
+    return itemArgs.dataItem.value === 'Select...';
   }
 
   onSave(form : any){}
@@ -129,20 +128,40 @@ export class CreateNewGroupComponent {
     }
   }
 
-  handleFilter(event:any ,type:string){
+  onSelectioChange(event:any ,type:string){
     if(type === 'group'){
+      this.isGroupOptionSelected = true;
       this.isShowSelectClient = event === 1 ? true : false;
-      if(this.isShowSelectClient){
+      this.isListDisabled = event === 1 ? false : true;
+      if(event === 1){
+        this.isShowSelectClient = true;
+        this.isListDisabled = false;
+        this.parentListData = [];
+
         this.selectionHeading = 'Franchise Selection';
         this.parentListHeading = 'Franchise list';
         this.childListHeading = 'Selected Franchises';
       }
       else{
+        this.checkedKeys = [];
+        this.childCheckedKeys = [];
+        this.isShowSelectClient = false;
+        this.isListDisabled = true;
+        this.parentListData = parentListData;
+        this.isListDisabled =  true;
         this.selectionHeading = 'Client/franchise Selection';
         this.parentListHeading = 'Client/franchise list';
         this.childListHeading = 'Selected Client/fanchises';
       }
-
+    }
+    else if(type === 'client'){
+      this.isClientOptionSelected = true;
+      let clientName = this.clientList[event].value;
+      let parentObject = parentListData.find(obj => obj.items.some(item => item.text === clientName));
+      if (parentObject) {
+        let desiredObject = parentObject.items.find(item => item.text === clientName);
+        this.parentListData = [{text:'Select all', items:[desiredObject]}];
+      }
     }
   }
   
@@ -161,6 +180,7 @@ export class CreateNewGroupComponent {
     this.selectedData = [];
     this.selectedData.push({text:'Select all', items:[]})
     this.childCheckedKeys = [];
+    this.checkedKeys = [];
   }
 
   onRemoveSelected(){

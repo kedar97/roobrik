@@ -18,42 +18,49 @@ export const parentListData: any[] = [
                 ]
             },
             {
-                text: "Riverwalk",
+                text: "GloKidz",
                 items: [
-                    { text: "San Antonio" },
-                    { text: "New Braunfels" },
-                    { text: "Boerne", }
+                    { text: "GloKidz West" },
+                    { text: "GloKidz East" },
                 ]
             },
             {
-                text: 'Cambridge',
+                text: 'SilverCare',
                 items: [
-                    { text: 'Columbia' },
-                    { text: 'Centreville' },
+                    { text: 'SilverCare Heights' },
+                    { text: 'SilverCare Village' },
                 ]
             },
             {
-                text: 'Rockville',
+                text: 'MunchBox',
                 items: [
-                    { text: 'Randallstown' },
-                    { text: 'Reisterstown' },
+                    { text: 'MunchBox Plaza' },
+                    { text: 'MunchBOz Suburia' },
                 ]
             },
             {
-                text: 'Towson',
+                text: 'CuppaCrib',
                 items: [
-                    { text: 'Timonium' },
-                    { text: 'Takoma Park' },
+                    { text: 'CuppaCrib Central' },
+                    { text: 'CuppaCrib Parkside' },
                 ]
             },
             {
-                text: 'Waldorf',
+                text: 'CleanCrew',
                 items: [
-                    { text: 'Westminster' },
-                    { text: 'Wheaton' },
+                    { text: 'CleanCrew Downtown' },
+                    { text: 'CleanCrew Cleaners Palza' },
+                    { text: 'CleanCrew Suburbia' },
+                ]
+            },
+            {
+                text: 'TechTots',
+                items: [
+                    { text: 'TechTots Learning' },
+                    { text: 'TechTots Center East' },
+                    { text: 'TechTots Center West' },
                 ]
             }
-
         ],
     },
 ]

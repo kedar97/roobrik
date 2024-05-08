@@ -15,8 +15,9 @@
                 valueField="id"
                 (open)="formDropDownOpen('groupType')"
                 (close)="formDropDownClose('groupType')" 
-                (valueChange)="handleFilter($event, 'group')" 
+                (valueChange)="onSelectioChange($event, 'group')" 
                 class="dropdown"
+                [class.data-selected]="isGroupOptionSelected"
                 [class.dropdown-open]="isGroupDropDownOpen"
                 [itemDisabled]="itemDisabled">
             </kendo-dropdownlist>
@@ -33,8 +34,9 @@
                     valueField="id" 
                     (open)="formDropDownOpen('selectClient')"
                     (close)="formDropDownClose('selectClient')" 
-                    (valuehange)="handleFilter($event, 'client')"
+                    (valueChange)="onSelectioChange($event, 'client')"
                     class="dropdown" 
+                    [class.data-selected]="isClientOptionSelected"
                     [class.dropdown-open]="isClientDropDownOpen"
                     [itemDisabled]="itemDisabled">
                 </kendo-dropdownlist>
@@ -49,10 +51,10 @@
                     [data]="defaultFranchiseList" 
                     [valuePrimitive]=true
                     textField="value" 
-                    valueField="id" 
+                    valueField="value" 
                     (open)="formDropDownOpen('franchiseCount')"
                     (close)="formDropDownClose('franchiseCount')" 
-                    (valueChange)="handleFilter($event, 'franchise')"
+                    (valueChange)="onSelectioChange($event, 'franchise')"
                     class="dropdown" 
                     [class.dropdown-open]="isFranchiseDropDownOpen">
                 </kendo-dropdownlist>
@@ -88,7 +90,11 @@
                     <span class="toggle-text">{{toggleText}}</span>
                 </div>
             </div>
-            <input formControlName="effectiveDate" kendoTextBox placeholder="Report Name..." class="input-box" />
+            <kendo-datepicker
+                formControlName="effectiveDate"
+                class="date-picker"
+                [placeholder]="today"
+            ></kendo-datepicker>
         </kendo-formfield>
 
         <div class="listbox-section">
@@ -96,24 +102,28 @@
             <div class="list-container d-flex gap-25 align-items-center">
                 <div class="parent-list">
                     <div class="list-heading">{{parentListHeading}}</div>
-                    <kendo-treeview
-                        kendoTreeViewHierarchyBinding
-                        kendoTreeViewCheckable
-                        [filterable]="true"
-                        [nodes]="parentListData"
-                        childrenField="items"
-                        textField="text"
-                        [(checkedKeys)]="checkedKeys"
-                        [checkBy]="key">
-                    </kendo-treeview>
+                    <div class="light-border">
+                        <kendo-treeview
+                            kendoTreeViewHierarchyBinding
+                            kendoTreeViewCheckable
+                            [filterable]="true"
+                            [nodes]="parentListData"
+                            childrenField="items"
+                            textField="text"
+                            [(checkedKeys)]="checkedKeys"
+                            [checkBy]="key"
+                            [class.list-disabled]="isListDisabled">
+                        </kendo-treeview>
 
-                    <div class="total-section d-flex align-items-center">
-                        <input type="checkbox" #notification kendoCheckBox [checked]="checkedKeys.length === getTotalItemsCount([parentListData])"/>
-                        <span>{{checkedKeys.length}} / {{ getTotalItemsCount(parentListData) }}</span>
+                        <div class="total-section d-flex align-items-center" [class.list-disabled]="isListDisabled">
+                            <input type="checkbox" #notification kendoCheckBox [checked]="checkedKeys.length === getTotalItemsCount([parentListData])"/>
+                            <span>{{checkedKeys.length}} / {{ getTotalItemsCount(parentListData) }}</span>
+                        </div>
                     </div>
+                    
                 </div>
 
-                <div class="button-container">
+                <div class="button-container" [class.list-disabled]="isListDisabled">
                     <button class="btn btn-light" (click)="onAddSelected()">Add Selected</button>
                     <button class="btn btn-light" (click)="onAddAll()">Add All</button>
                     <button class="btn btn-light" (click)="onRemoveSelected()">Remove Selected</button>
@@ -122,19 +132,22 @@
 
                 <div class="child-list">
                     <div class="list-heading">{{childListHeading}}</div>
-                    <kendo-treeview
-                        kendoTreeViewHierarchyBinding
-                        kendoTreeViewCheckable
-                        [filterable]="true"
-                        [nodes]="selectedData"
-                        childrenField="items"
-                        textField="text"
-                        [(checkedKeys)]="childCheckedKeys"
-                        [checkBy]="key">
-                    </kendo-treeview>
-                    <div class="total-section d-flex align-items-center">
-                        <input type="checkbox" #notification kendoCheckBox [checked]="checkedKeys.length === getTotalItemsCount(selectedData)"/>
-                        <span>{{childCheckedKeys.length}} / {{ getTotalItemsCount(selectedData) }}</span>
+                    <div class="light-border">
+                        <kendo-treeview
+                            kendoTreeViewHierarchyBinding
+                            kendoTreeViewCheckable
+                            [filterable]="true"
+                            [nodes]="selectedData"
+                            childrenField="items"
+                            textField="text"
+                            [(checkedKeys)]="childCheckedKeys"
+                            [checkBy]="key"
+                            [class.list-disabled]="isListDisabled">
+                        </kendo-treeview>
+                        <div class="total-section d-flex align-items-center" [class.list-disabled]="isListDisabled">
+                            <input type="checkbox" #notification kendoCheckBox [checked]="childCheckedKeys.length === getTotalItemsCount(selectedData)"/>
+                            <span>{{childCheckedKeys.length}} / {{ getTotalItemsCount(selectedData) }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
