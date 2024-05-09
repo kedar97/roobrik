@@ -146,9 +146,8 @@ export class CreateNewGroupComponent {
         this.checkedKeys = [];
         this.childCheckedKeys = [];
         this.isShowSelectClient = false;
-        this.isListDisabled = true;
+        this.isListDisabled = false;
         this.parentListData = parentListData;
-        this.isListDisabled =  true;
         this.selectionHeading = 'Client/franchise Selection';
         this.parentListHeading = 'Client/franchise list';
         this.childListHeading = 'Selected Client/fanchises';

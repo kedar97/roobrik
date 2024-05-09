@@ -150,58 +150,6 @@ button:focus{
     font-weight: 500;
 }
 
-// Kendo Toggle Button
-.toggle-text{
-    color:#2A2A2A;
-    font-family: "Proxima Nova";
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 16px;
-    margin-left: 12px;
-}
-
-:host ::ng-deep .k-switch-md .k-switch-track {
-    width: 40px;
-    height: 24px;
-    border: none;
-    background-color: #D9D9D9;
-}
-  
-:host ::ng-deep .k-switch-md {
-    width: 40px;
-    height: 24px;
-  
-    .k-switch-thumb {
-      width: 20px;
-      height: 20px;
-      background-color: #B9B9B9;
-    }
-  
-    .k-switch-label-off,
-    .k-switch-label-on {
-      display: none;
-    }
-}
-  
-:host ::ng-deep .k-switch-on:focus .k-switch-track,
-:host ::ng-deep .k-switch-off:focus .k-switch-track {
-    outline: none;
-}
-  
-:host ::ng-deep .k-switch-on .k-switch-track {
-    background-color: #296689;
-}
-
-:host ::ng-deep{
-    .k-switch-md.k-switch-off .k-switch-thumb-wrap {
-        left: calc( 12px + 0px );
-    }
-
-    .k-switch-md.k-switch-on .k-switch-thumb-wrap {
-        left: calc( 100% - 12px - 0px );
-    }
-} 
-
 // DATE PICKER //
 .date-picker{
     height: 40px;
