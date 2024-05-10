@@ -19,6 +19,8 @@ export class HeaderTwoComponent {
   showClientDashboardMenu : boolean = false;
   showReportsMenu : boolean = false;
   showProfileMenu: boolean = false;
+  showChatMenu : boolean = false;
+
   allItems: any;
   destroy$ = new Subject<void>();
 
@@ -33,12 +35,17 @@ export class HeaderTwoComponent {
 
   showClientDashboardOptions(event){
     this.showClientDashboardMenu = !this.showClientDashboardMenu;
-    this.showReportsMenu = false;
+    this.showReportsMenu = this.showChatMenu = false;
   }
 
   showReportsOptions(event){
     this.showReportsMenu = !this.showReportsMenu;
-    this.showClientDashboardMenu = false;
+    this.showClientDashboardMenu = this.showChatMenu = false;
+  }
+
+  showChatConfigurationOptions(){
+    this.showChatMenu = !this.showChatMenu;
+    this.showClientDashboardMenu = this.showReportsMenu = false;
   }
 
   onClientHealthMetrics(event) {
@@ -56,23 +63,45 @@ export class HeaderTwoComponent {
     this.showReportsMenu = !this.showReportsMenu;
   }
 
+  onChatNodeAndCategories(){
+    this.router.navigate(['/chat-configuration/chat-node-categories'])
+    this.showChatMenu = !this.showChatMenu;
+  }
+
+  onChatQuestionAnswer(){
+    this.router.navigate(['/chat-configuration/chat-question-answer'])
+    this.showChatMenu = !this.showChatMenu;
+  }
+
+  onChatQuestionAnswerClient(){
+    this.router.navigate(['/chat-configuration/chat-question-answer-client'])
+    this.showChatMenu = !this.showChatMenu;
+  }
+
+  onChatQuestionAnswerFranchise(){
+    this.router.navigate(['/chat-configuration/chat-question-answer-franchise'])
+    this.showChatMenu = !this.showChatMenu;
+  }
+
   @HostListener('document:click', ['$event'])
   onClickOutside(event: Event) {
     const popupDashboardElement = document.querySelector('.popup-client-dashboard');
     const popupReportElement = document.querySelector('.popup-reports');
+    const popupChatElement = document.querySelector('.popup-chat');
+
     const buttonDashboardElement = document.querySelector('.dashboard-popup-btn');
     const buttonReportElement = document.querySelector('.report-popup-btn');
+    const buttonChatElement = document.querySelector('.chat-popup-btn');
+
     if (
-     ( popupDashboardElement &&
-      buttonDashboardElement &&
-      !popupDashboardElement.contains(event.target as Node) &&
+     ( popupDashboardElement && buttonDashboardElement && !popupDashboardElement.contains(event.target as Node) &&
       !buttonDashboardElement.contains(event.target as Node)) ||
-      ( popupReportElement &&
-        buttonReportElement &&
-        !popupReportElement.contains(event.target as Node) &&
-        !buttonReportElement.contains(event.target as Node))
+     ( popupReportElement && buttonReportElement && !popupReportElement.contains(event.target as Node) &&
+      !buttonReportElement.contains(event.target as Node)) ||
+     ( popupChatElement && buttonChatElement && !popupChatElement.contains(event.target as Node) &&
+      !buttonChatElement.contains(event.target as Node)) 
     ) {
-      this.showClientDashboardMenu = this.showReportsMenu = false;
+      this.showClientDashboardMenu = this.showReportsMenu = this.showChatMenu = false;
     }
   }
 

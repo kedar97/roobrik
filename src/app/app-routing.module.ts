@@ -19,6 +19,11 @@ const routes: Routes = [
     import('./post-login/post-login.module').then((m) => m.PostLoginModule),
   },
   {
+    path: 'chat-configuration',
+    loadChildren: () =>
+    import('./post-login/post-login.module').then((m) => m.PostLoginModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pre-login/pre-login.module').then((m) => m.PreLoginModule),

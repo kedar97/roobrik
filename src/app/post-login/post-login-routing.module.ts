@@ -17,6 +17,10 @@ import { UnsavedChangesGuard } from './components/financial-data/edit-saas-reven
 import { AddNewClientComponent } from './components/financial-data/add-new-client/add-new-client.component';
 import { CustomGroupsComponent } from './components/custom-groups/custom-groups.component';
 import { CreateNewGroupComponent } from './components/custom-groups/create-new-group/create-new-group.component';
+import { ChatNodeCategoriesComponent } from './components/chat-configuration/chat-node-categories/chat-node-categories.component';
+import { ChatQuestionAnswerComponent } from './components/chat-configuration/chat-question-answer/chat-question-answer.component';
+import { ChatQuestionAnswerClientComponent } from './components/chat-configuration/chat-question-answer-client/chat-question-answer-client.component';
+import { ChatQuestionAnswerFranchiseComponent } from './components/chat-configuration/chat-question-answer-franchise/chat-question-answer-franchise.component';
 const routes: Routes = [
   {
     path: '',
@@ -97,6 +101,29 @@ const routes: Routes = [
         path: 'announcement-management',
         component:AnnouncementManagementComponent,
       },
+    ]
+  },
+
+  {
+    path:'',
+    component:PostLoginComponent,
+    children : [
+      {
+        path: 'chat-node-categories',
+        component:ChatNodeCategoriesComponent,
+      },
+      {
+        path: 'chat-question-answer',
+        component:ChatQuestionAnswerComponent,
+      },
+      {
+        path: 'chat-question-answer-client',
+        component:ChatQuestionAnswerClientComponent,
+      },
+      {
+        path:'chat-question-answer-franchise',
+        component:ChatQuestionAnswerFranchiseComponent
+      }
     ]
   }
 ];

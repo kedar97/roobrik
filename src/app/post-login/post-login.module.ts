@@ -32,6 +32,10 @@ import { AddNewClientComponent } from './components/financial-data/add-new-clien
 import { CustomGroupsComponent } from './components/custom-groups/custom-groups.component';
 import { CustomMenuEditorComponent } from './components/custom-groups/custom-menu-editor/custom-menu-editor.component';
 import { CreateNewGroupComponent } from './components/custom-groups/create-new-group/create-new-group.component';
+import { ChatNodeCategoriesComponent } from './components/chat-configuration/chat-node-categories/chat-node-categories.component';
+import { ChatQuestionAnswerComponent } from './components/chat-configuration/chat-question-answer/chat-question-answer.component';
+import { ChatQuestionAnswerClientComponent } from './components/chat-configuration/chat-question-answer-client/chat-question-answer-client.component';
+import { ChatQuestionAnswerFranchiseComponent } from './components/chat-configuration/chat-question-answer-franchise/chat-question-answer-franchise.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -56,6 +60,10 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     CustomGroupsComponent,
     CustomMenuEditorComponent,
     CreateNewGroupComponent,
+    ChatNodeCategoriesComponent,
+    ChatQuestionAnswerComponent,
+    ChatQuestionAnswerClientComponent,
+    ChatQuestionAnswerFranchiseComponent,
   ],
   imports: [
     CommonModule,
