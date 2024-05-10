@@ -107,6 +107,7 @@ button:focus {
     font-family: 'Proxima Nova';
     font-size: 12px;
     color: #FFF;
+    position: relative;
 }
 
 :host ::ng-deep .create-new-dropdown {
@@ -144,6 +145,18 @@ button:focus {
 :host ::ng-deep .create-new-dropdown.option-selected {
     .k-input-inner::before {
         content: '' !important;
+    }
+}
+
+//POPUP SETTING //
+::ng-deep .chat-question-answer-client .create-new-dropdown {
+    .k-animation-container {
+        position: fixed !important;
+        right: 24px
+    }
+
+    .k-list-content {
+        padding: 0;
     }
 }
 
