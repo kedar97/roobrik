@@ -186,6 +186,14 @@ button:focus{
     opacity: .5;
 }
 
+::ng-deep .k-treeview.list-grayout{
+    .k-treeview-filter,
+    .k-treeview-item{
+        pointer-events: none;
+        opacity: .5;
+    }
+}
+
 .listbox-section{
     grid-column: 1/3;
     

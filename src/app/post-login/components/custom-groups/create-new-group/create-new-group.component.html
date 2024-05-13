@@ -27,6 +27,7 @@
             <kendo-formfield *ngIf="isShowSelectClient">
                 <kendo-label class="label-text">Select Client</kendo-label>
                 <kendo-dropdownlist 
+                    #clientDropdown
                     formControlName="selectedClient" 
                     [data]="clientList" 
                     [valuePrimitive]=true
@@ -106,7 +107,7 @@
                             textField="text"
                             [(checkedKeys)]="checkedKeys"
                             [checkBy]="key"
-                            [class.list-disabled]="isListDisabled">
+                            [class.list-grayout]="isListDisabled">
                         </kendo-treeview>
 
                         <div class="total-section d-flex align-items-center" [class.list-disabled]="isListDisabled">
@@ -136,7 +137,7 @@
                             textField="text"
                             [(checkedKeys)]="childCheckedKeys"
                             [checkBy]="key"
-                            [class.list-disabled]="isListDisabled">
+                            [class.list-grayout]="isListDisabled">
                         </kendo-treeview>
                         <div class="total-section d-flex align-items-center" [class.list-disabled]="isListDisabled">
                             <input type="checkbox" #notification kendoCheckBox [checked]="childCheckedKeys.length === getTotalItemsCount(selectedData)"/>

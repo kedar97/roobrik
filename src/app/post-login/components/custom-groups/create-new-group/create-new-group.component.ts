@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { parentListData } from '../listData';
 import { DatePipe } from '@angular/common';
+import { DropDownListComponent } from '@progress/kendo-angular-dropdowns';
 
 @Component({
   selector: 'app-create-new-group',
@@ -11,6 +12,8 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class CreateNewGroupComponent {
+  @ViewChild('clientDropdown') clientDropdown: DropDownListComponent;
+
   pageTitle = 'Create new group';
 
   isGroupDropDownOpen: boolean = false;
@@ -129,6 +132,17 @@ export class CreateNewGroupComponent {
   }
 
   onSelectioChange(event:any ,type:string){
+    if(type !== 'client'){
+      setTimeout(() => {
+        if (this.clientDropdown) {
+          this.clientDropdown.reset();
+          this.isClientOptionSelected = false;
+        }
+      });
+    }
+    this.childCheckedKeys =[];
+    this.checkedKeys = [];
+    this.selectedData = [{text:'Select all', items :[]}]
     if(type === 'group'){
       this.isGroupOptionSelected = true;
       this.isShowSelectClient = event === 1 ? true : false;
