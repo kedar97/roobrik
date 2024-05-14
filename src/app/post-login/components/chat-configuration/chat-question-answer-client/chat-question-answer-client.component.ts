@@ -66,7 +66,7 @@ export class ChatQuestionAnswerClientComponent {
     },
     {
       field:'status',
-      headerName:'Statuts',
+      headerName:'Status',
       filter: 'agMultiColumnFilter',
     },
     {

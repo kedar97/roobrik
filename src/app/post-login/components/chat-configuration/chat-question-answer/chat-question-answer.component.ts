@@ -52,7 +52,7 @@ export class ChatQuestionAnswerComponent {
     },
     {
       field:'status',
-      headerName:'Statuts',
+      headerName:'Status',
       filter: 'agMultiColumnFilter',
     },
     {

@@ -71,7 +71,7 @@ export class ChatQuestionAnswerFranchiseComponent {
     },
     {
       field:'status',
-      headerName:'Statuts',
+      headerName:'Status',
       filter: 'agMultiColumnFilter',
     },
     {

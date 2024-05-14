@@ -58,7 +58,7 @@ export class ChatNodeCategoriesComponent {
     },
     {
       field:'status',
-      headerName:'Statuts',
+      headerName:'Status',
       filter: 'agMultiColumnFilter',
     },
     {
