@@ -159,7 +159,9 @@ export class HeaderTwoComponent {
     const url = this.allItems
       .slice(0, selectedItemIndex + 1)
       .map((i) => i.text.toLowerCase());
-    this.router.navigate(url);
+      if(url[0] !== 'chat-configuration'){
+        this.router.navigate(url);
+      }
   }
 
   public ngOnDestroy(): void {

@@ -2,7 +2,10 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropDownListComponent } from '@progress/kendo-angular-dropdowns';
 import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDef } from 'ag-grid-community';
-
+import { questionAnswerData } from '../chat-configuration-data';
+import { get } from 'lodash-es';
+import { CustomMenuEditorComponent } from '../../custom-groups/custom-menu-editor/custom-menu-editor.component';
+import { PostLoginService } from 'src/app/post-login/post-login.service';
 @Component({
   selector: 'app-chat-question-answer-franchise',
   templateUrl: './chat-question-answer-franchise.component.html',
@@ -10,6 +13,8 @@ import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDe
 })
 export class ChatQuestionAnswerFranchiseComponent {
   @ViewChild(DropDownListComponent) buttonDropdown: DropDownListComponent;
+  public rowGroupPanelShow: "always" | "onlyWhenGrouping" | "never" = "always";
+  rowSelection: 'single' | 'multiple' = 'multiple';
 
   isCreateDropDownOpen :boolean = false;
   isDropDownOptionSelected : boolean = false;
@@ -20,6 +25,8 @@ export class ChatQuestionAnswerFranchiseComponent {
   isClientDropDownOpen : boolean = false;
   isStatusDropDownOpen : boolean = false;
   isCategoryDropDownOpen : boolean = false;
+  isEditQuestionFlyOutOpen : boolean = false;
+  isEditAnswerFlyOutOpen : boolean = false;
 
   flyOutHeading : string = '';
 
@@ -33,22 +40,17 @@ export class ChatQuestionAnswerFranchiseComponent {
   gridColumnApi: any;
   gridData: any;
   gridApi!: GridApi | any;
-  
+  groupedRows: string[] = [];
+
   defaultColDef : ColDef = {
-    filter:true,
-    floatingFilter:true,
-    resizable:true,
-    sortable:true
+    resizable: true,
+    filter: true,
+    floatingFilter: true,
+    enableRowGroup: true,
+    suppressMovable: false
   }
 
   columnDef : ColDef[] = [
-    {
-      field:'que_ans_text',
-      headerName:'Question / Answer Text',
-      pinned:'left',
-      lockPosition:true,
-      filter: 'agMultiColumnFilter',
-    },
     {
       field:'clientName',
       headerName:'Client name',
@@ -58,6 +60,9 @@ export class ChatQuestionAnswerFranchiseComponent {
       field:'franchiseName',
       headerName:'Franchise name',
       filter: 'agMultiColumnFilter',
+      valueFormatter:function(params){
+        return params.value;
+      }
     },
     {
       field:'nodeName',
@@ -116,159 +121,60 @@ export class ChatQuestionAnswerFranchiseComponent {
       filter: 'agMultiColumnFilter',
     },
     {
-      field:'',
-      headerName:'Action'
+      width: 60,
+      suppressColumnsToolPanel: true,
+      suppressFiltersToolPanel: true,
+      cellRenderer: CustomMenuEditorComponent,
+      pinned: 'right',
+      lockPinned: true,
+      floatingFilter: false,
+      filter: false
+    },
+  ];
+
+  autoGroupColDef: ColDef = {
+    headerName: 'Question / Answer Text',
+    cellRendererParams: {
+      suppressCount: false,
+    },
+    pinned: 'left',
+    enableRowGroup: false,
+    filter: 'agMultiColumnFilter',
+    width: 450,
+    valueFormatter:function(params){
+      return params.value
     }
-  ];
+  };
 
-  gridOptions : GridOptions ={};
+  gridOptions : GridOptions = {
+    getRowId: function (params: any) {
+      if (params.data.id != null) {
+        return "leaf-" + params.data.id;
+      }
+      const rowGroupCols = params.columnApi.columnModel.getRowGroupColumns();
+      const rowGroupColIds = rowGroupCols.map((col) => col.getId()).join("-");
+      const thisGroupCol = rowGroupCols[params.level];
 
-  public rowData: any[] = [
-    {
-      nodeName : "Intro",
-      node_category:'Inquiry',
-      status:'Active',
-      created_on: new Date(2018, 6, 10),
-      last_modified_on: new Date(2019, 2, 15),
-      last_modified_by:'AlexiaSmith',
-      clientName :'Eskaton'
+      return (
+        "group-" +
+        rowGroupColIds +
+        "-" +
+        (params.parentKeys || []).join("-") +
+        params.data[thisGroupCol.getColDef().field!]
+      );
     },
-    {
-      nodeName : "Full name",
-      node_category:'Name',
-      status:'Active',
-      created_on: new Date(2018, 9, 19),
-      last_modified_on: new Date(2020, 4, 26),
-      last_modified_by:'MaxJohnson',
-      clientName :'Cascade Living Group'
-    },
-    {
-      nodeName : "Full name -1",
-      node_category:'Name',
-      status:'Inactive',
-      created_on: new Date(2019, 2, 4),
-      last_modified_on: new Date(2019, 8, 11),
-      last_modified_by:'SophiaDavis',
-      clientName :'Brightview Senior Living'
-    },
-    {
-      nodeName : "Full name -2",
-      node_category:'Name',
-      status:'Inactive',
-      created_on: new Date(2019, 6, 27),
-      last_modified_on: new Date(2022, 3, 20),
-      last_modified_by:'LucasMiller',
-      clientName :'Blake Management Group'
-    },
-    {
-      nodeName : "Full name -3",
-      node_category:'Name',
-      status:'Active',
-      created_on: new Date(2019, 7, 12),
-      last_modified_on: new Date(2020, 4, 13),
-      last_modified_by:'OliviaClark',
-      clientName :'Eskaton'
-    },
-    {
-      nodeName : "Full name -4",
-      node_category:'Name',
-      status:'Inactive',
-      created_on: new Date(2019, 12, 27),
-      last_modified_on: new Date(2021, 7, 21),
-      last_modified_by:'EthanBrown',
-      clientName :'Eskaton'
-    },
-    {
-      nodeName : "Motivations",
-      node_category:'Contact preference',
-      status:'Active',
-      created_on: new Date(2020, 4, 15),
-      last_modified_on: new Date(2020, 8, 11),
-      last_modified_by:'AvaWilson',
-      clientName :'Cascade Living Group'
-    },
-    {
-      nodeName : "Motivations - 1",
-      node_category:'Contact preference',
-      status:'Active',
-      created_on: new Date(2020, 8, 4),
-      last_modified_on: new Date(2020, 3, 6),
-      last_modified_by:'KaiLee',
-      clientName :'Brightview Senior Living'
-    },
-    {
-      nodeName : "Motivations -2",
-      node_category:'Contact preference',
-      status:'Active',
-      created_on: new Date(2020, 9, 13),
-      last_modified_on: new Date(2021, 8, 26),
-      last_modified_by:'Alice',
-      clientName :'GreenFields'
-    },
-    {
-      nodeName : "Motivations -3",
-      node_category:'Contact preference',
-      status:'Inactive',
-      created_on: new Date(2020, 11, 21),
-      last_modified_on: new Date(2020, 12, 27),
-      last_modified_by:'John',
-      clientName :'Eskaton',
-    },
-    {
-      nodeName : "Motivations -4",
-      node_category:'Contact preference',
-      status:'Active',
-      created_on: new Date(2021, 1, 1),
-      last_modified_on: new Date(2022, 9, 4),
-      last_modified_by:'Darth',
-      clientName :'Blake Management Group'
-    },
-    {
-      nodeName : "Level of care",
-      node_category:'Service level',
-      status:'Active',
-      created_on: new Date(2021, 5, 29),
-      last_modified_on: new Date(2023, 6, 23),
-      last_modified_by:'JayLyn',
-      clientName :'Cascade Living Group'
-    },
-    {
-      nodeName : "Level of care -1",
-      node_category:'Service level',
-      status:'Inactive',
-      created_on: new Date(2021, 11, 13),
-      last_modified_on: new Date(2022, 12, 17),
-      last_modified_by:'BenCruz',
-      clientName :'Brightview Senior Living'
-    },
-    {
-      nodeName : "Level of care -2",
-      node_category:'Service level',
-      status:'Active',
-      created_on: new Date(2022, 8, 16),
-      last_modified_on: new Date(2022, 2, 7),
-      last_modified_by:'Mia Roberts',
-      clientName :'GreenFields'
-    },
-    {
-      nodeName : "Level of care -3",
-      node_category:'Service level',
-      status:'Active',
-      created_on: new Date(2023, 4, 6),
-      last_modified_on: new Date(2023, 10, 27),
-      last_modified_by:'Wilson',
-      clientName :'Brightview Senior Living'
-    },
-    {
-      nodeName : "Level of care -4",
-      node_category:'Service level',
-      status:'Inactive',
-      created_on: new Date(2024, 1, 30),
-      last_modified_on: new Date(2024, 4, 19),
-      last_modified_by:'MaxKai',
-      clientName :'Cascade Living Group'
-    },
-  ];
+
+    getDataPath: function (row: any) {
+      const path = [row.question_answer];
+      if (row.group && row.group !== row.question_answer) {
+        path.unshift(row.group);
+      }
+
+      return [...path]
+    }
+  };
+
+  rowData = questionAnswerData;
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
     toolPanels: [
@@ -326,6 +232,26 @@ export class ChatQuestionAnswerFranchiseComponent {
     franchiseList : new FormControl('',Validators.required)
   });
 
+  editQuestionForm = new FormGroup({
+    question : new FormControl('',Validators.required),
+    client : new FormControl('',Validators.required),
+    franchiseList : new FormControl('',Validators.required),
+    visible : new FormControl(),
+    nodeName : new FormControl('',Validators.required),
+    category : new FormControl('',Validators.required),
+    status : new FormControl('',Validators.required),
+  })
+
+  editAnswerForm = new FormGroup({
+    question : new FormControl(),
+    answerText : new FormControl('',Validators.required),
+    client : new FormControl(),
+    franchiseList : new FormControl('',Validators.required),
+    nodeName : new FormControl(),
+    category : new FormControl(),
+    status : new FormControl('',Validators.required),
+  })
+
   statusList : Array<string> = [
     "Inactive",
     "Active"
@@ -360,7 +286,7 @@ export class ChatQuestionAnswerFranchiseComponent {
     'The Blake at Waco',
     'The Blake at Tyler',
   ];
-
+  
   categoryList = [
     'Inquiry',
     'Name',
@@ -372,7 +298,68 @@ export class ChatQuestionAnswerFranchiseComponent {
   ];
 
   public selectedFranhises: any = [];
-  constructor(private renderer: Renderer2, private ele: ElementRef){}
+  constructor(private renderer: Renderer2, private ele: ElementRef, private postLoginService : PostLoginService){
+    postLoginService.isQuestionMasterEditable.subscribe((res: boolean) => {
+      this.isEditQuestionFlyOutOpen = res;
+      this.isQuestionFranchiseFlyOutOpen = false;
+      this.isAnswerFranchiseFlyOutOpen = false;
+      if (this.isEditQuestionFlyOutOpen && this.isEditAnswerFlyOutOpen == false) {
+        this.isDropDownOptionSelected = false;
+        this.buttonDropdown?.reset();
+        this.flyOutHeading = 'Edit Question - Franchise';
+
+        postLoginService.selectedQueAnswer.subscribe((data: any) => {         
+          if (data) {
+            data.franchiseName.forEach(element => {
+              if (!this.franchiseList.includes(element)) {
+                  this.franchiseList.push(element);
+              }
+            });
+            this.editQuestionForm.setValue({
+              question: data.group,
+              client: data.clientName,
+              franchiseList: data.franchiseName,
+              visible: data.visible ? data.visible : false,
+              nodeName: data.nodeName,
+              category: data.node_category,
+              status: data.status
+            })
+          }
+        })
+      }
+    });
+
+    postLoginService.isAnswerMasterEditable.subscribe((res: boolean) => {
+      this.isEditAnswerFlyOutOpen = res;
+      this.isQuestionFranchiseFlyOutOpen = this.isAnswerFranchiseFlyOutOpen = false;
+      if (this.isEditAnswerFlyOutOpen && this.isEditQuestionFlyOutOpen == false) {
+        this.flyOutHeading = 'Edit Answer - Franchise';
+        this.isDropDownOptionSelected = false;
+        this.buttonDropdown?.reset();
+
+        postLoginService.selectedQueAnswer.subscribe((data: any) => {
+          if (data) {
+            data.franchiseName.forEach(element => {
+              if (!this.franchiseList.includes(element)) {
+                  this.franchiseList.push(element);
+              }
+            });
+            setTimeout(() => {
+              this.editAnswerForm.setValue({
+                question: data.group,
+                client: data.clientName,
+                franchiseList: data.franchiseName,
+                answerText: data.question_answer,
+                nodeName: data.nodeName,
+                category: data.node_category,
+                status: data.status
+              })
+            }, 200)
+          }
+        })
+      }
+    });
+  }
 
   ngOnInit(){}
 
@@ -381,6 +368,45 @@ export class ChatQuestionAnswerFranchiseComponent {
     this.gridData = params;
     this.gridColumnApi = params.columnApi;
     this.defaultFiltersState = this.gridApi.getFilterModel();
+
+    this.gridOptions.getDataPath = (row: any) => {
+      const path = [row.question_answer];
+      if (row.group && row.group !== row.question_answer) {
+        path.unshift(row.group);
+      }
+      const groupedValues = this.groupedRows.map((key) => {
+        const v = get(row, [key]);
+        if (typeof v === 'object') {
+          if (key === 'created_on' || key === 'last_modified_on') {
+            const date = new Date(row[key]);
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            return `${day.toString().padStart(2, '0')}/${month
+              .toString()
+              .padStart(2, '0')}/${year}`;
+            }
+        }  else {
+          return v;
+        }
+      });
+      return [...groupedValues, ...path];
+    };
+
+    this.gridOptions.onColumnRowGroupChanged = (params: any) => {
+      const groupedRowsSet = new Set(this.groupedRows);
+
+      (params.columns || []).forEach((col: any) => {
+        const colId = col.getColId();
+        if (col.rowGroupActive === true) {
+          groupedRowsSet.add(colId);
+        } else {
+          groupedRowsSet.delete(colId);
+        }
+      });
+      this.groupedRows = Array.from(groupedRowsSet);
+      this.gridApi.refreshClientSideRowModel('group');
+    };
   }
 
   onDropDownOpen(event:any, type:string){
@@ -451,6 +477,8 @@ export class ChatQuestionAnswerFranchiseComponent {
   onSelectionChange(event:any, type:string){
     if(event.value !='' && type === 'create new'){
       this.isDropDownOptionSelected = true;
+      this.questionForm.reset();
+      this.answerForm.reset();
     }
 
     if(type === 'create new'){
@@ -458,11 +486,15 @@ export class ChatQuestionAnswerFranchiseComponent {
         this.flyOutHeading = 'Create New Quesion - Franchise'
         this.isQuestionFranchiseFlyOutOpen = true;
         this.isAnswerFranchiseFlyOutOpen = false;
+        this.isEditQuestionFlyOutOpen = false;
+        this.isEditAnswerFlyOutOpen = false;
       }
       if(event.id === 2){
         this.flyOutHeading = 'Create New Answer - Franchise'
         this.isAnswerFranchiseFlyOutOpen = true;
         this.isQuestionFranchiseFlyOutOpen = false;
+        this.isEditQuestionFlyOutOpen = false;
+        this.isEditAnswerFlyOutOpen = false;
       }
     }
 
@@ -488,6 +520,12 @@ export class ChatQuestionAnswerFranchiseComponent {
     this.isQuestionFranchiseFlyOutOpen = false;
     this.questionForm.reset();
     this.answerForm.reset();
+    this.postLoginService.isQuestionMasterEditable.next(false);
+    this.postLoginService.isAnswerMasterEditable.next(false);
+    this.editQuestionForm.reset();
+    this.editAnswerForm.reset();
+    this.isEditQuestionFlyOutOpen = false;
+    this.isEditAnswerFlyOutOpen = false;
   }
 
   onSearch() {
@@ -543,5 +581,9 @@ export class ChatQuestionAnswerFranchiseComponent {
 
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
+  }
+
+  ngOnDestroy(){
+    this.onCreateFlyOutClose();
   }
 }

@@ -19,6 +19,10 @@ export class PostLoginService {
   isCustomGroupDetailEditable : BehaviorSubject<boolean> = new BehaviorSubject(false);
   selectedGroupData : BehaviorSubject<any> = new BehaviorSubject(null);
 
+  isQuestionMasterEditable : BehaviorSubject<boolean> = new BehaviorSubject(false);
+  isAnswerMasterEditable : BehaviorSubject<boolean> = new BehaviorSubject(false);
+  selectedQueAnswer : BehaviorSubject<any> = new BehaviorSubject(null);
+
   constructor(private router: Router, private http:HttpClient) {}
 
   setConfirmDialogMessage(message: string) {

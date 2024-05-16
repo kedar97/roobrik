@@ -11,6 +11,7 @@ import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDe
 export class ChatNodeCategoriesComponent {
 
   @ViewChild(DropDownListComponent) buttonDropdown: DropDownListComponent;
+  public rowGroupPanelShow: "always" | "onlyWhenGrouping" | "never" = "always";
 
   isCreateDropDownOpen : boolean = false;
   isStatusDropDownOpen : boolean = false;

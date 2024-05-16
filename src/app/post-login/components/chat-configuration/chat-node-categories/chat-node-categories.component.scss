@@ -140,6 +140,18 @@ button:focus {
     }
 }
 
+//POPUP SETTING //
+::ng-deep .chat-node-category .create-new-dropdown {
+    .k-animation-container {
+        position: fixed !important;
+        right: 24px
+    }
+
+    .k-list-content {
+        padding: 0;
+    }
+}
+
 // TABLE STYLE //
 .ag-theme-balham {
     --ag-selected-row-background-color: #f3f6f7 !important;

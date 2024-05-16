@@ -197,6 +197,15 @@ button:focus {
         background: rgba(217, 217, 217, 0.2);
     }
 
+    // FOR CHILD COUNT // 
+    .ag-group-child-count {
+        display: none !important;
+    }
+
+    .ag-cell-wrapper {
+        align-items: center;
+    }
+
     // FLOATING FILTER
     .ag-floating-filter {
         border-top: none !important;
@@ -273,6 +282,34 @@ button:focus {
 
     .ag-pinned-right-cols-container {
         margin-right: 0px !important;
+    }
+
+    .ag-center-cols-container {
+        min-width: 100% !important;
+    }
+}
+
+// SCROLLBAR //
+:host ::ng-deep {
+    .ag-ltr .ag-body-vertical-scroll.ag-scrollbar-invisible {
+        right: 4px;
+    }
+
+    .ag-root ::-webkit-scrollbar {
+        width: 6px !important;
+        height: 6px !important;
+        margin-right: 2px;
+        z-index: 99;
+    }
+
+    .ag-root ::-webkit-scrollbar-thumb {
+        background-color: #d9d9d9;
+        border-radius: 6px;
+    }
+
+    .ag-body-vertical-scroll {
+        right: 5px;
+        position: absolute !important;
     }
 }
 
@@ -403,6 +440,10 @@ button:focus {
 }
 
 // CREATE NEW FLYOUT //
+::ng-deep .create-new-section .k-input{
+    font-size: 12px;
+}
+
 .create-new-section {
     width: 331px;
     padding: 25px 20px;

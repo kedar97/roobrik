@@ -1,5 +1,5 @@
 <div class="d-flex gap-4">
-    <div class="main-container chat-que-ans-franchise">
+    <div class="main-container chat-question-answer-franchise">
         <div class="section-header">
             <div class="heading">
                 <img src="assets/images/person-pin-outline-rounded.svg" alt="Client icon">
@@ -40,6 +40,10 @@
                 [rowHeight]="36"
                 [columnDefs]="columnDef"
                 [defaultColDef]="defaultColDef"
+                [autoGroupColumnDef]="autoGroupColDef"
+                [treeData]="!!autoGroupColDef"
+                [rowGroupPanelShow]="rowGroupPanelShow"
+                [rowSelection]="rowSelection"
                 [statusBar]="statusBar"
                 [rowData]="rowData"
                 [gridOptions]="gridOptions"
@@ -50,7 +54,7 @@
         </div>
     </div>
 
-    <div class="create-new-section" *ngIf="isQuestionFranchiseFlyOutOpen || isAnswerFranchiseFlyOutOpen">
+    <div class="create-new-section" *ngIf="isQuestionFranchiseFlyOutOpen || isAnswerFranchiseFlyOutOpen || isEditQuestionFlyOutOpen || isEditAnswerFlyOutOpen">
         <img src="assets/images/close-icon-black.svg" alt="Close Icon" class="close-icon" (click)="onCreateFlyOutClose()">
         <h1 class="create-new-section-header">{{flyOutHeading}}</h1>
     
@@ -160,7 +164,7 @@
             </div>
         </form>
 
-        <form class="k-form k-form-md" [formGroup]="answerForm" (ngSubmit)="onSaveChanges(questionForm,'answer')" *ngIf="isAnswerFranchiseFlyOutOpen">
+        <form class="k-form k-form-md" [formGroup]="answerForm" (ngSubmit)="onSaveChanges(answerForm,'answer')" *ngIf="isAnswerFranchiseFlyOutOpen">
             <div class="formSection d-flex flex-column custom-gap-5">
                 <kendo-formfield>
                     <kendo-label class="label-text">Select Question</kendo-label>
@@ -230,7 +234,126 @@
                 </kendo-formfield>
     
                  <div class="buttons-container d-flex gap-2">
-                    <button class="btn btn-save" type="submit" [disabled]="!questionForm.valid">Save Changes</button>
+                    <button class="btn btn-save" type="submit" [disabled]="!answerForm.valid">Save Changes</button>
+                    <button class="btn btn-cancel" (click)="onCreateFlyOutClose()">Cancel</button>
+                </div>
+            </div>
+        </form>
+
+        <form class="k-form k-form-md" [formGroup]="editQuestionForm" (ngSubmit)="onSaveChanges(editQuestionForm,'question')" *ngIf="isEditQuestionFlyOutOpen">
+            <div class="formSection d-flex flex-column custom-gap-5">
+                <kendo-formfield>
+                    <kendo-label class="label-text">Question Text</kendo-label>
+                    <input formControlName="question" kendoTextBox>
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Client</kendo-label>
+                    <input formControlName="client" kendoTextBox [readOnly]="true">   
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Franchise</kendo-label>
+                    <kendo-multiselect
+                    [data]="franchiseList"
+                    formControlName="franchiseList"
+                  ></kendo-multiselect>
+                </kendo-formfield>
+
+                <kendo-formfield class="d-flex gap-4 align-items-center">
+                    <kendo-label class="label-text mb-0">Visible</kendo-label>
+                    <kendo-switch formControlName="visible"></kendo-switch>
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Associated node name</kendo-label>
+                    <input formControlName="nodeName" kendoTextBox>
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Associated category</kendo-label>
+                    <kendo-dropdownlist
+                        [data]="categoryList"
+                        class="dropdown"
+                        (open)="onDropDownOpen($event,'category')"
+                        (close)="onDropDownClose($event,'category')"
+                        [class.dropdown-open]="isCategoryDropDownOpen"
+                        formControlName="category"
+                        >
+                    </kendo-dropdownlist> 
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Status</kendo-label>
+                    <kendo-dropdownlist
+                        [data]="statusList"
+                        class="dropdown"
+                        (open)="onDropDownOpen($event,'status')"
+                        (close)="onDropDownClose($event,'status')"
+                        [class.dropdown-open]="isStatusDropDownOpen"
+                        formControlName="status"
+                        >
+                    </kendo-dropdownlist>                
+                </kendo-formfield>
+    
+                 <div class="buttons-container d-flex gap-2">
+                    <button class="btn btn-save" type="submit" [disabled]="!editQuestionForm.valid">Save Changes</button>
+                    <button class="btn btn-cancel" (click)="onCreateFlyOutClose()">Cancel</button>
+                </div>
+            </div>
+        </form>
+
+        <form class="k-form k-form-md" [formGroup]="editAnswerForm" (ngSubmit)="onSaveChanges(editAnswerForm,'answer')" *ngIf="isEditAnswerFlyOutOpen">
+            <div class="formSection d-flex flex-column custom-gap-5">
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Question Text</kendo-label>
+                    <input formControlName="question" kendoTextBox  [readonly]="true">
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Answer Text</kendo-label>
+                    <input formControlName="answerText" kendoTextBox>
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Client</kendo-label>
+                    <input formControlName="client" kendoTextBox [readOnly]="true">
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Franchise</kendo-label>
+                    <kendo-multiselect
+                    [data]="franchiseList"
+                    formControlName="franchiseList"
+                  ></kendo-multiselect>
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Associated node name</kendo-label>
+                    <input formControlName="nodeName" kendoTextBox  [readonly]="true">
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Associated category</kendo-label>
+                    <input formControlName="category" kendoTextBox  [readonly]="true">
+                </kendo-formfield>
+
+                <kendo-formfield>
+                    <kendo-label class="label-text">Status</kendo-label>
+                    <kendo-dropdownlist
+                        [data]="statusList"
+                        class="dropdown"
+                        (open)="onDropDownOpen($event,'status')"
+                        (close)="onDropDownClose($event,'status')"
+                        [class.dropdown-open]="isStatusDropDownOpen"
+                        formControlName="status"
+                        >
+                    </kendo-dropdownlist>                
+                </kendo-formfield>
+    
+                 <div class="buttons-container d-flex gap-2">
+                    <button class="btn btn-save" type="submit" [disabled]="!editAnswerForm.valid">Save Changes</button>
                     <button class="btn btn-cancel" (click)="onCreateFlyOutClose()">Cancel</button>
                 </div>
             </div>

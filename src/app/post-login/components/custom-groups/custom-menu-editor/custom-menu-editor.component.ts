@@ -14,6 +14,7 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
   params : any;
   selectedRowData : any;
   selectedOption:number = 0;
+  selectedQueAnswer : any;
 
   isChatMenu : boolean = false;
   optionList = [ 
@@ -23,7 +24,7 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
   ];
 
   constructor(private postLoginService : PostLoginService, private router : Router){
-    if(router.url.includes('chat-question-answer')){
+    if(router.url.includes('chat-configuration')){
       this.isChatMenu = true;
       this.optionList = [ 
         { id: 1, name: 'Edit question' },
@@ -42,10 +43,26 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
   }
 
   onOptionSelected(event:any){
-    if (event === 1) {
+    if (event === 1 && !this.isChatMenu) {
       this.selectedRowData = this.params.data;
       this.postLoginService.isCustomGroupDetailEditable.next(true);
       this.postLoginService.selectedGroupData.next(this.selectedRowData);
+    }
+
+    else if(this.isChatMenu){
+      if(event === 1){
+        this.selectedQueAnswer = this.params.data;
+        this.postLoginService.isAnswerMasterEditable.next(false);
+        this.postLoginService.isQuestionMasterEditable.next(true);
+      }
+
+      else if(event === 2){
+        this.postLoginService.isQuestionMasterEditable.next(false);
+        this.postLoginService.isAnswerMasterEditable.next(true);
+        this.selectedQueAnswer = this.params.node.parent?.data;
+        this.selectedQueAnswer.question_answer = this.params.data.question_answer;
+      }
+      this.postLoginService.selectedQueAnswer.next(this.selectedQueAnswer);
     }
   }
 

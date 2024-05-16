@@ -278,7 +278,7 @@ button:focus {
     }
 
     .ag-center-cols-container {
-        width: 100% !important;
+        min-width: 100% !important;
     }
 }
 
@@ -433,6 +433,10 @@ button:focus {
 }
 
 // CREATE NEW FLYOUT //
+::ng-deep .create-new-section .k-input{
+    font-size: 12px;
+}
+
 .create-new-section {
     width: 331px;
     padding: 25px 20px;
