@@ -2,7 +2,6 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropDownListComponent } from '@progress/kendo-angular-dropdowns';
 import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDef } from 'ag-grid-community';
-import { questionAnswerData } from '../chat-configuration-data';
 import { get } from 'lodash-es';
 import { CustomMenuEditorComponent } from '../../custom-groups/custom-menu-editor/custom-menu-editor.component';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
@@ -13,6 +12,8 @@ import { PostLoginService } from 'src/app/post-login/post-login.service';
   styleUrls: ['./chat-question-answer-client.component.scss']
 })
 export class ChatQuestionAnswerClientComponent {
+  questionAnswerDataUrl = "assets/question-answer-data.json";
+
   @ViewChild(DropDownListComponent) buttonDropdown: DropDownListComponent;
   public rowGroupPanelShow: "always" | "onlyWhenGrouping" | "never" = "always";
   rowSelection: 'single' | 'multiple' = 'multiple';
@@ -141,20 +142,12 @@ export class ChatQuestionAnswerClientComponent {
 
   gridOptions : GridOptions = {
     getRowId: function (params: any) {
-      if (params.data.id != null) {
+      if (params.data.group !== params.data.question_answer){
         return "leaf-" + params.data.id;
       }
-      const rowGroupCols = params.columnApi.columnModel.getRowGroupColumns();
-      const rowGroupColIds = rowGroupCols.map((col) => col.getId()).join("-");
-      const thisGroupCol = rowGroupCols[params.level];
-
-      return (
-        "group-" +
-        rowGroupColIds +
-        "-" +
-        (params.parentKeys || []).join("-") +
-        params.data[thisGroupCol.getColDef().field!]
-      );
+      else{
+        return "parent-"+params.data.id;
+      }
     },
 
     getDataPath: function (row: any) {
@@ -167,7 +160,7 @@ export class ChatQuestionAnswerClientComponent {
     }
   };
 
-  rowData = questionAnswerData;
+  rowData = [];
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
     toolPanels: [
@@ -333,6 +326,10 @@ export class ChatQuestionAnswerClientComponent {
     this.gridColumnApi = params.columnApi;
     this.defaultFiltersState = this.gridApi.getFilterModel();
 
+    this.postLoginService.getTableData(this.questionAnswerDataUrl).subscribe(data=>{
+      this.rowData = data;
+    })
+
     this.gridOptions.getDataPath = (row: any) => {
       const path = [row.question_answer];
       if (row.group && row.group !== row.question_answer) {
@@ -341,16 +338,22 @@ export class ChatQuestionAnswerClientComponent {
       const groupedValues = this.groupedRows.map((key) => {
         const v = get(row, [key]);
         if (typeof v === 'object') {
-          if (key === 'created_on' || key === 'last_modified_on') {
-            const date = new Date(row[key]);
-            const day = date.getDate();
-            const month = date.getMonth() + 1;
-            const year = date.getFullYear();
-            return `${day.toString().padStart(2, '0')}/${month
-              .toString()
-              .padStart(2, '0')}/${year}`;
-            }
-        }  else {
+          if (Array.isArray(v)) {
+            return v.join(', ');
+          } else {
+            return JSON.stringify(v);
+          }
+        }
+        if (key === 'created_on' || key === 'last_modified_on') {
+          const date = new Date(row[key]);
+          const day = date.getDate();
+          const month = date.getMonth() + 1;
+          const year = date.getFullYear();
+          return `${day.toString().padStart(2, '0')}/${month
+            .toString()
+            .padStart(2, '0')}/${year}`;
+        } 
+        else {
           return v;
         }
       });
@@ -358,6 +361,7 @@ export class ChatQuestionAnswerClientComponent {
     };
 
     this.gridOptions.onColumnRowGroupChanged = (params: any) => {
+      this.onCreateFlyOutClose();
       const groupedRowsSet = new Set(this.groupedRows);
 
       (params.columns || []).forEach((col: any) => {

@@ -1,11 +1,10 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropDownListComponent } from '@progress/kendo-angular-dropdowns';
-import { ColDef, GetDataPath, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDef } from 'ag-grid-community';
+import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDef } from 'ag-grid-community';
 import { CustomMenuEditorComponent } from '../../custom-groups/custom-menu-editor/custom-menu-editor.component';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 import { get } from 'lodash-es';
-import { questionAnswerData } from '../chat-configuration-data';
 
 @Component({
   selector: 'app-chat-question-answer',
@@ -13,6 +12,8 @@ import { questionAnswerData } from '../chat-configuration-data';
   styleUrls: ['./chat-question-answer.component.scss']
 })
 export class ChatQuestionAnswerComponent {
+
+  questionAnswerDataUrl = "assets/question-answer-data.json";
   @ViewChild(DropDownListComponent) buttonDropdown: DropDownListComponent;
   public rowGroupPanelShow: "always" | "onlyWhenGrouping" | "never" = "always";
 
@@ -133,20 +134,12 @@ export class ChatQuestionAnswerComponent {
 
   gridOptions: GridOptions = {
     getRowId: function (params: any) {
-      if (params.data.id != null) {
+      if (params.data.group !== params.data.question_answer){
         return "leaf-" + params.data.id;
       }
-      const rowGroupCols = params.columnApi.columnModel.getRowGroupColumns();
-      const rowGroupColIds = rowGroupCols.map((col) => col.getId()).join("-");
-      const thisGroupCol = rowGroupCols[params.level];
-
-      return (
-        "group-" +
-        rowGroupColIds +
-        "-" +
-        (params.parentKeys || []).join("-") +
-        params.data[thisGroupCol.getColDef().field!]
-      );
+      else{
+        return "parent-"+params.data.id;
+      }
     },
 
     getDataPath: function (row: any) {
@@ -159,7 +152,7 @@ export class ChatQuestionAnswerComponent {
     }
   };
 
-  rowData = questionAnswerData;
+  rowData = [];
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
     toolPanels: [
@@ -299,15 +292,15 @@ export class ChatQuestionAnswerComponent {
 
   ngOnInit() { }
 
-  public getDataPath: GetDataPath = (data: any) => {
-    return data.question_answer;
-  };
-
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.gridData = params;
     this.gridColumnApi = params.columnApi;
     this.defaultFiltersState = this.gridApi.getFilterModel();
+
+    this.postLoginService.getTableData(this.questionAnswerDataUrl).subscribe(data=>{
+      this.rowData = data;
+    })
 
     this.gridOptions.getDataPath = (row: any) => {
       const path = [row.question_answer];
@@ -317,16 +310,22 @@ export class ChatQuestionAnswerComponent {
       const groupedValues = this.groupedRows.map((key) => {
         const v = get(row, [key]);
         if (typeof v === 'object') {
-          if (key === 'created_on' || key === 'last_modified_on') {
-            const date = new Date(row[key]);
-            const day = date.getDate();
-            const month = date.getMonth() + 1;
-            const year = date.getFullYear();
-            return `${day.toString().padStart(2, '0')}/${month
-              .toString()
-              .padStart(2, '0')}/${year}`;
-            }
-        }  else {
+          if (Array.isArray(v)) {
+            return v.join(', ');
+          } else {
+            return JSON.stringify(v);
+          }
+        }
+        if (key === 'created_on' || key === 'last_modified_on') {
+          const date = new Date(row[key]);
+          const day = date.getDate();
+          const month = date.getMonth() + 1;
+          const year = date.getFullYear();
+          return `${day.toString().padStart(2, '0')}/${month
+            .toString()
+            .padStart(2, '0')}/${year}`;
+        } 
+        else {
           return v;
         }
       });
@@ -334,6 +333,7 @@ export class ChatQuestionAnswerComponent {
     };
 
     this.gridOptions.onColumnRowGroupChanged = (params: any) => {
+     this.onCreateFlyOutClose();
       const groupedRowsSet = new Set(this.groupedRows);
 
       (params.columns || []).forEach((col: any) => {
