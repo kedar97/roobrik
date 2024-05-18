@@ -19,8 +19,7 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
   isChatMenu : boolean = false;
   optionList = [ 
     { id: 1, name: 'Edit group details' },
-    { id: 2, name: 'Edit membership' },
-    { id: 3, name: 'Clone' }
+    { id: 2, name: 'Edit membership' }
   ];
 
   constructor(private postLoginService : PostLoginService, private router : Router){
