@@ -207,7 +207,7 @@ export class CustomGroupsComponent {
     },
     {
       field: 'status',
-      headerName: 'Group status',
+      headerName: 'Custom Group Status',
       enableRowGroup: true,
     },
     {

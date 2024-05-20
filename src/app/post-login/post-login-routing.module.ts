@@ -89,6 +89,7 @@ const routes: Routes = [
       {
         path: 'custom-groups/create-new-group',
         component: CreateNewGroupComponent,
+        canDeactivate: [UnsavedChangesGuard]
       },
     ]
   },

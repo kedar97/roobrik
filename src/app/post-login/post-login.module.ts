@@ -36,6 +36,7 @@ import { ChatNodeCategoriesComponent } from './components/chat-configuration/cha
 import { ChatQuestionAnswerComponent } from './components/chat-configuration/chat-question-answer/chat-question-answer.component';
 import { ChatQuestionAnswerClientComponent } from './components/chat-configuration/chat-question-answer-client/chat-question-answer-client.component';
 import { ChatQuestionAnswerFranchiseComponent } from './components/chat-configuration/chat-question-answer-franchise/chat-question-answer-franchise.component';
+import { CustomDatePickerComponent } from './components/custom-groups/custom-date-picker/custom-date-picker.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -64,6 +65,7 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     ChatQuestionAnswerComponent,
     ChatQuestionAnswerClientComponent,
     ChatQuestionAnswerFranchiseComponent,
+    CustomDatePickerComponent,
   ],
   imports: [
     CommonModule,

@@ -1,4 +1,5 @@
-<div class="main-container">
+<div class="main-container create-new-group">
+    <div class="append-container" #container></div>
     <div class="heading-text d-flex">
         <img src="assets/images/person-pin-outline-rounded.svg" alt="Bar-chart icon">
         <h1>{{pageTitle}}</h1>
@@ -19,7 +20,8 @@
                 class="dropdown"
                 [class.data-selected]="isGroupOptionSelected"
                 [class.dropdown-open]="isGroupDropDownOpen"
-                [itemDisabled]="itemDisabled">
+                [itemDisabled]="itemDisabled"
+                [popupSettings]="{appendTo: 'component'}">
             </kendo-dropdownlist>
         </kendo-formfield>
 
@@ -39,7 +41,8 @@
                     class="dropdown" 
                     [class.data-selected]="isClientOptionSelected"
                     [class.dropdown-open]="isClientDropDownOpen"
-                    [itemDisabled]="itemDisabled">
+                    [itemDisabled]="itemDisabled"
+                    [popupSettings]="{appendTo: 'component'}">
                 </kendo-dropdownlist>
             </kendo-formfield>
         </div>
@@ -57,7 +60,8 @@
                     (close)="formDropDownClose('franchiseCount')" 
                     (valueChange)="onSelectioChange($event, 'franchise')"
                     class="dropdown" 
-                    [class.dropdown-open]="isFranchiseDropDownOpen">
+                    [class.dropdown-open]="isFranchiseDropDownOpen"
+                    [popupSettings]="{appendTo: 'component'}">
                 </kendo-dropdownlist>
             </kendo-formfield>
         </div>
@@ -84,16 +88,24 @@
         </kendo-formfield>
 
         <kendo-formfield>
-                <kendo-label class="label-text">Default Effective Date</kendo-label>
+                <kendo-label class="label-text">Group Activation Date</kendo-label>
             <kendo-datepicker
                 formControlName="effectiveDate"
                 class="date-picker"
                 [placeholder]="today"
             ></kendo-datepicker>
         </kendo-formfield>
+    </form>
 
+    <ng-template #selectionListRef>
         <div class="listbox-section">
+            <div class="d-flex justify-content-end close-icon-div">
+                <button class="btn dialog-close-icon" (click)="onPopupClose()">
+                    <img src="../../.../../../../../assets/images/cancel-outline-rounded.svg" alt="close icon">
+                </button>
+            </div>
             <div class="listbox-section-heading">{{selectionHeading}}</div>
+            <div class="listbox-section-subheading">Select the new client(s) you want to add</div>
             <div class="list-container d-flex gap-25 align-items-center">
                 <div class="parent-list">
                     <div class="list-heading">{{parentListHeading}}</div>
@@ -109,22 +121,22 @@
                             [checkBy]="key"
                             [class.list-grayout]="isListDisabled">
                         </kendo-treeview>
-
+    
                         <div class="total-section d-flex align-items-center" [class.list-disabled]="isListDisabled">
                             <input type="checkbox" #notification kendoCheckBox [checked]="checkedKeys.length === getTotalItemsCount([parentListData])"/>
                             <span>{{checkedKeys.length}} / {{ getTotalItemsCount(parentListData) }}</span>
                         </div>
                     </div>
-                    
+                        
                 </div>
-
+    
                 <div class="button-container" [class.list-disabled]="isListDisabled">
                     <button class="btn btn-light" (click)="onAddSelected()">Add Selected</button>
                     <button class="btn btn-light" (click)="onAddAll()">Add All</button>
                     <button class="btn btn-light" (click)="onRemoveSelected()">Remove Selected</button>
                     <button class="btn btn-light" (click)="onRemoveAll()">Remove All</button>
                 </div>
-
+    
                 <div class="child-list">
                     <div class="list-heading">{{childListHeading}}</div>
                     <div class="light-border">
@@ -147,10 +159,52 @@
                 </div>
             </div>
         </div>
+    </ng-template>
 
-        <div class="form-actions">
-            <button class="btn btn-save">Save</button>
-            <button class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-save w-fit-content" (click)="onAddClientFranchise(selectionListRef)">Add Client/Franchise</button>
+
+    <div class="table-section">
+        <ag-grid-angular
+            style="flex-grow: 1; height: 655px"
+            class="ag-theme-balham ag-grid"
+            [rowHeight]="36"
+            [columnDefs]="columnDef"
+            [autoGroupColumnDef]="autoGroupColDef"
+            [treeData]="!!autoGroupColDef"
+            [defaultColDef]="defaultColDef"
+            [rowData]="rowData"
+            [gridOptions]="gridOptions"
+            [sideBar]="sideBar"
+            [rowSelection]="rowSelection"
+            [enableCellChangeFlash]="true"
+            (selectionChanged)="onRowSelectionChanged($event)"
+            (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+            [pagination]="true"
+            [paginationPageSize]="100"
+            [paginateChildRows]="true"
+            (paginationChanged)="onPaginationChanged($event)"
+            (gridReady)="onGridReady($event)"
+            >
+        </ag-grid-angular>
+
+        <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
+            <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
         </div>
-    </form>
+    
+        <select
+            class="items-dropdown"
+            [(ngModel)]="selectedValue"
+            (change)="onItemsPerPageChange(selectedValue)">
+                <option
+                    *ngFor="let option of paginationOptions"
+                    [attr.selected]="option.value == 100"
+                    [value]="option.value">
+                {{ option.title }}
+                </option>
+        </select>
+    </div>
+    <div class="form-actions">
+        <button class="btn btn-save" (click)="onSave(form)">Save</button>
+        <button class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+    </div>
 </div>
