@@ -49,7 +49,8 @@ export class ChatQuestionAnswerClientComponent {
     filter: true,
     floatingFilter: true,
     enableRowGroup: true,
-    suppressMovable: false
+    suppressMovable: false,
+    sortable:true,
   }
 
   columnDef : ColDef[] = [
@@ -83,9 +84,7 @@ export class ChatQuestionAnswerClientComponent {
           const month = date.getMonth() + 1;
           const year = date.getFullYear();
 
-          return `${day.toString().padStart(2, '0')}/${month
-            .toString()
-            .padStart(2, '0')}/${year}`;
+          return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
         }
 
         return null;
@@ -101,9 +100,7 @@ export class ChatQuestionAnswerClientComponent {
           const month = date.getMonth() + 1;
           const year = date.getFullYear();
 
-          return `${day.toString().padStart(2, '0')}/${month
-            .toString()
-            .padStart(2, '0')}/${year}`;
+          return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
         }
 
         return null;
@@ -349,9 +346,7 @@ export class ChatQuestionAnswerClientComponent {
           const day = date.getDate();
           const month = date.getMonth() + 1;
           const year = date.getFullYear();
-          return `${day.toString().padStart(2, '0')}/${month
-            .toString()
-            .padStart(2, '0')}/${year}`;
+          return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
         } 
         else {
           return v;

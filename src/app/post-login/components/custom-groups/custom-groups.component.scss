@@ -50,6 +50,7 @@ button:focus {
       font-size: 24px;
       font-weight: 700;
       line-height: normal;
+      text-transform: capitalize;
     }
   }
 
@@ -88,13 +89,12 @@ button:focus {
 .btn-create-new {
   width: fit-content;
   height: 32px;
-  border-radius: 4;
+  border-radius: 4px;
   padding: 8px 14px 8px 15px;
   background-color: #296689;
   color: #fff;
   font-family: "Proxima Nova";
   font-size: 12px;
-  font-weight: 600;
   line-height: 16px;
 }
 
@@ -136,6 +136,10 @@ button:focus {
       font-size: 12px;
       font-weight: 600;
       line-height: 16px;
+  }
+
+  .ag-header-cell-text{
+    text-transform: capitalize;
   }
 
   .ag-row-odd {

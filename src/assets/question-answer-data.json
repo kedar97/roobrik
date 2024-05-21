@@ -138,8 +138,8 @@
       "created_on": "2019-03-04T00:00:00.000Z",
       "last_modified_on": "2019-09-11T00:00:00.000Z",
       "clientName": "Brightview Senior Living",
-      "franchiseName": ["Sunrise Bites"]
-  
+      "franchiseName": ["Sunrise Bites"],
+      "last_modified_by": "SophiaDavis"
     },
     {
       "id": 13,

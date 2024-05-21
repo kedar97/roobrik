@@ -92,6 +92,7 @@ export class CreateNewGroupComponent {
   public checkedKeys: any[] = [];
   public childCheckedKeys :any[] =[];
   public key = 'text';
+  public tooltipShowDelay = 0;
 
   parentListData = parentListData;
 
@@ -130,10 +131,10 @@ export class CreateNewGroupComponent {
     sortable: true,
   }
 
-  columnDef : ColDef[] =[
+  columnDef : ColDef[] = [
     {
       field:'effectiveDate',
-      headerName:'Effective date',
+      headerName:'Effective Date',
       headerTooltip: "This date will be used to determine when  the data for each client/franchise is included in this groups reports.",
       editable:true,
       cellEditor:CustomDatePickerComponent,
@@ -152,7 +153,7 @@ export class CreateNewGroupComponent {
     },
     {
       field:'deactivateDate',
-      headerName:'Deactivated date',
+      headerName:'Deactivated Date',
       editable:true,
       cellEditor:CustomDatePickerComponent,
     },
@@ -163,7 +164,7 @@ export class CreateNewGroupComponent {
   ];
 
   autoGroupColDef: ColDef = {
-    headerName: 'Client(s)/Franchise(s)',
+    headerName: 'Client(s) / Franchise(s)',
     cellRendererParams: {
       suppressCount: false,
     },

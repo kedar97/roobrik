@@ -42,6 +42,7 @@ button:focus {
             font-weight: 600;
             font-size: 24px;
             line-height: 32px;
+            text-transform: capitalize;
         }
     }
 
@@ -174,6 +175,10 @@ button:focus {
         font-size: 12px;
         font-weight: 600;
         line-height: 16px;
+    }
+
+    .ag-header-cell-text{
+        text-transform: capitalize;
     }
 
     .ag-row-odd {
@@ -462,6 +467,7 @@ button:focus {
         font-family: 'Proxima Nova';
         line-height: 24px;
         margin-bottom: 10px;
+        text-transform: capitalize;
     }
 
     .label-text {
@@ -470,6 +476,7 @@ button:focus {
         line-height: 16px;
         font-weight: 600;
         margin-bottom: 8px;
+        text-transform: capitalize;
     }
 }
 

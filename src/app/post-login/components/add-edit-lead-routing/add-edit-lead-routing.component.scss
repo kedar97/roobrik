@@ -56,6 +56,7 @@
       font-size: 16px;
       font-weight: 400;
       margin-bottom: 16px;
+      text-transform: capitalize;
     }
 
     .custom-placeholder::placeholder {
@@ -227,6 +228,7 @@
 :host ::ng-deep .ag-checkbox-input-wrapper input,
 .ag-checkbox-input-wrapper input,
 .ag-checkbox-input-wrapper {
+  appearance: none;
   -webkit-appearance: none !important;
   opacity: 1 !important;
   border: 2px solid #dfdfdf;

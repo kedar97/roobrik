@@ -37,6 +37,7 @@ button:focus {
             font-family: 'Proxima Nova';
             font-size: 24px;
             font-weight: 700;
+            text-transform: capitalize;
         }
     }
 
@@ -149,6 +150,11 @@ button:focus {
         font-size: 12px;
         font-weight: 600;
         line-height: 16px;
+    }
+
+    .ag-header-group-text,
+    .ag-header-cell-text{
+        text-transform: capitalize;
     }
 
     .ag-row-odd {

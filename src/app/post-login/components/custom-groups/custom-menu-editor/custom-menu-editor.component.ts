@@ -18,16 +18,16 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
 
   isChatMenu : boolean = false;
   optionList = [ 
-    { id: 1, name: 'Edit group details' },
-    { id: 2, name: 'Edit membership' }
+    { id: 1, name: 'Edit Group Details' },
+    { id: 2, name: 'Edit Membership' }
   ];
 
   constructor(private postLoginService : PostLoginService, private router : Router){
     if(router.url.includes('chat-configuration')){
       this.isChatMenu = true;
       this.optionList = [ 
-        { id: 1, name: 'Edit question' },
-        { id: 2, name: 'Edit answer' },
+        { id: 1, name: 'Edit Question' },
+        { id: 2, name: 'Edit Answer' },
         { id: 3, name: 'Delete' }
       ];
     }

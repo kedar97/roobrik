@@ -161,7 +161,7 @@
         </div>
     </ng-template>
 
-    <button class="btn btn-save w-fit-content" (click)="onAddClientFranchise(selectionListRef)">Add Client/Franchise</button>
+    <button class="btn btn-save w-fit-content" (click)="onAddClientFranchise(selectionListRef)">Add Client / Franchise</button>
 
     <div class="table-section">
         <ag-grid-angular
@@ -177,6 +177,7 @@
             [sideBar]="sideBar"
             [rowSelection]="rowSelection"
             [enableCellChangeFlash]="true"
+            [tooltipShowDelay]="tooltipShowDelay"
             (selectionChanged)="onRowSelectionChanged($event)"
             (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
             [pagination]="true"

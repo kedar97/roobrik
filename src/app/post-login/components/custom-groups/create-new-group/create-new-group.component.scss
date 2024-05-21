@@ -33,6 +33,7 @@ button:focus{
         font-family: 'Proxima Nova';
         font-size: 24px;
         font-weight: 700;
+        text-transform: capitalize;
     }
 }
 
@@ -119,7 +120,7 @@ button:focus{
     }
 
     .k-input textarea{
-        padding: 16px 18px;
+        padding: 16px 18px 26px 18px;
 
         &::-webkit-input-placeholder {
             color: #B0B0B0;
@@ -476,6 +477,10 @@ button:focus{
         font-size: 12px;
         font-weight: 600;
         line-height: 16px;
+    }
+
+    .ag-header-cell-text{
+        text-transform: capitalize;
     }
 
     .ag-row-odd {

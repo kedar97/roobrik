@@ -26,6 +26,7 @@
     line-height: 32px;
     margin-bottom: 0px;
     letter-spacing: 0.5px;
+    text-transform: capitalize;
   }
 
   .has-search .form-control {
@@ -133,6 +134,10 @@
   font-weight: 500 !important;
   color: #2f2f2f !important;
   letter-spacing: 0.1px;
+}
+
+:host ::ng-deep  .ag-header-cell-text{
+  text-transform: capitalize;
 }
 
 :host ::ng-deep .ag-cell-label-container {

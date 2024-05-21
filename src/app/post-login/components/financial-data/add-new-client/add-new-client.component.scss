@@ -43,6 +43,7 @@ button:focus {
             font-family: 'Proxima Nova';
             font-size: 24px;
             font-weight: 700;
+            text-transform: capitalize;
         }
     }
 
@@ -153,6 +154,11 @@ button:focus {
         font-size: 12px;
         font-weight: 600;
         line-height: 16px;
+    }
+
+    .ag-header-group-text,
+    .ag-header-cell-text{
+        text-transform: capitalize;
     }
 
     .ag-row-odd {
@@ -475,6 +481,7 @@ button:focus {
         font-family:  'Proxima Nova';
         line-height: 24px;
         margin-bottom: 10px;
+        text-transform: capitalize;
     }
 }
 
@@ -527,6 +534,7 @@ button:focus {
     line-height: 16px;
     font-weight: 600;
     margin-bottom: 8px;
+    text-transform: capitalize;
 }
 
 .buttons-container{
@@ -562,6 +570,7 @@ button:focus {
     color: #3d90ad;
     cursor: pointer;
     font-size: 12px;
+    text-transform: capitalize;
 }
 
 // UNSAVED CHNAGES POPUP

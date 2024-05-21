@@ -48,6 +48,7 @@ select:focus {
   font-weight: 700;
   line-height: 32px;
   transition: all 0.4s;
+  text-transform: capitalize;
 }
 
 .clear-section-section {
@@ -185,6 +186,10 @@ select:focus {
   & .ag-ltr .ag-header-select-all {
     padding-left: 5px !important;
     margin-right: 30px;
+  }
+
+  .ag-header-cell-text{
+    text-transform: capitalize;
   }
 
   & .ag-row-odd {
