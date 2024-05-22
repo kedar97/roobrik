@@ -11,7 +11,51 @@
     "createdBy": "Executive Team",
     "create_date": "2023-01-12",
     "deactivated_date": "N/A",
-    "password":"test@123"
+    "password":"test@123",
+    "clientFranchiseData" : [
+      {
+        "group":"12 oaks senior living",
+        "client_franchiseName" :"12 oaks senior living",
+        "effectiveDate" : "Wed May 22 2024 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate" : "",
+        "membershipStatus" : "Active"
+      },
+      {
+        "group":"12 oaks senior living",
+        "client_franchiseName" :"Default",
+        "effectiveDate" : "Wed May 22 2024 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate" : "",
+        "membershipStatus" : "Active"
+      },
+      {
+        "group":"12 oaks senior living",
+        "client_franchiseName" :"Reunion Court of Kingwood",
+        "effectiveDate" : "Wed May 22 2024 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate" : "",
+        "membershipStatus" : "Active"
+      },
+      {
+        "group": "Sunrise Senior Living",
+        "client_franchiseName": "Sunrise Senior Living",
+        "effectiveDate": "Tue June 01 2021 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "",
+        "membershipStatus": "Active"
+      },
+      {
+        "group": "Sunrise Senior Living",
+        "client_franchiseName": "Sunrise of Beverly Hills",
+        "effectiveDate": "Tue June 01 2021 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "",
+        "membershipStatus": "Active"
+      },
+      {
+        "group": "Sunrise Senior Living",
+        "client_franchiseName": "Sunrise of Santa Monica",
+        "effectiveDate": "Mon January 11 2022 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "",
+        "membershipStatus": "Active"
+      }
+    ]
   },
   {
     "id": 2,
@@ -25,8 +69,30 @@
     "createdBy": "Management Team",
     "create_date": "2023-02-15",
     "deactivated_date": "N/A",
-    "password":"xyz@2024"
-
+    "password":"xyz@2024",
+    "clientFranchiseData":[
+      {
+        "group": "Brookdale Senior Living",
+        "client_franchiseName": "Brookdale Senior Living",
+        "effectiveDate": "Wed July 17 2019 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "",
+        "membershipStatus": "Inactive"
+      },
+      {
+        "group": "Brookdale Senior Living",
+        "client_franchiseName": "Brookdale Bellevue",
+        "effectiveDate": "Wed July 17 2019 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "",
+        "membershipStatus": "Inactive"
+      },
+      {
+        "group": "Brookdale Senior Living",
+        "client_franchiseName": "Brookdale Uptown Whittier",
+        "effectiveDate": "Fri September 13 2021 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "",
+        "membershipStatus": "Inactive"
+      }
+    ]
   },
   {
     "id": 3,
@@ -40,7 +106,30 @@
     "createdBy": "Operations Department",
     "create_date": "2023-03-20",
     "deactivated_date": "N/A",
-    "password":"Acme@solutions"
+    "password":"Acme@solutions",
+    "clientFranchiseData":[
+      {
+        "group": "Atria Senior Living",
+        "client_franchiseName": "Atria Senior Living",
+        "effectiveDate": "Mon August 05 2019 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "Tue May 10 2022 00:00:00 GMT+0530 (India Standard Time)",
+        "membershipStatus": "Active"
+      },
+      {
+        "group": "Atria Senior Living",
+        "client_franchiseName": "Atria Park of Pacific Palisades",
+        "effectiveDate": "Mon August 05 2019 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "Tue May 10 2022 00:00:00 GMT+0530 (India Standard Time)",
+        "membershipStatus": "Active"
+      },
+      {
+        "group": "Atria Senior Living",
+        "client_franchiseName": "Atria Grand Oaks",
+        "effectiveDate": "Sat October 01 2022 00:00:00 GMT+0530 (India Standard Time)",
+        "deactivateDate": "Thu January 12 2023 00:00:00 GMT+0530 (India Standard Time)",
+        "membershipStatus": "Inactive"
+      }
+    ]
   },
   {
     "id": 4,

@@ -22,7 +22,6 @@ export class LoginComponent {
   });
 
   submitForm() {
-    console.log("is.loginForm.controls.email", this.loginForm.controls.email);
     if(this.loginForm.controls.email.value !== this.email || this.loginForm.controls.password.value !== this.password) {
       this.isError = true;
     } else {

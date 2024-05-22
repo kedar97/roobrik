@@ -137,7 +137,8 @@ export class CustomGroupsComponent {
     filter: 'agTextColumnFilter',
     floatingFilter: true,
     resizable: true,
-    sortable: true
+    sortable: true,
+    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
   }
 
   gridOptions: GridOptions = {

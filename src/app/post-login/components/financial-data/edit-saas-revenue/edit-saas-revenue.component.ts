@@ -445,6 +445,7 @@ export class EditSaasRevenueComponent implements CanComponentDeactivate {
     filter: 'agTextColumnFilter',
     floatingFilter: true,
     resizable: true,
+    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
   };
 
   gridOptions: GridOptions = {

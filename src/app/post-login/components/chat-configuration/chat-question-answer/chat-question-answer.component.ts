@@ -48,6 +48,7 @@ export class ChatQuestionAnswerComponent {
     enableRowGroup: true,
     suppressMovable: false,
     sortable:true,
+    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
   }
 
   columnDef: ColDef[] = [

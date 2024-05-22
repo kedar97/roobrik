@@ -420,6 +420,7 @@ export class AddNewClientComponent {
     filter: 'agTextColumnFilter',
     floatingFilter: true,
     resizable: true,
+    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
   };
 
   onGridReady(params: GridReadyEvent) {

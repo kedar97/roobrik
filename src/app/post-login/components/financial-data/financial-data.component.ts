@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer2} from '@angular/core';
-import { ColDef, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef} from 'ag-grid-community';
+import { ColDef, GetContextMenuItemsParams, GetServerSideGroupKey, GridApi, GridOptions, GridReadyEvent, ICellRendererParams, IServerSideDatasource, IsServerSideGroup, RowModelType, SideBarDef} from 'ag-grid-community';
 import { PaginationOption } from '../../post-login.modal';
 import { PostLoginService } from '../../post-login.service';
 import { HttpClient } from '@angular/common/http';
@@ -230,6 +230,7 @@ export class FinancialDataComponent {
     filter: 'agTextColumnFilter',
     floatingFilter: true,
     resizable: true,
+    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
   };
 
   public autoGroupColumnDef: ColDef = {
@@ -331,7 +332,19 @@ export class FinancialDataComponent {
       ],
     },
     onRowGroupOpened: this.onRowExpanded.bind(this),
+    allowContextMenuWithControlKey: true,
+    getContextMenuItems: this.getContextMenuItems,
   };
+
+  getContextMenuItems(params: GetContextMenuItemsParams){
+    var result = [];
+    result =  [
+      ...params.defaultItems.slice(0,params.defaultItems.length-1),
+      "chartRange",
+      ...params.defaultItems.slice(-1),
+    ];
+    return result;
+  }
 
   onRowExpanded(event: any) {
     if (event.expanded) {

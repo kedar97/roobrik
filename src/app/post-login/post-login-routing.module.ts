@@ -21,6 +21,7 @@ import { ChatNodeCategoriesComponent } from './components/chat-configuration/cha
 import { ChatQuestionAnswerComponent } from './components/chat-configuration/chat-question-answer/chat-question-answer.component';
 import { ChatQuestionAnswerClientComponent } from './components/chat-configuration/chat-question-answer-client/chat-question-answer-client.component';
 import { ChatQuestionAnswerFranchiseComponent } from './components/chat-configuration/chat-question-answer-franchise/chat-question-answer-franchise.component';
+import { EditMembershipComponent } from './components/custom-groups/edit-membership/edit-membership.component';
 const routes: Routes = [
   {
     path: '',
@@ -89,6 +90,11 @@ const routes: Routes = [
       {
         path: 'custom-groups/create-new-group',
         component: CreateNewGroupComponent,
+        canDeactivate: [UnsavedChangesGuard]
+      },
+      {
+        path: 'custom-groups/edit-membership',
+        component: EditMembershipComponent,
         canDeactivate: [UnsavedChangesGuard]
       },
     ]

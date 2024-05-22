@@ -71,7 +71,6 @@ export class CustomDropDownEditorComponent implements ICellEditorAngularComp{
         this.params.data[this.columnToChange] = [this.params.node.parent.key,dataSelected.name];
       }
       else if(this.columnToChange === 'invoicing_entity'){
-        console.log(event,this.params.data.invoicing_entity);
        let dataSelected= this.franchiseList.find(el=>el.id===event)
        
         this.params.data.invoicing_entity = dataSelected.name;

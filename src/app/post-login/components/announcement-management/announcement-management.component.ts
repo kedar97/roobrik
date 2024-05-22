@@ -113,7 +113,8 @@ export class AnnouncementManagementComponent {
     filter: 'agTextColumnFilter',
     floatingFilter: true,
     resizable: true,
-    sortable:true
+    sortable:true,
+    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
   };
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {

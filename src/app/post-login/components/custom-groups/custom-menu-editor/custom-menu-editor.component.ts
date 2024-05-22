@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
@@ -58,6 +58,16 @@ export class CustomMenuEditorComponent implements ICellRendererAngularComp{
         this.selectedRowData = this.params.data;
         this.postLoginService.isCustomGroupDetailEditable.next(true);
         this.postLoginService.selectedGroupData.next(this.selectedRowData);
+      }
+
+      if(event === 2 && !this.isChatMenu){
+        const groupData = [this.params.data];
+        const navigationExtras: NavigationExtras = {
+          state: {
+            linkData: groupData
+          }
+        };
+        this.router.navigate(['reports/custom-groups/edit-membership'],navigationExtras)
       }
   
       else if(this.isChatMenu){

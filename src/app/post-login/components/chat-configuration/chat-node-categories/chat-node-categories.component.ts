@@ -41,7 +41,8 @@ export class ChatNodeCategoriesComponent {
     floatingFilter:true,
     resizable:true,
     sortable:true,
-    enableRowGroup:true
+    enableRowGroup:true,
+    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
   }
 
   columnDef : ColDef[] = [

@@ -1,27 +1,28 @@
 import { Component, ElementRef, Renderer2, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-import { parentListData } from '../listData';
-import { DatePipe } from '@angular/common';
-import { DropDownListComponent } from '@progress/kendo-angular-dropdowns';
+import { Router } from '@angular/router';
 import { DialogCloseResult, DialogRef, DialogService } from '@progress/kendo-angular-dialog';
-import { ColDef, SideBarDef, GridOptions, GridApi, GridReadyEvent } from 'ag-grid-community';
+import {ColDef, GridOptions , GridApi, GridReadyEvent, RowModelType, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { CustomDatePickerComponent } from '../custom-date-picker/custom-date-picker.component';
-import { Router } from '@angular/router';
+import { parentListData } from '../listData';
+import { Observable, of } from 'rxjs';
+import { CanComponentDeactivate } from '../../financial-data/edit-saas-revenue/unsaved-changes.guard';
+import { DatePipe } from '@angular/common';
+import { PostLoginService } from 'src/app/post-login/post-login.service';
 
 @Component({
-  selector: 'app-create-new-group',
-  templateUrl: './create-new-group.component.html',
-  styleUrls: ['./create-new-group.component.scss'],
-  providers: [DatePipe]
+  selector: 'app-edit-membership',
+  templateUrl: './edit-membership.component.html',
+  styleUrls: ['./edit-membership.component.scss'],
+  providers:[DatePipe]
 })
-export class CreateNewGroupComponent {
-  @ViewChild('clientDropdown') clientDropdown: DropDownListComponent;
+export class EditMembershipComponent implements CanComponentDeactivate {
   @ViewChild('container', { read: ViewContainerRef })
-  container: ViewContainerRef;
+  container: ViewContainerRef
+  public rowGroupPanelShow: "always" | "onlyWhenGrouping" | "never" = "always";
 
   selectedValue = 100;
+  cacheBlockSize = 100;
   paginationOptions: PaginationOption[] = [
     {
       title: '10 per page',
@@ -62,6 +63,7 @@ export class CreateNewGroupComponent {
     },
   ];
 
+  rowModelType: RowModelType = 'serverSide';
   defaultColumnState: any;
   defaultFiltersState: any;
   gridColumnApi: any;
@@ -71,28 +73,12 @@ export class CreateNewGroupComponent {
   totalRows: number;
   rowIndex: number;
   selectedNodes = [];
+
   changesUnSaved: boolean = false;
-
-  pageTitle = 'Create new group';
-
-  isGroupDropDownOpen: boolean = false;
-  isClientDropDownOpen : boolean = false
-  isFranchiseDropDownOpen : boolean = false;
-  isShowSelectClient : boolean = false;
-  toggleText : string = 'Active';
-  selectionHeading : string = 'Client/franchise Selection';
-  selectionSubHeading : string = 'Client(s)/franchise(s)';
-  parentListHeading : string = 'Client/franchise list';
-  childListHeading : string = 'Selected Client/franchise';
-  isParentList : boolean = false;
-  isChildList : boolean = false;
-  today : string;
-  isGroupOptionSelected : boolean = false;
-  isClientOptionSelected : boolean = false;
-  isListDisabled : boolean = true;
   public checkedKeys: any[] = [];
   public childCheckedKeys :any[] =[];
   public key = 'text';
+  isListDisabled : boolean = true;
   public tooltipShowDelay = 0;
 
   parentListData = parentListData;
@@ -100,103 +86,6 @@ export class CreateNewGroupComponent {
   public selectedData:any = [{text:'Select all',items:[]}];
   public children = (dataItem: any): Observable<any[]> => of(dataItem.items);
   public hasChildren = (dataItem: any): boolean => !!dataItem.items;
-
-  groupTypeList = [
-    { id: null, value: 'Select...' },
-    { id:1, value:"Configuration & Reporting"},
-    { id:2, value:"External Reporting"},
-    { id:3, value:"Internal Reporting"}
-  ];
-
-  clientList = [
-    {id:null,value:'Select...'}
-  ];
-
-  defaultFranchiseList = [];
-
-  public form = new FormGroup({
-    groupType : new FormControl(),
-    selectedClient : new FormControl(),
-    defaultFranchise : new FormControl(),
-    internalName : new FormControl(),
-    displayName : new FormControl(),
-    excelPassword : new FormControl(),
-    effectiveDate : new FormControl(),
-    description :  new FormControl()
-  });
-
-  defaultColDef : ColDef ={
-    resizable:true,
-    filter:true,
-    floatingFilter:true,
-    sortable: true,
-    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
-  }
-
-  columnDef : ColDef[] = [
-    {
-      field:'effectiveDate',
-      headerName:'Effective Date',
-      headerTooltip: "This date will be used to determine when  the data for each client/franchise is included in this groups reports.",
-      editable:true,
-      cellEditor:CustomDatePickerComponent,
-      cellRenderer: (params: any) => {
-        if (params.value) {
-          const date = new Date(params.value);
-          const day = date.getDate();
-          const month = date.getMonth() + 1;
-          const year = date.getFullYear();
-
-          return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
-        }
-        return null;
-      },
-
-    },
-    {
-      field:'deactivateDate',
-      headerName:'Deactivated Date',
-      editable:true,
-      cellEditor:CustomDatePickerComponent,
-    },
-    {
-      field:'membershipStatus',
-      headerName:'Membership Status'
-    }
-  ];
-
-  autoGroupColDef: ColDef = {
-    headerName: 'Client(s) / Franchise(s)',
-    cellRendererParams: {
-      suppressCount: false,
-    },
-    pinned: 'left',
-    filter: 'agTextColumnFilter',
-    width: 400,
-  };
-
-  rowData = [];
-  gridOptions : GridOptions = {
-    statusBar: {
-      statusPanels: [
-        {
-          statusPanel: 'agAggregationComponent',
-          statusPanelParams: {
-            aggFuncs: ['avg', 'count', 'min', 'max', 'sum'],
-          },
-        },
-      ],
-    }, 
-
-    getDataPath: function (row: any) {
-      const path = [row.clientFranchiseName];
-      if (row.group && row.group !== row.clientFranchiseName) {
-        path.unshift(row.group);
-      }
-
-      return [...path]
-    }
-  };
 
   public sideBar: SideBarDef | string | string[] | boolean | null = {
     toolPanels: [
@@ -222,35 +111,105 @@ export class CreateNewGroupComponent {
       },
     ],
   };
-  
-  constructor(private datePipe: DatePipe,private dialogService : DialogService,private renderer: Renderer2, private ele: ElementRef, private router: Router){}
 
-  ngOnInit(){
-    this.today = this.datePipe.transform(new Date(), 'MM/dd/yyyy');
-    this.parentListData.forEach(item =>{
-      if(item.items){
-        item.items.forEach((client,index) =>{
-          this.clientList.push({ id: index+1, value: client.text })
+  defaultColDef : ColDef = {
+    resizable:true,
+    sortable:true,
+    floatingFilter:true,
+    filter:'agMultiColumnFilter',
+    menuTabs: ["filterMenuTab", "generalMenuTab", "columnsMenuTab"],
+  };
 
-          if(client.items){
-            client.items.forEach(child=>{
-              this.defaultFranchiseList.push(child.text)
-            })
-          }
-        })
+  gridOptions : GridOptions = {
+    getRowId : function(params:any){
+      return params.data.group + params.data.client_franchiseName;
+    },
+    getDataPath: function (row: any) {
+      const path = [row.client_franchiseName];
+      if (row.group && row.group !== row.client_franchiseName) {
+        path.unshift(row.group);
       }
-    });
 
-    this.form.valueChanges.subscribe((newValue) => {
-      this.changesUnSaved = true;
-    });
+      return [...path]
+    }
+  };
+
+  columnDef : ColDef[] = [
+    {
+      field:'effectiveDate',
+      headerName:'Effective Date',
+      editable:true,
+      cellEditor:CustomDatePickerComponent,
+      cellRenderer: (params: any) => {
+        if (params.value) {
+          const date = new Date(params.value);
+          const day = date.getDate();
+          const month = date.getMonth() + 1;
+          const year = date.getFullYear();
+
+          return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
+        }
+        return null;
+      },
+    },
+    {
+      field:'deactivateDate',
+      headerName:'Deactivated Date',
+      editable:true,
+      cellEditor:CustomDatePickerComponent,
+      cellRenderer: (params: any) => {
+        if (params.value) {
+          const date = new Date(params.value);
+          const day = date.getDate();
+          const month = date.getMonth() + 1;
+          const year = date.getFullYear();
+
+          return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
+        }
+        return null;
+      },
+    },
+    {
+      field:'membershipStatus',
+      headerName:'Membership Status'
+    }
+  ];
+
+  autoGroupColDef: ColDef = {
+    headerCheckboxSelection:true,
+    checkboxSelection:true,
+    headerName: 'Client(s) / Franchise(s)',
+    cellRendererParams: {
+      suppressCount: false,
+    },
+    pinned: 'left',
+    filter: 'agTextColumnFilter',
+    width: 450,
+  };
+
+  rowData = [];
+
+  groupName : string = '';
+  groupStatus : string = '';
+  groupData : any;
+  selectedRowCount : number = 0;
+  today : string = '' ;
+  private dialogRef: DialogRef;
+
+  constructor(private datePipe: DatePipe,private router: Router, private renderer: Renderer2,private ele: ElementRef,private dialogService: DialogService,private postloginService : PostLoginService){
+    const navigation = this.router.getCurrentNavigation();
+    if (navigation && navigation.extras.state) {
+      this.groupData = navigation.extras.state.linkData[0];
+      this.groupName = this.groupData?.display_name;
+      this.groupStatus = this.groupData?.status;
+    }
   }
 
   canDeactivate(): Observable<boolean> | boolean {
     if (this.changesUnSaved) {
       const dialogRef: DialogRef = this.dialogService.open({
         title: 'Confirmation',
-        content: 'You have unsaved changes. Are you sure you want to leave this page without saving your work?',
+        content: 'You have unsafe changes. Are you sure you want to leave this page without saving?',
         actions: [
           { text: 'YES, LEAVE PAGE', primary: true ,cssClass:'ok-btn'},
           { text: 'Cancel', primary: false ,cssClass:'cancel-btn' },
@@ -272,44 +231,39 @@ export class CreateNewGroupComponent {
     return true;
   }
 
-  public itemDisabled(itemArgs: { dataItem: any; index: number }) {
-    return itemArgs.dataItem.value === 'Select...';
+  ngOnInit(){
+    this.today = this.datePipe.transform(new Date(), 'MM/dd/yyyy');
   }
 
-  onGridReady(params: GridReadyEvent) {
+  onGridReady(params : GridReadyEvent){
     this.gridApi = params.api;
     this.gridData = params;
     this.gridColumnApi = params.columnApi;
     this.defaultFiltersState = this.gridApi.getFilterModel();
+    this.rowData =  this.groupData.clientFranchiseData;
   }
 
-  processItems(client, parentText, formValue) {
-    const result = [];
-    result.push(
-      {
-        group:client.text,
-        clientFranchiseName:client.text,
-        effectiveDate : formValue.effectiveDate ? formValue.effectiveDate : this.datePipe.transform(new Date(), 'MM/dd/yyyy') ,
-        deactivateDate : formValue.deactivateDate,
-        membershipStatus : 'Active'
-      }
-    )
-    client.items.forEach((item,index) => {
-      result.push({
-        group: parentText,
-        clientFranchiseName: item.text,
-        effectiveDate : formValue.effectiveDate ? formValue.effectiveDate : this.datePipe.transform(new Date(), 'MM/dd/yyyy'),
-        deactivateDate : formValue.deactivateDate,
-        membershipStatus : 'Active'
+  onDeactivate(){
+    const dialogRef: DialogRef = this.dialogService.open({
+      title: 'Deactivate Confirmation',
+      content: `Are you sure you want to deactivate ${this.selectedRowCount} client(s)/franchise(s) on this date ${this.today}?`,
+      actions: [
+        { text: 'YES, DEACTIVATE', primary: true ,cssClass:'ok-btn'},
+        { text: 'Cancel', primary: false ,cssClass:'cancel-btn' },
+      ]
+    });
+
+    return new Observable<boolean>((observer:any) => {
+      dialogRef.result.subscribe((result) => {
+        if (result instanceof Object && 'primary' in result) {
+          observer.next(result.primary);
+          observer.complete();
+        } else {
+          observer.next(false);
+          observer.complete();
+        }
       });
     });
-    return result;
-  }
-
-  private dialogRef: DialogRef;
-
-  onPopupClose(){
-    this.dialogRef.close()
   }
 
   onAddClientFranchise(template: TemplateRef<unknown>){
@@ -329,10 +283,10 @@ export class CreateNewGroupComponent {
       } else {
         if(this.selectedData[0].items.length){ 
           this.changesUnSaved = true;
-          this.gridApi?.setRowData([]);
+          this.gridApi?.setRowData(this.rowData);
 
           this.selectedData[0].items.forEach((client,index)=>{
-            const convertedArray = this.processItems(client,client.text, this.form.value);
+            const convertedArray = this.processItems(client,client.text);
             const transaction = { 
               add: [...convertedArray],
             };
@@ -345,104 +299,33 @@ export class CreateNewGroupComponent {
     });
   }
 
-  onSave(form : any){
-    this.changesUnSaved = false;
-    this.router.navigate(['/reports/custom-groups']);
-  }
-
-  onCancel(){
-    this.canDeactivate();
-    this.form.reset();
-    this.checkedKeys = [];
-    this.childCheckedKeys = [];
-    this.selectedData = [];
-    this.isShowSelectClient = false;
-    this.isGroupOptionSelected = this.isClientOptionSelected = false;
-  }
-
-  formDropDownOpen(type: string){
-    switch(type){
-      case 'groupType':
-        this.isGroupDropDownOpen = true;
-        this.isClientDropDownOpen = false;
-        this.isFranchiseDropDownOpen = false;
-        break;
-      case 'selectClient':
-        this.isClientDropDownOpen = true;
-        this.isGroupDropDownOpen = false;
-        this.isFranchiseDropDownOpen = false;
-        break;
-      case 'franchiseCount':
-        this.isFranchiseDropDownOpen = true;
-        this.isGroupDropDownOpen = false;
-        this.isClientDropDownOpen = false;
-        break;
-    }
-  }
-
-  formDropDownClose(type: string){
-    switch(type){
-      case 'groupType':
-        this.isGroupDropDownOpen = false;
-        break;
-      case 'selectClient':
-        this.isClientDropDownOpen = false;
-        break;
-      case 'franchiseCount':
-        this.isFranchiseDropDownOpen = false;
-        break;
-    }
-  }
-
-  onSelectioChange(event:any ,type:string){
-    if(type !== 'client'){
-      setTimeout(() => {
-        if (this.clientDropdown) {
-          this.clientDropdown.reset();
-          this.isClientOptionSelected = false;
-        }
+  processItems(client, parentText) {
+    const result = [];
+    result.push(
+      {
+        group:client.text,
+        client_franchiseName:client.text,
+        effectiveDate : this.groupData?.effectiveDate ? this.groupData?.effectiveDate : this.datePipe.transform(new Date(), 'MM/dd/yyyy') ,
+        deactivateDate : this.groupData?.deactivateDate,
+        membershipStatus : 'Active'
+      }
+    )
+    client.items.forEach((item,index) => {
+      result.push({
+        group: parentText,
+        client_franchiseName: item.text,
+        effectiveDate : this.groupData?.effectiveDate ? this.groupData?.effectiveDate : this.datePipe.transform(new Date(), 'MM/dd/yyyy'),
+        deactivateDate : this.groupData?.deactivateDate,
+        membershipStatus : 'Active'
       });
-    }
-    this.childCheckedKeys =[];
-    this.checkedKeys = [];
-    this.selectedData = [{text:'Select all', items :[]}]
-    if(type === 'group'){
-      this.isGroupOptionSelected = true;
-      this.isShowSelectClient = event === 1 ? true : false;
-      this.isListDisabled = event === 1 ? false : true;
-      if(event === 1){
-        this.isShowSelectClient = true;
-        this.isListDisabled = false;
-        this.parentListData = [];
-
-        this.selectionHeading = 'Franchise Selection';
-        this.selectionSubHeading = 'franchise(s)'
-        this.parentListHeading = 'Franchise list';
-        this.childListHeading = 'Selected Franchises';
-      }
-      else{
-        this.checkedKeys = [];
-        this.childCheckedKeys = [];
-        this.isShowSelectClient = false;
-        this.isListDisabled = false;
-        this.parentListData = parentListData;
-        this.selectionHeading = 'Client/franchise Selection';
-        this.selectionSubHeading = 'client(s)/franchise(s)';
-        this.parentListHeading = 'Client/franchise list';
-        this.childListHeading = 'Selected Client/fanchises';
-      }
-    }
-    else if(type === 'client'){
-      this.isClientOptionSelected = true;
-      let clientName = this.clientList[event].value;
-      let parentObject = parentListData.find(obj => obj.items.some(item => item.text === clientName));
-      if (parentObject) {
-        let desiredObject = parentObject.items.find(item => item.text === clientName);
-        this.parentListData = [{text:'Select all', items:[desiredObject]}];
-      }
-    }
+    });
+    return result;
   }
-  
+
+  onPopupClose(){
+    this.dialogRef.close()
+  }
+
   onAddSelected(){
     const filteredData = this.addSelectedItem(this.checkedKeys, this.parentListData);
     this.selectedData = filteredData.length ? filteredData : [{text:'Select all', items:[]}];
@@ -520,7 +403,10 @@ export class CreateNewGroupComponent {
     return keys.includes('Select all');
   }
 
-  onRowSelectionChanged(event: any) {
+  onSelectionChanged(event: any) {
+    const selectedRows = this.gridApi.getSelectedNodes();
+    this.selectedRowCount = selectedRows.length;
+
     this.totalRows = this.gridApi.getModel().getRowCount();
     this.selectedNodes = this.gridOptions.api.getSelectedNodes();
     if (this.selectedNodes.length === 1) {

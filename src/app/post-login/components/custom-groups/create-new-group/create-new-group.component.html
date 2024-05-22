@@ -105,7 +105,7 @@
                 </button>
             </div>
             <div class="listbox-section-heading">{{selectionHeading}}</div>
-            <div class="listbox-section-subheading">Select the new client(s) you want to add</div>
+            <div class="listbox-section-subheading">Select the new {{selectionSubHeading}} you want to add</div>
             <div class="list-container d-flex gap-25 align-items-center">
                 <div class="parent-list">
                     <div class="list-heading">{{parentListHeading}}</div>
@@ -124,7 +124,7 @@
     
                         <div class="total-section d-flex align-items-center" [class.list-disabled]="isListDisabled">
                             <input type="checkbox" #notification kendoCheckBox [checked]="checkedKeys.length === getTotalItemsCount([parentListData])"/>
-                            <span>{{checkedKeys.length}} / {{ getTotalItemsCount(parentListData) }}</span>
+                            <span> {{ hasSelectAll(checkedKeys) ? checkedKeys.length - 1 : checkedKeys.length }} / {{ getTotalItemsCount(parentListData) - 1 }}</span>
                         </div>
                     </div>
                         
@@ -153,7 +153,7 @@
                         </kendo-treeview>
                         <div class="total-section d-flex align-items-center" [class.list-disabled]="isListDisabled">
                             <input type="checkbox" #notification kendoCheckBox [checked]="childCheckedKeys.length === getTotalItemsCount(selectedData)"/>
-                            <span>{{childCheckedKeys.length}} / {{ getTotalItemsCount(selectedData) }}</span>
+                            <span> {{ hasSelectAll(childCheckedKeys) ? childCheckedKeys.length - 1 : childCheckedKeys.length }} / {{ getTotalItemsCount(selectedData) - 1 }}</span>
                         </div>
                     </div>
                 </div>
@@ -163,49 +163,51 @@
 
     <button class="btn btn-save w-fit-content" (click)="onAddClientFranchise(selectionListRef)">Add Client / Franchise</button>
 
-    <div class="table-section">
-        <ag-grid-angular
-            style="flex-grow: 1; height: 655px"
-            class="ag-theme-balham ag-grid"
-            [rowHeight]="36"
-            [columnDefs]="columnDef"
-            [autoGroupColumnDef]="autoGroupColDef"
-            [treeData]="!!autoGroupColDef"
-            [defaultColDef]="defaultColDef"
-            [rowData]="rowData"
-            [gridOptions]="gridOptions"
-            [sideBar]="sideBar"
-            [rowSelection]="rowSelection"
-            [enableCellChangeFlash]="true"
-            [tooltipShowDelay]="tooltipShowDelay"
-            (selectionChanged)="onRowSelectionChanged($event)"
-            (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
-            [pagination]="true"
-            [paginationPageSize]="100"
-            [paginateChildRows]="true"
-            (paginationChanged)="onPaginationChanged($event)"
-            (gridReady)="onGridReady($event)"
-            >
-        </ag-grid-angular>
-
-        <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
-            <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
-        </div>
+    <div class="table-button-container">
+        <div class="table-section">
+            <ag-grid-angular
+                style="flex-grow: 1; height: 655px"
+                class="ag-theme-balham ag-grid"
+                [rowHeight]="36"
+                [columnDefs]="columnDef"
+                [autoGroupColumnDef]="autoGroupColDef"
+                [treeData]="!!autoGroupColDef"
+                [defaultColDef]="defaultColDef"
+                [rowData]="rowData"
+                [gridOptions]="gridOptions"
+                [sideBar]="sideBar"
+                [rowSelection]="rowSelection"
+                [enableCellChangeFlash]="true"
+                [tooltipShowDelay]="tooltipShowDelay"
+                (selectionChanged)="onRowSelectionChanged($event)"
+                (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+                [pagination]="true"
+                [paginationPageSize]="100"
+                [paginateChildRows]="true"
+                (paginationChanged)="onPaginationChanged($event)"
+                (gridReady)="onGridReady($event)"
+                >
+            </ag-grid-angular>
     
-        <select
-            class="items-dropdown"
-            [(ngModel)]="selectedValue"
-            (change)="onItemsPerPageChange(selectedValue)">
-                <option
-                    *ngFor="let option of paginationOptions"
-                    [attr.selected]="option.value == 100"
-                    [value]="option.value">
-                {{ option.title }}
-                </option>
-        </select>
-    </div>
-    <div class="form-actions">
-        <button class="btn btn-save" (click)="onSave(form)">Save</button>
-        <button class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+            <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
+                <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
+            </div>
+        
+            <select
+                class="items-dropdown"
+                [(ngModel)]="selectedValue"
+                (change)="onItemsPerPageChange(selectedValue)">
+                    <option
+                        *ngFor="let option of paginationOptions"
+                        [attr.selected]="option.value == 100"
+                        [value]="option.value">
+                    {{ option.title }}
+                    </option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-save" (click)="onSave(form)">Save</button>
+            <button class="btn btn-cancel" (click)="onCancel()">Cancel</button>
+        </div>
     </div>
 </div>

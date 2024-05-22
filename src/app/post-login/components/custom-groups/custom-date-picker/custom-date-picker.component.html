@@ -1,1 +1,6 @@
-<kendo-datepicker class="date-picker" (valueChange)="onDateChange($event)"></kendo-datepicker>
+<kendo-datepicker 
+    class="date-picker" 
+    (valueChange)="onDateChange($event)" 
+    [disabledDates]="shouldDisableDates ? disableDates : null"
+>
+</kendo-datepicker>

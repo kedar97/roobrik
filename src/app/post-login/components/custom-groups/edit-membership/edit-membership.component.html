@@ -1,0 +1,134 @@
+<div class="main-container">
+    <div class="append-container" #container></div>
+
+    <div class="section-header margin-b-30">
+        <div class="heading-text d-flex">
+            <img src="assets/images/person-pin-outline-rounded.svg" alt="Bar-chart icon">
+            <h1>{{groupName}}</h1><span class="group-status d-flex align-items-center">{{groupStatus}}</span>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end margin-b-30">
+        <button class="btn btn-blue" (click)="onAddClientFranchise(selectionListRef)">Add client / franchise</button>
+
+        <ng-template #selectionListRef>
+            <div class="listbox-section">
+                <div class="d-flex justify-content-end close-icon-div">
+                    <button class="btn dialog-close-icon" (click)="onPopupClose()">
+                        <img src="../../.../../../../../assets/images/cancel-outline-rounded.svg" alt="close icon">
+                    </button>
+                </div>
+                <div class="listbox-section-heading">Franchise Selection</div>
+                <div class="listbox-section-subheading">Select the new client(s) you want to add</div>
+                <div class="list-container d-flex gap-25 align-items-center">
+                    <div class="parent-list">
+                        <div class="list-heading">Client list</div>
+                        <div class="light-border">
+                            <kendo-treeview
+                                kendoTreeViewHierarchyBinding
+                                kendoTreeViewCheckable
+                                [filterable]="true"
+                                [nodes]="parentListData"
+                                childrenField="items"
+                                textField="text"
+                                [(checkedKeys)]="checkedKeys"
+                                [checkBy]="key"
+                               >
+                            </kendo-treeview>
+        
+                            <div class="total-section d-flex align-items-center">
+                                <input type="checkbox" #notification kendoCheckBox [checked]="checkedKeys.length === getTotalItemsCount([parentListData])"/>
+                                <span> {{ hasSelectAll(checkedKeys) ? checkedKeys.length - 1 : checkedKeys.length }} / {{ getTotalItemsCount(parentListData) - 1 }}</span>
+                            </div>
+                        </div>
+                            
+                    </div>
+        
+                    <div class="popup-button-container">
+                        <button class="btn btn-light" (click)="onAddSelected()">Add Selected</button>
+                        <button class="btn btn-light" (click)="onAddAll()">Add All</button>
+                        <button class="btn btn-light" (click)="onRemoveSelected()">Remove Selected</button>
+                        <button class="btn btn-light" (click)="onRemoveAll()">Remove All</button>
+                    </div>
+        
+                    <div class="child-list">
+                        <div class="list-heading">Selected clients</div>
+                        <div class="light-border">
+                            <kendo-treeview
+                                kendoTreeViewHierarchyBinding
+                                kendoTreeViewCheckable
+                                [filterable]="true"
+                                [nodes]="selectedData"
+                                childrenField="items"
+                                textField="text"
+                                [(checkedKeys)]="childCheckedKeys"
+                                [checkBy]="key"
+                               >
+                            </kendo-treeview>
+                            <div class="total-section d-flex align-items-center">
+                                <input type="checkbox" #notification kendoCheckBox [checked]="childCheckedKeys.length === getTotalItemsCount(selectedData)"/>
+                                <span> {{ hasSelectAll(childCheckedKeys) ? childCheckedKeys.length - 1 : childCheckedKeys.length }} / {{ getTotalItemsCount(selectedData) - 1 }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+
+    <div class="selection-section d-flex align-items-center" *ngIf="selectedRowCount > 0">
+        <div class="d-flex align-items-center gap-10">
+            <img src="/assets/images/cancel-outline-rounded.svg" alt="icon" class="icon">
+            <span>{{selectedRowCount}} rows selected</span>
+        </div>
+        <button class="btn btn-blue btn-deactivate" (click)="onDeactivate()">Deactivate</button>
+    </div>
+
+    <div class="table-section">
+        <ag-grid-angular
+            style="flex-grow: 1; height: 655px"
+            class="ag-theme-balham ag-grid"
+            [rowHeight]="36"
+            [columnDefs]="columnDef"
+            [rowData]="rowData"
+            [defaultColDef]="defaultColDef"
+            [gridOptions]="gridOptions"
+            [sideBar]="sideBar"
+            [rowSelection]="rowSelection"
+            [autoGroupColumnDef]="autoGroupColDef"
+            [treeData]="true"
+            [groupSelectsChildren]="true"
+            [enableRangeSelection]="true"
+            [enableFillHandle]="true"
+            [enableCellChangeFlash]="true"
+            [suppressRowClickSelection]="true"
+            (selectionChanged)="onSelectionChanged($event)"
+            (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+            [pagination]="true"
+            (gridReady)="onGridReady($event)"
+        >
+        </ag-grid-angular>
+
+        <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
+            <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
+        </div>
+
+        <select
+            class="items-dropdown"
+            [(ngModel)]="selectedValue"
+            (change)="onItemsPerPageChange(selectedValue)"
+        >
+            <option
+            *ngFor="let option of paginationOptions"
+            [attr.selected]="option.value == 10"
+            [value]="option.value"
+            >
+            {{ option.title }}
+            </option>
+        </select>
+    </div>
+
+    <div class="button-container">
+        <button class="btn btn-blue btn-save">Save</button>
+        <button class="btn btn-cancel">Cancel</button>
+    </div>
+</div>
