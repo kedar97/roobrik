@@ -62,7 +62,7 @@
     "internal_name": "XYZ Ltd",
     "display_name": "XYZ Limited",
     "description": "Global consulting firm",
-    "group_type": "Consulting",
+    "group_type": "Configuration & Reporting",
     "client_count": 5000,
     "franchise_count": 150,
     "status": "Active",
@@ -143,7 +143,8 @@
     "createdBy": "Founders",
     "create_date": "2023-04-10",
     "deactivated_date": "N/A",
-    "password":"sunshine23$"
+    "password":"sunshine23$",
+    "clientFranchiseData":[]
   },
   {
     "id": 5,
@@ -157,8 +158,8 @@
     "createdBy": "Environmentalists",
     "create_date": "2023-05-05",
     "deactivated_date": "N/A",
-    "password":"global@green5"
-
+    "password":"global@green5",
+    "clientFranchiseData":[]
   },
   {
     "id": 6,
@@ -172,8 +173,8 @@
     "createdBy": "Philanthropists",
     "create_date": "2023-06-18",
     "deactivated_date": "N/A",
-    "password":"silverline@18"
-
+    "password":"silverline@18",
+    "clientFranchiseData":[]
   },
   {
     "id": 7,
@@ -187,7 +188,8 @@
     "createdBy": "Humanitarian Workers",
     "create_date": "2023-07-22",
     "deactivated_date": "N/A",
-    "password":"hope22$"
+    "password":"hope22$",
+    "clientFranchiseData":[]
   },
   {
     "id": 8,
@@ -201,7 +203,8 @@
     "createdBy": "Media Professionals",
     "create_date": "2023-08-10",
     "deactivated_date": "N/A",
-    "password":"creative@minds"
+    "password":"creative@minds",
+    "clientFranchiseData":[]
   },
   {
     "id": 9,
@@ -215,7 +218,8 @@
     "createdBy": "Healthcare Experts",
     "create_date": "2023-09-15",
     "deactivated_date": "N/A",
-    "password":"harmonywellness@15"
+    "password":"harmonywellness@15",
+    "clientFranchiseData":[]
   },
   {
     "id": 10,
@@ -229,7 +233,8 @@
     "createdBy": "Technology Enthusiasts",
     "create_date": "2023-10-20",
     "deactivated_date": "N/A",
-    "password":"bluewavetech"
+    "password":"bluewavetech",
+    "clientFranchiseData":[]
   },
   {
     "id": 11,
@@ -243,7 +248,8 @@
     "createdBy": "Tech Enthusiasts",
     "create_date": "2023-11-15",
     "deactivated_date": "N/A",
-    "password":"tech@innovate15"
+    "password":"tech@innovate15",
+    "clientFranchiseData":[]
   },
   {
     "id": 12,
@@ -257,7 +263,8 @@
     "createdBy": "Education Advocates",
     "create_date": "2023-12-20",
     "deactivated_date": "2024-03-10",
-    "password":"bright@20"
+    "password":"bright@20",
+    "clientFranchiseData":[]
   },
   {
     "id": 13,
@@ -271,7 +278,8 @@
     "createdBy": "Humanitarian Leaders",
     "create_date": "2024-01-25",
     "deactivated_date": "N/A",
-    "password":"globalvision@25"
+    "password":"globalvision@25",
+    "clientFranchiseData":[]
   },
   {
     "id": 14,
@@ -285,21 +293,23 @@
     "createdBy": "Community Leaders",
     "create_date": "2024-02-10",
     "deactivated_date": "N/A",
-    "password":"dreambuilder$"
+    "password":"dreambuilder$",
+    "clientFranchiseData":[]
   },
   {
     "id": 15,
     "internal_name": "Infinite Solutions",
     "display_name": "Infinite Solutions",
     "description": "Consulting firm specializing in business optimization",
-    "group_type": "Consulting",
+   "group_type": "Configuration & Reporting",
     "client_count": 800,
     "franchise_count": 40,
     "status": "Active",
     "createdBy": "Business Consultants",
     "create_date": "2024-03-15",
     "deactivated_date": "N/A",
-    "password":"infinitesolutions"
+    "password":"infinitesolutions",
+    "clientFranchiseData":[]
   },
   {
     "id": 16,
@@ -313,7 +323,8 @@
     "createdBy": "Environmentalists",
     "create_date": "2024-04-20",
     "deactivated_date": "2024-06-10",
-    "password":"evergreen@tech"
+    "password":"evergreen@tech",
+    "clientFranchiseData":[]
   },
   {
     "id": 17,
@@ -327,7 +338,8 @@
     "createdBy": "Product Developers",
     "create_date": "2024-05-05",
     "deactivated_date": "N/A",
-    "password": "innov@te2023"
+    "password": "innov@te2023",
+    "clientFranchiseData":[]
   },
   {
     "id": 18,
@@ -341,7 +353,8 @@
     "createdBy": "Philanthropists",
     "create_date": "2024-06-18",
     "deactivated_date": "2024-08-10",
-    "password":"sunsetphil@n"
+    "password":"sunsetphil@n",
+    "clientFranchiseData":[]
   },
   {
     "id": 19,
@@ -355,21 +368,23 @@
     "createdBy": "Software Engineers",
     "create_date": "2024-07-22",
     "deactivated_date": "N/A",
-    "password":"dynamicdev$"
+    "password":"dynamicdev$",
+    "clientFranchiseData":[]
   },
   {
     "id": 20,
     "internal_name": "Crystal Clear Consulting",
     "display_name": "Crystal Clear Consulting",
     "description": "Consulting firm specializing in strategic planning",
-    "group_type": "Consulting",
+   "group_type": "Configuration & Reporting",
     "client_count": 300,
     "franchise_count": 15,
     "status": "Inactive",
     "createdBy": "Management Consultants",
     "create_date": "2024-08-10",
     "deactivated_date": "2024-10-05",
-    "password":"crystalM@nagement"
+    "password":"crystalM@nagement",
+    "clientFranchiseData":[]
   },
   {
     "id": 21,
@@ -383,7 +398,8 @@
     "createdBy": "Tech Enthusiasts",
     "create_date": "2024-11-15",
     "deactivated_date": "N/A",
-    "password":"techGen@15"
+    "password":"techGen@15",
+    "clientFranchiseData":[]
   },
   {
     "id": 22,
@@ -397,7 +413,8 @@
     "createdBy": "Education Advocates",
     "create_date": "2024-12-20",
     "deactivated_date": "2025-03-10",
-    "password":"brighter@educ@tion"
+    "password":"brighter@educ@tion",
+    "clientFranchiseData":[]
   },
   {
     "id": 23,
@@ -411,7 +428,8 @@
     "createdBy": "Humanitarian Leaders",
     "create_date": "2025-01-25",
     "deactivated_date": "N/A",
-    "password":"unityleader@25"
+    "password":"unityleader@25",
+    "clientFranchiseData":[]
   },
   {
     "id": 24,
@@ -425,7 +443,8 @@
     "createdBy": "Community Leaders",
     "create_date": "2025-02-10",
     "deactivated_date": "N/A",
-    "password":"dreamCommunity@10"
+    "password":"dreamCommunity@10",
+    "clientFranchiseData":[]
   },
   {
     "id": 25,
@@ -439,7 +458,8 @@
     "createdBy": "Tech Experts",
     "create_date": "2025-03-15",
     "deactivated_date": "N/A",
-    "password":"infiniteTechDev$"
+    "password":"infiniteTechDev$",
+    "clientFranchiseData":[]
   },
   {
     "id": 26,
@@ -453,7 +473,8 @@
     "createdBy": "Environmentalists",
     "create_date": "2025-04-20",
     "deactivated_date": "2025-06-10",
-    "password":"techGreen@20"
+    "password":"techGreen@20",
+    "clientFranchiseData":[]
   },
   {
     "id": 27,
@@ -467,7 +488,8 @@
     "createdBy": "Philanthropists",
     "create_date": "2025-06-18",
     "deactivated_date": "2025-08-10",
-    "password":"brightPhilan@10"
+    "password":"brightPhilan@10",
+    "clientFranchiseData":[]
   },
   {
     "id": 28,
@@ -481,21 +503,23 @@
     "createdBy": "Software Engineers",
     "create_date": "2025-07-22",
     "deactivated_date": "N/A",
-    "password":"dyn@micSolutions"
+    "password":"dyn@micSolutions",
+    "clientFranchiseData":[]
   },
   {
     "id": 29,
     "internal_name": "CrystalTech",
     "display_name": "CrystalTech",
     "description": "Consulting firm specializing in strategic planning",
-    "group_type": "Consulting",
+   "group_type": "Configuration & Reporting",
     "client_count": 300,
     "franchise_count": 15,
     "status": "Inactive",
     "createdBy": "Management Consultants",
     "create_date": "2025-08-10",
     "deactivated_date": "2025-10-05",
-    "password":"cryst@lConsulting"
+    "password":"cryst@lConsulting",
+    "clientFranchiseData":[]
   },
   {
     "id": 30,
@@ -509,7 +533,8 @@
     "createdBy": "Tech Entrepreneurs",
     "create_date": "2025-09-15",
     "deactivated_date": "N/A",
-    "password":"techHive@15"
+    "password":"techHive@15",
+    "clientFranchiseData":[]
   },
   {
     "id": 31,
@@ -523,7 +548,8 @@
     "createdBy": "Tech Enthusiasts",
     "create_date": "2025-11-15",
     "deactivated_date": "N/A",
-    "password":"Innovative@tech"
+    "password":"Innovative@tech",
+    "clientFranchiseData":[]
   },
   {
     "id": 32,
@@ -537,7 +563,8 @@
     "createdBy": "Education Advocates",
     "create_date": "2025-12-20",
     "deactivated_date": "2026-03-10",
-    "password":"brightMindsEdu$"
+    "password":"brightMindsEdu$",
+    "clientFranchiseData":[]
   },
   {
     "id": 33,
@@ -551,7 +578,8 @@
     "createdBy": "Humanitarian Leaders",
     "create_date": "2026-01-25",
     "deactivated_date": "N/A",
-    "password":"glob@lSupport"
+    "password":"glob@lSupport",
+    "clientFranchiseData":[]
   },
   {
     "id": 34,
@@ -565,21 +593,23 @@
     "createdBy": "Animation Artists",
     "create_date": "2026-02-10",
     "deactivated_date": "N/A",
-    "password":"anim@tionArtist"
+    "password":"anim@tionArtist",
+    "clientFranchiseData":[]
   },
   {
     "id": 35,
     "internal_name": "TechSolutions",
     "display_name": "TechSolutions",
     "description": "Technology consulting firm",
-    "group_type": "Consulting",
+   "group_type": "Configuration & Reporting",
     "client_count": 800,
     "franchise_count": 40,
     "status": "Active",
     "createdBy": "Tech Experts",
     "create_date": "2026-03-15",
     "deactivated_date": "N/A",
-    "password":"techExperts@15"
+    "password":"techExperts@15",
+    "clientFranchiseData":[]
   },
   {
     "id": 36,
@@ -593,7 +623,8 @@
     "createdBy": "Environmentalists",
     "create_date": "2026-04-20",
     "deactivated_date": "2026-06-10",
-    "password":"echoTech@10"
+    "password":"echoTech@10",
+    "clientFranchiseData":[]
   },
   {
     "id": 37,
@@ -607,7 +638,8 @@
     "createdBy": "Global Activists",
     "create_date": "2028-03-25",
     "deactivated_date": "2028-06-10",
-    "password":"glob@lRe@ch"
+    "password":"glob@lRe@ch",
+    "clientFranchiseData":[]
   },
   {
     "id": 38,
@@ -621,21 +653,23 @@
     "createdBy": "Software Engineers",
     "create_date": "2026-07-22",
     "deactivated_date": "N/A",
-    "password":"geniusTech@22"
+    "password":"geniusTech@22",
+    "clientFranchiseData":[]
   },
   {
     "id": 39,
     "internal_name": "CrystalConsulting",
     "display_name": "CrystalConsulting",
     "description": "Strategic consulting firm",
-    "group_type": "Consulting",
+   "group_type": "Configuration & Reporting",
     "client_count": 300,
     "franchise_count": 15,
     "status": "Inactive",
     "createdBy": "Management Consultants",
     "create_date": "2026-08-10",
     "deactivated_date": "2026-10-05",
-    "password":"crystal@05con"
+    "password":"crystal@05con",
+    "clientFranchiseData":[]
   },
   {
     "id": 40,
@@ -649,7 +683,8 @@
     "createdBy": "Tech Entrepreneurs",
     "create_date": "2026-09-15",
     "deactivated_date": "N/A",
-    "password":"techIncub@tor"
+    "password":"techIncub@tor",
+    "clientFranchiseData":[]
   },
   {
     "id": 41,
@@ -663,21 +698,23 @@
     "createdBy": "Tech Enthusiasts",
     "create_date": "2026-11-15",
     "deactivated_date": "2027-02-10",
-    "password":"innoTech@15"
+    "password":"innoTech@15",
+    "clientFranchiseData":[]
   },
   {
     "id": 42,
     "internal_name": "TechWise",
     "display_name": "TechWise",
     "description": "Technology consulting and solutions firm",
-    "group_type": "Consulting",
+   "group_type": "Configuration & Reporting",
     "client_count": 600,
     "franchise_count": 30,
     "status": "Active",
     "createdBy": "Tech Strategists",
     "create_date": "2028-08-30",
     "deactivated_date": "2028-11-05",
-    "password":"wiseSolution@05"
+    "password":"wiseSolution@05",
+    "clientFranchiseData":[]
   },
   {
     "id": 43,
@@ -691,7 +728,8 @@
     "createdBy": "Humanitarian Leaders",
     "create_date": "2027-01-25",
     "deactivated_date": "2027-04-10",
-    "password":"aidGlob@l"
+    "password":"aidGlob@l",
+    "clientFranchiseData":[]
   },
   {
     "id": 44,
@@ -705,7 +743,8 @@
     "createdBy": "Animation Artists",
     "create_date": "2027-02-10",
     "deactivated_date": "2027-05-15",
-    "password":"dreamTechDev$"
+    "password":"dreamTechDev$",
+    "clientFranchiseData":[]
   },
   {
     "id": 45,
@@ -719,7 +758,8 @@
     "createdBy": "Tech Visionaries",
     "create_date": "2028-07-25",
     "deactivated_date": "2028-10-30",
-    "password":"visinory@tech"
+    "password":"visinory@tech",
+    "clientFranchiseData":[]
   },
   {
     "id": 46,
@@ -733,21 +773,23 @@
     "createdBy": "Environmentalists",
     "create_date": "2027-04-20",
     "deactivated_date": "2027-07-25",
-    "password":"echoTechSolutions"
+    "password":"echoTechSolutions",
+    "clientFranchiseData":[]
   },
   {
     "id": 47,
     "internal_name": "TechSavvy",
     "display_name": "TechSavvy",
     "description": "Innovative technology consultancy",
-    "group_type": "Consulting",
+   "group_type": "Configuration & Reporting",
     "client_count": 800,
     "franchise_count": 40,
     "status": "Active",
     "createdBy": "Tech Experts",
     "create_date": "2028-05-15",
     "deactivated_date": "2028-08-20",
-    "password":"s@vvyTech15"
+    "password":"s@vvyTech15",
+    "clientFranchiseData":[]
   },
   {
     "id": 48,
@@ -761,7 +803,8 @@
     "createdBy": "Software Engineers",
     "create_date": "2027-07-22",
     "deactivated_date": "2027-10-05",
-    "password":"techG@22"
+    "password":"techG@22",
+    "clientFranchiseData":[]
   },
   {
     "id": 49,
@@ -775,7 +818,8 @@
     "createdBy": "Tech Enthusiasts",
     "create_date": "2028-01-15",
     "deactivated_date": "2028-04-10",
-    "password":"swiftTech@10"
+    "password":"swiftTech@10",
+    "clientFranchiseData":[]
   },
   {
     "id": 50,
@@ -789,6 +833,7 @@
     "createdBy": "Tech Enthusiasts",
     "create_date": "2028-10-10",
     "deactivated_date": "2029-01-15",
-    "password":"techSp@rk10"
+    "password":"techSp@rk10",
+    "clientFranchiseData":[]
   }
 ]

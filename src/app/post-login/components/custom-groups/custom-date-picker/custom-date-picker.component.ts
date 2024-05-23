@@ -55,9 +55,23 @@ export class CustomDatePickerComponent implements ICellEditorAngularComp {
     this.newDate = `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`; 
 
     this.params.data[this.columnToChange] = this.newDate;
+    let childNodes = this.params.node.childrenMapped;
+    const franchises = Object.keys(childNodes).map((key) => ({
+      value: childNodes[key],
+    }));
+
+    franchises.forEach(child =>{
+      child.value.data[this.columnToChange] = this.newDate;
+    })
+    
     if(this.columnToChange === 'deactivateDate'){
       this.params.data.membershipStatus = 'Inactive';
+
+      franchises.forEach(child =>{
+        child.value.data.membershipStatus = 'Inactive';
+      })
     }
+    
     this.params.api.applyTransaction({ update: [this.params.data] });
     this.params.api.refreshCells();
   }

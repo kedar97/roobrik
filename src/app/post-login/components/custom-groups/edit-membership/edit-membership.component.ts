@@ -9,12 +9,30 @@ import { Observable, of } from 'rxjs';
 import { CanComponentDeactivate } from '../../financial-data/edit-saas-revenue/unsaved-changes.guard';
 import { DatePipe } from '@angular/common';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-edit-membership',
   templateUrl: './edit-membership.component.html',
   styleUrls: ['./edit-membership.component.scss'],
-  providers:[DatePipe]
+  providers:[DatePipe],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0,
+        height: '0px',
+        padding: '0px'
+      })),
+      state('*', style({
+        opacity: 1,
+        height: '*',
+        padding: '*'
+      })),
+      transition('void <=> *', [
+        animate('300ms ease-in-out')
+      ]),
+    ])
+  ]
 })
 export class EditMembershipComponent implements CanComponentDeactivate {
   @ViewChild('container', { read: ViewContainerRef })
@@ -73,6 +91,8 @@ export class EditMembershipComponent implements CanComponentDeactivate {
   totalRows: number;
   rowIndex: number;
   selectedNodes = [];
+
+  isDeactivatePopup : boolean = false;
 
   changesUnSaved: boolean = false;
   public checkedKeys: any[] = [];
@@ -193,7 +213,7 @@ export class EditMembershipComponent implements CanComponentDeactivate {
   groupStatus : string = '';
   groupData : any;
   selectedRowCount : number = 0;
-  today : string = '' ;
+  today : Date;
   private dialogRef: DialogRef;
 
   constructor(private datePipe: DatePipe,private router: Router, private renderer: Renderer2,private ele: ElementRef,private dialogService: DialogService,private postloginService : PostLoginService){
@@ -232,7 +252,7 @@ export class EditMembershipComponent implements CanComponentDeactivate {
   }
 
   ngOnInit(){
-    this.today = this.datePipe.transform(new Date(), 'MM/dd/yyyy');
+    this.today = new Date();
   }
 
   onGridReady(params : GridReadyEvent){
@@ -240,30 +260,15 @@ export class EditMembershipComponent implements CanComponentDeactivate {
     this.gridData = params;
     this.gridColumnApi = params.columnApi;
     this.defaultFiltersState = this.gridApi.getFilterModel();
-    this.rowData =  this.groupData.clientFranchiseData;
+    this.rowData =  this.groupData?.clientFranchiseData;
   }
 
   onDeactivate(){
-    const dialogRef: DialogRef = this.dialogService.open({
-      title: 'Deactivate Confirmation',
-      content: `Are you sure you want to deactivate ${this.selectedRowCount} client(s)/franchise(s) on this date ${this.today}?`,
-      actions: [
-        { text: 'YES, DEACTIVATE', primary: true ,cssClass:'ok-btn'},
-        { text: 'Cancel', primary: false ,cssClass:'cancel-btn' },
-      ]
-    });
+    this.isDeactivatePopup = true;
+  }
 
-    return new Observable<boolean>((observer:any) => {
-      dialogRef.result.subscribe((result) => {
-        if (result instanceof Object && 'primary' in result) {
-          observer.next(result.primary);
-          observer.complete();
-        } else {
-          observer.next(false);
-          observer.complete();
-        }
-      });
-    });
+  onDateChange(event:any){
+    this.today = event;
   }
 
   onAddClientFranchise(template: TemplateRef<unknown>){
@@ -299,7 +304,7 @@ export class EditMembershipComponent implements CanComponentDeactivate {
     });
   }
 
-  processItems(client, parentText) {
+  processItems(client:any, parentText:string) {
     const result = [];
     result.push(
       {
@@ -323,7 +328,23 @@ export class EditMembershipComponent implements CanComponentDeactivate {
   }
 
   onPopupClose(){
-    this.dialogRef.close()
+    this.dialogRef.close();
+  }
+
+  onCloseDeactivatePopup(){
+    this.isDeactivatePopup = false;
+  }
+
+  onDeactivateData(){
+    this.isDeactivatePopup = false;
+    this.changesUnSaved = true;
+    this.gridApi.deselectAll();
+  }
+
+  onSearch() {    
+    this.gridApi.setQuickFilter(
+      (document.getElementById('filter-text-box') as HTMLInputElement).value
+    );
   }
 
   onAddSelected(){

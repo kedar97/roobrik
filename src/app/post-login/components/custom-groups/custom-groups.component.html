@@ -74,6 +74,32 @@
                     >
                  </div>  
 
+                 <div class="d-flex flex-column" *ngIf="form.get('groupName').value === 'Configuration & Reporting'">
+                    <kendo-label class="label-text">Client</kendo-label>
+                    <kendo-dropdownlist
+                        [data]="clientList"
+                        class="dropdown"
+                        (open)="onDropDownOpen($event,'client')"
+                        (close)="onDropDownClose($event,'client')"
+                        [class.dropdown-open]="isClientDropDownOpen"
+                        formControlName="client"
+                        >
+                    </kendo-dropdownlist>
+                 </div>
+
+                 <div class="d-flex flex-column" *ngIf="form.get('groupName').value === 'Configuration & Reporting'">
+                    <kendo-label class="label-text">Default Franchise Group</kendo-label>
+                    <kendo-dropdownlist
+                        [data]="franchiseList"
+                        class="dropdown"
+                        (open)="onDropDownOpen($event,'franchise')"
+                        (close)="onDropDownClose($event,'franchise')"
+                        [class.dropdown-open]="isFranchiseDropDownOpen"
+                        formControlName="franchise"
+                        >
+                    </kendo-dropdownlist>
+                 </div>
+
                  <div class="d-flex flex-column">
                     <kendo-label class="label-text">Internal name</kendo-label>
                     <input
@@ -106,12 +132,12 @@
                  </div>
 
                  <div class="d-flex flex-column">
-                    <kendo-label class="label-text">Status</kendo-label>
+                    <kendo-label class="label-text"> Custom Group Status</kendo-label>
                     <kendo-dropdownlist
                         [data]="statusList"
                         class="dropdown"
-                        (open)="statusDropDownOpen($event)"
-                        (close)="statusDropDownClose($event)"
+                        (open)="onDropDownOpen($event,'status')"
+                        (close)="onDropDownClose($event,'status')"
                         [class.dropdown-open]="isStatusDropDownOpen"
                         formControlName="status"
                         >

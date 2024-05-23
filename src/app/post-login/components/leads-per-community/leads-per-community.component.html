@@ -14,7 +14,7 @@
                 >
                 <img src="assets/images/search-icon.png" alt="Search icon">
             </div>
-            <button class="btn btn-export">Export</button>
+            <button class="btn btn-export" (click)="onExport()">Export</button>
         </div>
     </div>
     <div class="table-section">
@@ -42,6 +42,7 @@
         [cacheBlockSize]="cacheBlockSize"
         [paginationPageSize]="100"
         [paginateChildRows]="true"
+        [enableCharts]="true"
         (gridReady)="onGridReady($event)"
         >
         </ag-grid-angular>

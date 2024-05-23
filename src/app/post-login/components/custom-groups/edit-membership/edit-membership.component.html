@@ -1,4 +1,4 @@
-<div class="main-container">
+<div class="main-container" *ngIf="groupName">
     <div class="append-container" #container></div>
 
     <div class="section-header margin-b-30">
@@ -7,9 +7,17 @@
             <h1>{{groupName}}</h1><span class="group-status d-flex align-items-center">{{groupStatus}}</span>
         </div>
     </div>
-    <div class="d-flex justify-content-end margin-b-30">
+    <div class="search-section margin-b-30">
+        <div class="input-container">
+            <input 
+                type="text" 
+                placeholder="Search" 
+                (input)="onSearch()"         
+                id="filter-text-box"
+            >
+            <img src="assets/images/search-icon.png" alt="Search icon">
+        </div>
         <button class="btn btn-blue" (click)="onAddClientFranchise(selectionListRef)">Add client / franchise</button>
-
         <ng-template #selectionListRef>
             <div class="listbox-section">
                 <div class="d-flex justify-content-end close-icon-div">
@@ -75,12 +83,25 @@
         </ng-template>
     </div>
 
-    <div class="selection-section d-flex align-items-center" *ngIf="selectedRowCount > 0">
+    <div class="selection-section d-flex align-items-center" *ngIf="selectedRowCount > 0" @fadeInOut>
         <div class="d-flex align-items-center gap-10">
             <img src="/assets/images/cancel-outline-rounded.svg" alt="icon" class="icon">
             <span>{{selectedRowCount}} rows selected</span>
         </div>
         <button class="btn btn-blue btn-deactivate" (click)="onDeactivate()">Deactivate</button>
+        <kendo-dialog title="Deactivate Confirmation" *ngIf="isDeactivatePopup" (close)="onCloseDeactivatePopup()" class="deactivate-popup">
+            <div class="d-flex align-items-center gap-2">
+                <p>
+                    Are you sure you want to deactivate {{this.selectedRowCount}} client(s)/franchise(s) on this date
+                </p>
+                <kendo-datepicker [value]="today" [fillMode]="'flat'" (valueChange)="onDateChange($event)"></kendo-datepicker> ?
+            </div>
+           
+            <kendo-dialog-actions>
+                <button kendoButton class="ok-btn" (click)="onDeactivateData()">YES, DEACTIVATE</button>
+              <button kendoButton class="cancel-btn" (click)="onCloseDeactivatePopup()">CANCEL</button>
+            </kendo-dialog-actions>
+        </kendo-dialog>
     </div>
 
     <div class="table-section">

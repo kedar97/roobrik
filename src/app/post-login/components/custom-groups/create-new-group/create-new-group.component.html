@@ -31,13 +31,15 @@
                 <kendo-dropdownlist 
                     #clientDropdown
                     formControlName="selectedClient" 
-                    [data]="clientList" 
+                    [data]="clientListCopy" 
+                    [filterable]="true"
                     [valuePrimitive]=true
                     textField="value" 
                     valueField="id" 
                     (open)="formDropDownOpen('selectClient')"
                     (close)="formDropDownClose('selectClient')" 
                     (valueChange)="onSelectioChange($event, 'client')"
+                    (filterChange)="handleDropDownFilter($event,'client')"
                     class="dropdown" 
                     [class.data-selected]="isClientOptionSelected"
                     [class.dropdown-open]="isClientDropDownOpen"
@@ -52,13 +54,15 @@
                 <kendo-label class="label-text">Group Default Franchise</kendo-label>
                 <kendo-dropdownlist 
                     formControlName="defaultFranchise" 
-                    [data]="defaultFranchiseList" 
+                    [data]="defaultFranchiseListCopy" 
+                    [filterable]="true"
                     [valuePrimitive]=true
                     textField="value" 
                     valueField="value" 
                     (open)="formDropDownOpen('franchiseCount')"
                     (close)="formDropDownClose('franchiseCount')" 
                     (valueChange)="onSelectioChange($event, 'franchise')"
+                    (filterChange)="handleDropDownFilter($event,'franchise')"
                     class="dropdown" 
                     [class.dropdown-open]="isFranchiseDropDownOpen"
                     [popupSettings]="{appendTo: 'component'}">

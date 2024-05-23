@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {
   ColDef,
-  GetContextMenuItemsParams,
   GetServerSideGroupKey,
   GridApi,
   GridOptions,
@@ -197,19 +196,7 @@ export class LeadsPerCommunityComponent implements OnInit {
       ],
     },
     onRowGroupOpened: this.onRowExpanded.bind(this),
-    allowContextMenuWithControlKey: true,
-    getContextMenuItems: this.getContextMenuItems,
   };
-
-  getContextMenuItems(params: GetContextMenuItemsParams){
-    var result = [];
-    result =  [
-      ...params.defaultItems.slice(0,params.defaultItems.length-1),
-      "chartRange",
-      ...params.defaultItems.slice(-1),
-    ];
-    return result;
-  }
 
   ngOnInit(): void {}
 
@@ -336,6 +323,10 @@ export class LeadsPerCommunityComponent implements OnInit {
       let datasource = getServerSideDatasource(fakeServer);
       this.gridApi.setServerSideDatasource(datasource);
     });
+  }
+
+  onExport(){
+    this.gridApi.exportDataAsExcel();
   }
 
   getMonthValue(data: any, type: string, month: string) {

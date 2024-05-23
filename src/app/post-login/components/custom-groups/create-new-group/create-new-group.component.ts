@@ -73,7 +73,7 @@ export class CreateNewGroupComponent {
   selectedNodes = [];
   changesUnSaved: boolean = false;
 
-  pageTitle = 'Create new group';
+  pageTitle = 'Create new custom group';
 
   isGroupDropDownOpen: boolean = false;
   isClientDropDownOpen : boolean = false
@@ -112,7 +112,11 @@ export class CreateNewGroupComponent {
     {id:null,value:'Select...'}
   ];
 
+  clientListCopy = [];
   defaultFranchiseList = [];
+  defaultFranchiseListCopy = [];
+  private dialogRef: DialogRef;
+
 
   public form = new FormGroup({
     groupType : new FormControl(),
@@ -241,6 +245,9 @@ export class CreateNewGroupComponent {
       }
     });
 
+    this.clientListCopy = this.clientList.slice();
+    this.defaultFranchiseListCopy = this.defaultFranchiseList.slice();
+
     this.form.valueChanges.subscribe((newValue) => {
       this.changesUnSaved = true;
     });
@@ -306,7 +313,25 @@ export class CreateNewGroupComponent {
     return result;
   }
 
-  private dialogRef: DialogRef;
+  handleDropDownFilter(value:string ,type:string) {
+    if(type === 'client'){
+      if(value){
+        this.clientListCopy = this.clientList.filter((s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+      }
+      else{
+        this.clientListCopy = this.clientList;
+      }
+    }
+
+    if(type === 'franchise'){
+      if(value){
+        this.defaultFranchiseListCopy = this.defaultFranchiseList.filter((franchise) => franchise.toLowerCase().indexOf(value.toLowerCase()) !== -1);
+      }
+      else{
+        this.defaultFranchiseListCopy = this.defaultFranchiseList;
+      }
+    }
+  }
 
   onPopupClose(){
     this.dialogRef.close()

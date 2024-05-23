@@ -18,6 +18,8 @@ export class CustomGroupsComponent {
   customGroupDataUrl = "assets/custom-group-data.json";
   isGroupEditable : boolean = false;
   isStatusDropDownOpen : boolean = false;
+  isClientDropDownOpen : boolean = false;
+  isFranchiseDropDownOpen : boolean = false;
   statusList : Array<string> = [
     "Inactive",
     "Active"
@@ -105,6 +107,8 @@ export class CustomGroupsComponent {
 
   public form = new FormGroup({
     groupName : new FormControl(),
+    client: new FormControl(),
+    franchise : new FormControl(),
     internalName : new FormControl(),
     displayName : new FormControl(),
     description : new FormControl(),
@@ -112,6 +116,9 @@ export class CustomGroupsComponent {
     status : new FormControl(),
     date: new FormControl(),
   });
+
+  clientList :any[] = [];
+  franchiseList :any[] = [];
   
   constructor(private renderer: Renderer2, private ele: ElementRef, private postLoginService: PostLoginService, private router:Router) { 
     postLoginService.isCustomGroupDetailEditable.subscribe(res =>{
@@ -122,6 +129,8 @@ export class CustomGroupsComponent {
       if(data){
         this.form.setValue({
           groupName : data.group_type,
+          client : '',
+          franchise:'',
           internalName: data.internal_name,
           displayName: data.display_name,
           description: data.description,
@@ -253,6 +262,25 @@ export class CustomGroupsComponent {
 
     this.postLoginService.getTableData(this.customGroupDataUrl).subscribe(data => {
       var fakeServer = FakeServer(data);
+
+      data.forEach(item =>{
+        let clientsCount = 0;
+        let franchiseCount = 0;
+        if(item.clientFranchiseData){
+          item.clientFranchiseData.forEach(cf=>{
+              if(cf.group === cf.client_franchiseName){
+                clientsCount++;
+                this.clientList.push(cf.client_franchiseName);
+              }
+              else{
+                franchiseCount++;
+                this.franchiseList.push(cf.client_franchiseName);
+              }
+          })
+          item.client_count = clientsCount;
+          item.franchise_count = franchiseCount;
+        }
+      })
       var datasource = getServerSideDatasource(fakeServer);
       this.gridApi.setServerSideDatasource(datasource);
     })
@@ -345,12 +373,23 @@ export class CustomGroupsComponent {
     this.postLoginService.isCustomGroupDetailEditable.next(false);
   }
 
-  statusDropDownOpen(event:any){
-    this.isStatusDropDownOpen = true;
+  onDropDownOpen(event:any,type : string){
+    if(type === 'status'){
+      this.isStatusDropDownOpen = true;
+      this.isClientDropDownOpen = this.isFranchiseDropDownOpen = false;
+    }
+    else if(type === 'client'){
+      this.isClientDropDownOpen = true;
+      this.isStatusDropDownOpen = this.isFranchiseDropDownOpen = false;
+    }
+    else if(type === 'franchise'){
+      this.isFranchiseDropDownOpen  = true;
+      this.isStatusDropDownOpen = this.isClientDropDownOpen = false;
+    }
   }
 
-  statusDropDownClose(event:any){
-    this.isStatusDropDownOpen = false;
+  onDropDownClose(event:any,type : string){
+    this.isStatusDropDownOpen = this.isClientDropDownOpen = this.isFranchiseDropDownOpen = false;
   }
 
   onSaveChanges(form:any){
@@ -363,7 +402,7 @@ export class CustomGroupsComponent {
   }
 
   onCreateNewGroup(){
-    this.router.navigate(['reports/custom-groups/create-new-group'])
+    this.router.navigate(['reports/custom-groups/create-new-custom-group'])
   }
 
   ngOnDestroy(){
