@@ -181,6 +181,7 @@ export class CreateNewGroupComponent {
 
   rowData = [];
   gridOptions : GridOptions = {
+    groupDefaultExpanded: -1,
     statusBar: {
       statusPanels: [
         {

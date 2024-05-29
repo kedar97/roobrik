@@ -280,8 +280,12 @@ button:focus {
 
     .ag-pinned-right-header,
     .ag-horizontal-right-spacer {
-        width: 60px !important;
-        min-width: 60px !important;
+        width: 55px !important;
+        min-width: 55px !important;
+    }
+
+    .ag-pinned-right-header .ag-icon-menu {
+        margin-left: -25px;
     }
 
     .ag-pinned-right-cols-container {

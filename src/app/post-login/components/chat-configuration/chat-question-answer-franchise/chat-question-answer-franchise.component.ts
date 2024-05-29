@@ -120,14 +120,16 @@ export class ChatQuestionAnswerFranchiseComponent {
       filter: 'agMultiColumnFilter',
     },
     {
-      width: 60,
+      width: 55,
       suppressColumnsToolPanel: true,
       suppressFiltersToolPanel: true,
       cellRenderer: CustomMenuEditorComponent,
       pinned: 'right',
       lockPinned: true,
       floatingFilter: false,
-      filter: false
+      filter: false,
+      resizable: false,
+      sortable: false
     },
   ];
 

@@ -141,6 +141,7 @@ export class EditMembershipComponent implements CanComponentDeactivate {
   };
 
   gridOptions : GridOptions = {
+    groupDefaultExpanded: -1,
     getRowId : function(params:any){
       return params.data.group + params.data.client_franchiseName;
     },
