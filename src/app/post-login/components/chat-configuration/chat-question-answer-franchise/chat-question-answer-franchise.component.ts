@@ -216,7 +216,7 @@ export class ChatQuestionAnswerFranchiseComponent {
     status : new FormControl('',Validators.required),
     initialChoice : new FormControl('',Validators.required),
     client : new FormControl('',Validators.required),
-    existingQue : new FormControl('',Validators.required),
+    existingQue : new FormControl(),
     franchiseList : new FormControl('',Validators.required)
   });
 
