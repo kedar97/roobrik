@@ -106,6 +106,7 @@ export class ChatNodeCategoriesComponent {
 
   public rowData: any[] = [
     {
+      id: 1,
       nodeName : "Intro",
       node_category:'Inquiry',
       status:'Active',
@@ -114,6 +115,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'AlexiaSmith'
     },
     {
+      id: 2,
       nodeName : "Full name",
       node_category:'Name',
       status:'Active',
@@ -122,6 +124,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'MaxJohnson'
     },
     {
+      id: 3,
       nodeName : "Full name -1",
       node_category:'Name',
       status:'Inactive',
@@ -130,6 +133,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'SophiaDavis'
     },
     {
+      id: 4,
       nodeName : "Full name -2",
       node_category:'Name',
       status:'Inactive',
@@ -138,6 +142,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'LucasMiller'
     },
     {
+      id: 5,
       nodeName : "Full name -3",
       node_category:'Name',
       status:'Active',
@@ -146,6 +151,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'OliviaClark'
     },
     {
+      id: 6,
       nodeName : "Full name -4",
       node_category:'Name',
       status:'Inactive',
@@ -154,6 +160,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'EthanBrown'
     },
     {
+      id: 7,
       nodeName : "Motivations",
       node_category:'Contact preference',
       status:'Active',
@@ -162,6 +169,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'AvaWilson'
     },
     {
+      id: 8,
       nodeName : "Motivations - 1",
       node_category:'Contact preference',
       status:'Active',
@@ -170,6 +178,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'KaiLee'
     },
     {
+      id: 9,
       nodeName : "Motivations -2",
       node_category:'Contact preference',
       status:'Active',
@@ -178,6 +187,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'Alice'
     },
     {
+      id: 10,
       nodeName : "Motivations -3",
       node_category:'Contact preference',
       status:'Inactive',
@@ -186,6 +196,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'John'
     },
     {
+      id: 11,
       nodeName : "Motivations -4",
       node_category:'Contact preference',
       status:'Active',
@@ -194,6 +205,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'Darth'
     },
     {
+      id: 12,
       nodeName : "Level of care",
       node_category:'Service level',
       status:'Active',
@@ -202,6 +214,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'JayLyn'
     },
     {
+      id: 13,
       nodeName : "Level of care -1",
       node_category:'Service level',
       status:'Inactive',
@@ -210,6 +223,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'BenCruz'
     },
     {
+      id: 14,
       nodeName : "Level of care -2",
       node_category:'Service level',
       status:'Active',
@@ -218,6 +232,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'Mia Roberts'
     },
     {
+      id: 15,
       nodeName : "Level of care -3",
       node_category:'Service level',
       status:'Active',
@@ -226,6 +241,7 @@ export class ChatNodeCategoriesComponent {
       last_modified_by:'Wilson'
     },
     {
+      id: 16,
       nodeName : "Level of care -4",
       node_category:'Service level',
       status:'Inactive',
@@ -292,10 +308,18 @@ export class ChatNodeCategoriesComponent {
   onDropDownClose(event:any,type: string){
     if(type === 'create new'){
       this.isCreateDropDownOpen = false;
-    } 
+    }
     else if(type === 'status'){
       this.isStatusDropDownOpen = false;
     }
+
+    const style = this.renderer.createElement('style');
+    style.innerHTML = `
+      :host ::ng-deep .create-new-dropdown .k-input-inner::before {
+        content: 'Create new';
+      }
+    `;
+    this.renderer.appendChild(document.head, style);
   }
 
   onSelectionChange(event:any , type:string){

@@ -3,14 +3,14 @@
         <div class="section-header">
             <div class="heading">
                 <img src="assets/images/person-pin-outline-rounded.svg" alt="Client icon">
-                <h1>All Clients</h1>
+                <h1>Chat Questions and Answers - Franchises</h1>
             </div>
     
             <div class="search-section">
                 <div class="input-container">
                     <input 
                         type="text" 
-                        placeholder="Search client, franchise or assessment.."        
+                        placeholder="Search"        
                         id="filter-text-box"
                         (input)="onSearch()"
                     >
@@ -21,7 +21,7 @@
                     #dropdown
                     [data]="dropdownOptions" 
                     textField="value"
-                    valueField="value"
+                    valueField="id"
                     class="create-new-dropdown"
                     (open)="onDropDownOpen($event,'create new')"
                     (close)="onDropDownClose($event,'create new')"
@@ -48,6 +48,7 @@
                 [rowData]="rowData"
                 [gridOptions]="gridOptions"
                 [sideBar]="sideBar"
+                [enableRangeSelection]="true"
                 (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
                 (gridReady)="onGridReady($event)">
             </ag-grid-angular>
@@ -84,6 +85,8 @@
                         class="dropdown"
                         textField="value"
                         valueField="value"
+                        [filterable]="true"
+                        (filterChange)="handleFilter($event, 'existingQuestions')"
                         [valuePrimitive]=true
                         (open)="onDropDownOpen($event,'existingQue')"
                         (close)="onDropDownClose($event,'existingQue')"
@@ -104,7 +107,9 @@
                         [data]="clientList"
                         class="dropdown"
                         textField="value"
-                        valueField="value"
+                        valueField="id"
+                        [filterable]="true"
+                        (filterChange)="handleFilter($event, 'clients')"
                         [valuePrimitive]=true
                         (open)="onDropDownOpen($event,'client')"
                         (close)="onDropDownClose($event,'client')"
@@ -135,6 +140,10 @@
                     <kendo-label class="label-text">Associated category</kendo-label>
                     <kendo-dropdownlist
                         [data]="categoryList"
+                        [filterable]="true"
+                        textField="value"
+                        valueField="id"
+                        (filterChange)="handleFilter($event, 'associatedCategory')"
                         class="dropdown"
                         (open)="onDropDownOpen($event,'category')"
                         (close)="onDropDownClose($event,'category')"
@@ -173,6 +182,8 @@
                         class="dropdown"
                         textField="value"
                         valueField="value"
+                        [filterable]="true"
+                        (filterChange)="handleFilter($event, 'existingQuestions')"
                         [valuePrimitive]=true
                         (open)="onDropDownOpen($event,'existingQue')"
                         (close)="onDropDownClose($event,'existingQue')"
@@ -194,6 +205,8 @@
                         class="dropdown"
                         textField="value"
                         valueField="value"
+                        [filterable]="true"
+                        (filterChange)="handleFilter($event, 'clients')"
                         [valuePrimitive]=true
                         (open)="onDropDownOpen($event,'client')"
                         (close)="onDropDownClose($event,'client')"
@@ -208,16 +221,6 @@
                     [data]="franchiseList"
                     formControlName="franchiseList"
                   ></kendo-multiselect>
-                </kendo-formfield>
-
-                <kendo-formfield>
-                    <kendo-label class="label-text">Associated node name</kendo-label>
-                    <input formControlName="nodeName" kendoTextBox  [readonly]="true">
-                </kendo-formfield>
-
-                <kendo-formfield>
-                    <kendo-label class="label-text">Associated category</kendo-label>
-                    <input formControlName="category" kendoTextBox  [readonly]="true">
                 </kendo-formfield>
 
                 <kendo-formfield>
@@ -279,6 +282,11 @@
                         (close)="onDropDownClose($event,'category')"
                         [class.dropdown-open]="isCategoryDropDownOpen"
                         formControlName="category"
+                        [filterable]="true"
+                        [valuePrimitive]=true
+                        (filterChange)="handleFilter($event, 'associatedCategory')"
+                        textField="value"
+                        valueField="id"
                         >
                     </kendo-dropdownlist> 
                 </kendo-formfield>
@@ -327,16 +335,6 @@
                     [data]="franchiseList"
                     formControlName="franchiseList"
                   ></kendo-multiselect>
-                </kendo-formfield>
-
-                <kendo-formfield>
-                    <kendo-label class="label-text">Associated node name</kendo-label>
-                    <input formControlName="nodeName" kendoTextBox  [readonly]="true">
-                </kendo-formfield>
-
-                <kendo-formfield>
-                    <kendo-label class="label-text">Associated category</kendo-label>
-                    <input formControlName="category" kendoTextBox  [readonly]="true">
                 </kendo-formfield>
 
                 <kendo-formfield>

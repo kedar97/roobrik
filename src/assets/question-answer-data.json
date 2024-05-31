@@ -21,7 +21,7 @@
       "node_category": "",
       "status": "Active",
       "created_on": "2018-07-10T00:00:00.000Z",
-        "last_modified_on": "2019-03-15T00:00:00.000Z",
+      "last_modified_on": "2019-03-15T00:00:00.000Z",
       "last_modified_by": "AlexiaSmith",
       "visible": true
     },
@@ -33,7 +33,7 @@
       "node_category": "",
       "status": "Active",
       "created_on": "2018-07-10T00:00:00.000Z",
-        "last_modified_on": "2019-03-15T00:00:00.000Z",
+      "last_modified_on": "2019-03-15T00:00:00.000Z",
       "last_modified_by": "AlexiaSmith",
       "visible": true
     },
@@ -71,7 +71,6 @@
       "last_modified_by": "MaxJohnson",
       "clientName": "Cascade Living group",
       "franchiseName": ["GreenGrove Cafe"]
-  
     },
     {
       "id": 7,
@@ -176,7 +175,6 @@
       "last_modified_by": "LucasMiller",
       "clientName": "Blake Management group",
       "franchiseName": ["UrbanEats" , "Tasty Trails"]
-  
     },
     {
       "id": 16,

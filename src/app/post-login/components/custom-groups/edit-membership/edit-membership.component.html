@@ -25,8 +25,12 @@
                         <img src="../../.../../../../../assets/images/cancel-outline-rounded.svg" alt="close icon">
                     </button>
                 </div>
-                <div class="listbox-section-heading">CLIENT/FRANCHISE SELECTION</div>
-                <div class="listbox-section-subheading">Select the new Client(s)/franchise(s) you want to add</div>
+                <div class="listbox-section-heading">
+                    {{ groupData.group_type === 'Configuration & Reporting' ? 'FRANCHISE SELECTION' : 'CLIENT/FRANCHISE SELECTION' }}
+                  </div>
+                  <div class="listbox-section-subheading">
+                    {{ groupData.group_type === 'Configuration & Reporting' ? 'Select the new franchise(s) you want to add' : 'Select the new Client(s)/franchise(s) you want to add' }}
+                  </div>
                 <div class="list-container d-flex gap-25 align-items-center">
                     <div class="parent-list">
                         <div class="list-heading">Client/franchise list</div>

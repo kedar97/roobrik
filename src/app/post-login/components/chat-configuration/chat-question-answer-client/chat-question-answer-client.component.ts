@@ -6,6 +6,11 @@ import { get } from 'lodash-es';
 import { CustomMenuEditorComponent } from '../../custom-groups/custom-menu-editor/custom-menu-editor.component';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 
+interface DropdownData {
+  id: number,
+  value: string
+}
+
 @Component({
   selector: 'app-chat-question-answer-client',
   templateUrl: './chat-question-answer-client.component.html',
@@ -204,15 +209,13 @@ export class ChatQuestionAnswerClientComponent {
     status : new FormControl('',Validators.required),
     initialChoice : new FormControl('',Validators.required),
     client : new FormControl('',Validators.required),
-    existingQue : new FormControl('',Validators.required),
+    existingQue : new FormControl(),
   });
 
   public answerForm = new FormGroup({
     question : new FormControl('',Validators.required),
     answerText : new FormControl('',Validators.required),
     client : new FormControl('',Validators.required),
-    nodeName : new FormControl('',Validators.required),
-    category : new FormControl('',Validators.required),
     status : new FormControl('',Validators.required)
   });
 
@@ -239,33 +242,60 @@ export class ChatQuestionAnswerClientComponent {
     "Active"
   ];
 
-  clientList : Array<{id:number, value :string}> = [
+  clientList : DropdownData[] = [
     {id :1 , value:'Eskaton'},
     {id :2 , value:'Cascade Living Group'},
     {id :3 , value:'Brightview Senior Living'},
     {id :4 , value:'Blake Management Group'},
   ];
 
+  clientListCopy: DropdownData[];
+
   choiceList : Array<{id:number, value :string}> = [
     {id :1 , value:'Select an existing question to start from'},
     {id :2 , value:'Create a brand new question'},
   ];
 
-  existingQuestionsList : Array<{id:number, value :string}> = [
+  existingQuestionsList : DropdownData[] = [
     {id:1, value:'Hi! What are you looking for today?'},
-    {id:1, value:'Who are you researching senior living options for today?'},
-    {id:1, value:'Ok, thanks. Why do you think it might be time to consider a move to a senior living community? You can choose more than one'},
+    {id:2, value:'Who are you researching senior living options for today?'},
+    {id:3, value:'Ok, thanks. Why do you think it might be time to consider a move to a senior living community? You can choose more than one'},
   ];
 
-  categoryList = [
-    'Inquiry',
-    'Name',
-    'Phone',
-    'Email',
-    'Selected person',
-    'Contact preference',
-    'Service level',
+  existingQuestionsListCopy: DropdownData[] = [];
+
+  categoryList: DropdownData[] = [
+    {
+      id: 1,
+      value: 'Inquiry'
+    },
+    { 
+      id: 2,
+      value: 'value'
+    },
+    {
+      id: 3,
+      value: 'Phone'
+    },
+    {
+      id: 4,
+      value: 'Email'
+    },
+    {
+      id: 5,
+      value: 'Selected person'
+    },
+    {
+      id: 6,
+      value: 'Contact preference'
+    },
+    {
+      id: 7,
+      value: 'Service level'
+    },
   ];
+
+  categoryListCopy: DropdownData[]
 
   constructor(private renderer: Renderer2, private ele: ElementRef , private postLoginService : PostLoginService){
     postLoginService.isQuestionMasterEditable.subscribe((res: boolean) => {
@@ -318,7 +348,12 @@ export class ChatQuestionAnswerClientComponent {
     });
   }
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.existingQuestionsListCopy = JSON.parse(JSON.stringify(this.existingQuestionsList));
+    this.categoryListCopy = JSON.parse(JSON.stringify(this.categoryList));
+    this.clientListCopy = JSON.parse(JSON.stringify(this.clientList));
+
+  }
 
   onGridReady(params: GridReadyEvent){
     this.gridApi = params.api;
@@ -359,7 +394,6 @@ export class ChatQuestionAnswerClientComponent {
     };
 
     this.gridOptions.onColumnRowGroupChanged = (params: any) => {
-      this.onCreateFlyOutClose();
       const groupedRowsSet = new Set(this.groupedRows);
 
       (params.columns || []).forEach((col: any) => {
@@ -470,7 +504,44 @@ export class ChatQuestionAnswerClientComponent {
     }
   }
 
-  onSaveChanges(form:any, type :string){}
+  onSaveChanges(form: any, type: string) {
+    const min = 1000000000;
+    const max = 9999999999;
+    const id = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    if (type === 'question') {
+      const newObj = {
+        id: id,
+        group: form.value.questionText,
+        question_answer: form.value.questionText,
+        nodeName: form.value.nodeName,
+        node_category: form.value.category.value,
+        status: form.value.status,
+        created_on: new Date().toISOString(),
+        last_modified_on: new Date().toISOString(),
+        last_modified_by: 'John Doe',
+        visible: form.value.visible,
+        clientName: form.value.client,
+        franchiseName: ["HealthLife"]      
+      }
+  
+      this.rowData.unshift(newObj);
+      this.gridApi?.setRowData(this.rowData);
+    } else if(type === 'answer') {
+      const newObj = {
+        id: id,
+        group: form.value.question,
+        question_answer: form.value.answerText,
+        nodeName: form.value.nodeName,
+        status: form.value.status,
+        created_on: new Date().toISOString(),
+        last_modified_on: new Date().toISOString(),
+        last_modified_by: 'John Doe'
+      }
+      this.rowData.unshift(newObj);
+      this.gridApi?.setRowData(this.rowData);
+    }
+  }
 
   onCreateFlyOutClose(){
     this.isDropDownOptionSelected = false;
@@ -532,6 +603,22 @@ export class ChatQuestionAnswerClientComponent {
       if (resetButton) {
         this.renderer.removeChild(sideBar, resetButton);
       }
+    }
+  }
+
+  handleFilter(value, dropdown: string) {
+    if(dropdown === 'existingQuestions') {
+      this.existingQuestionsList = this.existingQuestionsListCopy.filter(
+        (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    } else if(dropdown === 'associatedCategory') {
+      this.categoryList = this.categoryListCopy.filter(
+        (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    }  else if(dropdown === 'clients') {
+      this.clientList = this.clientListCopy.filter(
+        (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
     }
   }
 

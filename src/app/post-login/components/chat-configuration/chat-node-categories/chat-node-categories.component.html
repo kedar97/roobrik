@@ -3,14 +3,14 @@
         <div class="section-header">
             <div class="heading">
                 <img src="assets/images/person-pin-outline-rounded.svg" alt="Client icon">
-                <h1>All Clients</h1>
+                <h1>Chat Nodes and Categories</h1>
             </div>
     
             <div class="search-section">
                 <div class="input-container">
                     <input 
                         type="text" 
-                        placeholder="Search client, franchise or assessment.."        
+                        placeholder="Search"        
                         id="filter-text-box"
                         (input)="onSearch()"
                     >
@@ -19,7 +19,7 @@
                 <div class="item-separator"></div>
                 <kendo-dropdownlist 
                     #dropdown
-                    [data]="dropdownOptions" 
+                    [data]="dropdownOptions"
                     textField="value"
                     valueField="id"
                     class="create-new-dropdown"
@@ -45,6 +45,7 @@
                 [gridOptions]="gridOptions"
                 [sideBar]="sideBar"
                 [rowGroupPanelShow]="rowGroupPanelShow"
+                [enableRangeSelection]="true"
                 (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
                 (gridReady)="onGridReady($event)">
             </ag-grid-angular>

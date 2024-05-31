@@ -3,14 +3,14 @@
         <div class="section-header">
             <div class="heading">
                 <img src="assets/images/person-pin-outline-rounded.svg" alt="Client icon">
-                <h1>All Clients</h1>
+                <h1>Chat Questions and Answers</h1>
             </div>
     
             <div class="search-section">
                 <div class="input-container">
                     <input 
                         type="text" 
-                        placeholder="Search client, franchise or assessment.."        
+                        placeholder="Search"        
                         id="filter-text-box"
                         (input)="onSearch()"
                     >
@@ -48,6 +48,7 @@
                 [rowSelection]="rowSelection"
                 [statusBar]="statusBar"
                 [sideBar]="sideBar"
+                [enableRangeSelection]="true"
                 (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
                 (gridReady)="onGridReady($event)"
             ></ag-grid-angular>
@@ -83,9 +84,13 @@
                         (open)="onDropDownOpen($event,'category')"
                         (close)="onDropDownClose($event,'category')"
                         [class.dropdown-open]="isCategoryDropDownOpen"
+                        [filterable]="true"
+                        (filterChange)="handleFilter($event, 'associatedCategory')"
                         formControlName="category"
+                        textField="value"
+                        valueField="value"
                         >
-                    </kendo-dropdownlist>                 
+                    </kendo-dropdownlist> 
                 </kendo-formfield>
 
                 <kendo-formfield>
@@ -114,6 +119,8 @@
                     <kendo-label class="label-text">Select question</kendo-label>
                     <kendo-dropdownlist
                         [data]="questionList"
+                        [filterable]="true"
+                        (filterChange)="handleFilter($event, 'questions')"
                         [valuePrimitive]=true
                         textField="value"
                         valueField="value"
@@ -122,22 +129,12 @@
                         (close)="onDropDownClose($event,'question')"
                         [class.dropdown-open]="isQuestionDropDownOpen"
                         formControlName="question">
-                    </kendo-dropdownlist>                
+                    </kendo-dropdownlist> 
                 </kendo-formfield>
 
                 <kendo-formfield>
                     <kendo-label class="label-text">Answer Text</kendo-label>
                     <input formControlName="answerText" kendoTextBox>
-                </kendo-formfield>
-
-                <kendo-formfield>
-                    <kendo-label class="label-text">Associated node name</kendo-label>
-                    <input formControlName="nodeName" kendoTextBox [readOnly]="true">
-                </kendo-formfield>
-
-                <kendo-formfield>
-                    <kendo-label class="label-text">Associated category</kendo-label>
-                    <input formControlName="category" kendoTextBox [readOnly]="true">
                 </kendo-formfield>
 
                 <kendo-formfield>
@@ -154,7 +151,7 @@
                 </kendo-formfield>
     
                  <div class="buttons-container d-flex gap-2">
-                    <button class="btn btn-save" type="submit" [disabled]="!answerForm.valid">Save Changes</button>
+                    <button class="btn btn-save" type="submit">Save Changes</button>
                     <button class="btn btn-cancel" (click)="onCreateFlyOutClose()">Cancel</button>
                 </div>
             </div>
@@ -186,6 +183,11 @@
                         (close)="onDropDownClose($event,'category')"
                         [class.dropdown-open]="isCategoryDropDownOpen"
                         formControlName="category"
+                        [filterable]="true"
+                        [valuePrimitive]=true
+                        textField="value"
+                        valueField="id"
+                        (filterChange)="handleFilter($event, 'associatedCategory')"
                         >
                     </kendo-dropdownlist>                 
                 </kendo-formfield>
@@ -220,16 +222,6 @@
                 <kendo-formfield>
                     <kendo-label class="label-text">Answer Text</kendo-label>
                     <input formControlName="answerText" kendoTextBox>
-                </kendo-formfield>
-
-                <kendo-formfield>
-                    <kendo-label class="label-text">Associated node name</kendo-label>
-                    <input formControlName="nodeName" kendoTextBox [readOnly]="true">
-                </kendo-formfield>
-
-                <kendo-formfield>
-                    <kendo-label class="label-text">Associated category</kendo-label>
-                    <input formControlName="category" kendoTextBox [readOnly]="true">
                 </kendo-formfield>
 
                 <kendo-formfield>

@@ -144,8 +144,8 @@ button:focus {
 }
 
 :host ::ng-deep .create-new-dropdown.option-selected {
-    .k-input-inner::before {
-        content: '' !important;
+    .k-input-inner .k-input-value-text{
+        display: none;
     }
 }
 

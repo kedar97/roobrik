@@ -5,6 +5,11 @@ import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDe
 import { get } from 'lodash-es';
 import { CustomMenuEditorComponent } from '../../custom-groups/custom-menu-editor/custom-menu-editor.component';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
+
+interface DropdownData {
+  id: number,
+  value: string
+}
 @Component({
   selector: 'app-chat-question-answer-franchise',
   templateUrl: './chat-question-answer-franchise.component.html',
@@ -219,8 +224,6 @@ export class ChatQuestionAnswerFranchiseComponent {
     question : new FormControl('',Validators.required),
     answerText : new FormControl('',Validators.required),
     client : new FormControl('',Validators.required),
-    nodeName : new FormControl('',Validators.required),
-    category : new FormControl('',Validators.required),
     status : new FormControl('',Validators.required),
     franchiseList : new FormControl('',Validators.required)
   });
@@ -255,18 +258,22 @@ export class ChatQuestionAnswerFranchiseComponent {
     {id :2 , value:'Create a brand new question'},
   ];
 
-  existingQuestionsList : Array<{id:number, value :string}> = [
+  existingQuestionsList :  DropdownData[] = [
     {id:1, value:'Hi! What are you looking for today?'},
-    {id:1, value:'Who are you researching senior living options for today?'},
-    {id:1, value:'Ok, thanks. Why do you think it might be time to consider a move to a senior living community? You can choose more than one'},
+    {id:2, value:'Who are you researching senior living options for today?'},
+    {id:3, value:'Ok, thanks. Why do you think it might be time to consider a move to a senior living community? You can choose more than one'},
   ];
 
-  clientList : Array<{id:number, value :string}> = [
+  existingQuestionsListCopy: DropdownData[];
+
+  clientList :  DropdownData[] = [
     {id :1 , value:'Eskaton'},
     {id :2 , value:'Cascade Living Group'},
     {id :3 , value:'Brightview Senior Living'},
     {id :4 , value:'Blake Management Group'},
   ];
+
+  clientListCopy: DropdownData[] = [];
 
   franchiseList = [
     'Eskaton Village Granite Bay',
@@ -280,15 +287,38 @@ export class ChatQuestionAnswerFranchiseComponent {
     'The Blake at Tyler',
   ];
   
-  categoryList = [
-    'Inquiry',
-    'Name',
-    'Phone',
-    'Email',
-    'Selected person',
-    ' Contact preference',
-    'Service level',
+  categoryList: DropdownData[] = [
+    {
+      id: 1,
+      value: 'Inquiry'
+    },
+    { 
+      id: 2,
+      value: 'value'
+    },
+    {
+      id: 3,
+      value: 'Phone'
+    },
+    {
+      id: 4,
+      value: 'Email'
+    },
+    {
+      id: 5,
+      value: 'Selected person'
+    },
+    {
+      id: 6,
+      value: 'Contact preference'
+    },
+    {
+      id: 7,
+      value: 'Service level'
+    },
   ];
+
+  categoryListCopy: DropdownData[] = []
 
   public selectedFranhises: any = [];
   constructor(private renderer: Renderer2, private ele: ElementRef, private postLoginService : PostLoginService){
@@ -354,7 +384,11 @@ export class ChatQuestionAnswerFranchiseComponent {
     });
   }
 
-  ngOnInit(){}
+  ngOnInit(){
+    this.existingQuestionsListCopy = JSON.parse(JSON.stringify(this.existingQuestionsList));
+    this.categoryListCopy = JSON.parse(JSON.stringify(this.categoryList));
+    this.clientListCopy = JSON.parse(JSON.stringify(this.clientList));
+  }
 
   onGridReady(params: GridReadyEvent){
     this.gridApi = params.api;
@@ -395,7 +429,6 @@ export class ChatQuestionAnswerFranchiseComponent {
     };
 
     this.gridOptions.onColumnRowGroupChanged = (params: any) => {
-      this.onCreateFlyOutClose();
       const groupedRowsSet = new Set(this.groupedRows);
 
       (params.columns || []).forEach((col: any) => {
@@ -512,7 +545,47 @@ export class ChatQuestionAnswerFranchiseComponent {
     }
   }
 
-  onSaveChanges(form:any, type:string){}
+  onSaveChanges(form: any, type: string) {
+
+    const min = 1000000000;
+    const max = 9999999999;
+    const id = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    if (type === 'question') {
+      const newObj = {
+        id: id,
+        group: form.value.questionText,
+        question_answer: form.value.questionText,
+        nodeName: form.value.nodeName,
+        node_category: form.value.category.value,
+        status: form.value.status,
+        created_on: new Date().toISOString(),
+        last_modified_on: new Date().toISOString(),
+        last_modified_by: 'John Doe',
+        visible: form.value.visible,
+        clientName: "HealthCorp",
+        franchiseName: form.value.franchiseList      
+      }
+  
+      this.rowData.unshift(newObj);
+      this.gridApi?.setRowData(this.rowData);
+    } else if(type === 'answer') {
+      const newObj = {
+        id: id,
+        group: form.value.question,
+        question_answer: form.value.answerText,
+        nodeName: form.value.nodeName,
+        status: form.value.status,
+        franchiseName: form.value.franchiseList,
+        created_on: new Date().toISOString(),
+        last_modified_on: new Date().toISOString(),
+        last_modified_by: 'John Doe'   ,
+        clientName: form.value.client 
+      }
+      this.rowData.unshift(newObj);
+      this.gridApi?.setRowData(this.rowData);
+    }
+  }
 
   onCreateFlyOutClose(){
     this.isCreateDropDownOpen = false;
@@ -574,6 +647,22 @@ export class ChatQuestionAnswerFranchiseComponent {
       if (resetButton) {
         this.renderer.removeChild(sideBar, resetButton);
       }
+    }
+  }
+
+  handleFilter(value, dropdown: string) {
+    if(dropdown === 'existingQuestions') {
+      this.existingQuestionsList = this.existingQuestionsListCopy.filter(
+        (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    }  else if(dropdown === 'associatedCategory') {
+      this.categoryList = this.categoryListCopy.filter(
+        (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    } else if(dropdown === 'clients') {
+        this.clientList = this.clientListCopy.filter(
+          (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
+        );
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropDownListComponent } from '@progress/kendo-angular-dropdowns';
 import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDef } from 'ag-grid-community';
@@ -6,11 +6,17 @@ import { CustomMenuEditorComponent } from '../../custom-groups/custom-menu-edito
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 import { get } from 'lodash-es';
 
+interface DropdownData {
+  id: number,
+  value: string
+}
+
 @Component({
   selector: 'app-chat-question-answer',
   templateUrl: './chat-question-answer.component.html',
   styleUrls: ['./chat-question-answer.component.scss']
 })
+
 export class ChatQuestionAnswerComponent {
 
   questionAnswerDataUrl = "assets/question-answer-data.json";
@@ -225,21 +231,45 @@ export class ChatQuestionAnswerComponent {
     "Active"
   ];
 
-  questionList: Array<any> = [
+  questionList: DropdownData[] = [
     { id: 1, value: 'Hi! What are you looking for today?' },
     { id: 2, value: 'Who are you researching senior living options for today?' },
     { id: 3, value: 'Ok, thanks. Why do you think it might be time to consider a move to a senior living community? You can choose more than one' }
   ];
 
-  categoryList = [
-    'Inquiry',
-    'Name',
-    'Phone',
-    'Email',
-    'Selected person',
-    'Contact preference',
-    'Service level',
+  categoryList: DropdownData[] = [
+    {
+      id: 1,
+      value: 'Inquiry'
+    },
+    { 
+      id: 2,
+      value: 'value'
+    },
+    {
+      id: 3,
+      value: 'Phone'
+    },
+    {
+      id: 4,
+      value: 'Email'
+    },
+    {
+      id: 5,
+      value: 'Selected person'
+    },
+    {
+      id: 6,
+      value: 'Contact preference'
+    },
+    {
+      id: 7,
+      value: 'Service level'
+    },
   ];
+
+  categoryListCopy: DropdownData[] = [];
+  questionListCopy: DropdownData[] = [];
 
   constructor(private renderer: Renderer2, private ele: ElementRef, private postLoginService: PostLoginService) {
     postLoginService.isQuestionMasterEditable.subscribe((res: boolean) => {
@@ -290,7 +320,11 @@ export class ChatQuestionAnswerComponent {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.categoryListCopy = JSON.parse(JSON.stringify(this.categoryList));
+    this.questionListCopy = JSON.parse(JSON.stringify(this.questionList));
+
+  }
 
   onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
@@ -331,7 +365,6 @@ export class ChatQuestionAnswerComponent {
     };
 
     this.gridOptions.onColumnRowGroupChanged = (params: any) => {
-     this.onCreateFlyOutClose();
       const groupedRowsSet = new Set(this.groupedRows);
 
       (params.columns || []).forEach((col: any) => {
@@ -386,7 +419,7 @@ export class ChatQuestionAnswerComponent {
       this.answerForm.reset();
     }
 
-    if (event.value.toLowerCase() === 'chat question') {
+    if (event.id === 1) {
       this.isCreateQuestionFlyOutOpen = true;
       this.isCreateAnswerFlyOutOpen = false;
       this.flyOutHeading = 'Create New Question';
@@ -394,7 +427,7 @@ export class ChatQuestionAnswerComponent {
       this.isEditQuestionFlyOut = false;
     }
 
-    else if (event.value.toLowerCase() === 'chat answer') {
+    else if (event.id === 2) {
       this.isCreateAnswerFlyOutOpen = true;
       this.isCreateQuestionFlyOutOpen = false;
       this.flyOutHeading = 'Create New Answer';
@@ -404,7 +437,42 @@ export class ChatQuestionAnswerComponent {
   }
 
   onSaveChanges(form: any, type: string) {
-    if (type === 'question') { }
+    const min = 1000000000;
+    const max = 9999999999;
+    const id = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    if (type === 'question') {
+      const newObj = {
+        id: id,
+        group: form.value.questionText,
+        question_answer: form.value.questionText,
+        nodeName: form.value.nodeName,
+        node_category: form.value.category.value,
+        status: form.value.status,
+        created_on: new Date().toISOString(),
+        last_modified_on: new Date().toISOString(),
+        last_modified_by: 'John Doe',
+        visible: form.value.visible,
+        clientName: "HealthCorp",
+        franchiseName: ["HealthLife"]      
+      }
+  
+      this.rowData.unshift(newObj);
+      this.gridApi?.setRowData(this.rowData);
+    } else if(type === 'answer') {
+      const newObj = {
+        id: id,
+        group: form.value.question,
+        question_answer: form.value.answerText,
+        nodeName: form.value.nodeName,
+        status: form.value.status,
+        created_on: new Date().toISOString(),
+        last_modified_on: new Date().toISOString(),
+        last_modified_by: 'John Doe'    
+      }
+      this.rowData.unshift(newObj);
+      this.gridApi?.setRowData(this.rowData);
+    }
   }
 
   onCreateFlyOutClose() {
@@ -469,6 +537,18 @@ export class ChatQuestionAnswerComponent {
     }
   }
 
+  handleFilter(value, dropdown: string) {
+    if(dropdown === 'associatedCategory') {
+      this.categoryList = this.categoryListCopy.filter(
+        (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    } else if(dropdown === 'questions') {
+      this.questionList = this.questionListCopy.filter(
+        (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      );
+    }
+  }
+
   onResetFilter() {
     this.gridApi.setFilterModel(this.defaultFiltersState);
   }
@@ -476,6 +556,7 @@ export class ChatQuestionAnswerComponent {
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
   }
+
 
   ngOnDestroy(){
     this.onCreateFlyOutClose();
