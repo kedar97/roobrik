@@ -14,12 +14,11 @@ button:focus {
 }
 
 .main-container {
-  padding: 81px 104px 47px 113px;
+  padding: 22px 24px 47px 30px;
 
   @media (min-width: 1920px) {
-    width: 1694px !important;
-    margin: 33px auto 42px !important;
-    padding: 81px 0px 47px 0px;
+    margin: 22px 24px 42px 30px!important;
+    padding: 0;
   }
 }
 

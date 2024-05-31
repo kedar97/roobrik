@@ -11,12 +11,6 @@ button:focus {
 .main-container {
     padding: 22px 24px 24px 30px;
     flex-grow: 1;
-
-    @media (min-width: 1920px) {
-        width: 1694px !important;
-        flex-grow: 0 !important;
-        margin: 0 auto !important;
-    }
 }
 
 // HEADER SECTION STYLE //
