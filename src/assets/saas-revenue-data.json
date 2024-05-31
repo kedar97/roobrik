@@ -3,6 +3,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 101,
+    "group": "12 Oaks Senior Living",
     "client_frenchiseName": "12 Oaks Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -22,6 +23,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "12 Oaks Senior Living",
         "invoicing_entity": "Data Data",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -36,7 +38,7 @@
           "sep": 0,
           "oct": 0,
           "nov": 0,
-          "dec": 0
+          "dec": 4
         },
         "revenue2024": {
           "jan": 0,
@@ -119,6 +121,7 @@
         "owner": "Laurel McLaughlin "
       },
       {
+        "group": "12 Oaks Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -221,6 +224,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 104,
+    "group": "Advanced Nursing + Home Support",
     "client_frenchiseName": "Advanced Nursing + Home Support",
     "benchmarkComparison": "Average",
     "lpcAverage": 13.75,
@@ -240,6 +244,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Advanced Nursing + Home Support",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -342,6 +347,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 106,
+    "group": "Agemark Senior Living",
     "client_frenchiseName": "Agemark Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 13.75,
@@ -361,6 +367,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Agemark Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -458,6 +465,7 @@
         "owner": "Laurel McLaughlin"
       },
       {
+        "group": "Agemark Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -555,6 +563,7 @@
         "owner": "Melinda Gisbert"
       },
       {
+        "group": "Agemark Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -652,6 +661,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Agemark Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -749,6 +759,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Agemark Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -846,6 +857,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Agemark Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -943,6 +955,7 @@
         "owner": "Laurel McLaughlin"
       },
       {
+        "group": "Agemark Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1045,6 +1058,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 114,
+    "group": "AgeWell Middle Tennessee",
     "client_frenchiseName": "AgeWell Middle Tennessee",
     "benchmarkComparison": "Above",
     "lpcAverage": 11.25,
@@ -1064,6 +1078,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "AgeWell Middle Tennessee",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1161,6 +1176,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "AgeWell Middle Tennessee",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1263,6 +1279,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 117,
+    "group": "AgeWell Solvere Living",
     "client_frenchiseName": "AgeWell Solvere Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.13,
@@ -1282,6 +1299,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "AgeWell Solvere Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1379,6 +1397,7 @@
         "owner": "Laurel McLaughlin"
       },
       {
+        "group": "AgeWell Solvere Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1481,6 +1500,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 120,
+    "group": "Aldersgate",
     "client_frenchiseName": "Aldersgate",
     "benchmarkComparison": "Above",
     "lpcAverage": 15.5,
@@ -1500,6 +1520,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Aldersgate",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1602,6 +1623,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 122,
+    "group": "All Seasons Living",
     "client_frenchiseName": "All Seasons Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 2.5,
@@ -1621,6 +1643,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "All Seasons Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1718,6 +1741,7 @@
         "owner": "Laurel McLaughlin"
       },
       {
+        "group": "All Seasons Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1820,6 +1844,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 125,
+    "group": "Allegro Senior Living",
     "client_frenchiseName": "Allegro Senior Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 6.68,
@@ -1839,6 +1864,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Allegro Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -1936,6 +1962,7 @@
         "owner": "Melinda Gisbert"
       },
       {
+        "group": "Allegro Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2038,6 +2065,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 128,
+    "group": "Americare",
     "client_frenchiseName": "Americare",
     "benchmarkComparison": "Below",
     "lpcAverage": 0.24,
@@ -2057,6 +2085,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Americare",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2159,6 +2188,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 130,
+    "group": "Smith Village",
     "client_frenchiseName": "Smith Village",
     "benchmarkComparison": "Above",
     "lpcAverage": 8.25,
@@ -2178,6 +2208,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Smith Village",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2280,6 +2311,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 132,
+    "group": "Solera Senior Living",
     "client_frenchiseName": "Solera Senior Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.97,
@@ -2299,6 +2331,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Solera Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2396,6 +2429,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Solera Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2498,6 +2532,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 135,
+    "group": "Sterling Estates",
     "client_frenchiseName": "Sterling Estates",
     "benchmarkComparison": "Average",
     "lpcAverage": 1.88,
@@ -2517,6 +2552,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Sterling Estates",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2614,6 +2650,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Sterling Estates",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2711,6 +2748,7 @@
         "owner": "Melinda Gisbert"
       },
       {
+        "group": "Sterling Estates",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2808,6 +2846,7 @@
         "owner": "Laurel McLaughlin"
       },
       {
+        "group": "Sterling Estates",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -2910,6 +2949,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 140,
+    "group": "Still Hopes",
     "client_frenchiseName": "Still Hopes",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.75,
@@ -2929,6 +2969,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Still Hopes",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3026,6 +3067,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Still Hopes",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3123,6 +3165,7 @@
         "owner": "Melinda Gisbert"
       },
       {
+        "group": "Still Hopes",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3220,6 +3263,7 @@
         "owner": "Laurel McLaughlin"
       },
       {
+        "group": "Still Hopes",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3322,6 +3366,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 145,
+    "group": "Pineview Apartments",
     "client_frenchiseName": "Pineview Apartments",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -3341,6 +3386,7 @@
     "owner": "Michael Thompson",
     "children": [
       {
+        "group": "Pineview Apartments",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3443,6 +3489,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 147,
+    "group": "Sunrise Gardens",
     "client_frenchiseName": "Sunrise Gardens",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.03,
@@ -3462,6 +3509,7 @@
     "owner": "Jessica Martinez",
     "children": [
       {
+        "group": "Sunrise Gardens",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3564,6 +3612,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 149,
+    "group": "Greenview Estates",
     "client_frenchiseName": "Greenview Estates",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -3583,6 +3632,7 @@
     "owner": "David Nguyen",
     "children": [
       {
+        "group": "Greenview Estates",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3685,6 +3735,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 151,
+    "group": "Riverfront Plaza",
     "client_frenchiseName": "Riverfront Plaza",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -3704,6 +3755,7 @@
     "owner": "Amanda Wilson",
     "children": [
       {
+        "group": "Riverfront Plaza",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3806,6 +3858,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 153,
+    "group": "Mountain View Villas",
     "client_frenchiseName": "Mountain View Villas",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -3825,6 +3878,7 @@
     "owner": "Brian Wilson",
     "children": [
       {
+        "group": "Mountain View Villas",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -3927,6 +3981,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 155,
+    "group": "Lakeside Retreat",
     "client_frenchiseName": "Lakeside Retreat",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -3946,6 +4001,7 @@
     "owner": "Jennifer Smith",
     "children": [
       {
+        "group": "Lakeside Retreat",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -4048,6 +4104,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 157,
+    "group": "Meadow Brook Commons",
     "client_frenchiseName": "Meadow Brook Commons",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -4067,6 +4124,7 @@
     "owner": "Matthew Johnson",
     "children": [
       {
+        "group": "Meadow Brook Commons",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -4169,6 +4227,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 159,
+    "group": "Parkside Plaza",
     "client_frenchiseName": "Parkside Plaza",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -4188,6 +4247,7 @@
     "owner": "Sarah Brown",
     "children": [
       {
+        "group": "Parkside Plaza",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -4290,6 +4350,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 161,
+    "group": "Willow Creek Apartments",
     "client_frenchiseName": "Willow Creek Apartments",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -4309,6 +4370,7 @@
     "owner": "Christopher Davis",
     "children": [
       {
+        "group": "Willow Creek Apartments",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -4411,6 +4473,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 163,
+    "group": "Oak Ridge Estates",
     "client_frenchiseName": "Oak Ridge Estates",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.03,
@@ -4430,6 +4493,7 @@
     "owner": "Emily Wilson",
     "children": [
       {
+        "group": "Oak Ridge Estates",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -4532,6 +4596,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 165,
+    "group": "Harborview Heights",
     "client_frenchiseName": "Harborview Heights",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -4551,6 +4616,7 @@
     "owner": "Daniel Rodriguez",
     "children": [
       {
+        "group": "Harborview Heights",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -4653,6 +4719,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 167,
+    "group": "Sunset Ridge Villas",
     "client_frenchiseName": "Sunset Ridge Villas",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -4672,6 +4739,7 @@
     "owner": "Michelle Garcia",
     "children": [
       {
+        "group": "Sunset Ridge Villas",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -4774,6 +4842,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 169,
+    "group": "Maplewood Meadows",
     "client_frenchiseName": "Maplewood Meadows",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -4793,6 +4862,7 @@
     "owner": "Brandon Hernandez",
     "children": [
       {
+        "group": "Maplewood Meadows",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -4895,6 +4965,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 171,
+    "group": "Meadowbrook Apartments",
     "client_frenchiseName": "Meadowbrook Apartments",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -4914,6 +4985,7 @@
     "owner": "Alyssa Martinez",
     "children": [
       {
+        "group": "Meadowbrook Apartments",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5016,6 +5088,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 173,
+    "group": "Valley Vista Estates",
     "client_frenchiseName": "Valley Vista Estates",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -5035,6 +5108,7 @@
     "owner": "Taylor Thompson",
     "children": [
       {
+        "group": "Valley Vista Estates",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5137,6 +5211,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 175,
+    "group": "Hillside Manor",
     "client_frenchiseName": "Hillside Manor",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -5156,6 +5231,7 @@
     "owner": "Jordan Davis",
     "children": [
       {
+        "group": "Hillside Manor",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5258,6 +5334,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 177,
+    "group": "Ocean View Apartments",
     "client_frenchiseName": "Ocean View Apartments",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -5277,6 +5354,7 @@
     "owner": "Ashley Wilson",
     "children": [
       {
+        "group": "Ocean View Apartments",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5379,6 +5457,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 179,
+    "group": "Riverside Gardens",
     "client_frenchiseName": "Riverside Gardens",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -5398,6 +5477,7 @@
     "owner": "Ethan Brown",
     "children": [
       {
+        "group": "Riverside Gardens",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5500,6 +5580,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 181,
+    "group": "Sunnydale Heights",
     "client_frenchiseName": "Sunnydale Heights",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -5519,6 +5600,7 @@
     "owner": "Olivia Taylor",
     "children": [
       {
+        "group": "Sunnydale Heights",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5621,6 +5703,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 183,
+    "group": "Willow Grove Senior Living",
     "client_frenchiseName": "Willow Grove Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -5640,6 +5723,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Willow Grove Senior Living",
         "invoicing_entity": "Data Data",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5737,6 +5821,7 @@
         "owner": "Laurel McLaughlin "
       },
       {
+        "group": "Willow Grove Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5839,6 +5924,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 186,
+    "group": "Heritage Manor Assisted Living",
     "client_frenchiseName": "Heritage Manor Assisted Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 13.75,
@@ -5858,6 +5944,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Heritage Manor Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -5960,6 +6047,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 188,
+    "group": "Serenity Gardens Retirement Community",
     "client_frenchiseName": "Serenity Gardens Retirement Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 13.75,
@@ -5979,6 +6067,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Serenity Gardens Retirement Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6081,6 +6170,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 190,
+    "group": "Maplewood Memory Care Center",
     "client_frenchiseName": "Maplewood Memory Care Center",
     "benchmarkComparison": "Above",
     "lpcAverage": 11.25,
@@ -6100,6 +6190,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Maplewood Memory Care Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6197,6 +6288,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Maplewood Memory Care Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6299,6 +6391,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 193,
+    "group": "Oakwood Terrace Senior Living",
     "client_frenchiseName": "Oakwood Terrace Senior Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.13,
@@ -6318,6 +6411,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Oakwood Terrace Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6415,6 +6509,7 @@
         "owner": "Laurel McLaughlin"
       },
       {
+        "group": "Oakwood Terrace Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6517,6 +6612,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 196,
+    "group": "Harmony Haven Assisted Living",
     "client_frenchiseName": "Harmony Haven Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 15.5,
@@ -6536,6 +6632,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Harmony Haven Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6638,6 +6735,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 198,
+    "group": "Evergreen Estates Retirement Village",
     "client_frenchiseName": "Evergreen Estates Retirement Village",
     "benchmarkComparison": "Average",
     "lpcAverage": 2.5,
@@ -6657,6 +6755,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Evergreen Estates Retirement Village",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6754,6 +6853,7 @@
         "owner": "Laurel McLaughlin"
       },
       {
+        "group": "Evergreen Estates Retirement Village",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6856,6 +6956,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 201,
+    "group": "Rosewood Senior Care Residence",
     "client_frenchiseName": "Rosewood Senior Care Residence",
     "benchmarkComparison": "Average",
     "lpcAverage": 6.68,
@@ -6875,6 +6976,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Rosewood Senior Care Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -6972,6 +7074,7 @@
         "owner": "Melinda Gisbert"
       },
       {
+        "group": "Rosewood Senior Care Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7074,6 +7177,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 204,
+    "group": "Aspen Grove Memory Care",
     "client_frenchiseName": "Aspen Grove Memory Care",
     "benchmarkComparison": "Below",
     "lpcAverage": 0.24,
@@ -7093,6 +7197,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Aspen Grove Memory Care",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7195,6 +7300,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 206,
+    "group": "Cedar Ridge Assisted Living",
     "client_frenchiseName": "Cedar Ridge Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 8.25,
@@ -7214,6 +7320,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Cedar Ridge Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7316,6 +7423,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 208,
+    "group": "Pinecrest Senior Living Community",
     "client_frenchiseName": "Pinecrest Senior Living Community",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.97,
@@ -7335,6 +7443,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Pinecrest Senior Living Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7432,6 +7541,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Pinecrest Senior Living Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7534,6 +7644,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 211,
+    "group": "Magnolia Meadows Assisted Living",
     "client_frenchiseName": "Magnolia Meadows Assisted Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 1.88,
@@ -7553,6 +7664,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Magnolia Meadows Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7650,6 +7762,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Magnolia Meadows Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7752,6 +7865,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 214,
+    "group": "Brookside Memory Care Center",
     "client_frenchiseName": "Brookside Memory Care Center",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.75,
@@ -7771,6 +7885,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Brookside Memory Care Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7868,6 +7983,7 @@
         "owner": "Kim Armstrong"
       },
       {
+        "group": "Brookside Memory Care Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -7970,6 +8086,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 217,
+    "group": "Sunrise Villa Senior Living",
     "client_frenchiseName": "Sunrise Villa Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -7989,6 +8106,7 @@
     "owner": "Michael Thompson",
     "children": [
       {
+        "group": "Sunrise Villa Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -8091,6 +8209,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 219,
+    "group": "Autumn Leaves Assisted Living",
     "client_frenchiseName": "Autumn Leaves Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.03,
@@ -8110,6 +8229,7 @@
     "owner": "Jessica Martinez",
     "children": [
       {
+        "group": "Autumn Leaves Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -8212,6 +8332,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 221,
+    "group": "Whispering Pines Retirement Residence",
     "client_frenchiseName": "Whispering Pines Retirement Residence",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -8231,6 +8352,7 @@
     "owner": "David Nguyen",
     "children": [
       {
+        "group": "Whispering Pines Retirement Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -8333,6 +8455,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 223,
+    "group": "Bluebird Gardens Senior Living",
     "client_frenchiseName": "Bluebird Gardens Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -8352,6 +8475,7 @@
     "owner": "Amanda Wilson",
     "children": [
       {
+        "group": "Bluebird Gardens Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -8454,6 +8578,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 225,
+    "group": "Oakmont Memory Care Village",
     "client_frenchiseName": "Oakmont Memory Care Village",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -8473,6 +8598,7 @@
     "owner": "Brian Wilson",
     "children": [
       {
+        "group": "Oakmont Memory Care Village",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -8575,6 +8701,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 227,
+    "group": "Golden Hills Assisted Living",
     "client_frenchiseName": "Golden Hills Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -8594,6 +8721,7 @@
     "owner": "Jennifer Smith",
     "children": [
       {
+        "group": "Golden Hills Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -8696,6 +8824,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 229,
+    "group": "Riverbend Senior Living Community",
     "client_frenchiseName": "Riverbend Senior Living Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -8715,6 +8844,7 @@
     "owner": "Matthew Johnson",
     "children": [
       {
+        "group": "Riverbend Senior Living Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -8817,6 +8947,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 231,
+    "group": "Meadowlark Manor Senior Living",
     "client_frenchiseName": "Meadowlark Manor Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -8836,6 +8967,7 @@
     "owner": "Sarah Brown",
     "children": [
       {
+        "group": "Meadowlark Manor Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -8938,6 +9070,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 233,
+    "group": "Ivy Terrace Assisted Living",
     "client_frenchiseName": "Ivy Terrace Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -8957,6 +9090,7 @@
     "owner": "Christopher Davis",
     "children": [
       {
+        "group": "Ivy Terrace Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -9059,6 +9193,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 235,
+    "group": "Sunflower Springs Memory Care",
     "client_frenchiseName": "Sunflower Springs Memory Care",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.03,
@@ -9078,6 +9213,7 @@
     "owner": "Emily Wilson",
     "children": [
       {
+        "group": "Sunflower Springs Memory Care",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -9180,6 +9316,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 237,
+    "group": "Willowbrook Senior Living Center",
     "client_frenchiseName": "Willowbrook Senior Living Center",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -9199,6 +9336,7 @@
     "owner": "Daniel Rodriguez",
     "children": [
       {
+        "group": "Willowbrook Senior Living Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -9301,6 +9439,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 239,
+    "group": "Silver Birch Assisted Living Community",
     "client_frenchiseName": "Silver Birch Assisted Living Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -9320,6 +9459,7 @@
     "owner": "Michelle Garcia",
     "children": [
       {
+        "group": "Silver Birch Assisted Living Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -9422,6 +9562,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 241,
+    "group": "Lakeside Memory Care Residence",
     "client_frenchiseName": "Lakeside Memory Care Residence",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -9441,6 +9582,7 @@
     "owner": "Brandon Hernandez",
     "children": [
       {
+        "group": "Lakeside Memory Care Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -9543,6 +9685,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 243,
+    "group": "Harmony Hills Senior Living",
     "client_frenchiseName": "Harmony Hills Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -9562,6 +9705,7 @@
     "owner": "Alyssa Martinez",
     "children": [
       {
+        "group": "Harmony Hills Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -9664,6 +9808,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 245,
+    "group": "Elmwood Gardens Assisted Living",
     "client_frenchiseName": "Elmwood Gardens Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -9683,6 +9828,7 @@
     "owner": "Taylor Thompson",
     "children": [
       {
+        "group": "Elmwood Gardens Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -9785,6 +9931,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 247,
+    "group": "Oakhill Manor Memory Care",
     "client_frenchiseName": "Oakhill Manor Memory Care",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -9804,6 +9951,7 @@
     "owner": "Jordan Davis",
     "children": [
       {
+        "group": "Oakhill Manor Memory Care",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -9906,6 +10054,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 249,
+    "group": "Cypress Creek Senior Living",
     "client_frenchiseName": "Cypress Creek Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -9925,6 +10074,7 @@
     "owner": "Ashley Wilson",
     "children": [
       {
+        "group": "Cypress Creek Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10027,6 +10177,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 251,
+    "group": "Riverside Gardens 22",
     "client_frenchiseName": "Riverside Gardens 22",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -10046,6 +10197,7 @@
     "owner": "Ethan Brown",
     "children": [
       {
+        "group": "Riverside Gardens 22",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10148,6 +10300,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 253,
+    "group": "Evergreen Heights",
     "client_frenchiseName": "Evergreen Heights",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -10167,6 +10320,7 @@
     "owner": "Olivia Taylor",
     "children": [
       {
+        "group": "Evergreen Heights",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10269,6 +10423,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 255,
+    "group": "Mountain View Senior Living",
     "client_frenchiseName": "Mountain View Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -10288,6 +10443,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Mountain View Senior Living",
         "invoicing_entity": "Data Data",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10390,6 +10546,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 257,
+    "group": "Tranquil Waters Assisted Living",
     "client_frenchiseName": "Tranquil Waters Assisted Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 13.75,
@@ -10409,6 +10566,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Tranquil Waters Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10511,6 +10669,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 259,
+    "group": "Whispering Oaks Memory Care",
     "client_frenchiseName": "Whispering Oaks Memory Care",
     "benchmarkComparison": "Above",
     "lpcAverage": 13.75,
@@ -10530,6 +10689,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Whispering Oaks Memory Care",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10632,6 +10792,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 262,
+    "group": "Rosewood Gardens Senior Living",
     "client_frenchiseName": "Rosewood Gardens Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 11.25,
@@ -10651,6 +10812,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Rosewood Gardens Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10753,6 +10915,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 264,
+    "group": "Serenity Springs Assisted Living",
     "client_frenchiseName": "Serenity Springs Assisted Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.13,
@@ -10772,6 +10935,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Serenity Springs Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10874,6 +11038,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 266,
+    "group": "Autumn Ridge Retirement Community",
     "client_frenchiseName": "Autumn Ridge Retirement Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 15.5,
@@ -10893,6 +11058,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Autumn Ridge Retirement Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -10995,6 +11161,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 268,
+    "group": "Maple Leaf Memory Care Center",
     "client_frenchiseName": "Maple Leaf Memory Care Center",
     "benchmarkComparison": "Average",
     "lpcAverage": 2.5,
@@ -11014,6 +11181,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Maple Leaf Memory Care Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -11116,6 +11284,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 270,
+    "group": "Harmony House Senior Living",
     "client_frenchiseName": "Harmony House Senior Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 6.68,
@@ -11135,6 +11304,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Harmony House Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -11237,6 +11407,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 272,
+    "group": "Meadowbrook Manor Assisted Living",
     "client_frenchiseName": "Meadowbrook Manor Assisted Living",
     "benchmarkComparison": "Below",
     "lpcAverage": 0.24,
@@ -11256,6 +11427,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Meadowbrook Manor Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -11358,6 +11530,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 274,
+    "group": "Cedarwood Senior Living Residence",
     "client_frenchiseName": "Cedarwood Senior Living Residence",
     "benchmarkComparison": "Above",
     "lpcAverage": 8.25,
@@ -11377,6 +11550,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Cedarwood Senior Living Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -11479,6 +11653,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 276,
+    "group": "Brookstone Senior Living Center",
     "client_frenchiseName": "Brookstone Senior Living Center",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.97,
@@ -11498,6 +11673,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Brookstone Senior Living Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -11600,6 +11776,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 278,
+    "group": "Pine Valley Assisted Living",
     "client_frenchiseName": "Pine Valley Assisted Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 1.88,
@@ -11619,6 +11796,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Pine Valley Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -11721,6 +11899,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 280,
+    "group": "Willow Creek Memory Care",
     "client_frenchiseName": "Willow Creek Memory Care",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.75,
@@ -11740,6 +11919,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Willow Creek Memory Care",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -11842,6 +12022,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 282,
+    "group": "Evergreen Haven Senior Living",
     "client_frenchiseName": "Evergreen Haven Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -11861,6 +12042,7 @@
     "owner": "Michael Thompson",
     "children": [
       {
+        "group": "Evergreen Haven Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -11963,6 +12145,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 284,
+    "group": "Oakridge Memory Care Residence",
     "client_frenchiseName": "Oakridge Memory Care Residence",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.03,
@@ -11982,6 +12165,7 @@
     "owner": "Jessica Martinez",
     "children": [
       {
+        "group": "Oakridge Memory Care Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -12084,6 +12268,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 286,
+    "group": "Serene Meadows Assisted Living",
     "client_frenchiseName": "Serene Meadows Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -12103,6 +12288,7 @@
     "owner": "David Nguyen",
     "children": [
       {
+        "group": "Serene Meadows Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -12205,6 +12391,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 288,
+    "group": "Whispering Brook Senior Living",
     "client_frenchiseName": "Whispering Brook Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -12224,6 +12411,7 @@
     "owner": "Amanda Wilson",
     "children": [
       {
+        "group": "Whispering Brook Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -12326,6 +12514,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 290,
+    "group": "Sunnyside Assisted Living Community",
     "client_frenchiseName": "Sunnyside Assisted Living Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -12345,6 +12534,7 @@
     "owner": "Brian Wilson",
     "children": [
       {
+        "group": "Sunnyside Assisted Living Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -12447,6 +12637,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 292,
+    "group": "Maple Ridge Memory Care Facility",
     "client_frenchiseName": "Maple Ridge Memory Care Facility",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -12466,6 +12657,7 @@
     "owner": "Jennifer Smith",
     "children": [
       {
+        "group": "Maple Ridge Memory Care Facility",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -12568,6 +12760,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 294,
+    "group": "Meadowview Assisted Living Residence",
     "client_frenchiseName": "Meadowview Assisted Living Residence",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -12587,6 +12780,7 @@
     "owner": "Matthew Johnson",
     "children": [
       {
+        "group": "Meadowview Assisted Living Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -12689,6 +12883,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 296,
+    "group": "Bluebell Gardens Senior Living Community",
     "client_frenchiseName": "Bluebell Gardens Senior Living Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -12708,6 +12903,7 @@
     "owner": "Sarah Brown",
     "children": [
       {
+        "group": "Bluebell Gardens Senior Living Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -12810,6 +13006,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 298,
+    "group": "Tranquility Woods Memory Care Center",
     "client_frenchiseName": "Tranquility Woods Memory Care Center",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -12829,6 +13026,7 @@
     "owner": "Christopher Davis",
     "children": [
       {
+        "group": "Tranquility Woods Memory Care Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -12931,6 +13129,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 300,
+    "group": "Aspen Glen Senior Living Retreat",
     "client_frenchiseName": "Aspen Glen Senior Living Retreat",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.03,
@@ -12950,6 +13149,7 @@
     "owner": "Emily Wilson",
     "children": [
       {
+        "group": "Aspen Glen Senior Living Retreat",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -13052,6 +13252,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 302,
+    "group": "Sunrise Haven Assisted Living",
     "client_frenchiseName": "Sunrise Haven Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -13071,6 +13272,7 @@
     "owner": "Daniel Rodriguez",
     "children": [
       {
+        "group": "Sunrise Haven Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -13173,6 +13375,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 304,
+    "group": "Riverbend Memory Care Village",
     "client_frenchiseName": "Riverbend Memory Care Village",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -13192,6 +13395,7 @@
     "owner": "Michelle Garcia",
     "children": [
       {
+        "group": "Riverbend Memory Care Village",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -13294,6 +13498,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 306,
+    "group": "Oakwood Manor Senior Living",
     "client_frenchiseName": "Oakwood Manor Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -13313,6 +13518,7 @@
     "owner": "Brandon Hernandez",
     "children": [
       {
+        "group": "Oakwood Manor Senior Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -13415,6 +13621,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 308,
+    "group": "Harmony Cove Assisted Living Center",
     "client_frenchiseName": "Harmony Cove Assisted Living Center",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -13434,6 +13641,7 @@
     "owner": "Alyssa Martinez",
     "children": [
       {
+        "group": "Harmony Cove Assisted Living Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -13536,6 +13744,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 310,
+    "group": "Golden Acres Memory Care Residence",
     "client_frenchiseName": "Golden Acres Memory Care Residence",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -13555,6 +13764,7 @@
     "owner": "Taylor Thompson",
     "children": [
       {
+        "group": "Golden Acres Memory Care Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -13657,6 +13867,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 312,
+    "group": "Whispering Willow Senior Living Village",
     "client_frenchiseName": "Whispering Willow Senior Living Village",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.05,
@@ -13676,6 +13887,7 @@
     "owner": "Jordan Davis",
     "children": [
       {
+        "group": "Whispering Willow Senior Living Village",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -13778,6 +13990,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 314,
+    "group": "Cedar Crest Assisted Living Community",
     "client_frenchiseName": "Cedar Crest Assisted Living Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.06,
@@ -13797,6 +14010,7 @@
     "owner": "Ashley Wilson",
     "children": [
       {
+        "group": "Cedar Crest Assisted Living Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -13899,6 +14113,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 316,
+    "group": "Serenity Ridge Memory Care Residence",
     "client_frenchiseName": "Serenity Ridge Memory Care Residence",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.07,
@@ -13918,6 +14133,7 @@
     "owner": "Ethan Brown",
     "children": [
       {
+        "group": "Serenity Ridge Memory Care Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -14020,6 +14236,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 318,
+    "group": "Magnolia Grove Senior Living Center",
     "client_frenchiseName": "Magnolia Grove Senior Living Center",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.08,
@@ -14039,6 +14256,7 @@
     "owner": "Olivia Taylor",
     "children": [
       {
+        "group": "Magnolia Grove Senior Living Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -14141,6 +14359,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 320,
+    "group": "Brookside Manor Assisted Living",
     "client_frenchiseName": "Brookside Manor Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -14160,6 +14379,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Brookside Manor Assisted Living",
         "invoicing_entity": "Data Data",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -14262,6 +14482,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 322,
+    "group": "Sunset Terrace Memory Care Facility",
     "client_frenchiseName": "Sunset Terrace Memory Care Facility",
     "benchmarkComparison": "Average",
     "lpcAverage": 13.75,
@@ -14281,6 +14502,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Sunset Terrace Memory Care Facility",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -14383,6 +14605,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 324,
+    "group": "Evergreen Meadows Senior Living Village",
     "client_frenchiseName": "Evergreen Meadows Senior Living Village",
     "benchmarkComparison": "Above",
     "lpcAverage": 13.75,
@@ -14402,6 +14625,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Evergreen Meadows Senior Living Village",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -14504,6 +14728,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 326,
+    "group": "Maplewood Gardens Assisted Living",
     "client_frenchiseName": "Maplewood Gardens Assisted Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 11.25,
@@ -14523,6 +14748,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Maplewood Gardens Assisted Living",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -14625,7 +14851,8 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 328,
-    "client_frenchiseName": "Tranquil Trails Memory Care Center ",
+    "group": "Tranquil Trails Memory Care Center",
+    "client_frenchiseName": "Tranquil Trails Memory Care Center",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.13,
     "uniqueCount": {
@@ -14644,6 +14871,7 @@
     "owner": "Melinda Gisbert",
     "children": [
       {
+        "group": "Tranquil Trails Memory Care Center",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -14746,6 +14974,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 330,
+    "group": "Harmony Oaks Senior Living Residence",
     "client_frenchiseName": "Harmony Oaks Senior Living Residence",
     "benchmarkComparison": "Above",
     "lpcAverage": 15.5,
@@ -14765,6 +14994,7 @@
     "owner": "Laurel McLaughlin",
     "children": [
       {
+        "group": "Harmony Oaks Senior Living Residence",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {
@@ -14867,6 +15097,7 @@
     "invoicing_entity": "Text Text",
     "legal_entity": "Text Text",
     "clientId": 332,
+    "group": "Willowbrook Assisted Living Community",
     "client_frenchiseName": "Willowbrook Assisted Living Community",
     "benchmarkComparison": "Average",
     "lpcAverage": 2.5,
@@ -14886,6 +15117,7 @@
     "owner": "Kim Armstrong",
     "children": [
       {
+        "group": "Willowbrook Assisted Living Community",
         "invoicing_entity": "Text Text",
         "legal_entity": "Text Text",
         "revenue2025": {

@@ -19,44 +19,14 @@
             </div>
         </div>
 
-        <div class="table-section d-flex gap-4">
-            <ag-grid-angular
-                style="flex-grow: 1; height: 655px"
-                class="ag-theme-balham ag-grid"
-                [rowHeight]="56"
-                [headerHeight]="36"
-                [columnDefs]="columnDef"
-                [defaultColDef]="defaultColDef"
-                [rowModelType]="rowModelType"
-                [gridOptions]="gridOptions"
-                [sideBar]="sideBar"
-                [rowSelection]="rowSelection"
-                (selectionChanged)="onSelectionChanged($event)"
-                (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
-                [pagination]="true"
-                [cacheBlockSize]="cacheBlockSize"
-                [paginationPageSize]="100"
-                [paginateChildRows]="true"
-                (gridReady)="onGridReady($event)"
-            >
-            </ag-grid-angular>
-            
-            <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
-                <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
-            </div>
-
-            <select
-                class="items-dropdown"
-                [(ngModel)]="selectedValue"
-                (change)="onItemsPerPageChange(selectedValue)">
-                    <option
-                        *ngFor="let option of paginationOptions"
-                        [attr.selected]="option.value == 100"
-                        [value]="option.value">
-                    {{ option.title }}
-                    </option>
-            </select>
-        </div>
+        <app-table
+            [rowHeight]="56"
+            [headerHeight]="36"
+            [columnDefs]="columnDef"
+            [rowSelection]="rowSelection"
+            [rowData]="rowData"
+            [gridOptions]="gridOptions">
+        </app-table>
     </div>
     <div class="edit-announcement-container" *ngIf="isAnnouncementEditable">
         <img src="assets/images/close-icon-black.svg" alt="Close Icon" class="close-icon" (click)="onCloseAnnouncementPanel()">

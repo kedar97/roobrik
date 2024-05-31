@@ -1,0 +1,50 @@
+<kendo-dialog title="Confirmation" *ngIf="addColumnPopUp" (close)="onCloseColumnPopUp()">
+    <p>Are you sure you want to add columns for {{yearToAdd}}?</p>
+    <kendo-dialog-actions>
+      <button kendoButton class="btn btn-create-new" (click)="onCloseColumnPopUp()">Cancel</button>
+      <button kendoButton class="btn btn-export" (click)="onAddYearColumn()">YES, ADD {{yearToAdd}}</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
+
+<div class="table-section d-flex gap-4">
+    <ag-grid-angular
+        style="flex-grow: 1; height: 655px"
+        class="ag-theme-balham ag-grid"
+        [rowHeight]="rowHeight"
+        [headerHeight]="headerHeight"
+        [defaultColDef]="defaultColDef"
+        [columnDefs]="columnDefs"
+        [rowData]="rowData"
+        [autoGroupColumnDef]="hierarchyColumnDef"
+        [treeData]="treeData"
+        [gridOptions]="gridOptions"
+        [sideBar]="sideBar"
+        [rowSelection]="rowSelection"
+        [rowGroupPanelShow]="rowGroupPanelShow"
+        (selectionChanged)="onSelectionChanged($event)"
+        (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
+        [pagination]="true"
+        [paginationPageSize]="100"
+        [paginateChildRows]="true"
+        [enableCharts]="enableCharts"
+        [getRowStyle]="getRowStyle"
+        (paginationChanged)="onPaginationChange($event)"
+        (gridReady)="onGridReady($event)"
+    ></ag-grid-angular>
+
+    <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
+        <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
+    </div>
+
+    <select
+        class="items-dropdown"
+        [(ngModel)]="selectedValue"
+        (change)="onItemsPerPageChange(selectedValue)">
+            <option
+                *ngFor="let option of paginationOptions"
+                [attr.selected]="option.value == 100"
+                [value]="option.value">
+            {{ option.title }}
+            </option>
+    </select>
+</div>

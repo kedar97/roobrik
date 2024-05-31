@@ -1,6 +1,7 @@
 [
   {
     "clientId": 101,
+    "group":"12 Oaks Senior Living",
     "client_frenchiseName": "12 Oaks Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 0.04,
@@ -11,6 +12,7 @@
     "children": [
       {
         "clientId": 102,
+        "group":"12 Oaks Senior Living",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Average",
         "lpcAverage": 0.25,
@@ -21,6 +23,7 @@
       },
       {
         "clientId": 103,
+        "group":"12 Oaks Senior Living",
         "client_frenchiseName": "Reunion Court of Kingwood",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.0,
@@ -32,7 +35,30 @@
     ]
   },
   {
+    "clientId": 102,
+    "group":"12 Oaks Senior Living",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 0.25,
+    "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin "
+  },
+  {
+    "clientId": 103,
+    "group":"12 Oaks Senior Living",
+    "client_frenchiseName": "Reunion Court of Kingwood",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 104,
+    "group":"Advanced Nursing + Home Support",
     "client_frenchiseName": "Advanced Nursing + Home Support",
     "benchmarkComparison": "Average",
     "lpcAverage": 13.75,
@@ -54,7 +80,19 @@
     ]
   },
   {
+    "clientId": 105,
+    "group":"Advanced Nursing + Home Support",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 13.75,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 106,
+    "group":"Agemark Senior Living",
     "client_frenchiseName": "Agemark Senior Living",
     "benchmarkComparison": "Above",
     "lpcAverage": 13.75,
@@ -65,6 +103,7 @@
     "children": [
       {
         "clientId": 107,
+        "group":"Agemark Senior Living",
         "client_frenchiseName": "Astoria Memory Care - Tracy",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.75,
@@ -75,6 +114,7 @@
       },
       {
         "clientId": 108,
+        "group":"Agemark Senior Living",
         "client_frenchiseName": "Astoria Senior Living and Memory Care - Oakdale",
         "benchmarkComparison": "Average",
         "lpcAverage": 0.5,
@@ -85,6 +125,7 @@
       },
       {
         "clientId": 109,
+        "group":"Agemark Senior Living",
         "client_frenchiseName": "Astoria Senior Living and Memory Care - Omaha",
         "benchmarkComparison": "Average",
         "lpcAverage": 1.0,
@@ -95,6 +136,7 @@
       },
       {
         "clientId": 110,
+        "group":"Agemark Senior Living",
         "client_frenchiseName": "CountryHouse Cedar Rapids",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.25,
@@ -105,6 +147,7 @@
       },
       {
         "clientId": 111,
+        "group":"Agemark Senior Living",
         "client_frenchiseName": "CountryHouse Cumberland",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.25,
@@ -115,6 +158,7 @@
       },
       {
         "clientId": 112,
+        "group":"Agemark Senior Living",
         "client_frenchiseName": "CountryHouse Council Bluffs",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.25,
@@ -125,6 +169,7 @@
       },
       {
         "clientId": 113,
+        "group":"Agemark Senior Living",
         "client_frenchiseName": "CountryHouse Dickinson",
         "benchmarkComparison": "Below",
         "lpcAverage": 1.0,
@@ -136,7 +181,85 @@
     ]
   },
   {
+    "clientId": 107,
+    "group":"Agemark Senior Living",
+    "client_frenchiseName": "Astoria Memory Care - Tracy",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.75,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 108,
+    "group":"Agemark Senior Living",
+    "client_frenchiseName": "Astoria Senior Living and Memory Care - Oakdale",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 0.5,
+    "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 109,
+    "group":"Agemark Senior Living",
+    "client_frenchiseName": "Astoria Senior Living and Memory Care - Omaha",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1.0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 4 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 110,
+    "group":"Agemark Senior Living",
+    "client_frenchiseName": "CountryHouse Cedar Rapids",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.25,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 111,
+    "group":"Agemark Senior Living",
+    "client_frenchiseName": "CountryHouse Cumberland",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.25,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 112,
+    "group":"Agemark Senior Living",
+    "client_frenchiseName": "CountryHouse Council Bluffs",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.25,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 113,
+    "group":"Agemark Senior Living",
+    "client_frenchiseName": "CountryHouse Dickinson",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 1.0,
+    "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 114,
+    "group":"AgeWell Middle Tennessee",
     "client_frenchiseName": "AgeWell Middle Tennessee",
     "benchmarkComparison": "Above",
     "lpcAverage": 11.25,
@@ -147,6 +270,7 @@
     "children": [
       {
         "clientId": 115,
+        "group":"AgeWell Middle Tennessee",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 11.25,
@@ -157,6 +281,7 @@
       },
       {
         "clientId": 116,
+        "group":"AgeWell Middle Tennessee",
         "client_frenchiseName": "81 Oaks Senior Living",
         "benchmarkComparison": "Above",
         "lpcAverage": 12.5,
@@ -168,7 +293,30 @@
     ]
   },
   {
+    "clientId": 115,
+    "group":"AgeWell Middle Tennessee",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 11.25,
+    "uniqueCount": { "apr23": 13, "mar23": 13, "feb23": 12, "jan23": 7 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 116,
+    "group":"AgeWell Middle Tennessee",
+    "client_frenchiseName": "81 Oaks Senior Living",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 12.5,
+    "uniqueCount": { "apr23": 3, "mar23": 17, "feb23": 30, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 117,
+    "group":"AgeWell Solvere Living",
     "client_frenchiseName": "AgeWell Solvere Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.13,
@@ -179,6 +327,7 @@
     "children": [
       {
         "clientId": 118,
+        "group":"AgeWell Solvere Living",
         "client_frenchiseName": "Aden Senior Living",
         "benchmarkComparison": "Below",
         "lpcAverage": 6.0,
@@ -189,6 +338,7 @@
       },
       {
         "clientId": 119,
+        "group":"AgeWell Solvere Living",
         "client_frenchiseName": "Bartlett Reserve",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.25,
@@ -200,7 +350,30 @@
     ]
   },
   {
+    "clientId": 118,
+    "group":"AgeWell Solvere Living",
+    "client_frenchiseName": "Aden Senior Living",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 6.0,
+    "uniqueCount": { "apr23": 10, "mar23": 2, "feb23": 12, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 119,
+    "group":"AgeWell Solvere Living",
+    "client_frenchiseName": "Bartlett Reserve",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.25,
+    "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": "inactive", "jan23": "inactive" },
+    "totalActive": { "apr23": "right", "mar23": "right", "feb23": "wrong", "jan23": "wrong" },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 120,
+    "group":"Aldersgate",
     "client_frenchiseName": "Aldersgate",
     "benchmarkComparison": "Above",
     "lpcAverage": 15.5,
@@ -211,6 +384,7 @@
     "children": [
       {
         "clientId": 121,
+        "group":"Aldersgate",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 15.5,
@@ -222,7 +396,19 @@
     ]
   },
   {
+    "clientId": 121,
+    "group":"Aldersgate",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 15.5,
+    "uniqueCount": { "apr23": 11, "mar23": 20, "feb23": 18, "jan23": 13 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 122,
+    "group":"All Seasons Living",
     "client_frenchiseName": "All Seasons Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 2.5,
@@ -233,6 +419,7 @@
     "children": [
       {
         "clientId": 123,
+        "group":"All Seasons Living",
         "client_frenchiseName": "Bartlett Reserve",
         "benchmarkComparison": "Average",
         "lpcAverage": 5.0,
@@ -246,6 +433,7 @@
       },
       {
         "clientId": 124,
+        "group":"All Seasons Living",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.0,
@@ -257,7 +445,33 @@
     ]
   },
   {
+    "clientId": 123,
+    "group":"All Seasons Living",
+    "client_frenchiseName": "Bartlett Reserve",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 5.0,
+    "uniqueCount": { "apr23": 1, "mar23": 8, "feb23": 5, "jan23": 6 },
+    "totalActive": { "apr23": 0 },
+    "mar23": 0,
+    "feb23": 0,
+    "jan23": 0,
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 124,
+    "group":"All Seasons Living",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 125,
+    "group":"Allegro Senior Living",
     "client_frenchiseName": "Allegro Senior Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 6.68,
@@ -292,7 +506,33 @@
     ]
   },
   {
+    "clientId": 126,
+    "group":"Allegro Senior Living",
+    "client_frenchiseName": "Allegro 55+ Doral",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1.25,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 4 },
+    "totalActive": { "apr23": 0 },
+    "mar23": 0,
+    "feb23": 0,
+    "jan23": 0,
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 127,
+    "group":"Allegro Senior Living",
+    "client_frenchiseName": "Allegro Boynton Beach",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 6.0,
+    "uniqueCount": { "apr23": 8, "mar23": 6, "feb23": 4, "jan23": 6 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 128,
+    "group":"Americare",
     "client_frenchiseName": "Americare",
     "benchmarkComparison": "Below",
     "lpcAverage": 0.24,
@@ -314,7 +554,19 @@
     ]
   },
   {
+    "clientId": 129,
+    "group":"Americare",
+    "client_frenchiseName": "Adams Pointe",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 130,
+    "group":"Smith Village",
     "client_frenchiseName": "Smith Village",
     "benchmarkComparison": "Above",
     "lpcAverage": 8.25,
@@ -325,6 +577,7 @@
     "children": [
       {
         "clientId": 131,
+        "group":"Smith Village",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 8.25,
@@ -339,7 +592,22 @@
     ]
   },
   {
+    "clientId": 131,
+    "group":"Smith Village",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 8.25,
+    "uniqueCount": { "apr23": 11, "mar23": 7, "feb23": 11, "jan23": 4 },
+    "totalActive": { "apr23": 0 },
+    "mar23": 0,
+    "feb23": 0,
+    "jan23": 0,
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 132,
+    "group":"Solera Senior Living",
     "client_frenchiseName": "Solera Senior Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.97,
@@ -350,6 +618,7 @@
     "children": [
       {
         "clientId": 133,
+        "group":"Solera Senior Living",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 58.25,
@@ -360,6 +629,7 @@
       },
       {
         "clientId": 134,
+        "group":"Solera Senior Living",
         "client_frenchiseName": "Edgeworth Park at New Town",
         "benchmarkComparison": "Average",
         "lpcAverage": 4.0,
@@ -371,7 +641,30 @@
     ]
   },
   {
+    "clientId": 133,
+    "group":"Solera Senior Living",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 58.25,
+    "uniqueCount": { "apr23": 1, "mar23": 60, "feb23": 86, "jan23": 86 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 134,
+    "group":"Solera Senior Living",
+    "client_frenchiseName": "Edgeworth Park at New Town",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 4.0,
+    "uniqueCount": { "apr23": 2, "mar23": 2, "feb23": 2, "jan23": 10 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 135,
+    "group":"Sterling Estates",
     "client_frenchiseName": "Sterling Estates",
     "benchmarkComparison": "Average",
     "lpcAverage": 1.88,
@@ -382,6 +675,7 @@
     "children": [
       {
         "clientId": 136,
+        "group":"Sterling Estates",
         "client_frenchiseName": "Azalea Estates of Fayetteville",
         "benchmarkComparison": "Average",
         "lpcAverage": 1.25,
@@ -392,6 +686,7 @@
       },
       {
         "clientId": 137,
+        "group":"Sterling Estates",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Average",
         "lpcAverage": 2.25,
@@ -402,6 +697,7 @@
       },
       {
         "clientId": 138,
+        "group":"Sterling Estates",
         "client_frenchiseName": "Sterling Estates of East Cobb",
         "benchmarkComparison": "Average",
         "lpcAverage": 3.0,
@@ -412,6 +708,7 @@
       },
       {
         "clientId": 139,
+        "group":"Sterling Estates",
         "client_frenchiseName": "Sterling Estates of West Cobb",
         "benchmarkComparison": "Average",
         "lpcAverage": 1.0,
@@ -423,7 +720,52 @@
     ]
   },
   {
+    "clientId": 136,
+    "group":"Sterling Estates",
+    "client_frenchiseName": "Azalea Estates of Fayetteville",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1.25,
+    "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 3 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 137,
+    "group":"Sterling Estates",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 2.25,
+    "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 5, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 138,
+    "group":"Sterling Estates",
+    "client_frenchiseName": "Sterling Estates of East Cobb",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 3.0,
+    "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 5, "jan23": 6 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 139,
+    "group":"Sterling Estates",
+    "client_frenchiseName": "Sterling Estates of West Cobb",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1.0,
+    "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 140,
+    "group":"Still Hopes",
     "client_frenchiseName": "Still Hopes",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.75,
@@ -437,6 +779,7 @@
     "children": [
       {
         "clientId": 141,
+        "group":"Still Hopes",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.5,
@@ -447,6 +790,7 @@
       },
       {
         "clientId": 142,
+        "group":"Still Hopes",
         "client_frenchiseName": "Greenway at Still Hopes",
         "benchmarkComparison": "Average",
         "lpcAverage": 1.25,
@@ -457,6 +801,7 @@
       },
       {
         "clientId": 143,
+        "group":"Still Hopes",
         "client_frenchiseName": "Still Hopes Retirement",
         "benchmarkComparison": "Average",
         "lpcAverage": 2.0,
@@ -467,6 +812,7 @@
       },
       {
         "clientId": 144,
+        "group":"Still Hopes",
         "client_frenchiseName": "Sterling Estates of West Cobb",
         "benchmarkComparison": "Average",
         "lpcAverage": 1.0,
@@ -478,7 +824,52 @@
     ]
   },
   {
+    "clientId": 141,
+    "group":"Still Hopes",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.5,
+    "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 142,
+    "group":"Still Hopes",
+    "client_frenchiseName": "Greenway at Still Hopes",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1.25,
+    "uniqueCount": { "apr23": 0, "mar23": 2, "feb23": 1, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 143,
+    "group":"Still Hopes",
+    "client_frenchiseName": "Still Hopes Retirement",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 2.0,
+    "uniqueCount": { "apr23": 8, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 144,
+    "group":"Still Hopes",
+    "client_frenchiseName": "Sterling Estates of West Cobb",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1.0,
+    "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 145,
+    "group":"The Alloro at University Groves",
     "client_frenchiseName": "The Alloro at University Groves",
     "benchmarkComparison": "Average",
     "lpcAverage": 2.0,
@@ -489,6 +880,7 @@
     "children": [
       {
         "clientId": 146,
+        "group":"The Alloro at University Groves",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Average",
         "lpcAverage": 0.25,
@@ -500,7 +892,19 @@
     ]
   },
   {
+    "clientId": 146,
+    "group":"The Alloro at University Groves",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 0.25,
+    "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 147,
+    "group": "The Aspenwood Company",
     "client_frenchiseName": "The Aspenwood Company",
     "benchmarkComparison": "Average",
     "lpcAverage": 3.0,
@@ -511,6 +915,7 @@
     "children": [
       {
         "clientId": 148,
+        "group": "The Aspenwood Company",
         "client_frenchiseName": "Clayton Oaks Living",
         "benchmarkComparison": "Above",
         "lpcAverage": 12.0,
@@ -521,6 +926,7 @@
       },
       {
         "clientId": 149,
+        "group": "The Aspenwood Company",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.0,
@@ -532,7 +938,30 @@
     ]
   },
   {
+    "clientId": 148,
+    "group": "The Aspenwood Company",
+    "client_frenchiseName": "Clayton Oaks Living",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 12.0,
+    "uniqueCount": { "apr23": 6, "mar23": 12, "feb23": 14, "jan23": 16 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 149,
+    "group": "The Aspenwood Company",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 150,
+    "group": "The Bristal",
     "client_frenchiseName": "The Bristal",
     "benchmarkComparison": "Above",
     "lpcAverage": 25.83,
@@ -543,6 +972,7 @@
     "children": [
       {
         "clientId": 151,
+        "group": "The Bristal",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 5.5,
@@ -553,6 +983,7 @@
       },
       {
         "clientId": 152,
+        "group": "The Bristal",
         "client_frenchiseName": "The Bristal at Armonk",
         "benchmarkComparison": "Average",
         "lpcAverage": 2.0,
@@ -564,7 +995,30 @@
     ]
   },
   {
+    "clientId": 151,
+    "group": "The Bristal",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 5.5,
+    "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 6, "jan23": 7 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 152,
+    "group": "The Bristal",
+    "client_frenchiseName": "The Bristal at Armonk",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 2.0,
+    "uniqueCount": { "apr23": 3, "mar23": 1, "feb23": 1, "jan23": 3 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 153,
+    "group": "The Buckingham",
     "client_frenchiseName": "The Buckingham",
     "benchmarkComparison": "Above",
     "lpcAverage": 6.25,
@@ -575,6 +1029,7 @@
     "children": [
       {
         "clientId": 154,
+        "group": "The Buckingham",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Average",
         "lpcAverage": 6.25,
@@ -586,7 +1041,19 @@
     ]
   },
   {
+    "clientId": 154,
+    "group": "The Buckingham",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 6.25,
+    "uniqueCount": { "apr23": 3, "mar23": 7, "feb23": 7, "jan23": 8 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 155,
+    "group": "The Carrington at Lincolnwood",
     "client_frenchiseName": "The Carrington at Lincolnwood",
     "benchmarkComparison": "Above",
     "lpcAverage": 25.0,
@@ -597,6 +1064,7 @@
     "children": [
       {
         "clientId": 156,
+        "group": "The Carrington at Lincolnwood",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Average",
         "lpcAverage": 25.0,
@@ -607,9 +1075,20 @@
       }
     ]
   },
-
+  {
+    "clientId": 156,
+    "group": "The Carrington at Lincolnwood",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 25.0,
+    "uniqueCount": { "apr23": 24, "mar23": 24, "feb23": 29, "jan23": 23 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
   {
     "clientId": 157,
+    "group": "The Claiborne",
     "client_frenchiseName": "The Claiborne",
     "benchmarkComparison": "Average",
     "lpcAverage": 1.23,
@@ -620,6 +1099,7 @@
     "children": [
       {
         "clientId": 158,
+        "group": "The Claiborne",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.25,
@@ -631,7 +1111,19 @@
     ]
   },
   {
+    "clientId": 158,
+    "group": "The Claiborne",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.25,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 159,
+    "group": "The Crossings at Eastchase",
     "client_frenchiseName": "The Crossings at Eastchase",
     "benchmarkComparison": "Average",
     "lpcAverage": 5.0,
@@ -642,6 +1134,7 @@
     "children": [
       {
         "clientId": 160,
+        "group": "The Crossings at Eastchase",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 3.75,
@@ -653,7 +1146,19 @@
     ]
   },
   {
+    "clientId": 160,
+    "group": "The Crossings at Eastchase",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 3.75,
+    "uniqueCount": { "apr23": 5, "mar23": 11, "feb23": 9, "jan23": 6 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 161,
+    "group": "The Crossings at North River",
     "client_frenchiseName": "The Crossings at North River",
     "benchmarkComparison": "Above",
     "lpcAverage": 7.75,
@@ -664,6 +1169,7 @@
     "children": [
       {
         "clientId": 162,
+        "group": "The Crossings at North River",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 7.75,
@@ -675,7 +1181,19 @@
     ]
   },
   {
+    "clientId": 162,
+    "group": "The Crossings at North River",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 7.75,
+    "uniqueCount": { "apr23": 5, "mar23": 11, "feb23": 9, "jan23": 6 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 163,
+    "group": "Vitality Living",
     "client_frenchiseName": "Vitality Living",
     "benchmarkComparison": "Below",
     "lpcAverage": 0.93,
@@ -686,6 +1204,7 @@
     "children": [
       {
         "clientId": 164,
+        "group": "Vitality Living",
         "client_frenchiseName": "Gardens of Germantown",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -696,6 +1215,7 @@
       },
       {
         "clientId": 165,
+        "group": "Vitality Living",
         "client_frenchiseName": "Landmark Lifestyles at Tupelo",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -706,6 +1226,7 @@
       },
       {
         "clientId": 166,
+        "group": "Vitality Living",
         "client_frenchiseName": "Traditions of Mill Creek",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -716,6 +1237,7 @@
       },
       {
         "clientId": 167,
+        "group": "Vitality Living",
         "client_frenchiseName": " Vitality Court Texas Star",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -726,6 +1248,7 @@
       },
       {
         "clientId": 168,
+        "group": "Vitality Living",
         "client_frenchiseName": "Vitality Living Shadow Hills",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.5,
@@ -736,6 +1259,7 @@
       },
       {
         "clientId": 169,
+        "group": "Vitality Living",
         "client_frenchiseName": "Vitality Living Stony Brook",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.5,
@@ -747,7 +1271,74 @@
     ]
   },
   {
+    "clientId": 164,
+    "group": "Vitality Living",
+    "client_frenchiseName": "Gardens of Germantown",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 14, "feb23": 13, "jan23": 13 },
+    "totalActive": { "apr23": 26, "mar23": 26, "feb23": 26, "jan23": 26 },
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 165,
+    "group": "Vitality Living",
+    "client_frenchiseName": "Landmark Lifestyles at Tupelo",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 166,
+    "group": "Vitality Living",
+    "client_frenchiseName": "Traditions of Mill Creek",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 167,
+    "group": "Vitality Living",
+    "client_frenchiseName": " Vitality Court Texas Star",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 168,
+    "group": "Vitality Living",
+    "client_frenchiseName": "Vitality Living Shadow Hills",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.5,
+    "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 169,
+    "group": "Vitality Living",
+    "client_frenchiseName": "Vitality Living Stony Brook",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.5,
+    "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 170,
+    "group": "WellQuest Living",
     "client_frenchiseName": "WellQuest Living",
     "benchmarkComparison": "Below",
     "lpcAverage": 1.75,
@@ -758,6 +1349,7 @@
     "children": [
       {
         "clientId": 171,
+        "group": "WellQuest Living",
         "client_frenchiseName": "Elk Grove",
         "benchmarkComparison": "Average",
         "lpcAverage": 3.5,
@@ -768,6 +1360,7 @@
       },
       {
         "clientId": 172,
+        "group": "WellQuest Living",
         "client_frenchiseName": "Pasadena Highlands",
         "benchmarkComparison": "Below",
         "lpcAverage": 1.75,
@@ -779,7 +1372,30 @@
     ]
   },
   {
+    "clientId": 171,
+    "group": "WellQuest Living",
+    "client_frenchiseName": "Elk Grove",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 3.5,
+    "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 2, "jan23": 3 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 172,
+    "group": "WellQuest Living",
+    "client_frenchiseName": "Pasadena Highlands",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 1.75,
+    "uniqueCount": { "apr23": 2, "mar23": 2, "feb23": 1, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 173,
+    "group": "Westmont Living",
     "client_frenchiseName": "Westmont Living",
     "benchmarkComparison": "Average",
     "lpcAverage": 4.32,
@@ -790,6 +1406,7 @@
     "children": [
       {
         "clientId": 174,
+        "group": "Westmont Living",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 23.75,
@@ -800,6 +1417,7 @@
       },
       {
         "clientId": 175,
+        "group": "Westmont Living",
         "client_frenchiseName": "Lakeview Senior Living",
         "benchmarkComparison": "Below",
         "lpcAverage": 1.75,
@@ -810,6 +1428,7 @@
       },
       {
         "clientId": 176,
+        "group": "Westmont Living",
         "client_frenchiseName": "Lakeview Senior Living",
         "benchmarkComparison": "Below",
         "lpcAverage": 1.75,
@@ -820,6 +1439,7 @@
       },
       {
         "clientId": 177,
+        "group": "Westmont Living",
         "client_frenchiseName": "Mariposa at Ellwood Shores",
         "benchmarkComparison": "Below",
         "lpcAverage": 4,
@@ -830,6 +1450,7 @@
       },
       {
         "clientId": 178,
+        "group": "Westmont Living",
         "client_frenchiseName": "Oceanview Senior Living",
         "benchmarkComparison": "Below",
         "lpcAverage": 4.5,
@@ -840,6 +1461,7 @@
       },
       {
         "clientId": 179,
+        "group": "Westmont Living",
         "client_frenchiseName": "The Oaks at Nipomo",
         "benchmarkComparison": "Below",
         "lpcAverage": 3.5,
@@ -851,7 +1473,74 @@
     ]
   },
   {
+    "clientId": 174,
+    "group": "Westmont Living",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 23.75,
+    "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 2, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 175,
+    "group": "Westmont Living",
+    "client_frenchiseName": "Lakeview Senior Living",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 1.75,
+    "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 3, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 176,
+    "group": "Westmont Living",
+    "client_frenchiseName": "Lakeview Senior Living - West",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 1.75,
+    "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 3, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 177,
+    "group": "Westmont Living",
+    "client_frenchiseName": "Mariposa at Ellwood Shores",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 4,
+    "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 7, "jan23": 3 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 178,
+    "group": "Westmont Living",
+    "client_frenchiseName": "Oceanview Senior Living",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 4.5,
+    "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 7, "jan23": 5 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 179,
+    "group": "Westmont Living",
+    "client_frenchiseName": "The Oaks at Nipomo",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 3.5,
+    "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 6, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 180,
+    "group": "Where You Live Matters",
     "client_frenchiseName": "Where You Live Matters",
     "benchmarkComparison": "Above",
     "lpcAverage": 23.75,
@@ -862,6 +1551,7 @@
     "children": [
       {
         "clientId": 181,
+        "group": "Where You Live Matters",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 23.75,
@@ -873,7 +1563,19 @@
     ]
   },
   {
+    "clientId": 181,
+    "group": "Where You Live Matters",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 23.75,
+    "uniqueCount": { "apr23": 21, "mar23": 21, "feb23": 28, "jan23": 25 },
+    "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+    "status": "Inactive",
+    "owner": "Melinda Gisbert"
+  },
+  {
     "clientId": 182,
+    "group": "Windsor House",
     "client_frenchiseName": "Windsor House",
     "benchmarkComparison": "Below",
     "lpcAverage": 0.96,
@@ -884,6 +1586,7 @@
     "children": [
       {
         "clientId": 183,
+        "group": "Windsor House",
         "client_frenchiseName": "Armstrong Memory Care Assisted Living",
         "benchmarkComparison": "Average",
         "lpcAverage": 1,
@@ -894,6 +1597,7 @@
       },
       {
         "clientId": 184,
+        "group": "Windsor House",
         "client_frenchiseName": "Champion Estates Assisted Living",
         "benchmarkComparison": "Average",
         "lpcAverage": 1.25,
@@ -904,6 +1608,7 @@
       },
       {
         "clientId": 185,
+        "group": "Windsor House",
         "client_frenchiseName": "Liberty Arms Assisted Living",
         "benchmarkComparison": "Average",
         "lpcAverage": 1,
@@ -915,7 +1620,41 @@
     ]
   },
   {
+    "clientId": 183,
+    "group": "Windsor House",
+    "client_frenchiseName": "Armstrong Memory Care Assisted Living",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1,
+    "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 0, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 184,
+    "group": "Windsor House",
+    "client_frenchiseName": "Champion Estates Assisted Living",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1.25,
+    "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 3, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 185,
+    "group": "Windsor House",
+    "client_frenchiseName": "Liberty Arms Assisted Living",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1,
+    "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 0, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 186,
+    "group": "Winnwood Retirement Community",
     "client_frenchiseName": "Winnwood Retirement Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 6.25,
@@ -926,6 +1665,7 @@
     "children": [
       {
         "clientId": 187,
+        "group": "Winnwood Retirement Community",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 5.25,
@@ -937,7 +1677,19 @@
     ]
   },
   {
+    "clientId": 187,
+    "group": "Winnwood Retirement Community",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 5.25,
+    "uniqueCount": { "apr23": 4, "mar23": 7, "feb23": 5, "jan23": 9 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 188,
+    "group": "Your Brand Senior Care",
     "client_frenchiseName": "Your Brand Senior Care",
     "benchmarkComparison": "Below",
     "lpcAverage": 1.92,
@@ -948,6 +1700,7 @@
     "children": [
       {
         "clientId": 189,
+        "group": "Your Brand Senior Care",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 5.25,
@@ -958,6 +1711,7 @@
       },
       {
         "clientId": 190,
+        "group": "Your Brand Senior Care",
         "client_frenchiseName": "Your Brand",
         "benchmarkComparison": "Below",
         "lpcAverage": 0.5,
@@ -969,7 +1723,30 @@
     ]
   },
   {
+    "clientId": 189,
+    "group": "Your Brand Senior Care",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 5.25,
+    "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 8, "jan23": 4 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
+    "clientId": 190,
+    "group": "Your Brand Senior Care",
+    "client_frenchiseName": "Your Brand",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0.5,
+    "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Laurel McLaughlin"
+  },
+  {
     "clientId": 191,
+    "group": "Vernon Woods",
     "client_frenchiseName": "Vernon Woods",
     "benchmarkComparison": "Average",
     "lpcAverage": 1.25,
@@ -980,6 +1757,7 @@
     "children": [
       {
         "clientId": 192,
+        "group": "Vernon Woods",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 1.25,
@@ -991,7 +1769,19 @@
     ]
   },
   {
+    "clientId": 192,
+    "group": "Vernon Woods",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 1.25,
+    "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 193,
+    "group": "Veranda of Pensacola",
     "client_frenchiseName": "Veranda of Pensacola",
     "benchmarkComparison": "Above",
     "lpcAverage": 2.75,
@@ -1002,6 +1792,7 @@
     "children": [
       {
         "clientId": 194,
+        "group": "Veranda of Pensacola",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 2.75,
@@ -1013,7 +1804,19 @@
     ]
   },
   {
+    "clientId": 194,
+    "group": "Veranda of Pensacola",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 2.75,
+    "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 195,
+    "group": "Vantage Point",
     "client_frenchiseName": "Vantage Point",
     "benchmarkComparison": "Above",
     "lpcAverage": 7.65,
@@ -1024,6 +1827,7 @@
     "children": [
       {
         "clientId": 196,
+        "group": "Vantage Point",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -1034,6 +1838,7 @@
       },
       {
         "clientId": 197,
+        "group": "Vantage Point",
         "client_frenchiseName": "Arcadia at Limerick Pointe",
         "benchmarkComparison": "Above",
         "lpcAverage": 8.25,
@@ -1045,7 +1850,30 @@
     ]
   },
   {
+    "clientId": 196,
+    "group": "Vantage Point",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 197,
+    "group": "Vantage Point",
+    "client_frenchiseName": "Arcadia at Limerick Pointe",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 8.25,
+    "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 16, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 198,
+    "group": "The Good Shepherd Community",
     "client_frenchiseName": "The Good Shepherd Community",
     "benchmarkComparison": "Above",
     "lpcAverage": 6.0,
@@ -1056,6 +1884,7 @@
     "children": [
       {
         "clientId": 199,
+        "group": "The Good Shepherd Community",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 0,
@@ -1067,7 +1896,19 @@
     ]
   },
   {
+    "clientId": 199,
+    "group": "The Good Shepherd Community",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 200,
+    "group": "The Crossings at Riverchase",
     "client_frenchiseName": "The Crossings at Riverchase",
     "benchmarkComparison": "Below",
     "lpcAverage": 0.0,
@@ -1078,6 +1919,7 @@
     "children": [
       {
         "clientId": 201,
+        "group": "The Crossings at Riverchase",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 0,
@@ -1089,7 +1931,19 @@
     ]
   },
   {
+    "clientId": 201,
+    "group": "The Crossings at Riverchase",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 202,
+    "group": "The Heritage Communities",
     "client_frenchiseName": "The Heritage Communities",
     "benchmarkComparison": "Above",
     "lpcAverage": 7.65,
@@ -1100,6 +1954,7 @@
     "children": [
       {
         "clientId": 203,
+        "group": "The Heritage Communities",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 0,
@@ -1110,6 +1965,7 @@
       },
       {
         "clientId": 204,
+        "group": "The Heritage Communities",
         "client_frenchiseName": "Arcadia at Limerick Pointe",
         "benchmarkComparison": "Above",
         "lpcAverage": 8.25,
@@ -1121,7 +1977,30 @@
     ]
   },
   {
+    "clientId": 203,
+    "group": "The Heritage Communities",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 204,
+    "group": "The Heritage Communities",
+    "client_frenchiseName": "Arcadia at Limerick Pointe",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 8.25,
+    "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 16, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 205,
+    "group": "United Methodist Communities",
     "client_frenchiseName": "United Methodist Communities",
     "benchmarkComparison": "Above",
     "lpcAverage": 6.5,
@@ -1132,6 +2011,7 @@
     "children": [
       {
         "clientId": 206,
+        "group": "United Methodist Communities",
         "client_frenchiseName": "Bristol Glen",
         "benchmarkComparison": "Above",
         "lpcAverage": 7.75,
@@ -1143,7 +2023,19 @@
     ]
   },
   {
+    "clientId": 206,
+    "group": "United Methodist Communities",
+    "client_frenchiseName": "Bristol Glen",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 7.75,
+    "uniqueCount": { "apr23": 8, "mar23": 8, "feb23": 9, "jan23": 6 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 207,
+    "group": "United Church Homes",
     "client_frenchiseName": "United Church Homes",
     "benchmarkComparison": "Below",
     "lpcAverage": 0,
@@ -1154,6 +2046,7 @@
     "children": [
       {
         "clientId": 208,
+        "group": "United Church Homes",
         "client_frenchiseName": "Uplands Village",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -1165,7 +2058,19 @@
     ]
   },
   {
+    "clientId": 208,
+    "group": "United Church Homes",
+    "client_frenchiseName": "Uplands Village",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 209,
+    "group": "UMH",
     "client_frenchiseName": "UMH",
     "benchmarkComparison": "Average",
     "lpcAverage": 4.08,
@@ -1176,6 +2081,7 @@
     "children": [
       {
         "clientId": 210,
+        "group": "UMH",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 0,
@@ -1187,7 +2093,19 @@
     ]
   },
   {
+    "clientId": 210,
+    "group": "UMH",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 211,
+    "group": "The Heri Communities",
     "client_frenchiseName": "The Heri Communities",
     "benchmarkComparison": "Average",
     "lpcAverage": 2.08,
@@ -1198,6 +2116,7 @@
     "children": [
       {
         "clientId": 212,
+        "group": "The Heri Communities",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 0,
@@ -1209,7 +2128,19 @@
     ]
   },
   {
+    "clientId": 212,
+    "group": "The Heri Communities",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 213,
+    "group": "The Hilltop of Greenville Memory Care",
     "client_frenchiseName": "The Hilltop of Greenville Memory Care",
     "benchmarkComparison": "Below",
     "lpcAverage": 0.08,
@@ -1220,6 +2151,7 @@
     "children": [
       {
         "clientId": 214,
+        "group": "The Hilltop of Greenville Memory Care",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -1231,7 +2163,19 @@
     ]
   },
   {
+    "clientId": 214,
+    "group": "The Hilltop of Greenville Memory Care",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 215,
+    "group": "The Mapleton",
     "client_frenchiseName": "The Mapleton",
     "benchmarkComparison": "Average",
     "lpcAverage": 4.08,
@@ -1242,6 +2186,7 @@
     "children": [
       {
         "clientId": 216,
+        "group": "The Mapleton",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -1253,7 +2198,19 @@
     ]
   },
   {
+    "clientId": 216,
+    "group": "The Mapleton",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 217,
+    "group": "The Oaks at Flower Mound",
     "client_frenchiseName": "The Oaks at Flower Mound",
     "benchmarkComparison": "Below",
     "lpcAverage": 0,
@@ -1264,6 +2221,7 @@
     "children": [
       {
         "clientId": 218,
+        "group": "The Oaks at Flower Mound",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 1.75,
@@ -1275,7 +2233,19 @@
     ]
   },
   {
+    "clientId": 218,
+    "group": "The Oaks at Flower Mound",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 1.75,
+    "uniqueCount": { "apr23": 7, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 219,
+    "group": "The Palms at Plantation",
     "client_frenchiseName": "The Palms at Plantation",
     "benchmarkComparison": "Above",
     "lpcAverage": 4,
@@ -1286,6 +2256,7 @@
     "children": [
       {
         "clientId": 220,
+        "group": "The Palms at Plantation",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 3,
@@ -1297,7 +2268,19 @@
     ]
   },
   {
+    "clientId": 220,
+    "group": "The Palms at Plantation",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 3,
+    "uniqueCount": { "apr23": 4, "mar23": 4, "feb23": 4, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 221,
+    "group": "The Pines at Davidson",
     "client_frenchiseName": "The Pines at Davidson",
     "benchmarkComparison": "Above",
     "lpcAverage": 0,
@@ -1308,6 +2291,7 @@
     "children": [
       {
         "clientId": 222,
+        "group": "The Pines at Davidson",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -1319,7 +2303,19 @@
     ]
   },
   {
+    "clientId": 222,
+    "group": "The Pines at Davidson",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 223,
+    "group": "The Plaza",
     "client_frenchiseName": "The Plaza",
     "benchmarkComparison": "Below",
     "lpcAverage": 5.43,
@@ -1330,6 +2326,7 @@
     "children": [
       {
         "clientId": 224,
+        "group": "The Plaza",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 2.5,
@@ -1340,6 +2337,7 @@
       },
       {
         "clientId": 225,
+        "group": "The Plaza",
         "client_frenchiseName": "The Plaza at Kaneohe",
         "benchmarkComparison": "Average",
         "lpcAverage": 6.5,
@@ -1350,6 +2348,7 @@
       },
       {
         "clientId": 226,
+        "group": "The Plaza",
         "client_frenchiseName": "The Plaza at Mililani",
         "benchmarkComparison": "Average",
         "lpcAverage": 3,
@@ -1360,6 +2359,7 @@
       },
       {
         "clientId": 227,
+        "group": "The Plaza",
         "client_frenchiseName": "The Plaza at Pearl City",
         "benchmarkComparison": "Average",
         "lpcAverage": 5.5,
@@ -1370,9 +2370,53 @@
       }
     ]
   },
-
+  {
+    "clientId": 224,
+    "group": "The Plaza",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 2.5,
+    "uniqueCount": { "apr23": 3, "mar23": 3, "feb23": 4, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 225,
+    "group": "The Plaza",
+    "client_frenchiseName": "The Plaza at Kaneohe",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 6.5,
+    "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 7, "jan23": 4 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 226,
+    "group": "The Plaza",
+    "client_frenchiseName": "The Plaza at Mililani",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 3,
+    "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 1, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 227,
+    "group": "The Plaza",
+    "client_frenchiseName": "The Plaza at Pearl City",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 5.5,
+    "uniqueCount": { "apr23": 4, "mar23": 4, "feb23": 8, "jan23": 6 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
   {
     "clientId": 228,
+    "group": "The Reserve at Fairhope",
     "client_frenchiseName": "The Reserve at Fairhope",
     "benchmarkComparison": "Below",
     "lpcAverage": 26.75,
@@ -1383,6 +2427,7 @@
     "children": [
       {
         "clientId": 229,
+        "group": "The Reserve at Fairhope",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Above",
         "lpcAverage": 4,
@@ -1394,7 +2439,19 @@
     ]
   },
   {
+    "clientId": 229,
+    "group": "The Reserve at Fairhope",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Above",
+    "lpcAverage": 4,
+    "uniqueCount": { "apr23": 16, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 230,
+    "group": "The Ridge Senior Living  ",
     "client_frenchiseName": "The Ridge Senior Living  ",
     "benchmarkComparison": "Below",
     "lpcAverage": 7.25,
@@ -1405,6 +2462,7 @@
     "children": [
       {
         "clientId": 231,
+        "group": "The Ridge Senior Living  ",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 0,
@@ -1415,6 +2473,7 @@
       },
       {
         "clientId": 232,
+        "group": "The Ridge Senior Living  ",
         "client_frenchiseName": "The Ridge Cottonwood",
         "benchmarkComparison": "Average",
         "lpcAverage": 4,
@@ -1425,6 +2484,7 @@
       },
       {
         "clientId": 233,
+        "group": "The Ridge Senior Living  ",
         "client_frenchiseName": "The Plaza at Cottonwood",
         "benchmarkComparison": "Below",
         "lpcAverage": 3.25,
@@ -1435,6 +2495,7 @@
       },
       {
         "clientId": 234,
+        "group": "The Ridge Senior Living  ",
         "client_frenchiseName": "The Ridge Foothill",
         "benchmarkComparison": "Average",
         "lpcAverage": 4.5,
@@ -1445,6 +2506,7 @@
       },
       {
         "clientId": 235,
+        "group": "The Ridge Senior Living  ",
         "client_frenchiseName": "The Ridge Pinehurst",
         "benchmarkComparison": "Average",
         "lpcAverage": 6.25,
@@ -1456,7 +2518,63 @@
     ]
   },
   {
+    "clientId": 231,
+    "group": "The Ridge Senior Living  ",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 0,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 232,
+    "group": "The Ridge Senior Living  ",
+    "client_frenchiseName": "The Ridge Cottonwood",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 4,
+    "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 1, "jan23": 6 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 233,
+    "group": "The Ridge Senior Living  ",
+    "client_frenchiseName": "The Plaza at Cottonwood",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 3.25,
+    "uniqueCount": { "apr23": 2, "mar23": 3, "feb23": 3, "jan23": 5 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Melinda Gisbert"
+  },
+  {
+    "clientId": 234,
+    "group": "The Ridge Senior Living  ",
+    "client_frenchiseName": "The Ridge Foothill",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 4.5,
+    "uniqueCount": { "apr23": 1, "mar23": 7, "feb23": 8, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 235,
+    "group": "The Ridge Senior Living  ",
+    "client_frenchiseName": "The Ridge Pinehurst",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 6.25,
+    "uniqueCount": { "apr23": 25, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 236,
+    "group": "The Springs Living",
     "client_frenchiseName": "The Springs Living",
     "benchmarkComparison": "Below",
     "lpcAverage": 1.45,
@@ -1467,6 +2585,7 @@
     "children": [
       {
         "clientId": 237,
+        "group": "The Springs Living",
         "client_frenchiseName": "The Springs at Anna Maria",
         "benchmarkComparison": "Below",
         "lpcAverage": 1,
@@ -1477,6 +2596,7 @@
       },
       {
         "clientId": 238,
+        "group": "The Springs Living",
         "client_frenchiseName": "The Springs at Bozeman",
         "benchmarkComparison": "Average",
         "lpcAverage": 1.75,
@@ -1487,6 +2607,7 @@
       },
       {
         "clientId": 239,
+        "group": "The Springs Living",
         "client_frenchiseName": "The Springs at Butte",
         "benchmarkComparison": "Average",
         "lpcAverage": 39.25,
@@ -1497,6 +2618,7 @@
       },
       {
         "clientId": 240,
+        "group": "The Springs Living",
         "client_frenchiseName": "The Springs at Carman Oaks",
         "benchmarkComparison": "Average",
         "lpcAverage": 1,
@@ -1508,7 +2630,52 @@
     ]
   },
   {
+    "clientId": 237,
+    "group": "The Springs Living",
+    "client_frenchiseName": "The Springs at Anna Maria",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 1,
+    "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 3 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Active",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 238,
+    "group": "The Springs Living",
+    "client_frenchiseName": "The Springs at Bozeman",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1.75,
+    "uniqueCount": { "apr23": 2, "mar23": 0, "feb23": 3, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 239,
+    "group": "The Springs Living",
+    "client_frenchiseName": "The Springs at Butte",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 39.25,
+    "uniqueCount": { "apr23": 1, "mar23": 36, "feb23": 26, "jan23": 94 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 240,
+    "group": "The Springs Living",
+    "client_frenchiseName": "The Springs at Carman Oaks",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1,
+    "uniqueCount": { "apr23": 2, "mar23": 0, "feb23": 0, "jan23": 2 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 241,
+    "group": "The Variel of Woodland Hills",
     "client_frenchiseName": "The Variel of Woodland Hills",
     "benchmarkComparison": "Below",
     "lpcAverage": 14,
@@ -1519,6 +2686,7 @@
     "children": [
       {
         "clientId": 242,
+        "group": "The Variel of Woodland Hills",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 2.5,
@@ -1530,7 +2698,19 @@
     ]
   },
   {
+    "clientId": 242,
+    "group": "The Variel of Woodland Hills",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 2.5,
+    "uniqueCount": { "apr23": 10, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 243,
+    "group": "Thirwood Place",
     "client_frenchiseName": "Thirwood Place",
     "benchmarkComparison": "Below",
     "lpcAverage": 14,
@@ -1541,6 +2721,7 @@
     "children": [
       {
         "clientId": 244,
+        "group": "Thirwood Place",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 15,
@@ -1552,7 +2733,19 @@
     ]
   },
   {
+    "clientId": 244,
+    "group": "Thirwood Place",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 15,
+    "uniqueCount": { "apr23": 14, "mar23": 16, "feb23": 14, "jan23": 16 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
     "clientId": 245,
+    "group": "Thrive Senior Living",
     "client_frenchiseName": "Thrive Senior Living",
     "benchmarkComparison": "Below",
     "lpcAverage": 3.22,
@@ -1563,6 +2756,7 @@
     "children": [
       {
         "clientId": 246,
+        "group": "Thrive Senior Living",
         "client_frenchiseName": "Default",
         "benchmarkComparison": "Below",
         "lpcAverage": 3.25,
@@ -1573,6 +2767,7 @@
       },
       {
         "clientId": 247,
+        "group": "Thrive Senior Living",
         "client_frenchiseName": "The International at Aventura",
         "benchmarkComparison": "Average",
         "lpcAverage": 1,
@@ -1582,5 +2777,26 @@
         "owner": "Kim Armstrong"
       }
     ]
+  },  {
+    "clientId": 246,
+    "group": "Thrive Senior Living",
+    "client_frenchiseName": "Default",
+    "benchmarkComparison": "Below",
+    "lpcAverage": 3.25,
+    "uniqueCount": { "apr23": 2, "mar23": 3, "feb23": 3, "jan23": 5 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
+  },
+  {
+    "clientId": 247,
+    "group": "Thrive Senior Living",
+    "client_frenchiseName": "The International at Aventura",
+    "benchmarkComparison": "Average",
+    "lpcAverage": 1,
+    "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
+    "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
+    "status": "Inactive",
+    "owner": "Kim Armstrong"
   }
 ]

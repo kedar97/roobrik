@@ -86,4 +86,71 @@ export class PostLoginService {
       return false;
     }
   }
+
+  getSortedData(data){
+    return data.sort((a:any, b:any) => {
+      if (a.status === "Active" && b.status === "Inactive") {
+        return -1; 
+      } else if (a.status === "Inactive" && b.status === "Active") {
+        return 1; 
+      } else {
+        let franchiseA  =a.client_frenchiseName.toLowerCase()
+        let franchiseB =b.client_frenchiseName.toLowerCase()
+        return franchiseA.localeCompare(franchiseB)
+      }
+    });
+  }
+
+  extractYears(data){
+    const yearsSet = new Set();
+  
+    const findYears = (item) => {
+      const revenueKeys = Object.keys(item).filter(key => key.startsWith('revenue') && key.length === 11);
+      revenueKeys.forEach(key => {
+        const year = key.replace('revenue', '');
+        yearsSet.add(year);
+      });
+  
+      if (item.children && item.children.length > 0) {
+        item.children.forEach(findYears);
+      }
+    };
+  
+    data.forEach(findYears);
+    return Array.from(yearsSet).sort((a:number, b:number) => a - b);
+  };
+
+  flattenData = (data, years?) => {
+    const flattenItem = (item) => {
+      let flattenedItem = { ...item };
+  
+      // Flatten uniqueCount fields
+      for (let key in item.uniqueCount) {
+        flattenedItem[`uniqueCount_${key}`] = item.uniqueCount[key];
+      }
+  
+      // Flatten totalActive fields
+      for (let key in item.totalActive) {
+        flattenedItem[`totalActive_${key}`] = item.totalActive[key];
+      }
+  
+      // Flatten revenue fields for each year
+      years.forEach(year => {
+        if (item[`revenue${year}`]) {
+          for (let month in item[`revenue${year}`]) {
+            flattenedItem[`revenue${year}_${month}`] = item[`revenue${year}`][month];
+          }
+        }
+      });
+  
+      // Process children if present
+      if (item.children && item.children.length > 0) {
+        flattenedItem.children = item.children.map(child => flattenItem(child));
+      }
+  
+      return flattenedItem;
+    };
+  
+    return data.map(parent => flattenItem(parent));
+  };
 }

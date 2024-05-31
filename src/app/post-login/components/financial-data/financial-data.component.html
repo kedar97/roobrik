@@ -17,60 +17,20 @@
             <button class="btn btn-add-year" (click)="onAddColumn()">
                 ADD YEAR
             </button>
-            <kendo-dialog title="Confirmation" *ngIf="addColumnPopUp" (close)="onCloseColumnPopUp()">
-                <p>Are you sure you want to add columns for {{yearToAdd}}?</p>
-                <kendo-dialog-actions>
-                  <button kendoButton class="btn btn-create-new" (click)="onCloseColumnPopUp()">Cancel</button>
-                  <button kendoButton class="btn btn-export" (click)="onAddYearColumn()">YES, ADD {{yearToAdd}}</button>
-                </kendo-dialog-actions>
-            </kendo-dialog>
             <button class="btn btn-export">Export</button>
             <button class="btn btn-create-new" (click)="onCreateNew()">CREATE NEW</button>
         </div>
     </div>
-
-    <div class="table-section d-flex gap-4">
-        <ag-grid-angular
-            style="flex-grow: 1; height: 655px"
-            class="ag-theme-balham ag-grid"
-            [rowHeight]="36"
-            [columnDefs]="columnDef"
-            [defaultColDef]="defaultColDef"
-            [autoGroupColumnDef]="autoGroupColumnDef"
-            [rowModelType]="rowModelType"
-            [treeData]="true"
-            [isServerSideGroup]="isServerSideGroup"
-            [getServerSideGroupKey]="getServerSideGroupKey"
-            [gridOptions]="gridOptions"
-            [sideBar]="sideBar"
-            [rowSelection]="rowSelection"
-            (selectionChanged)="onSelectionChanged($event)"
-            (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
-            [pagination]="true"
-            [cacheBlockSize]="cacheBlockSize"
-            [paginationPageSize]="100"
-            [paginateChildRows]="true"
-            [getRowStyle]="getRowStyle"
-            (paginationChanged)="onPaginationChanged($event)"
-            [enableCharts]="true"
-            (gridReady)="onGridReady($event)"
-            >
-        </ag-grid-angular>
-
-        <div class="status-bar-text" *ngIf="selectedNodes.length > 0 && rowIndex !=null">
-            <p>Rows: <span>{{rowIndex+1}} of {{totalRows}}</span></p>
-        </div>
-
-        <select
-            class="items-dropdown"
-            [(ngModel)]="selectedValue"
-            (change)="onItemsPerPageChange(selectedValue)">
-                <option
-                    *ngFor="let option of paginationOptions"
-                    [attr.selected]="option.value == 100"
-                    [value]="option.value">
-                {{ option.title }}
-                </option>
-      </select>
-    </div>
+    <app-table
+        [ngClass]="{'hide-child-count': true}"
+        [rowHeight]="36"
+        [columnDefs]="columnDef"
+        [rowSelection]="rowSelection"
+        [rowData]="rowData"
+        [hierarchyColumnDef]="autoGroupColumnDef"
+        [gridOptions]="gridOptions"
+        [enableCharts]="true"
+        [treeData]="!!autoGroupColumnDef"
+        [getRowStyle]="getRowStyle">
+    </app-table>
 </div>

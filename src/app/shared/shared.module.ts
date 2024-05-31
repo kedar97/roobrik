@@ -9,7 +9,12 @@ import { ComingSoonComponent } from './components/coming-soon/coming-soon.compon
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { HeaderTwoComponent } from './components/header-two/header-two.component';
+import { TableComponent } from './components/table/table.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { ModuleRegistry } from 'ag-grid-community';
+import { ExcelExportModule } from 'ag-grid-enterprise';
 
+ModuleRegistry.registerModules([ExcelExportModule]);
 
 @NgModule({
   declarations: [
@@ -18,7 +23,8 @@ import { HeaderTwoComponent } from './components/header-two/header-two.component
     ComingSoonComponent,
     NotificationsComponent,
     LoaderComponent,
-    HeaderTwoComponent
+    HeaderTwoComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +32,7 @@ import { HeaderTwoComponent } from './components/header-two/header-two.component
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-
+    AgGridModule
   ],
   exports: [
     FooterComponent,
@@ -36,7 +42,8 @@ import { HeaderTwoComponent } from './components/header-two/header-two.component
     KendoModule,
     FormsModule,
     ReactiveFormsModule,
-    HeaderTwoComponent
+    HeaderTwoComponent,
+    TableComponent
   ]
 })
 export class SharedModule { }

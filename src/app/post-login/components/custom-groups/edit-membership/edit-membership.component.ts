@@ -206,6 +206,22 @@ export class EditMembershipComponent implements CanComponentDeactivate {
     pinned: 'left',
     filter: 'agTextColumnFilter',
     width: 450,
+    cellStyle: { 'padding-left': '24px' },
+    headerComponentParams: {
+      template:
+       '<div class="ag-cell-label-container" role="presentation">' +
+       '<img src="../../../../assets/images/chevron-down-icon.svg" alt="header icon" class="expand-icon">' +
+           '  <span ref="eMenu" class="ag-header-icon ag-header-cell-menu-button"></span>' +
+           '  <div ref="eLabel" class="ag-header-cell-label" role="presentation">' +
+           '    <span ref="eText" class="ag-header-cell-text" role="columnheader"></span>' +
+           '    <span ref="eSortOrder" class="ag-header-icon ag-sort-order"></span>' +
+           '    <span ref="eSortAsc" class="ag-header-icon ag-sort-ascending-icon"></span>' +
+           '    <span ref="eSortDesc" class="ag-header-icon ag-sort-descending-icon"></span>' +
+           '    <span ref="eSortNone" class="ag-header-icon ag-sort-none-icon"></span>' +
+           '    <span ref="eFilter" class="ag-header-icon ag-filter-icon"></span>' +
+           '  </div>' +
+           '</div>'
+     }
   };
 
   rowData = [];
@@ -262,6 +278,19 @@ export class EditMembershipComponent implements CanComponentDeactivate {
     this.gridColumnApi = params.columnApi;
     this.defaultFiltersState = this.gridApi.getFilterModel();
     this.rowData =  this.groupData?.clientFranchiseData;
+
+    let headerIcon = document.querySelector('.expand-icon');
+    headerIcon.addEventListener('click',function(){
+      this.isExpand = !this.isExpand ;
+      if(this.isExpand == true){
+        params.api.collapseAll();
+        headerIcon.classList.add('row-expanded')
+      }
+      else{
+        params.api.expandAll();
+        headerIcon.classList.remove('row-expanded')
+      }
+    })
   }
 
   onDeactivate(){
