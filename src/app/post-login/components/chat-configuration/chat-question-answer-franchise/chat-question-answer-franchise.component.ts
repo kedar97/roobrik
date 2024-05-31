@@ -563,7 +563,7 @@ export class ChatQuestionAnswerFranchiseComponent {
         last_modified_on: new Date().toISOString(),
         last_modified_by: 'John Doe',
         visible: form.value.visible,
-        clientName: "HealthCorp",
+        clientName: form.value.client,
         franchiseName: form.value.franchiseList      
       }
   

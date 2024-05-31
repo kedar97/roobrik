@@ -107,7 +107,7 @@
                         [data]="clientList"
                         class="dropdown"
                         textField="value"
-                        valueField="id"
+                        valueField="value"
                         [filterable]="true"
                         (filterChange)="handleFilter($event, 'clients')"
                         [valuePrimitive]=true
@@ -115,7 +115,7 @@
                         (close)="onDropDownClose($event,'client')"
                         [class.dropdown-open]="isClientDropDownOpen"
                         formControlName="client">
-                    </kendo-dropdownlist>     
+                </kendo-dropdownlist>
                 </kendo-formfield>
 
                 <kendo-formfield>
