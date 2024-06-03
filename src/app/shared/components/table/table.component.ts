@@ -138,7 +138,7 @@ export class TableComponent {
     this.defaultColumnState = this.gridColumnApi.getColumnState();
     this.defaultFiltersState = this.gridApi.getFilterModel();
     this.totalRows = 0;
-    this.totalRows = this.gridApi.paginationGetPageSize() > this.rowData.length ? this.rowData.length : this.gridApi.paginationGetPageSize();
+    this.totalRows = this.gridApi.paginationGetPageSize() > this.rowData?.length ? this.rowData.length : this.gridApi.paginationGetPageSize();
 
     this.gridOptions.getDataPath = (row: any) => {
       const path = [row.client_frenchiseName];
