@@ -343,7 +343,7 @@
         "benchmarkComparison": "Below",
         "lpcAverage": 0.25,
         "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": "inactive", "jan23": "inactive" },
-        "totalActive": { "apr23": "right", "mar23": "right", "feb23": "wrong", "jan23": "wrong" },
+        "totalActive": { "apr23": "right", "mar23": "right", "feb23": "inactive", "jan23": "inactive" },
         "status": "Active",
         "owner": "Kim Armstrong"
       }
@@ -367,7 +367,7 @@
     "benchmarkComparison": "Below",
     "lpcAverage": 0.25,
     "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": "inactive", "jan23": "inactive" },
-    "totalActive": { "apr23": "right", "mar23": "right", "feb23": "wrong", "jan23": "wrong" },
+    "totalActive": { "apr23": "right", "mar23": "right", "feb23": "inactive", "jan23": "inactive" },
     "status": "Active",
     "owner": "Kim Armstrong"
   },

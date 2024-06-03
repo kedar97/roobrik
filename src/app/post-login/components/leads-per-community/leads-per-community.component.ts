@@ -3,10 +3,12 @@ import {
   ColDef,
   GridApi,
   GridOptions,
+  ITooltipParams,
 } from 'ag-grid-community';
 import { Params } from '@angular/router';
 import { PostLoginService } from '../../post-login.service';
 import { TableComponent } from 'src/app/shared/components/table/table.component';
+import { RowNode } from '@ag-grid-community/all-modules';
 
 @Component({
   selector: 'app-leads-per-community',
@@ -44,6 +46,8 @@ export class LeadsPerCommunityComponent implements OnInit {
       sortable: true,
       lockPinned: true,
       headerClass: 'padding-left-19',
+      headerTooltip: "A Benchmark comparison of Leads/community/month where: Above = >= 2.81, Average = 2.2.8, Below = <2 ",
+
       cellRenderer: function (params: Params) {
         if (params.value === 'Above') {
           return `<div class="comparison-text green-text">${params.value}</div>`;
@@ -54,7 +58,6 @@ export class LeadsPerCommunityComponent implements OnInit {
         }
       },
     },
-
     {
       headerName: '4-month LPC average',
       field: 'lpcAverage',
@@ -63,7 +66,6 @@ export class LeadsPerCommunityComponent implements OnInit {
       width: 170,
       filter: 'agNumberColumnFilter',
     },
-
     {
       headerName: 'Account owner',
       field: 'owner',
@@ -120,6 +122,7 @@ export class LeadsPerCommunityComponent implements OnInit {
       ],
     },
     onRowGroupOpened: this.onRowExpanded.bind(this),
+    tooltipShowDelay: 0,
 
     getDataPath: function(row:any){
       const path = [row.client_frenchiseName];
@@ -127,7 +130,7 @@ export class LeadsPerCommunityComponent implements OnInit {
         path.unshift(row.group);
       }
       return [...path]
-    }
+    },
   };
 
   ngOnInit(): void {
@@ -172,14 +175,37 @@ export class LeadsPerCommunityComponent implements OnInit {
         return {
           headerName: `${resultString}`,
           field: `uniqueCount_${column}`,
+          tooltipValueGetter: (p: ITooltipParams) => {
+            if(p.node.allLeafChildren.length > 1) {
+              if(p.value === undefined) {
+                return  'The client was inactive';
+              } else {
+                if (p.value === undefined || p.value === 'inactive') {
+                  return 'The client was Inactive';
+                } else {
+                  return '';
+                }
+              }
+            } else {
+              if(p.value === undefined) {
+                return  'The client was inactive';
+              } else {
+                if (p.value === undefined || p.value === 'inactive') {
+                  return 'The franchise was inactive';
+                } else if(p.value === 'right') {
+                  return 'The franchise was active';
+                } else {
+                  return '';
+                }
+              }
+            }
+          },
           cellRenderer: (params) => {
-            if (params.data.uniqueCount[column] === 'inactive') {
+            if (params.data.uniqueCount[column] === 'inactive' || params.data.uniqueCount[column] === undefined) {
               return '<img class="cell-image" src="/assets/images/dash.svg" >';
             } else if (params.data.uniqueCount[column] === 'right') {
               return '<img class="cell-image" src="/assets/images/right.svg" >';
-            } else if (params.data.uniqueCount[column] === 'wrong') {
-              return '<img class="cell-image cell-wrong" src="/assets/images/wrong.svg" >';
-            } else {
+            }else {
               return params.data.uniqueCount[column];
             }
           },
@@ -203,14 +229,31 @@ export class LeadsPerCommunityComponent implements OnInit {
 
         return {
           headerName: `${monthYearCol}`,
+          tooltipValueGetter: (p: ITooltipParams) => {
+            if(p.node.allLeafChildren.length > 1) {
+              if (p.value === undefined || p.value === 'inactive' || p.value === 'wrong') {
+                return 'The client was inactive';
+              } else if(p.value === 'right') {
+                return 'The client was active';
+              } else {
+                return '';
+              }
+            } else {
+                if (p.value === undefined || p.value === 'inactive' || p.value === 'wrong') {
+                  return 'The franchise was inactive';
+                } else if(p.value === 'right') {
+                  return 'The franchise was active';
+                } else {
+                  return '';
+                }
+            }
+          },
           field: `totalActive_${column}`,
           cellRenderer: (params) => {
-            if (params.data.totalActive[column] === 'inactive') {
+            if (params.data.totalActive[column] === 'inactive' || params.data.totalActive[column] === undefined) {
               return '<img class="cell-image" src="/assets/images/dash.svg" >';
             } else if (params.data.totalActive[column] === 'right') {
               return '<img class="cell-image" src="/assets/images/right.svg" >';
-            } else if (params.data.totalActive[column] === 'wrong') {
-              return '<img class="cell-image cell-wrong" src="/assets/images/wrong.svg" >';
             } else {
               return params.data.totalActive[column];
             }
@@ -244,6 +287,7 @@ export class LeadsPerCommunityComponent implements OnInit {
           resizable: true,
           filter: 'agTextColumnFilter',
           lockPinned: true,
+          headerTooltip: "This is the status in our Admin system and it doesn't always reflect the actual status of a client or franchise",
         },
         ...this.columnDef.slice(-1),
       ];
