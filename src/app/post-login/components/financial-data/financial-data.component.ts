@@ -96,7 +96,7 @@ export class FinancialDataComponent {
           if(params.value === 'Saas Revenue Summary'){
             return `${params.value}`
           }
-          if(params.data.status === 'Active'){
+          if(params.data && params.data.status === 'Active'){
             element =`<div class='parent-link parent-link-color' >${params.value}</div>`;
           }
           else{
@@ -143,7 +143,6 @@ export class FinancialDataComponent {
       ],
     },
     
-    // onRowGroupOpened: this.onRowExpanded.bind(this),
     getDataPath: function(row:any){
       const path = [row.client_frenchiseName];
       if (row.group && row.group !== row.client_frenchiseName) {
@@ -152,19 +151,6 @@ export class FinancialDataComponent {
       return [...path]
     },
   };
-
-  onRowExpanded(event: any) {
-    if (event.expanded) {
-      this.expandedRows.add(event.node.key);
-      setTimeout(() => {
-        this.totalRows = this.gridApi.getModel().getRowCount();
-      }, 700);
-    } else {
-      this.expandedRows.delete(event.node.key);
-      this.totalRows = this.gridApi.getModel().getRowCount() ;
-      this.rowIndex = event.rowIndex;
-    }
-  }
 
   ngOnInit(){
     this.postLoginService.getTableData(this.saasRevenueUrl).subscribe(data=>{

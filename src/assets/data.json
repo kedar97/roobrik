@@ -9,6 +9,8 @@
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 102,
@@ -19,7 +21,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin "
+        "owner": "Laurel McLaughlin ",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 103,
@@ -30,7 +34,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -43,7 +49,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin "
+    "owner": "Laurel McLaughlin ",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 103,
@@ -54,7 +62,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High"
   },
   {
     "clientId": 104,
@@ -66,6 +76,8 @@
     "totalActive": { "apr23": 14, "mar23": 14, "feb23": 16, "jan23": 14 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 105,
@@ -75,7 +87,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -88,7 +102,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 106,
@@ -100,6 +116,8 @@
     "totalActive": { "apr23": 14, "mar23": 15, "feb23": 15, "jan23": 13 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 107,
@@ -110,7 +128,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 5 (1)",
+        "churnRisk":"High"
       },
       {
         "clientId": 108,
@@ -121,7 +141,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 109,
@@ -132,7 +154,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 4 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 110,
@@ -143,7 +167,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       },
       {
         "clientId": 111,
@@ -154,7 +180,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       },
       {
         "clientId": 112,
@@ -165,7 +193,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 5 (1)",
+        "churnRisk":"High"
       },
       {
         "clientId": 113,
@@ -176,7 +206,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -189,7 +221,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 108,
@@ -200,7 +234,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 109,
@@ -211,7 +247,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 4 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 110,
@@ -222,7 +260,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 111,
@@ -233,7 +273,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High"
   },
   {
     "clientId": 112,
@@ -244,7 +286,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"High"
   },
   {
     "clientId": 113,
@@ -255,7 +299,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 114,
@@ -267,6 +313,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 115,
@@ -277,7 +325,9 @@
         "uniqueCount": { "apr23": 13, "mar23": 13, "feb23": 12, "jan23": 7 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"Low"
       },
       {
         "clientId": 116,
@@ -288,7 +338,9 @@
         "uniqueCount": { "apr23": 3, "mar23": 17, "feb23": 30, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -301,7 +353,9 @@
     "uniqueCount": { "apr23": 13, "mar23": 13, "feb23": 12, "jan23": 7 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 116,
@@ -312,7 +366,9 @@
     "uniqueCount": { "apr23": 3, "mar23": 17, "feb23": 30, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 117,
@@ -324,6 +380,8 @@
     "totalActive": { "apr23": 5, "mar23": 5, "feb23": 5, "jan23": 5 },
     "status": "Active",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 118,
@@ -334,7 +392,9 @@
         "uniqueCount": { "apr23": 10, "mar23": 2, "feb23": 12, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       },
       {
         "clientId": 119,
@@ -345,7 +405,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": "inactive", "jan23": "inactive" },
         "totalActive": { "apr23": "right", "mar23": "right", "feb23": "wrong", "jan23": "wrong" },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -358,7 +420,9 @@
     "uniqueCount": { "apr23": 10, "mar23": 2, "feb23": 12, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High"
   },
   {
     "clientId": 119,
@@ -369,7 +433,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": "inactive", "jan23": "inactive" },
     "totalActive": { "apr23": "right", "mar23": "right", "feb23": "wrong", "jan23": "wrong" },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 120,
@@ -381,6 +447,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 121,
@@ -391,7 +459,9 @@
         "uniqueCount": { "apr23": 11, "mar23": 20, "feb23": 18, "jan23": 13 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -404,7 +474,9 @@
     "uniqueCount": { "apr23": 11, "mar23": 20, "feb23": 18, "jan23": 13 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 122,
@@ -416,6 +488,8 @@
     "totalActive": { "apr23": 2, "mar23": 2, "feb23": 2, "jan23": 2 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 123,
@@ -429,7 +503,9 @@
         "feb23": 0,
         "jan23": 0,
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 124,
@@ -440,7 +516,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -456,7 +534,9 @@
     "feb23": 0,
     "jan23": 0,
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 124,
@@ -467,7 +547,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High"
   },
   {
     "clientId": 125,
@@ -479,6 +561,8 @@
     "totalActive": { "apr23": 18, "mar23": 18, "feb23": 18, "jan23": 18 },
     "status": "Inactive",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 126,
@@ -491,7 +575,9 @@
         "feb23": 0,
         "jan23": 0,
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 127,
@@ -501,7 +587,9 @@
         "uniqueCount": { "apr23": 8, "mar23": 6, "feb23": 4, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -517,7 +605,9 @@
     "feb23": 0,
     "jan23": 0,
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 127,
@@ -528,7 +618,9 @@
     "uniqueCount": { "apr23": 8, "mar23": 6, "feb23": 4, "jan23": 6 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 128,
@@ -540,6 +632,8 @@
     "totalActive": { "apr23": 112, "mar23": 112, "feb23": 112, "jan23": 112 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 129,
@@ -549,7 +643,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -562,7 +658,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"High"
   },
   {
     "clientId": 130,
@@ -574,6 +672,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 131,
@@ -587,7 +687,9 @@
         "feb23": 0,
         "jan23": 0,
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -603,7 +705,9 @@
     "feb23": 0,
     "jan23": 0,
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 132,
@@ -615,6 +719,8 @@
     "totalActive": { "apr23": 9, "mar23": 9, "feb23": 9, "jan23": 9 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 133,
@@ -625,7 +731,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 60, "feb23": 86, "jan23": 86 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Low"
       },
       {
         "clientId": 134,
@@ -636,7 +744,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 2, "feb23": 2, "jan23": 10 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -649,7 +759,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 60, "feb23": 86, "jan23": 86 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 134,
@@ -660,7 +772,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 2, "feb23": 2, "jan23": 10 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 135,
@@ -672,6 +786,8 @@
     "totalActive": { "apr23": 4, "mar23": 4, "feb23": 4, "jan23": 4 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 136,
@@ -682,7 +798,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 3 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 137,
@@ -693,7 +811,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 5, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 138,
@@ -704,7 +824,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 5, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 139,
@@ -715,7 +837,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -728,7 +852,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 3 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 137,
@@ -739,7 +865,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 5, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 138,
@@ -750,7 +878,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 5, "jan23": 6 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 139,
@@ -761,7 +891,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 140,
@@ -776,6 +908,8 @@
     "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 141,
@@ -786,7 +920,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       },
       {
         "clientId": 142,
@@ -797,7 +933,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 2, "feb23": 1, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 143,
@@ -808,7 +946,9 @@
         "uniqueCount": { "apr23": 8, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 144,
@@ -819,7 +959,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -832,7 +974,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 1, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High"
   },
   {
     "clientId": 142,
@@ -843,7 +987,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 2, "feb23": 1, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 143,
@@ -854,7 +1000,9 @@
     "uniqueCount": { "apr23": 8, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 144,
@@ -865,7 +1013,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 145,
@@ -877,6 +1027,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 146,
@@ -887,7 +1039,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -900,7 +1054,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 147,
@@ -912,6 +1068,8 @@
     "totalActive": { "apr23": 5, "mar23": 5, "feb23": 5, "jan23": 5 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 148,
@@ -922,7 +1080,9 @@
         "uniqueCount": { "apr23": 6, "mar23": 12, "feb23": 14, "jan23": 16 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"Low"
       },
       {
         "clientId": 149,
@@ -933,7 +1093,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -946,7 +1108,9 @@
     "uniqueCount": { "apr23": 6, "mar23": 12, "feb23": 14, "jan23": 16 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 149,
@@ -957,7 +1121,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 150,
@@ -969,6 +1135,8 @@
     "totalActive": { "apr23": 26, "mar23": 26, "feb23": 26, "jan23": 26 },
     "status": "Active",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 151,
@@ -979,7 +1147,9 @@
         "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 6, "jan23": 7 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Low"
       },
       {
         "clientId": 152,
@@ -990,7 +1160,9 @@
         "uniqueCount": { "apr23": 3, "mar23": 1, "feb23": 1, "jan23": 3 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -1003,7 +1175,9 @@
     "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 6, "jan23": 7 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 152,
@@ -1014,7 +1188,9 @@
     "uniqueCount": { "apr23": 3, "mar23": 1, "feb23": 1, "jan23": 3 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 153,
@@ -1026,6 +1202,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 154,
@@ -1036,7 +1214,9 @@
         "uniqueCount": { "apr23": 3, "mar23": 7, "feb23": 7, "jan23": 8 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -1049,7 +1229,9 @@
     "uniqueCount": { "apr23": 3, "mar23": 7, "feb23": 7, "jan23": 8 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 155,
@@ -1061,6 +1243,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 156,
@@ -1071,7 +1255,9 @@
         "uniqueCount": { "apr23": 24, "mar23": 24, "feb23": 29, "jan23": 23 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -1084,7 +1270,9 @@
     "uniqueCount": { "apr23": 24, "mar23": 24, "feb23": 29, "jan23": 23 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 157,
@@ -1096,6 +1284,8 @@
     "totalActive": { "apr23": 11, "mar23": 11, "feb23": 11, "jan23": 11 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 158,
@@ -1106,7 +1296,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -1119,7 +1311,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High"
   },
   {
     "clientId": 159,
@@ -1131,6 +1325,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 160,
@@ -1141,7 +1337,9 @@
         "uniqueCount": { "apr23": 5, "mar23": 11, "feb23": 9, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -1154,7 +1352,9 @@
     "uniqueCount": { "apr23": 5, "mar23": 11, "feb23": 9, "jan23": 6 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High"
   },
   {
     "clientId": 161,
@@ -1166,6 +1366,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 162,
@@ -1176,7 +1378,9 @@
         "uniqueCount": { "apr23": 5, "mar23": 11, "feb23": 9, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1189,7 +1393,9 @@
     "uniqueCount": { "apr23": 5, "mar23": 11, "feb23": 9, "jan23": 6 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 163,
@@ -1201,6 +1407,8 @@
     "totalActive": { "apr23": 26, "mar23": 26, "feb23": 26, "jan23": 26 },
     "status": "Inactive",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 164,
@@ -1211,7 +1419,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 14, "feb23": 13, "jan23": 13 },
         "totalActive": { "apr23": 26, "mar23": 26, "feb23": 26, "jan23": 26 },
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       },
       {
         "clientId": 165,
@@ -1222,7 +1432,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 5 (1)",
+        "churnRisk":"High"
       },
       {
         "clientId": 166,
@@ -1233,7 +1445,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       },
       {
         "clientId": 167,
@@ -1244,7 +1458,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       },
       {
         "clientId": 168,
@@ -1255,7 +1471,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       },
       {
         "clientId": 169,
@@ -1266,7 +1484,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -1279,7 +1499,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 14, "feb23": 13, "jan23": 13 },
     "totalActive": { "apr23": 26, "mar23": 26, "feb23": 26, "jan23": 26 },
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 165,
@@ -1290,7 +1512,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High"
   },
   {
     "clientId": 166,
@@ -1301,7 +1525,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 167,
@@ -1312,7 +1538,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High"
   },
   {
     "clientId": 168,
@@ -1323,7 +1551,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 169,
@@ -1334,7 +1564,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 170,
@@ -1346,6 +1578,8 @@
     "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
     "status": "Inactive",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 171,
@@ -1356,7 +1590,9 @@
         "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 2, "jan23": 3 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 172,
@@ -1367,7 +1603,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 2, "feb23": 1, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -1380,7 +1618,9 @@
     "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 2, "jan23": 3 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 172,
@@ -1391,7 +1631,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 2, "feb23": 1, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High"
   },
   {
     "clientId": 173,
@@ -1403,6 +1645,8 @@
     "totalActive": { "apr23": 19, "mar23": 19, "feb23": 19, "jan23": 19 },
     "status": "Inactive",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 174,
@@ -1413,7 +1657,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 2, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"High"
       },
       {
         "clientId": 175,
@@ -1424,7 +1670,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 3, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       },
       {
         "clientId": 176,
@@ -1435,7 +1683,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 3, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       },
       {
         "clientId": 177,
@@ -1446,7 +1696,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 7, "jan23": 3 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       },
       {
         "clientId": 178,
@@ -1457,7 +1709,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 7, "jan23": 5 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       },
       {
         "clientId": 179,
@@ -1468,7 +1722,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 6, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -1481,7 +1737,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 0, "feb23": 2, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 175,
@@ -1492,7 +1750,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 3, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 176,
@@ -1503,7 +1763,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 3, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High"
   },
   {
     "clientId": 177,
@@ -1514,7 +1776,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 7, "jan23": 3 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 178,
@@ -1525,7 +1789,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 7, "jan23": 5 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High"
   },
   {
     "clientId": 179,
@@ -1536,7 +1802,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 6, "feb23": 6, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"High"
   },
   {
     "clientId": 180,
@@ -1548,6 +1816,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Inactive",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 181,
@@ -1558,7 +1828,9 @@
         "uniqueCount": { "apr23": 21, "mar23": 21, "feb23": 28, "jan23": 25 },
         "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
         "status": "Inactive",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1571,7 +1843,9 @@
     "uniqueCount": { "apr23": 21, "mar23": 21, "feb23": 28, "jan23": 25 },
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Inactive",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 182,
@@ -1583,6 +1857,8 @@
     "totalActive": { "apr23": 6, "mar23": 6, "feb23": 6, "jan23": 6 },
     "status": "Inactive",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 183,
@@ -1593,7 +1869,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 0, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 184,
@@ -1604,7 +1882,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 3, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 185,
@@ -1615,7 +1895,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 0, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -1628,7 +1910,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 0, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 184,
@@ -1639,7 +1923,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 3, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 185,
@@ -1650,7 +1936,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 3, "feb23": 0, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 186,
@@ -1662,6 +1950,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 187,
@@ -1672,7 +1962,9 @@
         "uniqueCount": { "apr23": 4, "mar23": 7, "feb23": 5, "jan23": 9 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1685,7 +1977,9 @@
     "uniqueCount": { "apr23": 4, "mar23": 7, "feb23": 5, "jan23": 9 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 188,
@@ -1697,6 +1991,8 @@
     "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
     "status": "Active",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 189,
@@ -1707,7 +2003,9 @@
         "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 8, "jan23": 4 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"High"
       },
       {
         "clientId": 190,
@@ -1718,7 +2016,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Laurel McLaughlin"
+        "owner": "Laurel McLaughlin",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -1731,7 +2031,9 @@
     "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 8, "jan23": 4 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"High"
   },
   {
     "clientId": 190,
@@ -1742,7 +2044,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 1, "feb23": 0, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Laurel McLaughlin"
+    "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 191,
@@ -1754,6 +2058,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 192,
@@ -1764,7 +2070,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1777,7 +2085,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 193,
@@ -1789,6 +2099,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 194,
@@ -1799,7 +2111,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 5 (1)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1812,7 +2126,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 2, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 195,
@@ -1824,6 +2140,8 @@
     "totalActive": { "apr23": 5, "mar23": 5, "feb23": 5, "jan23": 5 },
     "status": "Inactive",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 196,
@@ -1834,7 +2152,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       },
       {
         "clientId": 197,
@@ -1845,7 +2165,9 @@
         "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 16, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 5 (1)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1858,7 +2180,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 197,
@@ -1869,7 +2193,9 @@
     "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 16, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 198,
@@ -1881,6 +2207,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Inactive",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 199,
@@ -1891,7 +2219,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1904,7 +2234,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 200,
@@ -1916,6 +2248,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 201,
@@ -1926,7 +2260,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1939,7 +2275,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 202,
@@ -1951,6 +2289,8 @@
     "totalActive": { "apr23": 5, "mar23": 5, "feb23": 5, "jan23": 5 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 203,
@@ -1961,7 +2301,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Low"
       },
       {
         "clientId": 204,
@@ -1972,7 +2314,9 @@
         "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 16, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -1985,7 +2329,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 25, "feb23": 27, "jan23": 34 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 204,
@@ -1996,7 +2342,9 @@
     "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 16, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 205,
@@ -2008,6 +2356,8 @@
     "totalActive": { "apr23": 5, "mar23": 5, "feb23": 5, "jan23": 5 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 206,
@@ -2018,7 +2368,9 @@
         "uniqueCount": { "apr23": 8, "mar23": 8, "feb23": 9, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -2031,7 +2383,9 @@
     "uniqueCount": { "apr23": 8, "mar23": 8, "feb23": 9, "jan23": 6 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 207,
@@ -2043,6 +2397,8 @@
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 208,
@@ -2053,7 +2409,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -2066,7 +2424,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 209,
@@ -2078,6 +2438,8 @@
     "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
     "status": "Active",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 210,
@@ -2088,7 +2450,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -2101,7 +2465,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 211,
@@ -2113,6 +2479,8 @@
     "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
     "status": "Active",
     "owner": "Kim Armstrong",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 212,
@@ -2123,7 +2491,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -2136,7 +2506,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 213,
@@ -2148,6 +2520,8 @@
     "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 214,
@@ -2158,7 +2532,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -2171,7 +2547,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High"
   },
   {
     "clientId": 215,
@@ -2183,6 +2561,8 @@
     "totalActive": { "apr23": 3, "mar23": 3, "feb23": 3, "jan23": 3 },
     "status": "Inactive",
     "owner": "Melinda Gisbert",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium",
     "children": [
       {
         "clientId": 216,
@@ -2193,7 +2573,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -2206,7 +2588,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 9, "feb23": 13, "jan23": 11 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 217,
@@ -2218,6 +2602,8 @@
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 218,
@@ -2228,7 +2614,9 @@
         "uniqueCount": { "apr23": 7, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -2241,7 +2629,9 @@
     "uniqueCount": { "apr23": 7, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 219,
@@ -2253,6 +2643,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 220,
@@ -2263,7 +2655,9 @@
         "uniqueCount": { "apr23": 4, "mar23": 4, "feb23": 4, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -2276,7 +2670,9 @@
     "uniqueCount": { "apr23": 4, "mar23": 4, "feb23": 4, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 221,
@@ -2288,6 +2684,8 @@
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"Low",
     "children": [
       {
         "clientId": 222,
@@ -2298,7 +2696,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -2311,7 +2711,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 223,
@@ -2323,6 +2725,8 @@
     "totalActive": { "apr23": 7, "mar23": 7, "feb23": 7, "jan23": 7 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 224,
@@ -2333,7 +2737,9 @@
         "uniqueCount": { "apr23": 3, "mar23": 3, "feb23": 4, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       },
       {
         "clientId": 225,
@@ -2344,7 +2750,9 @@
         "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 7, "jan23": 4 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 226,
@@ -2355,7 +2763,9 @@
         "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 1, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 5 (1)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 227,
@@ -2366,7 +2776,9 @@
         "uniqueCount": { "apr23": 4, "mar23": 4, "feb23": 8, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -2379,7 +2791,9 @@
     "uniqueCount": { "apr23": 3, "mar23": 3, "feb23": 4, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"High"
   },
   {
     "clientId": 225,
@@ -2390,7 +2804,9 @@
     "uniqueCount": { "apr23": 10, "mar23": 5, "feb23": 7, "jan23": 4 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 226,
@@ -2401,7 +2817,9 @@
     "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 1, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 227,
@@ -2412,7 +2830,9 @@
     "uniqueCount": { "apr23": 4, "mar23": 4, "feb23": 8, "jan23": 6 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 228,
@@ -2424,6 +2844,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 229,
@@ -2434,7 +2856,9 @@
         "uniqueCount": { "apr23": 16, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Low"
       }
     ]
   },
@@ -2447,7 +2871,9 @@
     "uniqueCount": { "apr23": 16, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Low"
   },
   {
     "clientId": 230,
@@ -2459,6 +2885,8 @@
     "totalActive": { "apr23": 4, "mar23": 4, "feb23": 4, "jan23": 4 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 231,
@@ -2469,7 +2897,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       },
       {
         "clientId": 232,
@@ -2480,7 +2910,9 @@
         "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 1, "jan23": 6 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 5 (1)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 233,
@@ -2491,7 +2923,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 3, "feb23": 3, "jan23": 5 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Melinda Gisbert"
+        "owner": "Melinda Gisbert",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       },
       {
         "clientId": 234,
@@ -2502,7 +2936,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 7, "feb23": 8, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 1 (30+)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 235,
@@ -2513,7 +2949,9 @@
         "uniqueCount": { "apr23": 25, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -2526,7 +2964,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High"
   },
   {
     "clientId": 232,
@@ -2537,7 +2977,9 @@
     "uniqueCount": { "apr23": 4, "mar23": 5, "feb23": 1, "jan23": 6 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 233,
@@ -2548,7 +2990,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 3, "feb23": 3, "jan23": 5 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Melinda Gisbert"
+    "owner": "Melinda Gisbert",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High"
   },
   {
     "clientId": 234,
@@ -2559,7 +3003,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 7, "feb23": 8, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 235,
@@ -2570,7 +3016,9 @@
     "uniqueCount": { "apr23": 25, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 236,
@@ -2582,6 +3030,8 @@
     "totalActive": { "apr23": 21, "mar23": 21, "feb23": 21, "jan23": 21 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 237,
@@ -2592,7 +3042,9 @@
         "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 3 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Active",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 4 (2-4)",
+        "churnRisk":"High"
       },
       {
         "clientId": 238,
@@ -2603,7 +3055,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 0, "feb23": 3, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 239,
@@ -2614,7 +3068,9 @@
         "uniqueCount": { "apr23": 1, "mar23": 36, "feb23": 26, "jan23": 94 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       },
       {
         "clientId": 240,
@@ -2625,7 +3081,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 0, "feb23": 0, "jan23": 2 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       }
     ]
   },
@@ -2638,7 +3096,9 @@
     "uniqueCount": { "apr23": 0, "mar23": 0, "feb23": 1, "jan23": 3 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Active",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"High"
   },
   {
     "clientId": 238,
@@ -2649,7 +3109,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 0, "feb23": 3, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 239,
@@ -2660,7 +3122,9 @@
     "uniqueCount": { "apr23": 1, "mar23": 36, "feb23": 26, "jan23": 94 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 240,
@@ -2671,7 +3135,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 0, "feb23": 0, "jan23": 2 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Medium"
   },
   {
     "clientId": 241,
@@ -2683,6 +3149,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 242,
@@ -2693,7 +3161,9 @@
         "uniqueCount": { "apr23": 10, "mar23": 0, "feb23": 0, "jan23": 0 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 5 (1)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -2706,7 +3176,9 @@
     "uniqueCount": { "apr23": 10, "mar23": 0, "feb23": 0, "jan23": 0 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 2 (15-29)",
+    "churnRisk":"High"
   },
   {
     "clientId": 243,
@@ -2718,6 +3190,8 @@
     "totalActive": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "status": "Active",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 3 (5-14)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 244,
@@ -2728,7 +3202,9 @@
         "uniqueCount": { "apr23": 14, "mar23": 16, "feb23": 14, "jan23": 16 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"High"
       }
     ]
   },
@@ -2741,7 +3217,9 @@
     "uniqueCount": { "apr23": 14, "mar23": 16, "feb23": 14, "jan23": 16 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 245,
@@ -2753,6 +3231,8 @@
     "totalActive": { "apr23": 8, "mar23": 8, "feb23": 8, "jan23": 8 },
     "status": "Inactive",
     "owner": "Laurel McLaughlin",
+    "cohort":"Cohort 5 (1)",
+    "churnRisk":"High",
     "children": [
       {
         "clientId": 246,
@@ -2763,7 +3243,9 @@
         "uniqueCount": { "apr23": 2, "mar23": 3, "feb23": 3, "jan23": 5 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 2 (15-29)",
+        "churnRisk":"High"
       },
       {
         "clientId": 247,
@@ -2774,10 +3256,13 @@
         "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
         "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
         "status": "Inactive",
-        "owner": "Kim Armstrong"
+        "owner": "Kim Armstrong",
+        "cohort":"Cohort 3 (5-14)",
+        "churnRisk":"Medium"
       }
     ]
-  },  {
+  },  
+  {
     "clientId": 246,
     "group": "Thrive Senior Living",
     "client_frenchiseName": "Default",
@@ -2786,7 +3271,9 @@
     "uniqueCount": { "apr23": 2, "mar23": 3, "feb23": 3, "jan23": 5 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 4 (2-4)",
+    "churnRisk":"High"
   },
   {
     "clientId": 247,
@@ -2797,6 +3284,8 @@
     "uniqueCount": { "apr23": 1, "mar23": 1, "feb23": 1, "jan23": 1 },
     "totalActive": { "apr23": 0, "mar23": 0, "feb23": 0, "jan23": 0 },
     "status": "Inactive",
-    "owner": "Kim Armstrong"
+    "owner": "Kim Armstrong",
+    "cohort":"Cohort 1 (30+)",
+    "churnRisk":"Medium"
   }
 ]

@@ -29,13 +29,13 @@ export class LeadsPerCommunityComponent implements OnInit {
 
   columnDef: any = [
     {
-      field:'',
+      field:'cohort',
       headerName:'Cohort',
       lockPinned: true,
     },
     {
-      field:'',
-      headerName:'Chrun risk',
+      field:'churnRisk',
+      headerName:'Churn risk',
       lockPinned: true,
     },
     {
@@ -43,14 +43,16 @@ export class LeadsPerCommunityComponent implements OnInit {
       field: 'benchmarkComparison',
       sortable: true,
       lockPinned: true,
-      headerClass: 'padding-left-19',
       cellRenderer: function (params: Params) {
         if (params.value === 'Above') {
           return `<div class="comparison-text green-text">${params.value}</div>`;
         } else if (params.value === 'Below') {
           return `<div class="comparison-text red-text">${params.value}</div>`;
-        } else {
+        } else if (params.value === 'Average'){
           return `<div class="comparison-text orange-text">${params.value}</div>`;
+        }
+        else{
+          return params.value;
         }
       },
     },
@@ -132,7 +134,7 @@ export class LeadsPerCommunityComponent implements OnInit {
 
   ngOnInit(): void {
     this.postLoginService.getTableData(this.dataUrl).subscribe((data) => {
-    const flattenData = (data) => {
+      const flattenData = (data) => {
         const flattenItem = (item) => {
           let flattenedItem = { ...item };
 
@@ -173,14 +175,14 @@ export class LeadsPerCommunityComponent implements OnInit {
           headerName: `${resultString}`,
           field: `uniqueCount_${column}`,
           cellRenderer: (params) => {
-            if (params.data.uniqueCount[column] === 'inactive') {
+            if (params.data && params.data.uniqueCount[column] === 'inactive') {
               return '<img class="cell-image" src="/assets/images/dash.svg" >';
-            } else if (params.data.uniqueCount[column] === 'right') {
+            } else if (params.data && params.data.uniqueCount[column] === 'right') {
               return '<img class="cell-image" src="/assets/images/right.svg" >';
-            } else if (params.data.uniqueCount[column] === 'wrong') {
+            } else if (params.data && params.data.uniqueCount[column] === 'wrong') {
               return '<img class="cell-image cell-wrong" src="/assets/images/wrong.svg" >';
             } else {
-              return params.data.uniqueCount[column];
+              return params.data?.uniqueCount[column];
             }
           },
           filter: 'agNumberColumnFilter',
@@ -205,14 +207,14 @@ export class LeadsPerCommunityComponent implements OnInit {
           headerName: `${monthYearCol}`,
           field: `totalActive_${column}`,
           cellRenderer: (params) => {
-            if (params.data.totalActive[column] === 'inactive') {
+            if (params.data && params.data.totalActive[column] === 'inactive') {
               return '<img class="cell-image" src="/assets/images/dash.svg" >';
-            } else if (params.data.totalActive[column] === 'right') {
+            } else if (params.data && params.data.totalActive[column] === 'right') {
               return '<img class="cell-image" src="/assets/images/right.svg" >';
-            } else if (params.data.totalActive[column] === 'wrong') {
+            } else if (params.data && params.data.totalActive[column] === 'wrong') {
               return '<img class="cell-image cell-wrong" src="/assets/images/wrong.svg" >';
             } else {
-              return params.data.totalActive[column];
+              return params.data?.totalActive[column];
             }
           },
           filter: 'agNumberColumnFilter',
@@ -236,7 +238,7 @@ export class LeadsPerCommunityComponent implements OnInit {
           lockPinned: true,
         },
         {
-          headerName: `Status as of ${lastMonth}`,
+          headerName: `Status in Admin as of ${lastMonth}`,
           field: 'status',
           sortable: true,
           width: 200,

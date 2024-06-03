@@ -104,18 +104,8 @@ button:focus {
   }
 }
 
-:host ::ng-deep {
-  .ag-center-cols-container .ag-row .ag-cell:first-child {
-    padding-left: 19px;
-  }
-}
-
 // COMPARISON TEXT //
 :host ::ng-deep {
-  .padding-left-19 {
-    padding-left: 19px;
-  }
-
   .comparison-text {
     font-family: "Proxima Nova";
     font-size: 14px;
