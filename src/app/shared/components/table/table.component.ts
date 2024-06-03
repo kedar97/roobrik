@@ -118,7 +118,7 @@ export class TableComponent {
     ],
   };
 
-  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginSerice : PostLoginService){};
+  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService){};
 
   ngOnInit(){}
 
@@ -137,7 +137,8 @@ export class TableComponent {
     this.gridColumnApi = params.columnApi;
     this.defaultColumnState = this.gridColumnApi.getColumnState();
     this.defaultFiltersState = this.gridApi.getFilterModel();
-    this.totalRows = this.gridApi.paginationGetPageSize() > this.rowData.length ? this.rowData.length : this.gridApi.paginationGetPageSize();
+    this.totalRows = 0;
+    this.totalRows = this.gridApi.paginationGetPageSize() > this.rowData?.length ? this.rowData.length : this.gridApi.paginationGetPageSize();
 
     this.gridOptions.getDataPath = (row: any) => {
       const path = [row.client_frenchiseName];
@@ -180,6 +181,10 @@ export class TableComponent {
       });
       this.groupedRows = Array.from(groupedRowsSet);
       this.gridApi.refreshClientSideRowModel('group');
+
+      if(this.groupedRows.length === 0){
+        this.onResetColumns();
+      }
     };
   }
 
@@ -198,8 +203,21 @@ export class TableComponent {
     }
   }
 
+  onFilterChanged(event:any){
+    
+  }
+
   onExport(){
-    this.gridApi.exportDataAsExcel();
+    const params = {
+      processCellCallback: (cell) => {
+        const value = cell.value;
+        if (value === 'inactive' || value ==='right' || value === 'wrong') {
+          return '';
+        }
+        return value;
+      }
+    };
+    this.gridApi.exportDataAsExcel(params);
   }
 
   onCloseColumnPopUp(){
@@ -225,11 +243,11 @@ export class TableComponent {
       }
     });
   
-    currentTableData = this.postLoginSerice.getSortedData(currentTableData)
+    currentTableData = this.postLoginService.getSortedData(currentTableData)
     this.addColumnPopUp = false;
 
     let months = Object.keys(currentTableData[0][`revenue${this.yearToAdd -1}`]);
-    const revenueYears = this.postLoginSerice.extractYears(currentTableData);
+    const revenueYears = this.postLoginService.extractYears(currentTableData);
     revenueYears.push(this.yearToAdd.toString());
 
     currentTableData.forEach(item =>{
@@ -308,9 +326,9 @@ export class TableComponent {
         }
     })
 
-    let flatSummary = this.postLoginSerice.flattenData(this.pinnedTopRowData,revenueYears)
+    let flatSummary = this.postLoginService.flattenData(this.pinnedTopRowData,revenueYears)
     currentTableData.unshift(...flatSummary,...flatSummary[0].children);
-    let flatData = this.postLoginSerice.flattenData(currentTableData,revenueYears)
+    let flatData = this.postLoginService.flattenData(currentTableData,revenueYears)
     this.rowData = flatData;
 
     const modifiedColumnDefs = [
@@ -351,10 +369,14 @@ export class TableComponent {
     this.rowIndex = null;
     if (newPageSize === 'all') {
       this.gridApi.paginationSetPageSize(Number.MAX_SAFE_INTEGER);
+      const nodeData = this.gridApi.rowModel.rowsToDisplay;
+      const mapped = Object.keys(nodeData).map((key)=> ({ value: nodeData[key]}));
+      this.totalRows = mapped.length;
     } else {
       this.gridApi.paginationSetPageSize(Number(newPageSize));
+      this.totalRows = this.gridApi.paginationGetPageSize();
     }
-    this.totalRows = this.gridApi.paginationGetPageSize();
+    
   }
 
   onSelectionChanged(event:any){
@@ -364,6 +386,7 @@ export class TableComponent {
         .filter(([key, value]) => value !== undefined)
         .map(([key, value]) => value);
       this.isExpanded = !this.isExpanded;
+      this.totalRows = this.isExpanded ? this.rowData.length : this.gridApi.paginationGetPageSize();
       let allNodesExpanded;
       const checkbox = document.querySelector('.ag-checkbox-input-wrapper');
       new Promise((resolve, reject) => {

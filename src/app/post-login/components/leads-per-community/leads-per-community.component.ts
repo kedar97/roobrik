@@ -31,13 +31,13 @@ export class LeadsPerCommunityComponent implements OnInit {
 
   columnDef: any = [
     {
-      field:'',
+      field:'cohort',
       headerName:'Cohort',
       lockPinned: true,
     },
     {
-      field:'',
-      headerName:'Chrun risk',
+      field:'churnRisk',
+      headerName:'Churn risk',
       lockPinned: true,
     },
     {
@@ -53,8 +53,11 @@ export class LeadsPerCommunityComponent implements OnInit {
           return `<div class="comparison-text green-text">${params.value}</div>`;
         } else if (params.value === 'Below') {
           return `<div class="comparison-text red-text">${params.value}</div>`;
-        } else {
+        } else if (params.value === 'Average'){
           return `<div class="comparison-text orange-text">${params.value}</div>`;
+        }
+        else{
+          return params.value;
         }
       },
     },
@@ -135,7 +138,7 @@ export class LeadsPerCommunityComponent implements OnInit {
 
   ngOnInit(): void {
     this.postLoginService.getTableData(this.dataUrl).subscribe((data) => {
-    const flattenData = (data) => {
+      const flattenData = (data) => {
         const flattenItem = (item) => {
           let flattenedItem = { ...item };
 
@@ -177,33 +180,27 @@ export class LeadsPerCommunityComponent implements OnInit {
           field: `uniqueCount_${column}`,
           tooltipValueGetter: (p: ITooltipParams) => {
             if(p.node.allLeafChildren.length > 1) {
-              if(p.value === undefined) {
-                return  'The client was inactive';
+              if (p.value === undefined || p.value === 'inactive') {
+                return 'The client was Inactive';
+              } else if(p.value === 'right') {
+                return 'The client was active';
               } else {
-                if (p.value === undefined || p.value === 'inactive') {
-                  return 'The client was Inactive';
-                } else {
-                  return '';
-                }
+                return '';
               }
             } else {
-              if(p.value === undefined) {
-                return  'The client was inactive';
+              if (p.value === undefined || p.value === 'inactive') {
+                return 'The franchise was Inactive';
+              } else if(p.value === 'right') {
+                return 'The franchise was active';
               } else {
-                if (p.value === undefined || p.value === 'inactive') {
-                  return 'The franchise was inactive';
-                } else if(p.value === 'right') {
-                  return 'The franchise was active';
-                } else {
-                  return '';
-                }
+                return '';
               }
             }
           },
           cellRenderer: (params) => {
             if (params.data.uniqueCount[column] === 'inactive' || params.data.uniqueCount[column] === undefined) {
               return '<img class="cell-image" src="/assets/images/dash.svg" >';
-            } else if (params.data.uniqueCount[column] === 'right') {
+            } else if (params.data && params.data.uniqueCount[column] === 'right') {
               return '<img class="cell-image" src="/assets/images/right.svg" >';
             }else {
               return params.data.uniqueCount[column];
@@ -252,10 +249,10 @@ export class LeadsPerCommunityComponent implements OnInit {
           cellRenderer: (params) => {
             if (params.data.totalActive[column] === 'inactive' || params.data.totalActive[column] === undefined) {
               return '<img class="cell-image" src="/assets/images/dash.svg" >';
-            } else if (params.data.totalActive[column] === 'right') {
+            } else if (params.data && params.data.totalActive[column] === 'right') {
               return '<img class="cell-image" src="/assets/images/right.svg" >';
             } else {
-              return params.data.totalActive[column];
+              return params.data?.totalActive[column];
             }
           },
           filter: 'agNumberColumnFilter',
@@ -279,7 +276,7 @@ export class LeadsPerCommunityComponent implements OnInit {
           lockPinned: true,
         },
         {
-          headerName: `Status as of ${lastMonth}`,
+          headerName: `Status in Admin as of ${lastMonth}`,
           field: 'status',
           sortable: true,
           width: 200,
