@@ -3,6 +3,7 @@ import { ColDef, GetDataPath, GridApi, GridReadyEvent, ICellRendererParams, Side
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { get } from 'lodash-es';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-table',
@@ -118,7 +119,7 @@ export class TableComponent {
     ],
   };
 
-  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService){};
+  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService,private router : Router){this.setQuickFilter = this.setQuickFilter.bind(this);};
 
   ngOnInit(){}
 
@@ -186,9 +187,12 @@ export class TableComponent {
         this.onResetColumns();
       }
     };
+
+    this.gridOptions.onFilterChanged = this.onFilterChanged.bind(this);
   }
 
   setQuickFilter(filterValue: string,isNestedRows:boolean,pinnedData?:any): void {
+    const self = this;
     this.gridApi.setQuickFilter(filterValue);  
     if(isNestedRows === true){
       if(filterValue === ''){
@@ -203,8 +207,52 @@ export class TableComponent {
     }
   }
 
-  onFilterChanged(event:any){
-    
+  onFilterChanged(event:any){ 
+    const self = this;  
+    let filterModel = event.api.getFilterModel();
+    let allNodes = [];
+    let parentNodes = [];
+    this.gridApi.forEachNodeAfterFilter(node => {
+      allNodes.push(node);
+    });
+
+    if(event.source === 'columnFilter'){
+      allNodes.forEach(node =>{
+        if(filterModel && Object.keys(filterModel).length > 0){
+          Object.keys(filterModel).forEach(function (key){
+            let filterItem = filterModel[key]; 
+            if (key === 'ag-Grid-AutoColumn') {
+              key = 'client_frenchiseName';
+              filterItem.filterModels.forEach(fm =>{
+                if(fm != null){
+                  let flag = self.postLoginService.checkPropertyValue(node.data[key],fm.filter);
+                  if(flag == true && node.parent.key != null){
+                    parentNodes.push(node.parent.key)
+                  }
+                }
+              })
+            }
+            else{
+              let flag = self.postLoginService.checkPropertyValue(node.data[key].toString(),filterItem.filter);
+              if(flag == true && node.parent.key != null){
+                parentNodes.push(node.parent.key)
+              }
+            }
+          })
+        }
+        else{
+          this.gridApi.forEachNode(node => node.setExpanded(false));
+        }
+      })
+
+      parentNodes.forEach(parent =>{
+        allNodes.forEach(rowNode=>{
+          if(rowNode.key === parent){
+            rowNode.setExpanded(true);
+          }
+        })
+      })
+    }
   }
 
   onExport(){

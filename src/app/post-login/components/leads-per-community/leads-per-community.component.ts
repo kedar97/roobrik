@@ -138,158 +138,162 @@ export class LeadsPerCommunityComponent implements OnInit {
 
   ngOnInit(): void {
     this.postLoginService.getTableData(this.dataUrl).subscribe((data) => {
-      const flattenData = (data) => {
-        const flattenItem = (item) => {
-          let flattenedItem = { ...item };
+      if(data){
+        data = this.postLoginService.getSortedData(data);
 
-          for (let key in item.uniqueCount) {
-            flattenedItem[`uniqueCount_${key}`] = item.uniqueCount[key];
-          }
-
-          // Flatten totalActive fields
-          for (let key in item.totalActive) {
-            flattenedItem[`totalActive_${key}`] = item.totalActive[key];
-          }
-
-          // Process children if present
-          if (item.children && item.children.length > 0) {
-            flattenedItem.children = item.children.map(flattenItem);
-          }
-
-          return flattenedItem;
-        };
-
-        return data.map(flattenItem);
-      };
-
-      const flattenedData = flattenData(data);
-      this.rowData = flattenedData;
-      let uniqueCountColumnNames = Object.keys(data[0].uniqueCount);
-      let totalActiveColumnNames = Object.keys(data[0].totalActive);
-      let lastMonth:string;
-      const uniqueCountColumns = uniqueCountColumnNames.map((column, index) => {
-        const monthAbbreviation = column.substring(0, 3);
-        const year = column.substring(3);
-        const monthTitleCase =
-          monthAbbreviation.charAt(0).toUpperCase() +
-          monthAbbreviation.slice(1);
-        const resultString = `${monthTitleCase}-${year}`;
-
-        return {
-          headerName: `${resultString}`,
-          field: `uniqueCount_${column}`,
-          tooltipValueGetter: (p: ITooltipParams) => {
-            if(p.node.allLeafChildren.length > 1) {
-              if (p.value === undefined || p.value === 'inactive') {
-                return 'The client was Inactive';
-              } else if(p.value === 'right') {
-                return 'The client was active';
-              } else {
-                return '';
-              }
-            } else {
-              if (p.value === undefined || p.value === 'inactive') {
-                return 'The franchise was Inactive';
-              } else if(p.value === 'right') {
-                return 'The franchise was active';
-              } else {
-                return '';
-              }
+        const flattenData = (data) => {
+          const flattenItem = (item) => {
+            let flattenedItem = { ...item };
+  
+            for (let key in item.uniqueCount) {
+              flattenedItem[`uniqueCount_${key}`] = item.uniqueCount[key];
             }
-          },
-          cellRenderer: (params) => {
-            if (params.data.uniqueCount[column] === 'inactive' || params.data.uniqueCount[column] === undefined) {
-              return '<img class="cell-image" src="/assets/images/dash.svg" >';
-            } else if (params.data && params.data.uniqueCount[column] === 'right') {
-              return '<img class="cell-image" src="/assets/images/right.svg" >';
-            }else {
-              return params.data.uniqueCount[column];
+  
+            // Flatten totalActive fields
+            for (let key in item.totalActive) {
+              flattenedItem[`totalActive_${key}`] = item.totalActive[key];
             }
-          },
-          filter: 'agNumberColumnFilter',
-          width: 80,
-          resizable: true,
+  
+            // Process children if present
+            if (item.children && item.children.length > 0) {
+              flattenedItem.children = item.children.map(flattenItem);
+            }
+  
+            return flattenedItem;
+          };
+  
+          return data.map(flattenItem);
         };
-      });
-
-      const totalActiveColumns = totalActiveColumnNames.map((column, i) => {
-        const monthAbbreviation = column.substring(0, 3);
-        const year = column.substring(3);
-        const monthTitleCase =
-          monthAbbreviation.charAt(0).toUpperCase() +
-          monthAbbreviation.slice(1);
-        const monthYearCol = `${monthTitleCase}-${year}`;
-
-        if (i === 0) {
-          lastMonth = monthYearCol;
-        }
-
-        return {
-          headerName: `${monthYearCol}`,
-          tooltipValueGetter: (p: ITooltipParams) => {
-            if(p.node.allLeafChildren.length > 1) {
-              if (p.value === undefined || p.value === 'inactive' || p.value === 'wrong') {
-                return 'The client was inactive';
-              } else if(p.value === 'right') {
-                return 'The client was active';
+  
+        const flattenedData = flattenData(data);
+        this.rowData = flattenedData;
+        let uniqueCountColumnNames = Object.keys(data[0].uniqueCount);
+        let totalActiveColumnNames = Object.keys(data[0].totalActive);
+        let lastMonth:string;
+        const uniqueCountColumns = uniqueCountColumnNames.map((column, index) => {
+          const monthAbbreviation = column.substring(0, 3);
+          const year = column.substring(3);
+          const monthTitleCase =
+            monthAbbreviation.charAt(0).toUpperCase() +
+            monthAbbreviation.slice(1);
+          const resultString = `${monthTitleCase}-${year}`;
+  
+          return {
+            headerName: `${resultString}`,
+            field: `uniqueCount_${column}`,
+            tooltipValueGetter: (p: ITooltipParams) => {
+              if(p.node.allLeafChildren.length > 1) {
+                if (p.value === undefined || p.value === 'inactive') {
+                  return 'The client was Inactive';
+                } else if(p.value === 'right') {
+                  return 'The client was active';
+                } else {
+                  return '';
+                }
               } else {
-                return '';
-              }
-            } else {
-                if (p.value === undefined || p.value === 'inactive' || p.value === 'wrong') {
-                  return 'The franchise was inactive';
+                if (p.value === undefined || p.value === 'inactive') {
+                  return 'The franchise was Inactive';
                 } else if(p.value === 'right') {
                   return 'The franchise was active';
                 } else {
                   return '';
                 }
-            }
+              }
+            },
+            cellRenderer: (params) => {
+              if (params.data && (params.data.uniqueCount[column] === 'inactive' || params.data.uniqueCount[column] === undefined)) {
+                return '<img class="cell-image" src="/assets/images/dash.svg" >';
+              } else if (params.data && params.data.uniqueCount[column] === 'right') {
+                return '<img class="cell-image" src="/assets/images/right.svg" >';
+              }else {
+                return params.data?.uniqueCount[column];
+              }
+            },
+            filter: 'agNumberColumnFilter',
+            width: 80,
+            resizable: true,
+          };
+        });
+  
+        const totalActiveColumns = totalActiveColumnNames.map((column, i) => {
+          const monthAbbreviation = column.substring(0, 3);
+          const year = column.substring(3);
+          const monthTitleCase =
+            monthAbbreviation.charAt(0).toUpperCase() +
+            monthAbbreviation.slice(1);
+          const monthYearCol = `${monthTitleCase}-${year}`;
+  
+          if (i === 0) {
+            lastMonth = monthYearCol;
+          }
+  
+          return {
+            headerName: `${monthYearCol}`,
+            tooltipValueGetter: (p: ITooltipParams) => {
+              if(p.node.allLeafChildren.length > 1) {
+                if (p.value === undefined || p.value === 'inactive' || p.value === 'wrong') {
+                  return 'The client was inactive';
+                } else if(p.value === 'right') {
+                  return 'The client was active';
+                } else {
+                  return '';
+                }
+              } else {
+                  if (p.value === undefined || p.value === 'inactive' || p.value === 'wrong') {
+                    return 'The franchise was inactive';
+                  } else if(p.value === 'right') {
+                    return 'The franchise was active';
+                  } else {
+                    return '';
+                  }
+              }
+            },
+            field: `totalActive_${column}`,
+            cellRenderer: (params) => {
+              if (params.data && (params.data.totalActive[column] === 'inactive' || params.data.totalActive[column] === undefined)) {
+                return '<img class="cell-image" src="/assets/images/dash.svg" >';
+              } else if (params.data && params.data.totalActive[column] === 'right') {
+                return '<img class="cell-image" src="/assets/images/right.svg" >';
+              } else {
+                return params.data?.totalActive[column];
+              }
+            },
+            filter: 'agNumberColumnFilter',
+            width: 80,
+            resizable: true,
+          };
+        });
+  
+        const modifiedColumnDefs = [
+          ...this.columnDef.slice(0, 4),
+          {
+            headerName: 'Unique SQL count',
+            sortable: false,
+            children: [...uniqueCountColumns],
+            lockPinned: true,
           },
-          field: `totalActive_${column}`,
-          cellRenderer: (params) => {
-            if (params.data.totalActive[column] === 'inactive' || params.data.totalActive[column] === undefined) {
-              return '<img class="cell-image" src="/assets/images/dash.svg" >';
-            } else if (params.data && params.data.totalActive[column] === 'right') {
-              return '<img class="cell-image" src="/assets/images/right.svg" >';
-            } else {
-              return params.data?.totalActive[column];
-            }
+          {
+            headerName: 'Total active franchises',
+            sortable: false,
+            children: [...totalActiveColumns],
+            lockPinned: true,
           },
-          filter: 'agNumberColumnFilter',
-          width: 80,
-          resizable: true,
-        };
-      });
-
-      const modifiedColumnDefs = [
-        ...this.columnDef.slice(0, 4),
-        {
-          headerName: 'Unique SQL count',
-          sortable: false,
-          children: [...uniqueCountColumns],
-          lockPinned: true,
-        },
-        {
-          headerName: 'Total active franchises',
-          sortable: false,
-          children: [...totalActiveColumns],
-          lockPinned: true,
-        },
-        {
-          headerName: `Status in Admin as of ${lastMonth}`,
-          field: 'status',
-          sortable: true,
-          width: 200,
-          minWidth: 100,
-          resizable: true,
-          filter: 'agTextColumnFilter',
-          lockPinned: true,
-          wrapHeaderText: true,
-          headerTooltip: "This is the status in our Admin system and it doesn't always reflect the actual status of a client or franchise",
-        },
-        ...this.columnDef.slice(-1),
-      ];
-      this.columnDef = modifiedColumnDefs;
+          {
+            headerName: `Status in Admin as of ${lastMonth}`,
+            field: 'status',
+            sortable: true,
+            width: 200,
+            minWidth: 100,
+            resizable: true,
+            filter: 'agTextColumnFilter',
+            lockPinned: true,
+            wrapHeaderText: true,
+            headerTooltip: "This is the status in our Admin system and it doesn't always reflect the actual status of a client or franchise",
+          },
+          ...this.columnDef.slice(-1),
+        ];
+        this.columnDef = modifiedColumnDefs;
+      }
     })
   }
 
