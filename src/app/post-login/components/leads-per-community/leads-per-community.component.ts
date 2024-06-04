@@ -9,7 +9,7 @@ import { Params } from '@angular/router';
 import { PostLoginService } from '../../post-login.service';
 import { TableComponent } from 'src/app/shared/components/table/table.component';
 import { RowNode } from '@ag-grid-community/all-modules';
-
+import { CustomTooltip } from './custom-tooltip/custom-tooltip.component';
 @Component({
   selector: 'app-leads-per-community',
   templateUrl: './leads-per-community.component.html',
@@ -46,8 +46,8 @@ export class LeadsPerCommunityComponent implements OnInit {
       sortable: true,
       lockPinned: true,
       headerClass: 'padding-left-19',
-      headerTooltip: "A Benchmark comparison of Leads/community/month where: Above = >= 2.81, Average = 2.2.8, Below = <2 ",
-
+      tooltipComponent: CustomTooltip,
+      headerTooltip: " ",
       cellRenderer: function (params: Params) {
         if (params.value === 'Above') {
           return `<div class="comparison-text green-text">${params.value}</div>`;
@@ -284,6 +284,7 @@ export class LeadsPerCommunityComponent implements OnInit {
           resizable: true,
           filter: 'agTextColumnFilter',
           lockPinned: true,
+          wrapHeaderText: true,
           headerTooltip: "This is the status in our Admin system and it doesn't always reflect the actual status of a client or franchise",
         },
         ...this.columnDef.slice(-1),
@@ -314,4 +315,15 @@ export class LeadsPerCommunityComponent implements OnInit {
     const filterValue = (document.getElementById('filter-text-box') as HTMLInputElement).value;
     this.sharedAgGrid.setQuickFilter(filterValue,true);
   }
+}
+
+
+
+export class CustomHeaderComponent {
+  private params!: { color: string } & ITooltipParams;
+
+  agInit(params: { color: string } & ITooltipParams): void {
+      this.params = params;
+  }
+
 }
