@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
-import { ColDef, GetDataPath, GridApi, GridReadyEvent, ICellRendererParams, SideBarDef } from 'ag-grid-community';
+import { ColDef, GetDataPath, GridApi, GridReadyEvent, ICellRendererParams, ITextFilterParams, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { get } from 'lodash-es';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
@@ -84,11 +84,24 @@ export class TableComponent {
   totalRows: number;
   rowIndex: number;
   selectedNodes = [];
-  saasSummaryRow = [];
-
+  
   public defaultColDef: ColDef = {
     filter: 'agMultiColumnFilter',
-    floatingFilter: true,
+    filterParams: {
+      filters: [
+        {
+          filter: 'agTextColumnFilter',
+          display: 'subMenu'
+        },
+        {
+          filter: 'agSetColumnFilter',
+          filterParams: {
+            buttons: ["reset"],
+          } as ITextFilterParams
+        }
+      ]
+    },
+    floatingFilter:true,
     resizable: true,
     sortable:true,
     enableRowGroup:true,
@@ -120,11 +133,10 @@ export class TableComponent {
     ],
   };
 
-  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService,private router : Router){
-    this.setQuickFilter = this.setQuickFilter.bind(this);
-  };
+  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService,private router : Router){this.setQuickFilter = this.setQuickFilter.bind(this);};
 
-  ngOnInit(){}
+  ngOnInit(){
+  }
 
   customCurrencyFormatter(params: ICellRendererParams): string {
     let value = params.value;
@@ -197,33 +209,12 @@ export class TableComponent {
   setQuickFilter(filterValue: string,isNestedRows:boolean,pinnedData?:any): void {
     const self = this;
     this.gridApi.setQuickFilter(filterValue);  
-    let allNodes = [];
-    let parentNodes = [];
-
-    this.gridApi.forEachNodeAfterFilter(node => {
-      allNodes.push(node);
-      if(node.data.group === node.data.client_frenchiseName){
-        parentNodes.push(node)
-      }
-    });
-
     if(isNestedRows === true){
       if(filterValue === ''){
         this.gridApi.setQuickFilter(filterValue);  
-        this.gridApi.forEachNode(node => node.setExpanded(false));
       }
       else{
         this.gridApi.forEachNode(node => node.setExpanded(false));
-
-        parentNodes.forEach(parent =>{
-          parent.childrenAfterFilter.forEach(child=>{
-            let shouldExpand = false;
-            shouldExpand = self.postLoginService.searchObject(child.data,filterValue);
-            if(shouldExpand){
-              parent.setExpanded(true);
-            }
-          })
-        });
       }
     }
     else{
@@ -231,69 +222,51 @@ export class TableComponent {
     }
   }
 
-  onFilterChanged(event:any){ 
-    const self = this;  
-    let filterModel = event.api.getFilterModel();
-    let allNodes = [];
-    let parentNodes = [];
-    this.gridApi.forEachNodeAfterFilter(node => {
-      allNodes.push(node);
-    });
-
-    if(event.source === 'columnFilter'){
-      this.gridApi.forEachNode(node => node.setExpanded(false));
-
-      allNodes.forEach(node => {
-        if(node.data.group != node.data.client_frenchiseName){
-          if(filterModel && Object.keys(filterModel).length > 0){
-            Object.keys(filterModel).forEach(function (key){
-              let filterItem = filterModel[key]; 
-              if (key === 'ag-Grid-AutoColumn') {
-                key = 'client_frenchiseName';
-                filterItem.filterModels.forEach(fm =>{
-                  if(fm != null){
-                    let flag = self.postLoginService.checkPropertyValue(node.data[key],fm.filter);
-                    if(flag == true && node.parent.key != null){
-                      parentNodes.push(node.parent.key)
-                    }
-                  }
-                })
-              }
-              else {
-                if(!filterItem.filterModels){
-                  let flag = self.postLoginService.checkPropertyValue(node.data[key].toString(),filterItem.filter);
-                  if(flag == true){
-                    parentNodes.push(node.parent.key)
-                  }
-                }
-                else{
-                  filterItem.filterModels.forEach(fm =>{
-                    if(fm != null){
-                      let flag = self.postLoginService.checkPropertyValue(node.data[key].toString(),fm.filter);
-                      if(flag == true){
-                        parentNodes.push(node.parent.key)
-                      }
-                    }
-                  })
-                }
-              }
-            })
-          }
-          else{
-            this.gridApi.forEachNode(node => node.setExpanded(false));
-          }
+  onFilterChanged(event: any): void {
+    const allColumns = this.gridColumnApi.getAllColumns();
+    console.log("allCOlumns", allColumns);
+    console.log("this.gridOptions.autoGroupColumnDef", this.gridOptions.autoGroupColumnDef);
+    
+    allColumns.forEach((column: any) => {
+      const filterInstance = this.gridApi.getFilterInstance(column);
+      
+      const headerElement = document.querySelector(
+        `.ag-header-cell[col-id="${column.getColId()}"]`
+      );
+      const elements = document.querySelectorAll('.ag-header-cell-text');
+      console.log()
+      if (filterInstance && filterInstance.isFilterActive()) {
+        if (headerElement) {
+          headerElement.classList.add('ag-header-cell-filtered');
         }
-      })
-      parentNodes.forEach(parent => {
-        allNodes.forEach(rowNode => {
-          if(rowNode.key === parent){
-            rowNode.setExpanded(true);
+        elements.forEach((item, index) => {
+          if (item.innerHTML === column.getColDef().headerName) {
+            const floatingFilterElement = document.querySelector(
+              `.ag-floating-filter[aria-colindex="${index + 1}"]`
+            );
+            if (floatingFilterElement) {
+              floatingFilterElement.classList.add('ag-floating-filter-active');
+            }
           }
-        })
-      })
-    }
+        });
+      } else {
+        if (headerElement) {
+          headerElement.classList.remove('ag-header-cell-filtered');
+        }
+        elements.forEach((item, index) => {
+          if (item.innerHTML === column.getColDef().headerName) {
+            const floatingFilterElement = document.querySelector(
+              `.ag-floating-filter[aria-colindex="${index + 1}"]`
+            );
+            if (floatingFilterElement) {
+              floatingFilterElement.classList.remove('ag-floating-filter-active');
+            }
+          }
+        });
+      }
+    });
   }
-
+ 
   onExport(){
     const params = {
       processCellCallback: (cell) => {
@@ -554,4 +527,7 @@ export class TableComponent {
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
   }
+
+  
+    
 }
