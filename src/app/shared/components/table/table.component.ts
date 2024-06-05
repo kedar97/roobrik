@@ -84,7 +84,8 @@ export class TableComponent {
   totalRows: number;
   rowIndex: number;
   selectedNodes = [];
-  
+  saasSummaryRow = [];
+
   public defaultColDef: ColDef = {
     filter: 'agMultiColumnFilter',
     floatingFilter: true,
@@ -119,7 +120,9 @@ export class TableComponent {
     ],
   };
 
-  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService,private router : Router){this.setQuickFilter = this.setQuickFilter.bind(this);};
+  constructor(private renderer: Renderer2,private ele: ElementRef, private postLoginService : PostLoginService,private router : Router){
+    this.setQuickFilter = this.setQuickFilter.bind(this);
+  };
 
   ngOnInit(){}
 
@@ -194,12 +197,33 @@ export class TableComponent {
   setQuickFilter(filterValue: string,isNestedRows:boolean,pinnedData?:any): void {
     const self = this;
     this.gridApi.setQuickFilter(filterValue);  
+    let allNodes = [];
+    let parentNodes = [];
+
+    this.gridApi.forEachNodeAfterFilter(node => {
+      allNodes.push(node);
+      if(node.data.group === node.data.client_frenchiseName){
+        parentNodes.push(node)
+      }
+    });
+
     if(isNestedRows === true){
       if(filterValue === ''){
         this.gridApi.setQuickFilter(filterValue);  
+        this.gridApi.forEachNode(node => node.setExpanded(false));
       }
       else{
         this.gridApi.forEachNode(node => node.setExpanded(false));
+
+        parentNodes.forEach(parent =>{
+          parent.childrenAfterFilter.forEach(child=>{
+            let shouldExpand = false;
+            shouldExpand = self.postLoginService.searchObject(child.data,filterValue);
+            if(shouldExpand){
+              parent.setExpanded(true);
+            }
+          })
+        });
       }
     }
     else{
@@ -217,36 +241,51 @@ export class TableComponent {
     });
 
     if(event.source === 'columnFilter'){
-      allNodes.forEach(node =>{
-        if(filterModel && Object.keys(filterModel).length > 0){
-          Object.keys(filterModel).forEach(function (key){
-            let filterItem = filterModel[key]; 
-            if (key === 'ag-Grid-AutoColumn') {
-              key = 'client_frenchiseName';
-              filterItem.filterModels.forEach(fm =>{
-                if(fm != null){
-                  let flag = self.postLoginService.checkPropertyValue(node.data[key],fm.filter);
-                  if(flag == true && node.parent.key != null){
+      this.gridApi.forEachNode(node => node.setExpanded(false));
+
+      allNodes.forEach(node => {
+        if(node.data.group != node.data.client_frenchiseName){
+          if(filterModel && Object.keys(filterModel).length > 0){
+            Object.keys(filterModel).forEach(function (key){
+              let filterItem = filterModel[key]; 
+              if (key === 'ag-Grid-AutoColumn') {
+                key = 'client_frenchiseName';
+                filterItem.filterModels.forEach(fm =>{
+                  if(fm != null){
+                    let flag = self.postLoginService.checkPropertyValue(node.data[key],fm.filter);
+                    if(flag == true && node.parent.key != null){
+                      parentNodes.push(node.parent.key)
+                    }
+                  }
+                })
+              }
+              else {
+                if(!filterItem.filterModels){
+                  let flag = self.postLoginService.checkPropertyValue(node.data[key].toString(),filterItem.filter);
+                  if(flag == true){
                     parentNodes.push(node.parent.key)
                   }
                 }
-              })
-            }
-            else{
-              let flag = self.postLoginService.checkPropertyValue(node.data[key].toString(),filterItem.filter);
-              if(flag == true && node.parent.key != null){
-                parentNodes.push(node.parent.key)
+                else{
+                  filterItem.filterModels.forEach(fm =>{
+                    if(fm != null){
+                      let flag = self.postLoginService.checkPropertyValue(node.data[key].toString(),fm.filter);
+                      if(flag == true){
+                        parentNodes.push(node.parent.key)
+                      }
+                    }
+                  })
+                }
               }
-            }
-          })
-        }
-        else{
-          this.gridApi.forEachNode(node => node.setExpanded(false));
+            })
+          }
+          else{
+            this.gridApi.forEachNode(node => node.setExpanded(false));
+          }
         }
       })
-
-      parentNodes.forEach(parent =>{
-        allNodes.forEach(rowNode=>{
+      parentNodes.forEach(parent => {
+        allNodes.forEach(rowNode => {
           if(rowNode.key === parent){
             rowNode.setExpanded(true);
           }
