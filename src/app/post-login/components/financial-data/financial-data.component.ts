@@ -93,9 +93,6 @@ export class FinancialDataComponent {
       innerRenderer: (params: ICellRendererParams) => {
         if(params.node.level == 0){
           let element;
-          if(params.value === 'Saas Revenue Summary'){
-            return `${params.value}`
-          }
           if(params.data && params.data.status === 'Active'){
             element =`<div class='parent-link parent-link-color' >${params.value}</div>`;
           }
@@ -105,7 +102,12 @@ export class FinancialDataComponent {
           return element;
         }
         else{
-          return `${params.value}`
+          if(params.value === undefined && params.data.group === 'Saas Revenue Summary'){
+            return `${params.data.client_frenchiseName}`
+          }
+          else{
+            return `${params.value}`
+          }
         }
       },
     },
@@ -321,7 +323,7 @@ export class FinancialDataComponent {
   }
 
   getRowStyle(params: any): any {
-    if (params.node.rowIndex === 0 && params.data.client_frenchiseName === 'Saas Revenue Summary') {
+    if ( params.data.group === 'Saas Revenue Summary' ) {
       return { background: 'rgba(102, 163, 212, 0.3)' };
     }
     if (params.node.level > 0) {

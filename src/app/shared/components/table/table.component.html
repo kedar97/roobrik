@@ -30,6 +30,7 @@
         [getRowStyle]="getRowStyle"
         (paginationChanged)="onPaginationChange($event)"
         (filterChanged)="onFilterChanged($event)"
+        [pinnedTopRowData]="pinnedTopRow"
         (gridReady)="onGridReady($event)"
     ></ag-grid-angular>
 
