@@ -138,19 +138,15 @@ export class TableComponent {
     this.setQuickFilter = this.setQuickFilter.bind(this);
   };
 
-  ngOnInit(){
-  }
+  ngOnInit(){}
 
   ngOnChanges(changes: SimpleChanges){
     if (changes['rowData']) {
-      console.log('change rowdata')
-      // this.gridApi?.setRowData(this.rowData);
       if(this.router.url.includes('saas-revenue')){
-        // let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
-        this.pinnedTopRow = [...this.rowData.slice(1,3)];
+        let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
+        this.pinnedTopRow = [...summaryRows];
         this.rowData = this.rowData.filter(item => item.group != this.summaryRowName);
       }
-      console.log(this.rowData,this.pinnedTopRow,'////')
     }
   }
 
@@ -218,16 +214,6 @@ export class TableComponent {
         this.onResetColumns();
       }
     };
-
-    console.log("this.router.url", this.router.url)
-    // if(this.router.url.includes('saas-revenue')){
-    //   console.log("this.rowData", this.rowData);
-    //   console.log("hey")
-    //   // let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
-    //   this.pinnedTopRow = [...this.rowData.slice(1,3)];
-    //   this.rowData = this.rowData.filter(item => item.group != this.summaryRowName);
-    // }
-    console.log(this.rowData,this.pinnedTopRow,'////')
   }
 
   setQuickFilter(filterValue: string,isNestedRows:boolean,pinnedData?:any): void {
