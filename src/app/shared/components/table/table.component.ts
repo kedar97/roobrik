@@ -139,7 +139,6 @@ export class TableComponent {
   };
 
   ngOnInit(){
-    console.log("rrroww", this.rowData);
   }
 
   customCurrencyFormatter(params: ICellRendererParams): string {
@@ -160,6 +159,7 @@ export class TableComponent {
     this.totalRows = 0;
     this.totalRows = this.gridApi.paginationGetPageSize() > this.rowData?.length ? this.rowData.length : this.gridApi.paginationGetPageSize();
 
+    console.log("rrroww", this.rowData);
     this.gridOptions.getDataPath = (row: any) => {
       const path = [row.client_frenchiseName];
       if (row.group && row.group !== row.client_frenchiseName) {
