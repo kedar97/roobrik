@@ -165,14 +165,23 @@ export class TableComponent {
     this.gridColumnApi = params.columnApi;
     this.defaultColumnState = this.gridColumnApi.getColumnState();
     this.defaultFiltersState = this.gridApi.getFilterModel();
-    this.totalRows = 0;
-    this.totalRows = this.gridApi.paginationGetPageSize() > this.rowData?.length ? this.rowData.length : this.gridApi.paginationGetPageSize();
+    this.totalRows = this.rowData?.length;
 
     this.gridOptions.getDataPath = (row: any) => {
-      const path = [row.client_frenchiseName];
-      if (row.group && row.group !== row.client_frenchiseName) {
-        path.unshift(row.group);
+      let path ;
+      if(this.router.url.includes('saas-revenue') || this.router.url.includes('client-health-metrics')){
+        path = [row.client_frenchiseName];
+        if (row.group && row.group !== row.client_frenchiseName) {
+          path.unshift(row.group);
+        }
       }
+      else if(this.router.url.includes('chat-configuration')){
+        path = [row.question_answer];
+        if (row.group && row.group !== row.question_answer) {
+          path.unshift(row.group);
+        }
+      }
+      
       const groupedValues = this.groupedRows.map((key) => {
         const v = get(row, [key]);
         if (typeof v === 'object') {
@@ -224,8 +233,16 @@ export class TableComponent {
 
     this.gridApi.forEachNodeAfterFilter(node => {
       allNodes.push(node);
-      if(node.data.group === node.data.client_frenchiseName){
-        parentNodes.push(node)
+      if(this.router.url.includes('saas-revenue') || this.router.url.includes('client-health-metrics')){
+        if(node.data.group === node.data.client_frenchiseName){
+          parentNodes.push(node)
+        }
+      }
+
+      else if(this.router.url.includes('chat-configuration')){
+        if(node.data.group === node.data.question_answer){
+          parentNodes.push(node)
+        }
       }
     });
 
@@ -271,7 +288,12 @@ export class TableComponent {
             Object.keys(filterModel).forEach(function (key){
               let filterItem = filterModel[key]; 
               if (key === 'ag-Grid-AutoColumn') {
-                key = 'client_frenchiseName';
+                if(self.router.url.includes('saas-revenue') || self.router.url.includes('client-health-metrics')){
+                  key = 'client_frenchiseName';
+                }
+                else if(self.router.url.includes('chat-configuration')){
+                  key = 'question_answer';
+                }
                 filterItem.filterModels.forEach(fm =>{
                   if(fm != null){
                     let flag = self.postLoginService.checkPropertyValue(node.data[key],fm.filter);
@@ -470,6 +492,45 @@ export class TableComponent {
 
     this.columnDefs = modifiedColumnDefs;     
     this.gridApi.setColumnDefs(modifiedColumnDefs);
+  }
+
+  onCreateNewQuestionAnswer(form: any, type: string){
+      const min = 1000000000;
+      const max = 9999999999;
+      const id = Math.floor(Math.random() * (max - min + 1)) + min;
+  
+      if (type === 'question') {
+        const newObj = {
+          id: id,
+          group: form.value.questionText,
+          question_answer: form.value.questionText,
+          nodeName: form.value.nodeName,
+          node_category: form.value.category.value,
+          status: form.value.status,
+          created_on: new Date().toISOString(),
+          last_modified_on: new Date().toISOString(),
+          last_modified_by: 'John Doe',
+          visible: form.value.visible,
+          clientName: form.value.client,
+          franchiseName: form.value.franchiseList
+        }
+    
+        this.rowData.unshift(newObj);
+        this.gridApi?.setRowData(this.rowData);
+      } else if(type === 'answer') {
+        const newObj = {
+          id: id,
+          group: form.value.question,
+          question_answer: form.value.answerText,
+          nodeName: form.value.nodeName,
+          status: form.value.status,
+          created_on: new Date().toISOString(),
+          last_modified_on: new Date().toISOString(),
+          last_modified_by: 'John Doe'    
+        }
+        this.rowData.unshift(newObj);
+        this.gridApi?.setRowData(this.rowData);
+      }
   }
 
   onPaginationChange(event:any){

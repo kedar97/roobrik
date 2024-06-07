@@ -32,24 +32,15 @@
                 </kendo-dropdownlist>
             </div>
         </div>
-    
-        <div class="table-section">
-            <ag-grid-angular
-                style="flex-grow: 1; height: 655px"
-                class="ag-theme-balham ag-grid"
-                [rowHeight]="36"
-                [columnDefs]="columnDef"
-                [defaultColDef]="defaultColDef"
-                [statusBar]="statusBar"
-                [rowData]="rowData"
-                [gridOptions]="gridOptions"
-                [sideBar]="sideBar"
-                [rowGroupPanelShow]="rowGroupPanelShow"
-                [enableRangeSelection]="true"
-                (toolPanelVisibleChanged)="onToolPanelVisibleChanged($event)"
-                (gridReady)="onGridReady($event)">
-            </ag-grid-angular>
-        </div>
+
+        <app-table
+            [ngClass]="{'hide-child-count': false}"
+            [rowHeight]="36"
+            [columnDefs]="columnDef"
+            [rowData]="rowData"
+            [gridOptions]="gridOptions"
+            [enableCharts]="true">
+        </app-table>
     </div>
 
     <div class="create-new-section" *ngIf="isCreateFlyOutOpen">

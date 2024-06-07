@@ -1,7 +1,8 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropDownListComponent } from '@progress/kendo-angular-dropdowns';
-import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDef } from 'ag-grid-community';
+import { ColDef, GridOptions } from 'ag-grid-community';
+import { TableComponent } from 'src/app/shared/components/table/table.component';
 
 @Component({
   selector: 'app-chat-node-categories',
@@ -9,9 +10,8 @@ import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDe
   styleUrls: ['./chat-node-categories.component.scss']
 })
 export class ChatNodeCategoriesComponent {
-
+  @ViewChild(TableComponent) sharedAgGrid: TableComponent;
   @ViewChild(DropDownListComponent) buttonDropdown: DropDownListComponent;
-  public rowGroupPanelShow: "always" | "onlyWhenGrouping" | "never" = "always";
 
   isCreateDropDownOpen : boolean = false;
   isStatusDropDownOpen : boolean = false;
@@ -29,12 +29,6 @@ export class ChatNodeCategoriesComponent {
     categoryName : new FormControl('',Validators.required),
     status : new FormControl('',Validators.required),
   });
-
-  defaultColumnState: any;
-  defaultFiltersState: any;
-  gridColumnApi: any;
-  gridData: any;
-  gridApi!: GridApi | any;
   
   defaultColDef : ColDef = {
     filter:true,
@@ -51,17 +45,14 @@ export class ChatNodeCategoriesComponent {
       headerName:'Node name',
       pinned:'left',
       lockPosition:true,
-      filter: 'agMultiColumnFilter',
     },
     {
       field:'node_category',
       headerName:'Associated node category',
-      filter: 'agMultiColumnFilter',
     },
     {
       field:'status',
       headerName:'Status',
-      filter: 'agMultiColumnFilter',
     },
     {
       field:'created_on',
@@ -98,11 +89,22 @@ export class ChatNodeCategoriesComponent {
     {
       field:'last_modified_by',
       headerName:'Last modified by',
-      filter: 'agMultiColumnFilter',
     },   
   ];
 
-  gridOptions : GridOptions ={};
+  gridOptions : GridOptions ={
+    enableRangeSelection: true,
+    statusBar: {
+      statusPanels: [
+        {
+          statusPanel: 'agAggregationComponent',
+          statusPanelParams: {
+            aggFuncs: ['avg', 'count', 'min', 'max', 'sum'],
+          },
+        },
+      ],
+    },  
+  };
 
   public rowData: any[] = [
     {
@@ -251,50 +253,9 @@ export class ChatNodeCategoriesComponent {
     },
   ];
 
-  public sideBar: SideBarDef | string | string[] | boolean | null = {
-    toolPanels: [
-      {
-        id: 'columns',
-        labelDefault: 'Columns',
-        labelKey: 'columns',
-        iconKey: 'columns',
-        toolPanel: 'agColumnsToolPanel',
-        toolPanelParams: {
-          suppressRowGroups: true,
-          suppressValues: true,
-          suppressPivots: true,
-          suppressPivotMode: true,
-        },
-      },
-      {
-        id: 'filters',
-        labelDefault: 'Filters',
-        labelKey: 'filters',
-        iconKey: 'filter',
-        toolPanel: 'agFiltersToolPanel',
-      },
-    ],
-  };
-
-  public statusBar: {statusPanels: StatusPanelDef[];} = {
-    statusPanels: [
-      {
-        statusPanel: "agTotalRowCountComponent",
-        align: "left",
-      },
-    ],
-  };
-
   constructor(private renderer: Renderer2, private ele: ElementRef){}
 
   ngOnInit(){}
-
-  onGridReady(params: GridReadyEvent){
-    this.gridApi = params.api;
-    this.gridData = params;
-    this.gridColumnApi = params.columnApi;
-    this.defaultFiltersState = this.gridApi.getFilterModel();
-  }
 
   onDropDownOpen(event:any,type:string){
     if(type === 'create new'){
@@ -331,7 +292,7 @@ export class ChatNodeCategoriesComponent {
     }
   }
 
-  onSaveChanges(fomr:any){}
+  onSaveChanges(form:any){}
 
   onCreateFlyOutClose(){
     this.isCreateFlyOutOpen = false;
@@ -341,57 +302,7 @@ export class ChatNodeCategoriesComponent {
   }
 
   onSearch() {
-    this.gridApi.setQuickFilter(
-      (document.getElementById('filter-text-box') as HTMLInputElement).value
-    );
-  }
-
-  onToolPanelVisibleChanged(params: any) {
-    if (params.visible) {
-      if (params.key === 'filters') {
-        const sideBar = this.ele.nativeElement.querySelector('.ag-side-bar');
-        const existingButton = sideBar.querySelector('.resetButton');
-        if (existingButton) {
-          this.renderer.removeChild(sideBar, existingButton);
-        }
-        if (sideBar) {
-          const button = this.renderer.createElement('button');
-          this.renderer.addClass(button, 'resetButton');
-          this.renderer.listen(button, 'click', () => this.onResetFilter());
-          button.innerHTML = 'Reset Filters';
-          this.renderer.appendChild(sideBar, button);
-        }
-      } else if (params.key === 'columns') {
-        const sidebar = this.ele.nativeElement.querySelector('.ag-side-bar');
-        const resetButton = sidebar.querySelector('.resetButton');
-        if (resetButton) {
-          this.renderer.removeChild(sidebar, resetButton);
-        }
-        const button = this.renderer.createElement('button');
-        this.renderer.addClass(button, 'resetButton');
-        this.renderer.listen(button, 'click', () => this.onResetColumns());
-        button.innerHTML = 'Reset Columns';
-
-        const toolPanelWrapper =
-          this.ele.nativeElement.querySelector('.ag-side-bar');
-        if (toolPanelWrapper) {
-          this.renderer.appendChild(toolPanelWrapper, button);
-        }
-      }
-    } else {
-      const sideBar = this.ele.nativeElement.querySelector('.ag-side-bar');
-      const resetButton = sideBar.querySelector('.resetButton');
-      if (resetButton) {
-        this.renderer.removeChild(sideBar, resetButton);
-      }
-    }
-  }
-
-  onResetFilter() {
-    this.gridApi.setFilterModel(this.defaultFiltersState);
-  }
-
-  onResetColumns() {
-    this.gridColumnApi.resetColumnState();
+    const filterValue = (document.getElementById('filter-text-box') as HTMLInputElement).value;
+    this.sharedAgGrid.setQuickFilter(filterValue,false);
   }
 }

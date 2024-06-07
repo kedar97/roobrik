@@ -1,10 +1,10 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DropDownListComponent } from '@progress/kendo-angular-dropdowns';
-import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, StatusPanelDef } from 'ag-grid-community';
-import { get } from 'lodash-es';
+import { ColDef, GridOptions } from 'ag-grid-community';
 import { CustomMenuEditorComponent } from '../../custom-groups/custom-menu-editor/custom-menu-editor.component';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
+import { TableComponent } from 'src/app/shared/components/table/table.component';
 
 interface DropdownData {
   id: number,
@@ -18,8 +18,8 @@ interface DropdownData {
 export class ChatQuestionAnswerFranchiseComponent {
   questionAnswerDataUrl = "assets/question-answer-data.json";
 
+  @ViewChild(TableComponent) sharedAgGrid: TableComponent;
   @ViewChild(DropDownListComponent) buttonDropdown: DropDownListComponent;
-  public rowGroupPanelShow: "always" | "onlyWhenGrouping" | "never" = "always";
   rowSelection: 'single' | 'multiple' = 'multiple';
 
   isCreateDropDownOpen :boolean = false;
@@ -41,13 +41,6 @@ export class ChatQuestionAnswerFranchiseComponent {
     {id: 2, value:'Chat Answer - Franchise'}
   ];
 
-  defaultColumnState: any;
-  defaultFiltersState: any;
-  gridColumnApi: any;
-  gridData: any;
-  gridApi!: GridApi | any;
-  groupedRows: string[] = [];
-
   defaultColDef : ColDef = {
     resizable: true,
     filter: true,
@@ -62,12 +55,10 @@ export class ChatQuestionAnswerFranchiseComponent {
     {
       field:'clientName',
       headerName:'Client name',
-      filter: 'agMultiColumnFilter',
     },
     {
       field:'franchiseName',
       headerName:'Franchise name',
-      filter: 'agMultiColumnFilter',
       valueFormatter:function(params){
         return params.value;
       }
@@ -75,17 +66,14 @@ export class ChatQuestionAnswerFranchiseComponent {
     {
       field:'nodeName',
       headerName:'Node name',
-      filter: 'agMultiColumnFilter',
     },
     {
       field:'node_category',
       headerName:'Associated node category',
-      filter: 'agMultiColumnFilter',
     },
     {
       field:'status',
       headerName:'Status',
-      filter: 'agMultiColumnFilter',
     },
     {
       field:'created_on',
@@ -122,7 +110,6 @@ export class ChatQuestionAnswerFranchiseComponent {
     {
       field:'last_modified_by',
       headerName:'Modified by',
-      filter: 'agMultiColumnFilter',
     },
     {
       width: 55,
@@ -145,7 +132,6 @@ export class ChatQuestionAnswerFranchiseComponent {
     },
     pinned: 'left',
     enableRowGroup: false,
-    filter: 'agMultiColumnFilter',
     width: 450,
     valueFormatter:function(params){
       return params.value
@@ -162,6 +148,17 @@ export class ChatQuestionAnswerFranchiseComponent {
       }
     },
 
+    statusBar: {
+      statusPanels: [
+        {
+          statusPanel: 'agAggregationComponent',
+          statusPanelParams: {
+            aggFuncs: ['avg', 'count', 'min', 'max', 'sum'],
+          },
+        },
+      ],
+    }, 
+
     getDataPath: function (row: any) {
       const path = [row.question_answer];
       if (row.group && row.group !== row.question_answer) {
@@ -173,40 +170,6 @@ export class ChatQuestionAnswerFranchiseComponent {
   };
 
   rowData = [];
-
-  public sideBar: SideBarDef | string | string[] | boolean | null = {
-    toolPanels: [
-      {
-        id: 'columns',
-        labelDefault: 'Columns',
-        labelKey: 'columns',
-        iconKey: 'columns',
-        toolPanel: 'agColumnsToolPanel',
-        toolPanelParams: {
-          suppressRowGroups: true,
-          suppressValues: true,
-          suppressPivots: true,
-          suppressPivotMode: true,
-        },
-      },
-      {
-        id: 'filters',
-        labelDefault: 'Filters',
-        labelKey: 'filters',
-        iconKey: 'filter',
-        toolPanel: 'agFiltersToolPanel',
-      },
-    ],
-  };
-
-  public statusBar: {statusPanels: StatusPanelDef[];} = {
-    statusPanels: [
-      {
-        statusPanel: "agTotalRowCountComponent",
-        align: "left",
-      },
-    ],
-  };
 
   public questionForm = new FormGroup({
     questionText : new FormControl('',Validators.required),
@@ -388,60 +351,10 @@ export class ChatQuestionAnswerFranchiseComponent {
     this.existingQuestionsListCopy = JSON.parse(JSON.stringify(this.existingQuestionsList));
     this.categoryListCopy = JSON.parse(JSON.stringify(this.categoryList));
     this.clientListCopy = JSON.parse(JSON.stringify(this.clientList));
-  }
-
-  onGridReady(params: GridReadyEvent){
-    this.gridApi = params.api;
-    this.gridData = params;
-    this.gridColumnApi = params.columnApi;
-    this.defaultFiltersState = this.gridApi.getFilterModel();
 
     this.postLoginService.getTableData(this.questionAnswerDataUrl).subscribe(data=>{
       this.rowData = data;
     })
-
-    this.gridOptions.getDataPath = (row: any) => {
-      const path = [row.question_answer];
-      if (row.group && row.group !== row.question_answer) {
-        path.unshift(row.group);
-      }
-      const groupedValues = this.groupedRows.map((key) => {
-        const v = get(row, [key]);
-        if (typeof v === 'object') {
-          if (Array.isArray(v)) {
-            return v.join(', ');
-          } else {
-            return JSON.stringify(v);
-          }
-        }
-        if (key === 'created_on' || key === 'last_modified_on') {
-          const date = new Date(row[key]);
-          const day = date.getDate();
-          const month = date.getMonth() + 1;
-          const year = date.getFullYear();
-          return `${month.toString().padStart(2, '0')}/${day.toString().padStart(2, '0')}/${year}`;
-        } 
-        else {
-          return v;
-        }
-      });
-      return [...groupedValues, ...path];
-    };
-
-    this.gridOptions.onColumnRowGroupChanged = (params: any) => {
-      const groupedRowsSet = new Set(this.groupedRows);
-
-      (params.columns || []).forEach((col: any) => {
-        const colId = col.getColId();
-        if (col.rowGroupActive === true) {
-          groupedRowsSet.add(colId);
-        } else {
-          groupedRowsSet.delete(colId);
-        }
-      });
-      this.groupedRows = Array.from(groupedRowsSet);
-      this.gridApi.refreshClientSideRowModel('group');
-    };
   }
 
   onDropDownOpen(event:any, type:string){
@@ -546,45 +459,7 @@ export class ChatQuestionAnswerFranchiseComponent {
   }
 
   onSaveChanges(form: any, type: string) {
-
-    const min = 1000000000;
-    const max = 9999999999;
-    const id = Math.floor(Math.random() * (max - min + 1)) + min;
-
-    if (type === 'question') {
-      const newObj = {
-        id: id,
-        group: form.value.questionText,
-        question_answer: form.value.questionText,
-        nodeName: form.value.nodeName,
-        node_category: form.value.category.value,
-        status: form.value.status,
-        created_on: new Date().toISOString(),
-        last_modified_on: new Date().toISOString(),
-        last_modified_by: 'John Doe',
-        visible: form.value.visible,
-        clientName: form.value.client,
-        franchiseName: form.value.franchiseList      
-      }
-  
-      this.rowData.unshift(newObj);
-      this.gridApi?.setRowData(this.rowData);
-    } else if(type === 'answer') {
-      const newObj = {
-        id: id,
-        group: form.value.question,
-        question_answer: form.value.answerText,
-        nodeName: form.value.nodeName,
-        status: form.value.status,
-        franchiseName: form.value.franchiseList,
-        created_on: new Date().toISOString(),
-        last_modified_on: new Date().toISOString(),
-        last_modified_by: 'John Doe'   ,
-        clientName: form.value.client 
-      }
-      this.rowData.unshift(newObj);
-      this.gridApi?.setRowData(this.rowData);
-    }
+    this.sharedAgGrid.onCreateNewQuestionAnswer(form,type);
   }
 
   onCreateFlyOutClose(){
@@ -604,50 +479,8 @@ export class ChatQuestionAnswerFranchiseComponent {
   }
 
   onSearch() {
-    this.gridApi.setQuickFilter(
-      (document.getElementById('filter-text-box') as HTMLInputElement).value
-    );
-  }
-
-  onToolPanelVisibleChanged(params: any) {
-    if (params.visible) {
-      if (params.key === 'filters') {
-        const sideBar = this.ele.nativeElement.querySelector('.ag-side-bar');
-        const existingButton = sideBar.querySelector('.resetButton');
-        if (existingButton) {
-          this.renderer.removeChild(sideBar, existingButton);
-        }
-        if (sideBar) {
-          const button = this.renderer.createElement('button');
-          this.renderer.addClass(button, 'resetButton');
-          this.renderer.listen(button, 'click', () => this.onResetFilter());
-          button.innerHTML = 'Reset Filters';
-          this.renderer.appendChild(sideBar, button);
-        }
-      } else if (params.key === 'columns') {
-        const sidebar = this.ele.nativeElement.querySelector('.ag-side-bar');
-        const resetButton = sidebar.querySelector('.resetButton');
-        if (resetButton) {
-          this.renderer.removeChild(sidebar, resetButton);
-        }
-        const button = this.renderer.createElement('button');
-        this.renderer.addClass(button, 'resetButton');
-        this.renderer.listen(button, 'click', () => this.onResetColumns());
-        button.innerHTML = 'Reset Columns';
-
-        const toolPanelWrapper =
-          this.ele.nativeElement.querySelector('.ag-side-bar');
-        if (toolPanelWrapper) {
-          this.renderer.appendChild(toolPanelWrapper, button);
-        }
-      }
-    } else {
-      const sideBar = this.ele.nativeElement.querySelector('.ag-side-bar');
-      const resetButton = sideBar.querySelector('.resetButton');
-      if (resetButton) {
-        this.renderer.removeChild(sideBar, resetButton);
-      }
-    }
+    const filterValue = (document.getElementById('filter-text-box') as HTMLInputElement).value;
+    this.sharedAgGrid.setQuickFilter(filterValue,true);
   }
 
   handleFilter(value, dropdown: string) {
@@ -664,14 +497,6 @@ export class ChatQuestionAnswerFranchiseComponent {
           (s) => s.value.toLowerCase().indexOf(value.toLowerCase()) !== -1
         );
     }
-  }
-
-  onResetFilter() {
-    this.gridApi.setFilterModel(this.defaultFiltersState);
-  }
-
-  onResetColumns() {
-    this.gridColumnApi.resetColumnState();
   }
 
   ngOnDestroy(){

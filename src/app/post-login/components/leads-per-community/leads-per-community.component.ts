@@ -8,7 +8,6 @@ import {
 import { Params } from '@angular/router';
 import { PostLoginService } from '../../post-login.service';
 import { TableComponent } from 'src/app/shared/components/table/table.component';
-import { RowNode } from '@ag-grid-community/all-modules';
 import { CustomTooltip } from './custom-tooltip/custom-tooltip.component';
 @Component({
   selector: 'app-leads-per-community',
@@ -218,9 +217,7 @@ export class LeadsPerCommunityComponent implements OnInit {
         const totalActiveColumns = totalActiveColumnNames.map((column, i) => {
           const monthAbbreviation = column.substring(0, 3);
           const year = column.substring(3);
-          const monthTitleCase =
-            monthAbbreviation.charAt(0).toUpperCase() +
-            monthAbbreviation.slice(1);
+          const monthTitleCase = monthAbbreviation.charAt(0).toUpperCase() + monthAbbreviation.slice(1);
           const monthYearCol = `${monthTitleCase}-${year}`;
   
           if (i === 0) {
@@ -285,7 +282,6 @@ export class LeadsPerCommunityComponent implements OnInit {
             width: 200,
             minWidth: 100,
             resizable: true,
-            filter: 'agTextColumnFilter',
             lockPinned: true,
             wrapHeaderText: true,
             headerTooltip: "This is the status in our Admin system and it doesn't always reflect the actual status of a client or franchise",
