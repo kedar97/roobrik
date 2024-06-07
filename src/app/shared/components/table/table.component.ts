@@ -207,8 +207,8 @@ export class TableComponent {
 
     if(this.router.url.includes('saas-revenue')){
       let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
-      this.pinnedTopRow = [...summaryRows]
-      this.rowData = this.rowData.filter(item=>item.group != this.summaryRowName);
+      this.pinnedTopRow = [...summaryRows];
+      this.rowData = this.rowData.filter(item => item.group != this.summaryRowName);
     }
   }
 
