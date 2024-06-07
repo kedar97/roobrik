@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Input, Renderer2, SimpleChanges } from '@angular/core';
 import { ColDef, GetDataPath, GridApi, GridReadyEvent, ICellRendererParams, ITextFilterParams, SideBarDef } from 'ag-grid-community';
 import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { get } from 'lodash-es';
@@ -141,6 +141,19 @@ export class TableComponent {
   ngOnInit(){
   }
 
+  ngOnChanges(changes: SimpleChanges){
+    if (changes['rowData']) {
+      console.log('change rowdata')
+      // this.gridApi?.setRowData(this.rowData);
+      if(this.router.url.includes('saas-revenue')){
+        // let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
+        this.pinnedTopRow = [...this.rowData.slice(1,3)];
+        this.rowData = this.rowData.filter(item => item.group != this.summaryRowName);
+      }
+      console.log(this.rowData,this.pinnedTopRow,'////')
+    }
+  }
+
   customCurrencyFormatter(params: ICellRendererParams): string {
     let value = params.value;
     if(value != null || value != undefined){
@@ -159,7 +172,6 @@ export class TableComponent {
     this.totalRows = 0;
     this.totalRows = this.gridApi.paginationGetPageSize() > this.rowData?.length ? this.rowData.length : this.gridApi.paginationGetPageSize();
 
-    console.log("rrroww", this.rowData);
     this.gridOptions.getDataPath = (row: any) => {
       const path = [row.client_frenchiseName];
       if (row.group && row.group !== row.client_frenchiseName) {
@@ -208,13 +220,13 @@ export class TableComponent {
     };
 
     console.log("this.router.url", this.router.url)
-    if(this.router.url.includes('saas-revenue')){
-      console.log("this.rowData", this.rowData);
-      console.log("hey")
-      // let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
-      this.pinnedTopRow = [...this.rowData.slice(1,3)];
-      this.rowData = this.rowData.filter(item => item.group != this.summaryRowName);
-    }
+    // if(this.router.url.includes('saas-revenue')){
+    //   console.log("this.rowData", this.rowData);
+    //   console.log("hey")
+    //   // let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
+    //   this.pinnedTopRow = [...this.rowData.slice(1,3)];
+    //   this.rowData = this.rowData.filter(item => item.group != this.summaryRowName);
+    // }
     console.log(this.rowData,this.pinnedTopRow,'////')
   }
 
