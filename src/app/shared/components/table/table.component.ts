@@ -206,10 +206,11 @@ export class TableComponent {
     };
 
     if(this.router.url.includes('saas-revenue')){
-      let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
-      this.pinnedTopRow = [...summaryRows];
+      // let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
+      this.pinnedTopRow = [...this.rowData.slice(1,3)];
       this.rowData = this.rowData.filter(item => item.group != this.summaryRowName);
     }
+    console.log(this.rowData,this.pinnedTopRow,'////')
   }
 
   setQuickFilter(filterValue: string,isNestedRows:boolean,pinnedData?:any): void {
@@ -435,8 +436,8 @@ export class TableComponent {
     currentTableData.unshift(...flatSummary,...flatSummary[0].children);
     let flatData = this.postLoginService.flattenData(currentTableData,revenueYears);
     let summaryRows = flatData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
-    this.pinnedTopRow = [...summaryRows]
-    this.rowData = flatData.filter(item=> item.group != this.summaryRowName)
+    this.pinnedTopRow = [...summaryRows];
+    this.rowData = flatData.filter(item=> item.group != this.summaryRowName);
 
     const modifiedColumnDefs = [
       ...this.columnDefs.slice(0,this.statusColIndex),

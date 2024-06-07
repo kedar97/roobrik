@@ -323,7 +323,7 @@ export class FinancialDataComponent {
   }
 
   getRowStyle(params: any): any {
-    if ( params.data.group === 'Saas Revenue Summary' ) {
+    if ( params.data?.group === 'Saas Revenue Summary' ) {
       return { background: 'rgba(102, 163, 212, 0.3)' };
     }
     if (params.node.level > 0) {
