@@ -205,7 +205,9 @@ export class TableComponent {
       }
     };
 
+    console.log("this.router.url", this.router.url)
     if(this.router.url.includes('saas-revenue')){
+      console.log("this.rowData", this.rowData);
       console.log("hey")
       // let summaryRows = this.rowData.filter(item => item.client_frenchiseName === 'ARR' || item.client_frenchiseName === 'MRR')
       this.pinnedTopRow = [...this.rowData.slice(1,3)];
