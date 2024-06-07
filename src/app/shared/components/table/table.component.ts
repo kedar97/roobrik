@@ -138,7 +138,9 @@ export class TableComponent {
     this.setQuickFilter = this.setQuickFilter.bind(this);
   };
 
-  ngOnInit(){}
+  ngOnInit(){
+    console.log("rrroww", this.rowData);
+  }
 
   customCurrencyFormatter(params: ICellRendererParams): string {
     let value = params.value;
