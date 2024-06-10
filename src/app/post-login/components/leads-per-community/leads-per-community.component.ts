@@ -9,6 +9,7 @@ import { Params } from '@angular/router';
 import { PostLoginService } from '../../post-login.service';
 import { TableComponent } from 'src/app/shared/components/table/table.component';
 import { CustomTooltip } from './custom-tooltip/custom-tooltip.component';
+import { FloatingFilterComponent } from 'src/app/shared/components/floating-filter-component/floating-filter-component.component';
 @Component({
   selector: 'app-leads-per-community',
   templateUrl: './leads-per-community.component.html',
@@ -209,6 +210,10 @@ export class LeadsPerCommunityComponent implements OnInit {
               }
             },
             filter: 'agNumberColumnFilter',
+            floatingFilterComponent: FloatingFilterComponent,
+            floatingFilterComponentParams: {
+              suppressFilterButton: true
+            },
             width: 80,
             resizable: true,
           };
@@ -256,6 +261,10 @@ export class LeadsPerCommunityComponent implements OnInit {
               }
             },
             filter: 'agNumberColumnFilter',
+            floatingFilterComponent: FloatingFilterComponent,
+            floatingFilterComponentParams: {
+              suppressFilterButton: true
+            },
             width: 80,
             resizable: true,
           };

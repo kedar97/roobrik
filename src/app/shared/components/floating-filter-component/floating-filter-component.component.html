@@ -1,0 +1,13 @@
+<div class="floating-filter-component d-flex">
+  <input
+    class="floating-filter-input"
+    [type]="inputType"
+    [(ngModel)]="currentValue"
+    (input)="onInputBoxChanged()"
+    [disabled]="isInputDisabled"
+    [class.inactive]="isInputDisabled"
+  />
+  <div class="floating-filter">
+    <div class="floating-filter-icon" (click)="onIconClick()"></div>
+  </div>
+</div>

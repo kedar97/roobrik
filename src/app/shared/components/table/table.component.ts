@@ -4,6 +4,7 @@ import { PaginationOption } from 'src/app/post-login/post-login.modal';
 import { get } from 'lodash-es';
 import { PostLoginService } from 'src/app/post-login/post-login.service';
 import { Router } from '@angular/router';
+import { FloatingFilterComponent } from '../floating-filter-component/floating-filter-component.component';
 
 @Component({
   selector: 'app-table',
@@ -96,7 +97,11 @@ export class TableComponent {
         },
         {
           filter: 'agSetColumnFilter',
-          filterParams: {
+          filterParams:{
+            keyCreator: (params) => {
+              return params.value;
+            },
+            convertValuesToStrings: true,
             buttons: ["reset"],
           } as ITextFilterParams
         }
@@ -139,6 +144,16 @@ export class TableComponent {
   };
 
   ngOnInit(){}
+
+  ngAfterViewInit(): void {
+    this.applyFilterHighlight();
+    const gridElement = document.querySelector('.ag-header-viewport');
+    if (gridElement) {
+      gridElement.addEventListener('scroll', () => {
+        this.applyFilterHighlight();
+      });
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges){
     if (changes['rowData']) {
@@ -271,6 +286,7 @@ export class TableComponent {
   }
 
   onFilterChanged(event:any){ 
+    this.applyFilterHighlight();
     const self = this;  
     let filterModel = event.api.getFilterModel();
     let allNodes = [];
@@ -283,7 +299,7 @@ export class TableComponent {
       this.gridApi.forEachNode(node => node.setExpanded(false));
 
       allNodes.forEach(node => {
-        if(node.data.group != node.data.client_frenchiseName){
+        if(node.data?.group != node.data?.client_frenchiseName){
           if(filterModel && Object.keys(filterModel).length > 0){
             Object.keys(filterModel).forEach(function (key){
               let filterItem = filterModel[key]; 
@@ -313,7 +329,7 @@ export class TableComponent {
                 else{
                   filterItem.filterModels.forEach(fm =>{
                     if(fm != null){
-                      let flag = self.postLoginService.checkPropertyValue(node.data[key].toString(),fm.filter);
+                      let flag = self.postLoginService.checkPropertyValue(node.data[key]?.toString(),fm.filter);
                       if(flag == true){
                         parentNodes.push(node.parent.key)
                       }
@@ -336,6 +352,45 @@ export class TableComponent {
         })
       })
     }
+  }
+
+  applyFilterHighlight(){
+    const allColumns = this.gridOptions.columnApi!.getAllGridColumns();
+    allColumns.forEach((column: any) => {
+      const filterInstance = this.gridOptions.api!.getFilterInstance(column);
+
+      const isLeftPinned = column.getPinned() === 'left';
+      const headerSelector = isLeftPinned ? '.ag-pinned-left-header .ag-header-cell' : '.ag-header-cell';
+      const floatingFilterSelector = '.ag-floating-filter';
+      const headerElements = document.querySelectorAll(headerSelector);
+
+      headerElements.forEach((headerElement : Element)=>{
+        let colIndex = headerElement.getAttribute('aria-colindex');
+        const headerTextElement = headerElement.querySelector('.ag-header-cell-text');
+        const headerText = headerTextElement ? headerTextElement.innerHTML : '';
+        let floatingFilterElement;
+
+        if (headerText === column.getColDef().headerName && column.colId !='actions') {
+          floatingFilterElement = document.querySelector(`${floatingFilterSelector}[aria-colindex="${colIndex}"]`);
+          if (filterInstance && filterInstance.isFilterActive()) {
+            if (headerElement) {
+              headerElement.classList.add('ag-header-cell-filtered');
+            }
+            if (floatingFilterElement) {
+              floatingFilterElement.classList.add('ag-floating-filter-active');
+            }
+          } 
+          else {
+            if (headerElement) {
+              headerElement.classList.remove('ag-header-cell-filtered');
+            }
+            if (floatingFilterElement) {
+              floatingFilterElement.classList.remove('ag-floating-filter-active');
+            }
+          } 
+        }            
+      })
+    });
   }
  
   onExport(){
@@ -471,20 +526,59 @@ export class TableComponent {
         headerName:`${this.yearToAdd} total revenue`,
         marryChildren: true,
         children: [
-          { field:`totalRevenue${this.yearToAdd}`, headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter', headerClass: 'hide-header-name', suppressFillHandle:true, valueFormatter: this.customCurrencyFormatter,
+          { field:`totalRevenue${this.yearToAdd}`, headerName :'Total', columnGroupShow :null,minWidth: 70, filter: 'agNumberColumnFilter', headerClass: 'hide-header-name', suppressFillHandle:true, valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
           },
-          { field: `revenue${this.yearToAdd}_jan`, headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_feb`, headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_mar`, headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_apr`, headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_may`, headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_jun`, headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_jul`, headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_aug`, headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_sep`, headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_oct`, headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_nov`, headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
-          { field: `revenue${this.yearToAdd}_dec`, headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter },
+          },
+          { field: `revenue${this.yearToAdd}_jan`, headerName :'Jan', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_feb`, headerName :'Feb', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_mar`, headerName :'Mar', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_apr`, headerName :'Apr', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_may`, headerName :'May', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_jun`, headerName :'Jun', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_jul`, headerName :'Jul', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_aug`, headerName :'Aug', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_sep`, headerName :'Sep', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_oct`, headerName :'Oct', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_nov`, headerName :'Nov', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
+          { field: `revenue${this.yearToAdd}_dec`, headerName :'Dec', columnGroupShow: 'open', width: 70, filter: 'agNumberColumnFilter', valueFormatter: this.customCurrencyFormatter,floatingFilterComponent: FloatingFilterComponent,
+          floatingFilterComponentParams: {
+            suppressFilterButton: true
+          }, },
         ]
       },
       ...this.columnDefs.slice(this.statusColIndex),

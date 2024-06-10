@@ -4,6 +4,7 @@ import { PostLoginService } from '../../post-login.service';
 import { NavigationExtras, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TableComponent } from 'src/app/shared/components/table/table.component';
+import { FloatingFilterComponent } from 'src/app/shared/components/floating-filter-component/floating-filter-component.component';
 
 @Component({
   selector: 'app-financial-data',
@@ -279,6 +280,10 @@ export class FinancialDataComponent {
               headerName: 'Total', 
               columnGroupShow: null, 
               minWidth: 70, 
+              floatingFilterComponent: FloatingFilterComponent,
+              floatingFilterComponentParams: {
+                suppressFilterButton: true
+              },
               filter: 'agNumberColumnFilter',
               headerClass: 'hide-header-name', 
               valueFormatter: this.customCurrencyFormatter ,
@@ -290,6 +295,10 @@ export class FinancialDataComponent {
               columnGroupShow: 'open',
               width: 70,
               filter: 'agNumberColumnFilter',
+              floatingFilterComponent: FloatingFilterComponent,
+              floatingFilterComponentParams: {
+                suppressFilterButton: true
+              },
               valueFormatter: this.customCurrencyFormatter,
               hide: !(year === currentYear || year === lastYear || year === nextYear),
             }))

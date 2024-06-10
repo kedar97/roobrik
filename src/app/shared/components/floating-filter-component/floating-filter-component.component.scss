@@ -1,0 +1,73 @@
+:host{
+  display: flex;
+  flex-grow: 1;
+}
+
+.floating-filter-component{
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.floating-filter-input{
+  background-color: #fff;
+  width: 100%;
+  border-bottom: 1px solid #dfdfdf; 
+
+  &:focus{
+    outline: none;
+  }
+}
+
+.floating-filter{
+  display: flex;
+  align-items: flex-end;
+  margin-left: 12px;
+
+  &-icon{
+    margin-bottom: -6px;
+    position: relative;
+    padding: 2px;
+
+    &::before{
+      content: url("/assets/images/floating-filter-icon.svg");
+    }
+  }
+}
+
+.floating-filter.active{
+  background: rgb(226, 236, 251);
+  border-radius: 2px;
+
+  .floating-filter-icon::before{
+    clip-path: path("M0,0C8,-10.585 12.585,8 16,8L16,16L0,16L0,0L8,0Z");
+  }
+
+  .floating-filter-icon::after{
+    content: "";
+    position: absolute;
+    width: 5.5px;
+    height: 5.5px;
+    top: 3px;
+    right: 2px;
+    border-radius: 50%;
+    background-color: #2196f3;
+  }
+}
+
+.inactive{
+  opacity: .38;
+}
+
+// Hide spinners for Chrome, Safari, Edge, Opera /
+.floating-filter-input::-webkit-outer-spin-button,
+.floating-filter-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// Hide spinners for Firefox /
+.floating-filter-input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: none;
+}

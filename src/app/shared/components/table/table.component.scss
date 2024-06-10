@@ -56,11 +56,16 @@ button:focus {
         font-weight: 400;
     }
 
-    // // FLOATING FILTER
+    // FLOATING FILTER
     .ag-floating-filter {
         border-top: none !important;
+
         &::after {
-        display: none;
+            display: none;
+        }
+
+        .ag-icon-filter{
+            position: relative;
         }
     }
 
@@ -83,25 +88,23 @@ button:focus {
             background-color: rgba(226,236,251,255) !important;
             border-radius: 2px;
             height: 19px;
-            width: 23px;
+            width: 21px;
             padding-top: 2px;
-            padding-left: 2px;
         }
         .ag-icon-filter::before {
-            clip-path: path("M8,0C8,4.415 11.585,8 16,8L16,16L0,16L0,0L8,0Z");
+            clip-path: path("M0,0C8,-10.585 12.585,8 16,8L16,16L0,16L0,0L8,0Z");
             display: block;
-            width: 19px;
         }
         .ag-icon::after    {
             content: "";
-             position: absolute;
-             width: 3.5px;
-             height: 3.5px;
-             top: 11px;
-             right: 11px;
-             border-radius: 50%;
-             background-color: #2196f3;
-             }
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            top: 3px;
+            right: 2px;
+            border-radius: 50%;
+            background-color: #2196f3;
+        }
     }
 
     .ag-ltr .ag-header-expand-icon{
@@ -449,13 +452,10 @@ button:focus {
     .k-button-md.k-icon-button .k-button-icon {
         border-radius: 50% !important;
         border: 2px solid black !important;
-    }
-
-    
+    }    
 }
 
 :host ::ng-deep{
-
     .ag-filter-apply-panel-button {
         border: 1px solid #80808061 !important;
         background: white !important;
@@ -463,15 +463,4 @@ button:focus {
         border-radius: 5px;
         font-weight: 500;
     }
-
-     .ag-filter-active:after {
-        content: "" !important;
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        top: -1px;
-        right: -1px;
-        border-radius: 50%;
-        background-color: var(--ag-active-color) !important;
-     }
 }

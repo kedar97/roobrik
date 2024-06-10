@@ -13,6 +13,7 @@ import { TableComponent } from './components/table/table.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ModuleRegistry } from 'ag-grid-community';
 import { ExcelExportModule } from 'ag-grid-enterprise';
+import { FloatingFilterComponent } from './components/floating-filter-component/floating-filter-component.component';
 
 ModuleRegistry.registerModules([ExcelExportModule]);
 
@@ -24,7 +25,8 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     NotificationsComponent,
     LoaderComponent,
     HeaderTwoComponent,
-    TableComponent
+    TableComponent,
+    FloatingFilterComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ ModuleRegistry.registerModules([ExcelExportModule]);
     FormsModule,
     ReactiveFormsModule,
     HeaderTwoComponent,
-    TableComponent
+    TableComponent,
+    FloatingFilterComponent
   ]
 })
 export class SharedModule { }
