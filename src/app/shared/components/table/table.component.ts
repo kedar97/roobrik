@@ -728,12 +728,10 @@ export class TableComponent {
 
   onResetFilter() {
     this.gridApi.setFilterModel(this.defaultFiltersState);
+    this.gridApi.forEachNode(node => node.setExpanded(false));
   }
 
   onResetColumns() {
     this.gridColumnApi.resetColumnState();
-  }
-
-  
-    
+  } 
 }
